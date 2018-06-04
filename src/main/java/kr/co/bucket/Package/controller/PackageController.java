@@ -1,10 +1,11 @@
-package kr.co.bucket.Package.Controller;
+package kr.co.bucket.Package.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @Controller
+@RequestMapping("/main")
 public class PackageController {
 	
 	@RequestMapping("/ajax.json")
@@ -13,7 +14,7 @@ public class PackageController {
 		return null;
 	}
 	
-	@RequestMapping("/view/index.do")
+	@RequestMapping("/main.do")
 	public void main() {
 		
 	}
