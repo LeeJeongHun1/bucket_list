@@ -66,10 +66,10 @@
 
                 <div class="col-md-2 mylist">
                 	<ul>
-                		<li><a href="adminMem.jsp">회원관리</a></li>
+                		<li><a href="${pageContext.request.contextPath}/admin/adminMem.do">회원관리</a></li>
                 		<li><a href="">회원 패키지관리</a></li>
-                		<li><a href="adminPaid.jsp">결제내역조회</a></li>
-                		<li><a href="adminPackage.jsp">관리자 패키지관리</a></li>
+                		<li><a href="${pageContext.request.contextPath}/admin/adminPaid.do">결제내역조회</a></li>
+                		<li><a href="${pageContext.request.contextPath}/admin/adminPackage.do">관리자 패키지관리</a></li>
                 		
                 	</ul>
                 </div>  
