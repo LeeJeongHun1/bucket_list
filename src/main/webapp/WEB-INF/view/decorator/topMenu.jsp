@@ -18,10 +18,10 @@
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse yamm" id="navigation">
 			<div class="button navbar-right">
-				<button class="navbar-btn nav-button wow bounceInRight login"
-					onclick=" window.open('register.jsp')" data-wow-delay="0.45s">Login</button>
+				<button class="navbar-btn nav-button wow bounceInRight"
+					onclick="location.replace('${pageContext.request.contextPath}/user/register.do')" data-wow-delay="0.45s">Login</button>
 				<button class="navbar-btn nav-button wow fadeInRight"
-					onclick=" window.open('userUpdate.jsp')" data-wow-delay="0.48s">MyPage</button>
+					onclick="location.replace('${pageContext.request.contextPath}/user/userUpdate.do')" data-wow-delay="0.48s">MyPage</button>
 			</div>
 			<ul class="main-nav nav navbar-nav navbar-right"
 				style="margin-right: 0;">
