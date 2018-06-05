@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html class="no-js">
 <head>
@@ -135,7 +136,7 @@ div.airlist {
 											</div>
 											<div class="col-sm-12">
 												<div class="col-sm-4">
-													<select id="departureCity" class="selectpicker" data-live-search="true"
+													<select id="departureCity" name="departureCity" class="selectpicker" data-live-search="true"
 														data-live-search-style="begins" title="출발도시">
 														<option value="1">인천</option>
 														<option value="2">부산</option>
@@ -144,7 +145,7 @@ div.airlist {
 														<option value="5">제주</option>
 														<option value="6">강원</option>
 													</select>
-													<select id="arrivalCity" class="selectpicker" data-live-search="true"
+													<select id="arrivalCity" name="arrivalCity" class="selectpicker" data-live-search="true"
 														data-live-search-style="begins" title="여행도시">
 														<option value=""></option>
 														<option value="1">파리</option>
@@ -152,8 +153,8 @@ div.airlist {
 													</select>
 												</div>
 												<div class="col-sm-4">
-													<input type="text" class="form-control" id="departureDate" placeholder="가는일자">
-													<input type="text" class="form-control" id="arrivalDate" placeholder="오는일자"><br>
+													<input type="text" class="form-control" id="departureDate" name="departureDate" placeholder="가는일자">
+													<input type="text" class="form-control" id="arrivalDate" name="arrivalDate" placeholder="오는일자"><br>
 												</div>
 												<div class="col-sm-4">
 													<button class="btn-primary" style="margin-left: 163px"
@@ -952,12 +953,12 @@ div.airlist {
 	<script>
 		$(function() {
 			$('#departureDate').datepicker({
-				format : "yyyy-mm-dd",
+				format : "yyyy년mm월dd일",
 				startDate: 'd',
 				autoclose: true
 			}).datepicker("setDate", new Date());
 			$('#arrivalDate').datepicker({
-				format : "yyyy-mm-dd",
+				format : "yyyy년mm월dd일",
 				startDate: '+1d',
 				autoclose: true
 			}).datepicker("setDate", new Date());
@@ -985,12 +986,15 @@ div.airlist {
 				})
 				return false;
 			}
-			else{
-				console.log($("#arrivalDate").val());
-				console.log($("#departureDate").val());
-				console.log($("#arrivalCity").val());
-				console.log($("#departureCity").val());
-			}
+			$.ajax({
+				url: '',
+				data: 
+			})
+			console.log($("#mm").serialize());
+			console.log($("#arrivalDate").val());
+			console.log($("#departureDate").val());
+			console.log($("#arrivalCity").val());
+			console.log($("#departureCity").val());
 			return false;
 		}
 		$(".col-sm-12.detailpop").hide();
