@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html class="no-js">
 <head>
@@ -68,6 +69,7 @@
 				<!--  검색창 -->
 				<div class="col-md-12 padding-bottom-40 large-search">
 					<div class="search-form wow pulse">
+					<!-- 검색폼 -->
 						<form action="" class=" form-inline">
 							<div class="col-md-4" style="border-right: 1px dashed #e8e8e8;">
 								<h4 class="sub_title">도시별</h4>
@@ -226,6 +228,7 @@
 								</div>
 							</div>
 						</form>
+						<!-- 폼 끝 -->
 					</div>
 				</div>
 

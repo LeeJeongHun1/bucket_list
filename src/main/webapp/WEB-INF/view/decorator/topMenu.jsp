@@ -53,7 +53,7 @@
 							<!--    <button class="btn  toggle-btn" type="button"><i class="fa fa-bars"></i></button> -->
 
 							<div class="form-group" style="width: 475px;">
-								<input type="text" class="form-control" placeholder="Key word">
+								<input type="text" class="form-control" name="search" placeholder="검색어">
 							</div>
 							<!--                                 <div class="form-group">                                   
                                     <select id="lunchBegins" class="selectpicker" data-live-search="true" data-live-search-style="begins" title="Select your city">
