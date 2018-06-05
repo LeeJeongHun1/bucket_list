@@ -67,9 +67,9 @@
                 <div class="col-md-2 mylist">
                 	<ul>
                 		<li><a href="">회원조회</a></li>
-                		<li><a href="adminMemPackage.jsp">회원 패키지관리</a></li>
-                		<li><a href="adminPaid.jsp">결제내역조회</a></li>
-                		<li><a href="adminPackage.jsp">관리자 패키지관리</a></li>
+                		<li><a href="${pageContext.request.contextPath}/admin/adminMemPackage.do">회원 패키지관리</a></li>
+                		<li><a href="${pageContext.request.contextPath}/admin/adminPaid.do">결제내역조회</a></li>
+                		<li><a href="${pageContext.request.contextPath}/admin/adminPackage.do">관리자 패키지관리</a></li>
                 	</ul>
                 </div>  
                 
@@ -105,10 +105,10 @@
 				<!-- 한줄 시작 -->
 				<div class="col-md-10">
 					<div class="col-md-3">
-						가입일:<input type="date" class="form-control" style="display:inline-block; width: 70%">
+						가입일:<input type="date" id="miniDate" class="form-control" style="display:inline-block; width: 70%">
 					</div>
 					<div class="col-md-3">
-						<input type="date" class="form-control" style="width: 80%">
+						<input type="date" id="maxDate" class="form-control" style="width: 80%">
 					</div>
 					<div class="col-md-4">
 					
@@ -183,6 +183,23 @@
 
         <script src="assets/js/main.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap-wizard/1.2/jquery.bootstrap.wizard.js"></script>
-
+        
+<script>
+$(function() {
+	$('#miniDate').datepicker({
+	format : "yyyy-mm-dd",
+	startDate: 'd',
+	autoclose: true
+	}).datepicker("setDate", new Date());
+	});
+	
+$(function() {
+	$('#maxDate').datepicker({
+	format : "yyyy-mm-dd",
+	startDate: 'd',
+	autoclose: true
+	}).datepicker("setDate", new Date());
+	});
+</script>
     </body>
 </html>

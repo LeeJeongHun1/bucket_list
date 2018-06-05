@@ -66,9 +66,9 @@
 
                 <div class="col-md-2 mylist">
                 	<ul>
-                		<li><a href="adminMem.jsp">회원관리</a></li>
-                		<li><a href="adminMempackage.jsp">회원 패키지관리</a></li>
-                		<li><a href="adminPaid.jsp">결제내역조회</a></li>
+                		<li><a href="${pageContext.request.contextPath}/admin/adminMem.do">회원관리</a></li>
+                		<li><a href="${pageContext.request.contextPath}/admin/Mempackage.do">회원 패키지관리</a></li>
+                		<li><a href="${pageContext.request.contextPath}/admin/adminPaid.do">결제내역조회</a></li>
                 		<li><a href="">관리자 패키지관리</a></li>
                 	</ul>
                 </div>  
