@@ -136,7 +136,7 @@ div.airlist {
 											</div>
 											<div class="col-sm-12">
 												<div class="col-sm-4">
-													<select id="departureCity" name="departureCity" class="selectpicker" data-live-search="true"
+													<select id="departureCity" name="departureCityCode" class="selectpicker" data-live-search="true"
 														data-live-search-style="begins" title="출발도시">
 														<option value="1">인천</option>
 														<option value="2">부산</option>
@@ -145,7 +145,7 @@ div.airlist {
 														<option value="5">제주</option>
 														<option value="6">강원</option>
 													</select>
-													<select id="arrivalCity" name="arrivalCity" class="selectpicker" data-live-search="true"
+													<select id="arrivalCity" name="arrivalCityCode" class="selectpicker" data-live-search="true"
 														data-live-search-style="begins" title="여행도시">
 														<option value=""></option>
 														<option value="1">파리</option>
@@ -991,8 +991,8 @@ div.airlist {
 				data: {
 				"arrivalDate": $("#arrivalDate").val(),
 				"departureDate": $("#departureDate").val(),
-				"arrivalCity": $("#arrivalCity").val(),
-				"departureCity": $("#departureCity").val()
+				"arrivalCity": $("#arrivalCityCode").val(),
+				"departureCity": $("#departureCityCode").val()
 				},
 			})
 			.done(function (result){

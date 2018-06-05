@@ -14,6 +14,7 @@ public class AirSearch {
 	private String adultPrice;
 	private String childPrice;
 	private String babyPrice;
+	
 	public String getAirCode() {
 		return airCode;
 	}
@@ -80,7 +81,5 @@ public class AirSearch {
 	public void setBabyPrice(String babyPrice) {
 		this.babyPrice = babyPrice;
 	}
-
-	
 	
 }
