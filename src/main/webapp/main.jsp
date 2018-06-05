@@ -7,8 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%-- 	<c:redirect url="/index.do" /> --%>
-	<a href='<c:url value="/index.do" />'>이동</a>
+	<c:redirect url="/main/index.do" />
+<%-- 	<a href='<c:url value="/main/index.do" />'>이동</a> --%>
 	<br>
 </body>
 </html>
