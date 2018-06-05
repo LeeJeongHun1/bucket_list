@@ -987,8 +987,16 @@ div.airlist {
 				return false;
 			}
 			$.ajax({
-				url: '',
-				data: 
+				url: '<c:url value="/package/airSearch.json"/>',
+				data: {
+				"arrivalDate": $("#arrivalDate").val(),
+				"departureDate": $("#departureDate").val(),
+				"arrivalCity": $("#arrivalCity").val(),
+				"departureCity": $("#departureCity").val()
+				},
+			})
+			.done(function (result){
+				console.dir(result)
 			})
 			console.log($("#mm").serialize());
 			console.log($("#arrivalDate").val());

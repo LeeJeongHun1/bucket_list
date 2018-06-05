@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.bucket.repository.mapper.PackageMapper">
+	<resultMap type="airSearch" id="airMap">
+		<result column="air_code" property="airCode" />
+		<result column="air_name" property="airName" />
+		<result column="departure_city_code" property="departureCityCode" />
+		<result column="arrival_city_code" property="arrivalCityCode" />
+		<result column="seat_cnt" property="seatCnt" />
+		<result column="start_date" property="startDate" />
+		<result column="end_date" property="endDate" />
+		<result column="flying_time" property="flyingTime" />
+		<result column="adult_price" property="adultPrice" />
+		<result column="child_price" property="childPrice" />
+		<result column="baby_price" property="babyPrice" />
+	</resultMap>
+	
+	<select id="selectAir" parameterType="airSearch" resultMap="airMap">
+		select * 
+		  from tb_air
+		 where ARRIVAL_CITY_CODE = (
+							select city_code
+							  from tb_city
+							 where city_code = #{arrivalCityCode}
+							)
+		   and start_date = #{startDate}
+	</select>
+</mapper>
+
+
+
+
