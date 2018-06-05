@@ -27,6 +27,7 @@
         <link href="<c:url value='/resources/assets/css/animate.css" rel="stylesheet" media="screen' />">
         <link rel="stylesheet" href="<c:url value='/resources/assets/css/bootstrap-select.min.css' />"> 
         <link rel="stylesheet" href="<c:url value='/resources/bootstrap/css/bootstrap.min.css' />">
+        <link rel="stylesheet" href="<c:url value='/resources/assets/css/datepicker3.css' />"> 
         <link rel="stylesheet" href="<c:url value='/resources/assets/css/icheck.min_all.css' />">
         <link rel="stylesheet" href="<c:url value='/resources/assets/css/price-range.css' />">
         <link rel="stylesheet" href="<c:url value='/resources/assets/css/owl.carousel.css' />">  
@@ -42,6 +43,8 @@
         <script src="<c:url value='/resources/bootstrap/js/bootstrap.min.js' />"></script>
         <script src="<c:url value='/resources/assets/js/bootstrap-select.min.js' />"></script>
         <script src="<c:url value='/resources/assets/js/bootstrap-hover-dropdown.js' />"></script>
+        <script src="<c:url value='/resources/assets/js/bootstrap-datepicker.js' />"></script>
+        <script src="<c:url value='/resources/assets/js/bootstrap-datepicker.kr.js' />"></script>
         <script src="<c:url value='/resources/assets/js/easypiechart.min.js' />"></script>
         <script src="<c:url value='/resources/assets/js/jquery.easypiechart.min.js' />"></script>
         <script src="<c:url value='/resources/assets/js/owl.carousel.min.js' />"></script>
