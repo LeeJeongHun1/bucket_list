@@ -5,7 +5,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @Controller
-@RequestMapping("/main")
 public class PackageController {
 	
 	@RequestMapping("/ajax.json")
@@ -14,7 +13,7 @@ public class PackageController {
 		return null;
 	}
 	
-	@RequestMapping("/main.do")
+	@RequestMapping("/index.do")
 	public void main() {
 		
 	}

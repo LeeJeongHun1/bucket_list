@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <head>
 <meta charset="UTF-8">
@@ -186,7 +187,7 @@ ul {padding:0;}
                         <div class="col-sm-6 col-md-3 p0">
                             <div class="box-two proerty-item">
                                 <div class="item-thumb">
-                                    <a href="property-2.html" ><img src="assets/img/demo/gam-2.jpg"></a>
+                                    <a href="property-2.html" ><img src="<c:url value='/resources/assets/img/demo/gam-2.jpg'/>"></a>
                                 </div>
                                 <div class="item-entry overflow">
                                     <h5><a href="property-2.html" >사이판 PIC 골드 4일 5일</a></h5>
