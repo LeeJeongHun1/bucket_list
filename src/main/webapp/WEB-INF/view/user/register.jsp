@@ -57,17 +57,17 @@
                             <form action="" method="post">
                                 <div class="form-group">
                                     <label for="name">Name</label>
-                                    <input type="text" class="form-control" id="name">
-                                    <label for="name">Birth Date</label>
-                                    <input type="text" class="form-control" id="bd">
+                                    <input type="text" class="form-control" id="name" placeholder="이름을 입력해주세요.">
+                                    <label for="birth">Birth Date</label>
+                                    <input type="text" class="form-control" id="bd" placeholder="생년월일을 입력해주세요.">
                                 </div>
                                 <div class="form-group">
                                     <label for="email">Email</label>
-                                    <input type="text" class="form-control" id="email">
+                                    <input type="text" class="form-control" id="email" placeholder="이메일을 입력해주세요.">
                                 </div>
                                 <div class="form-group">
                                     <label for="password">Password</label>
-                                    <input type="password" class="form-control" id="password">
+                                    <input type="password" class="form-control" id="password" placeholder="패스워드를 입력해주세요.">
                                 </div>
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-default">Register</button>
@@ -81,17 +81,17 @@
                     <div class="box-for overflow">                         
                         <div class="col-md-12 col-xs-12 login-blocks">
                             <h2>로그인 </h2> 
-                            <form action="" method="post">
+                            <form action="${pageContext.request.contextPath}/logIn.do" method="post">
                                 <div class="form-group">
                                     <label for="email">Email</label>
-                                    <input type="text" class="form-control" id="email">
+                                    <input type="text" class="form-control" id="email" placeholder="이메일을 입력해주세요." >
                                 </div>
                                 <div class="form-group">
                                     <label for="password">Password</label>
-                                    <input type="password" class="form-control" id="password">
+                                    <input type="password" class="form-control" id="password" placeholder="비밀번호를 입력해주세요.">
                                 </div>
                                 <div class="text-center">
-                                    <button type="submit" class="btn btn-default"> Log in</button>
+                                    <button type="submit" class="btn btn-default"> Log In</button>
                                 </div>
                             </form>
                             <br>
