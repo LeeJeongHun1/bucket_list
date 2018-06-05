@@ -229,7 +229,7 @@
 					href="category.jsp" class="dropdown-toggle" style="padding: 18px;">thematic
 						tour</a></li>
 				<li class="dropdown yamm-fw" data-wow-delay="0.4s"><a
-					href="submit-property.jsp" class="dropdown-toggle"
+					href="<c:url value='/package/createPackage.do' />" class="dropdown-toggle"
 					style="padding: 18px;">My Package</a></li>
 
 				<!--  <li class="wow fadeInDown" data-wow-delay="0.5s"><a href="contact.html">Contact</a></li> -->
