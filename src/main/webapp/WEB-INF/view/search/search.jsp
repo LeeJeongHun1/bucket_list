@@ -287,7 +287,7 @@
 										<a href="property-1.html"> 여행국가 <span>홍콩</span></a>
 										<button
 											class="search_detail navbar-btn nav-button wow fadeInRight animated"
-											onclick=" window.open('property-2.jsp')"
+											onclick=" location.replace('${pageContext.request.contextPath}/search/searchDetail.do')"
 											data-wow-delay="0.48s"
 											style="visibility: visible; animation-delay: 0.48s; animation-name: fadeInRight;">상세보기</button>
 									</h5>

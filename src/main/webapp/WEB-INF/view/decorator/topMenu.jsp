@@ -48,7 +48,7 @@
 					<div class="search-form wow pulse" data-wow-delay="0.8s">
 
 						<form
-							action="${pageContext.request.contextPath}/view/properties.jsp"
+							action="${pageContext.request.contextPath}/search/search.do"
 							class=" form-inline">
 							<!--    <button class="btn  toggle-btn" type="button"><i class="fa fa-bars"></i></button> -->
 
