@@ -95,19 +95,20 @@
                                         	<div class="col-sm-12">
 	                                          	<div class="col-sm-4">
 													<label>출발도시</label>
-													<select name="startCity">
-														<option value="1">서울</option>
+													<select id="departureCity" class="selectpicker" data-live-search="true" data-live-search-style="begins" title="Select your type">
+														<option value="1">인천</option>
+														<option value="2">부산</option>
+														<option value="3">대구</option>
+														<option value="4">청주</option>
+														<option value="5">제주</option>
+														<option value="6">강원</option>
 													</select>
-		                                        	<label>가는 일자</label>
-		                                        	<select name="startDay">
-		                                        		<option value="1">datePicker</option>
-		                                        	</select>
 	                                          	</div>
 												<div class="col-sm-4">
 													<label style="margin-left: 40px">예약인원</label>
 													<label>성인</label>
 													<select name="adult">
-														<option value="0">0</option>
+														<option value="1">1</option>
 													</select>
 													<label>유아</label>
 													<select name="child">
@@ -135,26 +136,33 @@
                                         	</div>
 											<div class="col-sm-12">
 												<div class="col-sm-4">
-													<label>도착도시</label>
-		                                        	<select name="endCity">
+													<label>여행도시</label>
+													<select id="arrivalCity" class="selectpicker" data-live-search="true" data-live-search-style="begins" title="Select your type">
+														<option value=""></option>
 														<option value="1">파리</option>
+														<option value="2">로마</option>
 													</select>
+												</div>
+												<div class="col-sm-4">
+													<label>가는 일자</label>
+		                                        	<select name="startDay">
+		                                        		<option value="1">datePicker</option>
+		                                        	</select>
+		                                        	
 		                                        	<label>오는 일자</label>
 													<select name="endDay">
 		                                        		<option value="1">datePicker</option>
 		                                        	</select>
 												</div>
 												<div class="col-sm-4">
-												</div>
-												<div class="col-sm-4">
-													<a href="#" class="btn-primary" style="margin-left: 163px">조회</a>
+													<button class="btn-primary" style="margin-left: 163px" onclick="return doAir();">조회</button>
 												</div>
                                         	</div>
                                         	
                                        		<div class="col-sm-12">
                                        			<div class="col-sm-1"></div>
                                        			<div class="col-sm-10">
-		                                       		<span>가는 항공편</span>
+		                                       		<span style="margin-left: 380px">가는 항공편</span>
 		                                        	<div class="form-group">
 		                                        		<ul class="air">
 		                                        			<li class="tab"><span>항공권</span></li>
@@ -304,7 +312,7 @@
 		                                        		</ul>
 		                                        	</div>
 		                                        	<div class="form-group"></div>
-		                                        	<span>오는 항공편</span>
+		                                        	<span style="margin-left: 380px">오는 항공편</span>
 		                                        	<div class="form-group">
 		                                        		<ul class="air">
 		                                        			<li class="tab"><span>항공권</span></li>
@@ -841,6 +849,17 @@
 			</div>
 		</div>
 <script>
+	function doAir() {
+		if($("#departureCity").val() == ''){
+			swal({
+				  type: 'error',
+				  title: '여행도시를 선택하세요~',
+			})
+		}
+		console.log($("#arrivalCity").val());
+		console.log($("#departureCity").val());
+		return false;
+	}
 	$(".col-sm-12.detailpop").hide();
 	$("input[name='finish']").click(function () {
 		alert("클릭딤");
