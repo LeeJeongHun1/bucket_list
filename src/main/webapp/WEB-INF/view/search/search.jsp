@@ -74,7 +74,7 @@
 							<div class="col-md-4" style="border-right: 1px dashed #e8e8e8;">
 								<h4 class="sub_title">도시별</h4>
 								<!-- <h4 class="c_title">출발도시</h4> -->
-								<div class="col-md-12">
+								<div class="col-md-12" style="margin-top:10px;">
 									<select id="lunchBegins" class="selectpicker"
 										data-live-search="true" data-live-search-style="begins"
 										title="출발 도시">
@@ -88,7 +88,7 @@
 
 								</div>
 								<!-- <h4 class="c_title">귀국도시</h4> -->
-								<div class="col-md-12">
+								<!-- <div class="col-md-12">
 									<select id="lunchBegins" class="selectpicker"
 										data-live-search="true" data-live-search-style="begins"
 										title="도착 도시">
@@ -99,7 +99,7 @@
 										<option>Marraekch</option>
 										<option>kyoto , shibua</option>
 									</select>
-								</div>
+								</div> -->
 
 								<h4 class="sub_title" style="margin-top: 100px;">기간별</h4>
 								<div class="col-md-12">
