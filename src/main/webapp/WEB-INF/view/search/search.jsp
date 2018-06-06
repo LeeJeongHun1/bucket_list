@@ -1,9 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html class="no-js">
-<head>
-<meta charset="utf-8">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <title>GARO ESTATE | Properties page</title>
 <style>
 .searchBorder {
@@ -63,27 +61,29 @@
 				<!--  검색결과 -->
 				<div class="searchBorder">
 					<span class="searchColor">'미얀마'에 대한 <span
-						style="color: #f8931f;">총 5 건</span>의 여행상품 검색 결과가 있습니다.
+						style="color: #f8931f;">${fn:length(allSearch)}건</span>의 여행상품 검색 결과가 있습니다.
 					</span>
 				</div>
 				<!--  검색창 -->
 				<div class="col-md-12 padding-bottom-40 large-search">
 					<div class="search-form wow pulse">
-					<!-- 검색폼 -->
-						<form action="" class=" form-inline">
+						<!-- 검색폼 -->
+						<form id="detailAll" action='<c:url value="/search/search.do"/>' class=" form-inline" method="post">
 							<div class="col-md-4" style="border-right: 1px dashed #e8e8e8;">
 								<h4 class="sub_title">도시별</h4>
 								<!-- <h4 class="c_title">출발도시</h4> -->
-								<div class="col-md-12" style="margin-top:10px;">
+								<div class="col-md-12" style="margin-top: 10px;">
 									<select id="lunchBegins" class="selectpicker"
 										data-live-search="true" data-live-search-style="begins"
-										title="출발 도시">
-										<option>New york, CA</option>
-										<option>Paris</option>
-										<option>Casablanca</option>
-										<option>Tokyo</option>
-										<option>Marraekch</option>
-										<option>kyoto , shibua</option>
+										title="출발 도시" name="cityName">
+										<option value="1">인천</option>
+										<option value="3">김포</option>
+										<option value="4">제주</option>
+										<option value="5">광주</option>
+										<option value="6">대구</option>
+										<option value="7">청주</option>
+										<option value="8">무안</option>
+										<option value="9">양양</option>
 									</select>
 
 								</div>
@@ -103,16 +103,12 @@
 
 								<h4 class="sub_title" style="margin-top: 100px;">기간별</h4>
 								<div class="col-md-12">
-									<input type="text" id="datepicker" class="form-control"
+									<input type="text" id="SDate" name="startDate" class="form-control"
 										placeholder="2018-05-21">
 								</div>
 								<div class="col-md-12">
-									<input type="text" id="alternate" class="form-control"
+									<input type="text" id="EDate" name="endDate" class="form-control"
 										placeholder="2018-05-22">
-
-
-
-
 
 								</div>
 
@@ -122,38 +118,37 @@
 								<div class="col-md-12">
 									<div class="col-sm-12">
 										<div class="checkbox">
-											<label> <input type="radio" name="pay">
-												30만원이하
+											<label> <input type="radio" name="packagePrice" value="1">
+												50만원이하
 											</label>
 										</div>
 									</div>
 									<div class="col-sm-12">
 										<div class="checkbox">
-											<label> <input type="radio" name="pay"> 30 ~
-												40만원
+											<label> <input type="radio" name="packagePrice" value="2"> 50 ~
+												100만원
 											</label>
 										</div>
 									</div>
 									<div class="col-sm-12">
 										<div class="checkbox">
-											<label> <input type="radio" name="pay"> 30 ~
-												40만원
+											<label> <input type="radio" name="packagePrice" value="3"> 100 ~
+												200만원
 											</label>
 										</div>
 									</div>
 									<div class="col-sm-12">
 										<div class="checkbox">
-											<label> <input type="radio" name="pay"> 30 ~
-												40만원
+											<label> <input type="radio" name="packagePrice" value="4"> 200 ~
+												300만원
 											</label>
 										</div>
 									</div>
 									<div class="col-sm-12">
-										<div class="checkbox">
-											<label> <input type="radio" name="pay"> 30 ~
-												40만원
+								 		<div class="checkbox">
+											<label> <input type="radio" name="packagePrice" value="5"> 300만원이상
 											</label>
-										</div>
+										</div> 
 									</div>
 
 
@@ -180,7 +175,7 @@
 
 									<div class="col-sm-12">
 										<div class="checkbox">
-											<label> <input type="checkbox">3일이하
+											<label> <input type="checkbox" name="day" value="1">3일이하
 											</label>
 										</div>
 									</div>
@@ -188,7 +183,7 @@
 
 									<div class="col-sm-12">
 										<div class="checkbox">
-											<label> <input type="checkbox">4일~5일
+											<label> <input type="checkbox" name="day" value="2">4일~5일
 											</label>
 										</div>
 									</div>
@@ -196,7 +191,7 @@
 
 									<div class="col-sm-12">
 										<div class="checkbox">
-											<label> <input type="checkbox">6일~7일
+											<label> <input type="checkbox" name="day" value="3">6일~7일
 											</label>
 										</div>
 									</div>
@@ -204,7 +199,7 @@
 
 									<div class="col-sm-12">
 										<div class="checkbox">
-											<label> <input type="checkbox">10일이상
+											<label> <input type="checkbox" name="day" value="4">10일이상
 											</label>
 										</div>
 									</div>
@@ -214,7 +209,7 @@
  -->
 									<div class="col-sm-12"
 										style="margin-top: 10px; margin-bottom: 10px;">
-										<input type="text" class="form-control" placeholder="Key word">
+										<input type="text" class="form-control" name="detailKeyword" placeholder="Key word">
 										<!-- 		<div class="checkbox">
 											<label> <input type="checkbox">전체검색
 											</label>
@@ -222,7 +217,7 @@
 									</div>
 									<div class="col-sm-12">
 
-										<button class="btn search-btn" type="submit"
+										<button id="dSearch" class="btn search-btn" type="submit"
 											style="width: 140px; font-weight: bold;">결과 내 재검색</button>
 									</div>
 								</div>
@@ -246,7 +241,6 @@
 									class="fa fa-sort-numeric-desc"></i> --> </a></li>
 						</ul>
 						<!--/ .sort-by-list-->
-
 						<div class="items-per-page">
 							<label for="items_per_page"><b>총 페이수:</b></label>
 							<div class="sel" style="text-align: left;">
@@ -277,37 +271,31 @@
 				</div>
 
 				<div class="col-md-12 clear ">
+							<c:forEach var="item" items="${allSearch}">
 					<div id="list-type" class="proerty-th">
 						<div class="col-sm-6 col-md-3 p0">
-							<div class="box-two proerty-item">
-								<div class="item-thumb">
-									<a href="property-1.html"><img
-										src="assets/img/demo/property-3.jpg"></a>
+								<div class="box-two proerty-item">
+									<div class="item-thumb">
+										<a href="property-1.html"><img src="..${item.imgPath}"></a>
+									</div>
+									<div class="item-entry overflow">
+										<h5>
+											<a href="property-1.html"> 여행도시 <span>${item.cityName}</span></a>
+											<button
+												class="search_detail navbar-btn nav-button wow fadeInRight animated"
+												onclick=" location.replace('${pageContext.request.contextPath}/search/searchDetail.do')"
+												data-wow-delay="0.48s"
+												style="visibility: visible; animation-delay: 0.48s; animation-name: fadeInRight;">상세보기</button>
+										</h5>
+										<div class="dot-hr"></div>
+										<!-- <span class="pull-left"><b> Area :</b> 120m </span> -->
+										<span class="proerty-price pull-right">${item.packagePrice}</span>
+										<p style="display: none;">${item.packageName}</p>
+									</div>
+							
 								</div>
-
-								<div class="item-entry overflow">
-									<h5>
-										<a href="property-1.html"> 여행국가 <span>홍콩</span></a>
-										<button
-											class="search_detail navbar-btn nav-button wow fadeInRight animated"
-											onclick=" location.replace('${pageContext.request.contextPath}/search/searchDetail.do')"
-											data-wow-delay="0.48s"
-											style="visibility: visible; animation-delay: 0.48s; animation-name: fadeInRight;">상세보기</button>
-									</h5>
-									<div class="dot-hr"></div>
-									<!-- <span class="pull-left"><b> Area :</b> 120m </span> -->
-									<span class="proerty-price pull-right">1,936,400원</span>
-									<p style="display: none;">
-										<b>(특가/EVENT)</b>홍콩 핵심 관광 3일/4일『자유일정포함』 #홍콩 2박3일 #홍콩 3박4일 #홍콩
-										패키지 # 자유일정 #홍콩 관광 #홍콩 #HONGKONG #홍콩여행
-									</p>
-
-								</div>
-
-
-							</div>
 						</div>
-
+<!-- 
 						<div class="col-sm-6 col-md-3 p0">
 							<div class="box-two proerty-item">
 								<div class="item-thumb">
@@ -499,11 +487,11 @@
 									<p style="display: none;">Suspendisse ultricies Suspendisse
 										ultricies Nulla quis dapibus nisl. Suspendisse ultricies
 										commodo arcu nec pretium ...</p>
-									<!-- 	<div class="property-icon">
+										<div class="property-icon">
 										<img src="assets/img/icon/bed.png">(5)| <img
 											src="assets/img/icon/shawer.png">(2)| <img
 											src="assets/img/icon/cars.png">(1)
-									</div> -->
+									</div>
 								</div>
 
 
@@ -570,10 +558,11 @@
 
 
 							</div>
-						</div>
+						</div> -->
 					</div>
+					</c:forEach>
 				</div>
-
+<!-- 검색결과끄읕 -->
 				<div class="col-md-12 clear">
 					<div class="pull-right">
 						<div class="pagination">
@@ -591,13 +580,39 @@
 			</div>
 		</div>
 	</div>
-	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<script>
 		$(function() {
-			$("#datepicker").datepicker();
-			$("#alternate").datepicker();
-			
+			$('#SDate').datepicker({
+				format : "yyyy년mm월dd일",
+				startDate : 'd',
+				autoclose : true
+			}).datepicker("setDate", new Date());
+
+			$('#EDate').datepicker({
+				format : "yyyy년mm월dd일",
+				startDate : '+1d',
+				autoclose : true
+			}).datepicker("setDate", new Date());
 		});
+
+		
+	</script>
+	<script type="text/javascript">
+	
+	$("#dSearch").on("click",function(){
+		$.ajax({
+			url:"<c:url value='/search/searchDetail.Json'/>",
+			type:"post",
+			data:$("#detailAll").serialize()
+		})
+		.done(function(result)){
+			console.log(result);
+		}
+
+	});
+	
+	
+	
 	</script>
 </body>
 </html>

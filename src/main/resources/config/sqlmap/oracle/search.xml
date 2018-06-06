@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.bucket.repository.mapper.SearchMapper">
+<resultMap id="searchMap" type="sResult" >
+<result column="PACKAGE_CODE" property="packageCode" />
+<result column="package_price" property="packagePrice" />
+<result column="package_name" property="packageName" />
+<result column="CITY_NAME" property="cityName" />
+<result column="IMG_PATH" property="imgPath" />
+</resultMap>
+<select id="AllSearch" parameterType="search" resultMap="searchMap">
+select DISTINCT pack.PACKAGE_CODE, pack.package_price,pack.package_name ,city.CITY_NAME,img.IMG_PATH
+  from tb_package pack
+  inner 
+   join  tb_air air 
+   on  pack.DEPARTURE_AIR_CODE = air.air_code 
+ inner 
+   join  tb_city city 
+   on air.ARRIVAL_CITY_code = city.city_code
+ inner 
+   join tb_theme thm
+   on city.city_code = thm.city_code
+ inner 
+  join tb_img_group img
+   on thm.theme_code = img.theme_code
+ where pack.PACKAGE_NAME like '%' || #{keyword} || '%'
+   or city.CITY_NAME like '%'|| #{keyword} || '%'
+</select>
+<select id="detailSearch" parameterType="allSearch" resultMap="searchMap">
+select DISTINCT pack.PACKAGE_CODE, pack.package_price,pack.package_name ,city.CITY_NAME,img.IMG_PATH
+  from tb_package pack
+  inner 
+   join  tb_air air 
+   on  pack.DEPARTURE_AIR_CODE = air.air_code 
+ inner 
+   join  tb_city city 
+   on air.ARRIVAL_CITY_code = city.city_code
+ inner 
+   join tb_theme thm
+   on city.city_code = thm.city_code
+ inner 
+  join tb_img_group img
+   on thm.theme_code = img.theme_code
+<!--  <where>
+ <if test="pay == 1">
+ 	 AND pack.package_price  <![CDATA[ <= 500000
+ 	]]>
+ </if>
+  <if test="pay == 2">
+ 	AND park.package_price BETWEEN 500000 and 1000000
+ </if>
+   <if test="pay == 3">
+ 	AND park.package_price BETWEEN 1000000 and 2000000
+ </if>
+   <if test="pay == 4">
+ 	AND park.package_price BETWEEN 2000000 and 2000000
+ </if>
+   <if test="pay == 5">
+ 	AND park.package_price <![CDATA[ >= 3000000
+ 	]]>
+ </if>
+ 
+ </where> -->
+</select>
+
+</mapper>
