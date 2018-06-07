@@ -54,24 +54,25 @@
                     <div class="box-for overflow">
                         <div class="col-md-12 col-xs-12 register-blocks">
                             <h2>회원가입 </h2> 
-                            <form action="" method="post">
+                            <form action="${pageContext.request.contextPath}/user/insertUser.do" method="post">
                                 <div class="form-group">
                                     <label for="name">Name</label>
-                                    <input type="text" class="form-control" id="name" placeholder="이름을 입력해주세요.">
+                                    <input type="text" class="form-control" id="name" name="name" placeholder="이름을 입력해주세요.">
                                     <label for="birth">Birth Date</label>
-                                    <input type="text" class="form-control" id="bd" placeholder="생년월일을 입력해주세요.">
+                                    <input type="text" class="form-control" id="birth" name="birth" placeholder="생년월일을 입력해주세요.">
                                 </div>
                                 <div class="form-group">
                                     <label for="email">Email</label>
-                                    <input type="text" class="form-control" id="email" placeholder="이메일을 입력해주세요.">
+                                    <input type="text" class="form-control" id="email" name="userEmail" placeholder="이메일을 입력해주세요.">
                                 </div>
                                 <div class="form-group">
                                     <label for="password">Password</label>
-                                    <input type="password" class="form-control" id="password" placeholder="패스워드를 입력해주세요.">
+                                    <input type="password" class="form-control" id="password" name="password" placeholder="패스워드를 입력해주세요.">
                                 </div>
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-default">Register</button>
                                 </div>
+                                <input type="hidden" value="u" id="auth" name="userAuth">
                             </form>
                         </div>
                     </div>

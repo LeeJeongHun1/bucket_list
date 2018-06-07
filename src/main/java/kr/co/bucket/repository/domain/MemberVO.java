@@ -7,6 +7,8 @@ public class MemberVO {
 	private String password;
 	private String name;
 	private String userAuth;
+	private Date regDate;
+	private String birth;
 	public String getUserEmail() {
 		return userEmail;
 	}
@@ -31,11 +33,11 @@ public class MemberVO {
 	public void setUserAuth(String userAuth) {
 		this.userAuth = userAuth;
 	}
-	public Date getReg_date() {
-		return reg_date;
+	public Date getRegDate() {
+		return regDate;
 	}
-	public void setReg_date(Date reg_date) {
-		this.reg_date = reg_date;
+	public void setRegDate(Date regDate) {
+		this.regDate = regDate;
 	}
 	public String getBirth() {
 		return birth;
@@ -43,7 +45,5 @@ public class MemberVO {
 	public void setBirth(String birth) {
 		this.birth = birth;
 	}
-	private Date reg_date;
-	private String birth;
 	
 }

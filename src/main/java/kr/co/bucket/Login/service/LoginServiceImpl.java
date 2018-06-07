@@ -1,7 +1,5 @@
 package kr.co.bucket.Login.service;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,13 +16,13 @@ public class LoginServiceImpl implements LoginService{
 //		return loginMapper.selectUser();
 //	}
 
-	public MemberVO selectUserById(String id) throws Exception {
-		return loginMapper.selectUserById(id);
-	}
-//
-//	public void insertMember(MemberVO memberVO) throws Exception {
-//		
+//	public MemberVO selectUserById(String id) throws Exception {
+//		return loginMapper.selectUserById(id);
 //	}
+//
+	public void insertMember(MemberVO memberVO) throws Exception {
+		loginMapper.insertMember(memberVO);
+	}
 //
 //	public void updateMember(MemberVO memberVO) throws Exception {
 //		

@@ -4,7 +4,6 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import kr.co.bucket.Login.service.LoginService;
@@ -19,12 +18,12 @@ public class LoginController {
 	@RequestMapping("/user/register.do")
 	public void loginForm() {}
 	
-	@RequestMapping("/logIn.do")
-	public String Login(MemberVO memberVO, ModelMap model) throws Exception {
-		model.addAttribute("member", memberVO);
-		loginService.selectUserById(memberVO.getUserEmail());
-		return "redirect:/main/index.do";
-	}
+//	@RequestMapping("/logIn.do")
+//	public String Login(MemberVO memberVO, ModelMap model) throws Exception {
+//		model.addAttribute("member", memberVO);
+//		loginService.selectUserById(memberVO.getUserEmail());
+//		return "redirect:/main/index.do";
+//	}
 	
 	@RequestMapping("/logout.do")
 	public String logOut(HttpSession session) {
@@ -32,9 +31,19 @@ public class LoginController {
 		return "redirect:loginForm.do";
 	}
 	
-	@RequestMapping("/insertUser.do")
-	public String insertUser() {
-		
-		return "";
+	@RequestMapping("/user/insertUser.do")
+	public String insertUser(MemberVO memberVO) throws Exception{
+//		System.out.println(request.getParameter("name"));
+//		System.out.println(request.getParameter("birth"));
+//		System.out.println(request.getParameter("email"));
+//		System.out.println(request.getParameter("password"));
+//		System.out.println(request.getParameter("auth"));
+		System.out.println(memberVO.getName());
+		System.out.println(memberVO.getBirth());
+		System.out.println(memberVO.getUserEmail());
+		System.out.println(memberVO.getPassword());
+		System.out.println(memberVO.getUserAuth());
+		loginService.insertMember(memberVO);
+		return "redirect:/main/index.do";
 	}
 }
