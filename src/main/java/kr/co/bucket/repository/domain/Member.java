@@ -2,7 +2,7 @@ package kr.co.bucket.repository.domain;
 
 import java.util.Date;
 
-public class MemberVO {
+public class Member {
 	private String userEmail;
 	private String password;
 	private String name;

@@ -1,16 +1,16 @@
-package kr.co.bucket.Login.service;
+package kr.co.bucket.member.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import kr.co.bucket.repository.domain.MemberVO;
-import kr.co.bucket.repository.mapper.LoginMapper;
+import kr.co.bucket.repository.domain.Member;
+import kr.co.bucket.repository.mapper.MemberMapper;
 
 @Service("loginService")
-public class LoginServiceImpl implements LoginService{
+public class MemberServiceImpl implements MemberService{
 
 	@Autowired
-	private LoginMapper loginMapper;
+	private MemberMapper loginMapper;
 	
 //	public List<MemberVO> selectUser() throws Exception {
 //		return loginMapper.selectUser();
@@ -20,7 +20,7 @@ public class LoginServiceImpl implements LoginService{
 //		return loginMapper.selectUserById(id);
 //	}
 //
-	public void insertMember(MemberVO memberVO) throws Exception {
+	public void insertMember(Member memberVO) throws Exception {
 		loginMapper.insertMember(memberVO);
 	}
 //

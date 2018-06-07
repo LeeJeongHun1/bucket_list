@@ -1,14 +1,14 @@
-package kr.co.bucket.Login.service;
+package kr.co.bucket.member.service;
 
-import kr.co.bucket.repository.domain.MemberVO;
+import kr.co.bucket.repository.domain.Member;
 
-public interface LoginService {
+public interface MemberService {
 
 //	public List<MemberVO> selectUser() throws Exception;
 	
 //	public MemberVO selectUserById(String id) throws Exception;
 //	
-	public void insertMember(MemberVO memberVO) throws Exception;
+	public void insertMember(Member memberVO) throws Exception;
 //	
 //	public void updateMember(MemberVO memberVO) throws Exception;
 //	

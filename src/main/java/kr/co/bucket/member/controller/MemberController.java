@@ -1,4 +1,4 @@
-package kr.co.bucket.Login.controller;
+package kr.co.bucket.member.controller;
 
 import javax.servlet.http.HttpSession;
 
@@ -6,14 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import kr.co.bucket.Login.service.LoginService;
-import kr.co.bucket.repository.domain.MemberVO;
+import kr.co.bucket.member.service.MemberService;
+import kr.co.bucket.repository.domain.Member;
 
 @Controller
-public class LoginController {
+public class MemberController {
 	
 	@Autowired
-	private LoginService loginService;
+	private MemberService loginService;
 	
 	@RequestMapping("/user/register.do")
 	public void loginForm() {}
@@ -32,7 +32,7 @@ public class LoginController {
 	}
 	
 	@RequestMapping("/user/insertUser.do")
-	public String insertUser(MemberVO memberVO) throws Exception{
+	public String insertUser(Member memberVO) throws Exception{
 //		System.out.println(request.getParameter("name"));
 //		System.out.println(request.getParameter("birth"));
 //		System.out.println(request.getParameter("email"));
