@@ -153,8 +153,8 @@ div.airlist {
 													</select>
 												</div>
 												<div class="col-sm-4">
-													<input type="text" class="form-control" id="departureDate" name="departureDate" placeholder="가는일자">
-													<input type="text" class="form-control" id="arrivalDate" name="arrivalDate" placeholder="오는일자"><br>
+													<input type="text" class="form-control" id="departureDate" name="startDate" placeholder="가는일자">
+													<input type="text" class="form-control" id="arrivalDate" name="endDate" placeholder="오는일자"><br>
 												</div>
 												<div class="col-sm-4">
 													<button class="btn-primary" style="margin-left: 163px"
@@ -176,177 +176,7 @@ div.airlist {
 															<li class="tab"><span>선택</span></li>
 														</ul>
 													</div>
-													<div class="airlist">
-														<ul>
-															<li class="tab"><span>진에어</span></li>
-															<li class="tab"><span>06:05 - 07:20</span></li>
-															<li class="tab"><span>할인석 0석</span></li>
-															<li class="tab"><span>58,300원</span></li>
-															<li class="tab"><span>예약불가</span></li>
-															<li><div class="col-sm-4">
-																	<input type="radio" name="aa" disabled class="aaa" />
-																</div></li>
-														</ul>
-														<ul>
-															<li class="tab"><span>티웨이 항공</span></li>
-															<li class="tab"><span>06:40 - 07:50</span></li>
-															<li class="tab"><span>일반석 14석</span></li>
-															<li class="tab"><span>41,300원</span></li>
-															<li class="tab"><span>예약가능</span></li>
-															<li><div class="col-sm-4">
-																	<input type="radio" name="aa" class="aaa" />
-																</div></li>
-														</ul>
-														<ul>
-															<li class="tab"><span>아시아나</span></li>
-															<li class="tab"><span>14:00 - 15:10</span></li>
-															<li class="tab"><span>특가석 6석</span></li>
-															<li class="tab"><span>98,400원</span></li>
-															<li class="tab"><span>예약가능</span></li>
-															<li><div class="col-sm-4">
-																	<input type="radio" name="aa" class="aaa" />
-																</div></li>
-														</ul>
-														<ul>
-															<li class="tab"><span>항공권</span></li>
-															<li class="tab"><span>여정시간</span></li>
-															<li class="tab"><span>잔여석</span></li>
-															<li class="tab"><span>요금</span></li>
-															<li class="tab"><span>예약상태</span></li>
-															<li><div class="col-sm-4">
-																	<input type="radio" name="aa" class="aaa" />
-																</div></li>
-														</ul>
-														<ul>
-															<li class="tab"><span>항공권</span></li>
-															<li class="tab"><span>여정시간</span></li>
-															<li class="tab"><span>잔여석</span></li>
-															<li class="tab"><span>요금</span></li>
-															<li class="tab"><span>예약상태</span></li>
-															<li><div class="col-sm-4">
-																	<input type="radio" name="aa" class="aaa" />
-																</div></li>
-														</ul>
-														<ul>
-															<li class="tab"><span>항공권</span></li>
-															<li class="tab"><span>여정시간</span></li>
-															<li class="tab"><span>잔여석</span></li>
-															<li class="tab"><span>요금</span></li>
-															<li class="tab"><span>예약상태</span></li>
-															<li><div class="col-sm-4">
-																	<input type="radio" name="aa" class="aaa" />
-																</div></li>
-														</ul>
-														<ul>
-															<li class="tab"><span>항공권</span></li>
-															<li class="tab"><span>여정시간</span></li>
-															<li class="tab"><span>잔여석</span></li>
-															<li class="tab"><span>요금</span></li>
-															<li class="tab"><span>예약상태</span></li>
-															<li><div class="col-sm-4">
-																	<input type="radio" name="aa" class="aaa" />
-																</div></li>
-														</ul>
-														<ul>
-															<li class="tab"><span>항공권</span></li>
-															<li class="tab"><span>여정시간</span></li>
-															<li class="tab"><span>잔여석</span></li>
-															<li class="tab"><span>요금</span></li>
-															<li class="tab"><span>예약상태</span></li>
-															<li><div class="col-sm-4">
-																	<input type="radio" name="aa" class="aaa" />
-																</div></li>
-														</ul>
-														<ul>
-															<li class="tab"><span>항공권</span></li>
-															<li class="tab"><span>여정시간</span></li>
-															<li class="tab"><span>잔여석</span></li>
-															<li class="tab"><span>요금</span></li>
-															<li class="tab"><span>예약상태</span></li>
-															<li><div class="col-sm-4">
-																	<input type="radio" name="aa" class="aaa" />
-																</div></li>
-														</ul>
-														<ul>
-															<li class="tab"><span>항공권</span></li>
-															<li class="tab"><span>여정시간</span></li>
-															<li class="tab"><span>잔여석</span></li>
-															<li class="tab"><span>요금</span></li>
-															<li class="tab"><span>예약상태</span></li>
-															<li><div class="col-sm-4">
-																	<input type="radio" name="aa" class="aaa" />
-																</div></li>
-														</ul>
-														<ul>
-															<li class="tab"><span>항공권</span></li>
-															<li class="tab"><span>여정시간</span></li>
-															<li class="tab"><span>잔여석</span></li>
-															<li class="tab"><span>요금</span></li>
-															<li class="tab"><span>예약상태</span></li>
-															<li><div class="col-sm-4">
-																	<input type="radio" name="aa" class="aaa" />
-																</div></li>
-														</ul>
-														<ul>
-															<li class="tab"><span>항공권</span></li>
-															<li class="tab"><span>여정시간</span></li>
-															<li class="tab"><span>잔여석</span></li>
-															<li class="tab"><span>요금</span></li>
-															<li class="tab"><span>예약상태</span></li>
-															<li><div class="col-sm-4">
-																	<input type="radio" name="aa" class="aaa" />
-																</div></li>
-														</ul>
-														<ul>
-															<li class="tab"><span>항공권</span></li>
-															<li class="tab"><span>여정시간</span></li>
-															<li class="tab"><span>잔여석</span></li>
-															<li class="tab"><span>요금</span></li>
-															<li class="tab"><span>예약상태</span></li>
-															<li><div class="col-sm-4">
-																	<input type="radio" name="aa" class="aaa" />
-																</div></li>
-														</ul>
-														<ul>
-															<li class="tab"><span>항공권</span></li>
-															<li class="tab"><span>여정시간</span></li>
-															<li class="tab"><span>잔여석</span></li>
-															<li class="tab"><span>요금</span></li>
-															<li class="tab"><span>예약상태</span></li>
-															<li><div class="col-sm-4">
-																	<input type="radio" name="aa" class="aaa" />
-																</div></li>
-														</ul>
-														<ul>
-															<li class="tab"><span>항공권</span></li>
-															<li class="tab"><span>여정시간</span></li>
-															<li class="tab"><span>잔여석</span></li>
-															<li class="tab"><span>요금</span></li>
-															<li class="tab"><span>예약상태</span></li>
-															<li><div class="col-sm-4">
-																	<input type="radio" name="aa" class="aaa" />
-																</div></li>
-														</ul>
-														<ul>
-															<li class="tab"><span>항공권</span></li>
-															<li class="tab"><span>여정시간</span></li>
-															<li class="tab"><span>잔여석</span></li>
-															<li class="tab"><span>요금</span></li>
-															<li class="tab"><span>예약상태</span></li>
-															<li><div class="col-sm-4">
-																	<input type="radio" name="aa" class="aaa" />
-																</div></li>
-														</ul>
-														<ul>
-															<li class="tab"><span>항공권</span></li>
-															<li class="tab"><span>여정시간</span></li>
-															<li class="tab"><span>잔여석</span></li>
-															<li class="tab"><span>요금</span></li>
-															<li class="tab"><span>예약상태</span></li>
-															<li><div class="col-sm-4">
-																	<input type="radio" name="aa" class="aaa" />
-																</div></li>
-														</ul>
+													<div class="start-airlist">
 													</div>
 													<div class="form-group"></div>
 													<span style="margin-left: 380px">오는 항공편</span>
@@ -950,8 +780,23 @@ div.airlist {
 			</div>
 		</div>
 	</div>
+	<div style="display: none;">
+		<ul class="airInfo">
+			<li class="tab"><span class="airName">진에어</span></li>
+			<li class="tab"><span class="airFlyingTime">06:05 - 07:20</span></li>
+			<li class="tab"><span class="airSeatCnt">할인석 0석</span></li>
+			<li class="tab"><span class="airAdultPrice">58,300원</span></li>
+			<li class="tab"><span class="yn">예약불가</span></li>
+			<li>
+				<div class="col-sm-4">
+					<input type="radio" class="airCode" name="airCode" value="" />
+				</div>
+			</li>
+		</ul>
+	</div>
 	<script>
 		$(function() {
+// 			$(".airInfo").children().clone()
 			$('#departureDate').datepicker({
 				format : "yyyy년mm월dd일",
 				startDate: 'd',
@@ -988,21 +833,26 @@ div.airlist {
 			}
 			$.ajax({
 				url: '<c:url value="/package/airSearch.json"/>',
-				data: {
-				"arrivalDate": $("#arrivalDate").val(),
-				"departureDate": $("#departureDate").val(),
-				"arrivalCity": $("#arrivalCityCode").val(),
-				"departureCity": $("#departureCityCode").val()
-				},
+				data: $("#mm").serialize(),
+				type: "POST",
+				dataType: "json"
 			})
 			.done(function (result){
-				console.dir(result)
+				var $airInfo = $(".airInfo").children().clone();
+// 				console.dir($airInfo);
+// 				console.dir($(".airInfo").clone());
+				for(let air of result){
+					$airInfo.find(".airName").text(air.airName);
+					$(".airInfo").append($airInfo.clone());
+					$(".start-airlist").append($(".airInfo").clone());
+				}
+				console.log(result)
 			})
-			console.log($("#mm").serialize());
-			console.log($("#arrivalDate").val());
-			console.log($("#departureDate").val());
-			console.log($("#arrivalCity").val());
-			console.log($("#departureCity").val());
+// 			console.log($("#mm").serialize());
+// 			console.log($("#arrivalDate").val());
+// 			console.log($("#departureDate").val());
+// 			console.log($("#arrivalCity").val());
+// 			console.log($("#departureCity").val());
 			return false;
 		}
 		$(".col-sm-12.detailpop").hide();
