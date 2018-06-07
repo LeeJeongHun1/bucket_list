@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <title>GARO ESTATE | Properties page</title>
 <style>
@@ -61,21 +61,23 @@
 				<!--  검색결과 -->
 				<div class="searchBorder">
 					<span class="searchColor">'미얀마'에 대한 <span
-						style="color: #f8931f;">${fn:length(allSearch)}건</span>의 여행상품 검색 결과가 있습니다.
+						style="color: #f8931f;">${fn:length(allSearch)}건</span>의 여행상품 검색
+						결과가 있습니다.
 					</span>
 				</div>
 				<!--  검색창 -->
 				<div class="col-md-12 padding-bottom-40 large-search">
 					<div class="search-form wow pulse">
 						<!-- 검색폼 -->
-						<form id="detailAll" action='<c:url value="/search/search.do"/>' class=" form-inline" method="post">
+						<%-- ${pageContext.request.contextPath}/search/search.do --%>
+						<form id="detailAll" action="" class=" form-inline" method="post">
 							<div class="col-md-4" style="border-right: 1px dashed #e8e8e8;">
 								<h4 class="sub_title">도시별</h4>
 								<!-- <h4 class="c_title">출발도시</h4> -->
 								<div class="col-md-12" style="margin-top: 10px;">
 									<select id="lunchBegins" class="selectpicker"
 										data-live-search="true" data-live-search-style="begins"
-										title="출발 도시" name="cityName">
+										title="출발 도시" name="cityCode">
 										<option value="1">인천</option>
 										<option value="3">김포</option>
 										<option value="4">제주</option>
@@ -103,12 +105,12 @@
 
 								<h4 class="sub_title" style="margin-top: 100px;">기간별</h4>
 								<div class="col-md-12">
-									<input type="text" id="SDate" name="startDate" class="form-control"
-										placeholder="2018-05-21">
+									<input type="text" id="SDate" name="startDate"
+										class="form-control" placeholder="2018-05-21">
 								</div>
 								<div class="col-md-12">
-									<input type="text" id="EDate" name="endDate" class="form-control"
-										placeholder="2018-05-22">
+									<input type="text" id="EDate" name="endDate"
+										class="form-control" placeholder="2018-05-22">
 
 								</div>
 
@@ -118,37 +120,38 @@
 								<div class="col-md-12">
 									<div class="col-sm-12">
 										<div class="checkbox">
-											<label> <input type="radio" name="packagePrice" value="1">
-												50만원이하
+											<label> <input type="radio" name="packagePrice"
+												value="1"> 50만원이하
 											</label>
 										</div>
 									</div>
 									<div class="col-sm-12">
 										<div class="checkbox">
-											<label> <input type="radio" name="packagePrice" value="2"> 50 ~
-												100만원
+											<label> <input type="radio" name="packagePrice"
+												value="2"> 50 ~ 100만원
 											</label>
 										</div>
 									</div>
 									<div class="col-sm-12">
 										<div class="checkbox">
-											<label> <input type="radio" name="packagePrice" value="3"> 100 ~
-												200만원
+											<label> <input type="radio" name="packagePrice"
+												value="3"> 100 ~ 200만원
 											</label>
 										</div>
 									</div>
 									<div class="col-sm-12">
 										<div class="checkbox">
-											<label> <input type="radio" name="packagePrice" value="4"> 200 ~
-												300만원
+											<label> <input type="radio" name="packagePrice"
+												value="4"> 200 ~ 300만원
 											</label>
 										</div>
 									</div>
 									<div class="col-sm-12">
-								 		<div class="checkbox">
-											<label> <input type="radio" name="packagePrice" value="5"> 300만원이상
+										<div class="checkbox">
+											<label> <input type="radio" name="packagePrice"
+												value="5"> 300만원이상
 											</label>
-										</div> 
+										</div>
 									</div>
 
 
@@ -209,7 +212,8 @@
  -->
 									<div class="col-sm-12"
 										style="margin-top: 10px; margin-bottom: 10px;">
-										<input type="text" class="form-control" name="detailKeyword" placeholder="Key word">
+										<input type="text" class="form-control" name="dkeyword"
+											placeholder="Key word">
 										<!-- 		<div class="checkbox">
 											<label> <input type="checkbox">전체검색
 											</label>
@@ -217,8 +221,9 @@
 									</div>
 									<div class="col-sm-12">
 
-										<button id="dSearch" class="btn search-btn" type="submit"
-											style="width: 140px; font-weight: bold;">결과 내 재검색</button>
+										<button id="dSearch" class="btn search-btn" type="button"
+											style="width: 140px; font-weight: bold;"
+											onclick="return doAction();">결과 내 재검색</button>
 									</div>
 								</div>
 							</div>
@@ -232,13 +237,19 @@
 					<div class="col-xs-10 page-subheader sorting pl0">
 						<ul class="sort-by-list">
 							<li class="active"></li>
-							<li class=""><select>
-									<option>정렬순</option>
-									<option>인기순</option>
+							<li class=""><select id="price" name="selectPrice">
+									<option value="">가격순</option>
+									<option value="1">가격낮은순</option>
+									<option value="2">가격높은순</option>
+							</select> </li>
+									<li class=""><select id="departure" name="selectDeparture">
+									<option value="0">출발일순</option>
+									<option value="1">출발일이 빠른순</option>
+									<option value="2">출발일이 느린순</option>
 							</select> <!-- <a href="javascript:void(0);"
 								class="order_by_price" data-orderby="property_price"
 								data-order="DESC">인기순<i
-									class="fa fa-sort-numeric-desc"></i> --> </a></li>
+									class="fa fa-sort-numeric-desc"></i>  </a>--></li>
 						</ul>
 						<!--/ .sort-by-list-->
 						<div class="items-per-page">
@@ -270,8 +281,8 @@
 					<!--/ .layout-switcher-->
 				</div>
 
-				<div class="col-md-12 clear ">
-							<c:forEach var="item" items="${allSearch}">
+				<div id="makeSearch" class="col-md-12 clear ">
+				<c:forEach var="item" items="${allSearch}">
 					<div id="list-type" class="proerty-th">
 						<div class="col-sm-6 col-md-3 p0">
 								<div class="box-two proerty-item">
@@ -295,274 +306,10 @@
 							
 								</div>
 						</div>
-<!-- 
-						<div class="col-sm-6 col-md-3 p0">
-							<div class="box-two proerty-item">
-								<div class="item-thumb">
-									<a href="property-2.jsp"><img
-										src="assets/img/demo/property-2.jpg"></a>
-								</div>
-
-								<div class="item-entry overflow">
-									<h5>
-										<a href="property-1.html"> Super nice villa </a>
-									</h5>
-									<div class="dot-hr"></div>
-									<span class="pull-left"><b> Area :</b> 120m </span> <span
-										class="proerty-price pull-right"> $ 300,000</span>
-									<p style="display: none;">Suspendisse ultricies Suspendisse
-										ultricies Nulla quis dapibus nisl. Suspendisse ultricies
-										commodo arcu nec pretium ...</p>
-									<div class="property-icon">
-										<img src="assets/img/icon/bed.png">(5)| <img
-											src="assets/img/icon/shawer.png">(2)| <img
-											src="assets/img/icon/cars.png">(1)
-									</div>
-								</div>
-
-
-							</div>
-						</div>
-
-						<div class="col-sm-6 col-md-3 p0">
-							<div class="box-two proerty-item proerty-item-ads">
-								<a href=""><img src="assets/img/pro-ads.jpg"></a>
-							</div>
-						</div>
-
-						<div class="col-sm-6 col-md-3 p0">
-							<div class="box-two proerty-item">
-								<div class="item-thumb">
-									<a href="property-1.html"><img
-										src="assets/img/demo/property-3.jpg"></a>
-								</div>
-
-								<div class="item-entry overflow">
-									<h5>
-										<a href="property-1.html"> Super nice villa </a>
-									</h5>
-									<div class="dot-hr"></div>
-									<span class="pull-left"><b> Area :</b> 120m </span> <span
-										class="proerty-price pull-right"> $ 300,000</span>
-									<p style="display: none;">Suspendisse ultricies Suspendisse
-										ultricies Nulla quis dapibus nisl. Suspendisse ultricies
-										commodo arcu nec pretium ...</p>
-									<div class="property-icon">
-										<img src="assets/img/icon/bed.png">(5)| <img
-											src="assets/img/icon/shawer.png">(2)| <img
-											src="assets/img/icon/cars.png">(1)
-									</div>
-								</div>
-
-
-							</div>
-						</div>
-
-						<div class="col-sm-6 col-md-3 p0">
-							<div class="box-two proerty-item">
-								<div class="item-thumb">
-									<a href="property-1.html"><img
-										src="assets/img/demo/property-1.jpg"></a>
-								</div>
-
-								<div class="item-entry overflow">
-									<h5>
-										<a href="property-1.html"> Super nice villa </a>
-									</h5>
-									<div class="dot-hr"></div>
-									<span class="pull-left"><b> Area :</b> 120m </span> <span
-										class="proerty-price pull-right"> $ 300,000</span>
-									<p style="display: none;">Suspendisse ultricies Suspendisse
-										ultricies Nulla quis dapibus nisl. Suspendisse ultricies
-										commodo arcu nec pretium ...</p>
-									<div class="property-icon">
-										<img src="assets/img/icon/bed.png">(5)| <img
-											src="assets/img/icon/shawer.png">(2)| <img
-											src="assets/img/icon/cars.png">(1)
-									</div>
-								</div>
-
-
-							</div>
-						</div>
-
-						<div class="col-sm-6 col-md-3 p0">
-							<div class="box-two proerty-item">
-								<div class="item-thumb">
-									<a href="property-1.html"><img
-										src="assets/img/demo/property-2.jpg"></a>
-								</div>
-
-								<div class="item-entry overflow">
-									<h5>
-										<a href="property-1.html"> Super nice villa </a>
-									</h5>
-									<div class="dot-hr"></div>
-									<span class="pull-left"><b> Area :</b> 120m </span> <span
-										class="proerty-price pull-right"> $ 300,000</span>
-									<p style="display: none;">Suspendisse ultricies Suspendisse
-										ultricies Nulla quis dapibus nisl. Suspendisse ultricies
-										commodo arcu nec pretium ...</p>
-									<div class="property-icon">
-										<img src="assets/img/icon/bed.png">(5)| <img
-											src="assets/img/icon/shawer.png">(2)| <img
-											src="assets/img/icon/cars.png">(1)
-									</div>
-								</div>
-
-
-							</div>
-						</div>
-
-						<div class="col-sm-6 col-md-3 p0">
-							<div class="box-two proerty-item">
-								<div class="item-thumb">
-									<a href="property-1.html"><img
-										src="assets/img/demo/property-3.jpg"></a>
-								</div>
-
-								<div class="item-entry overflow">
-									<h5>
-										<a href="property-1.html"> Super nice villa </a>
-									</h5>
-									<div class="dot-hr"></div>
-									<span class="pull-left"><b> Area :</b> 120m </span> <span
-										class="proerty-price pull-right"> $ 300,000</span>
-									<p style="display: none;">Suspendisse ultricies Suspendisse
-										ultricies Nulla quis dapibus nisl. Suspendisse ultricies
-										commodo arcu nec pretium ...</p>
-									<div class="property-icon">
-										<img src="assets/img/icon/bed.png">(5)| <img
-											src="assets/img/icon/shawer.png">(2)| <img
-											src="assets/img/icon/cars.png">(1)
-									</div>
-								</div>
-
-
-							</div>
-						</div>
-
-						<div class="col-sm-6 col-md-3 p0">
-							<div class="box-two proerty-item">
-								<div class="item-thumb">
-									<a href="property-1.html"><img
-										src="assets/img/demo/property-2.jpg"></a>
-								</div>
-
-								<div class="item-entry overflow">
-									<h5>
-										<a href="property-1.html"> Super nice villa </a>
-									</h5>
-									<div class="dot-hr"></div>
-									<span class="pull-left"><b> Area :</b> 120m </span> <span
-										class="proerty-price pull-right"> $ 300,000</span>
-									<p style="display: none;">Suspendisse ultricies Suspendisse
-										ultricies Nulla quis dapibus nisl. Suspendisse ultricies
-										commodo arcu nec pretium ...</p>
-									<div class="property-icon">
-										<img src="assets/img/icon/bed.png">(5)| <img
-											src="assets/img/icon/shawer.png">(2)| <img
-											src="assets/img/icon/cars.png">(1)
-									</div>
-								</div>
-
-
-							</div>
-						</div>
-
-						<div class="col-sm-6 col-md-3 p0">
-							<div class="box-two proerty-item">
-								<div class="item-thumb">
-									<a href="property-1.html"><img
-										src="assets/img/demo/property-1.jpg"></a>
-								</div>
-
-								<div class="item-entry overflow">
-									<h5>
-										<a href="property-1.html"> Super nice villa </a>
-									</h5>
-									<div class="dot-hr"></div>
-									<span class="pull-left"><b> Area :</b> 120m </span> <span
-										class="proerty-price pull-right"> $ 300,000</span>
-									<p style="display: none;">Suspendisse ultricies Suspendisse
-										ultricies Nulla quis dapibus nisl. Suspendisse ultricies
-										commodo arcu nec pretium ...</p>
-										<div class="property-icon">
-										<img src="assets/img/icon/bed.png">(5)| <img
-											src="assets/img/icon/shawer.png">(2)| <img
-											src="assets/img/icon/cars.png">(1)
-									</div>
-								</div>
-
-
-							</div>
-						</div>
-
-						<div class="col-sm-6 col-md-3 p0">
-							<div class="box-two proerty-item proerty-item-ads">
-								<a href=""><img src="assets/img/pro-ads.jpg"></a>
-							</div>
-						</div>
-
-						<div class="col-sm-6 col-md-3 p0">
-							<div class="box-two proerty-item">
-								<div class="item-thumb">
-									<a href="property-1.html"><img
-										src="assets/img/demo/property-2.jpg"></a>
-								</div>
-
-								<div class="item-entry overflow">
-									<h5>
-										<a href="property-1.html"> Super nice villa </a>
-									</h5>
-									<div class="dot-hr"></div>
-									<span class="pull-left"><b> Area :</b> 120m </span> <span
-										class="proerty-price pull-right"> $ 300,000</span>
-									<p style="display: none;">Suspendisse ultricies Suspendisse
-										ultricies Nulla quis dapibus nisl. Suspendisse ultricies
-										commodo arcu nec pretium ...</p>
-									<div class="property-icon">
-										<img src="assets/img/icon/bed.png">(5)| <img
-											src="assets/img/icon/shawer.png">(2)| <img
-											src="assets/img/icon/cars.png">(1)
-									</div>
-								</div>
-
-
-							</div>
-						</div>
-
-						<div class="col-sm-6 col-md-3 p0">
-							<div class="box-two proerty-item">
-								<div class="item-thumb">
-									<a href="property-1.html"><img
-										src="assets/img/demo/property-1.jpg"></a>
-								</div>
-
-								<div class="item-entry overflow">
-									<h5>
-										<a href="property-1.html"> Super nice villa </a>
-									</h5>
-									<div class="dot-hr"></div>
-									<span class="pull-left"><b> Area :</b> 120m </span> <span
-										class="proerty-price pull-right"> $ 300,000</span>
-									<p style="display: none;">Suspendisse ultricies Suspendisse
-										ultricies Nulla quis dapibus nisl. Suspendisse ultricies
-										commodo arcu nec pretium ...</p>
-									<div class="property-icon">
-										<img src="assets/img/icon/bed.png">(5)| <img
-											src="assets/img/icon/shawer.png">(2)| <img
-											src="assets/img/icon/cars.png">(1)
-									</div>
-								</div>
-
-
-							</div>
-						</div> -->
 					</div>
-					</c:forEach>
+					</c:forEach> 
 				</div>
-<!-- 검색결과끄읕 -->
+				<!-- 검색결과끄읕 -->
 				<div class="col-md-12 clear">
 					<div class="pull-right">
 						<div class="pagination">
@@ -575,6 +322,7 @@
 								<li><a href="#">Next</a></li>
 							</ul>
 						</div>
+						<div id="test"></div>
 					</div>
 				</div>
 			</div>
@@ -594,25 +342,96 @@
 				autoclose : true
 			}).datepicker("setDate", new Date());
 		});
-
+		
+		function doAction(){
+			$.ajax({
+				type:'post',
+				url:"<c:url value='/search/searchDetail.json'/>",
+				data: $("#detailAll").serialize(),
+				success: function(data){
+					var html="";
+					$("#makeSearch").html("");
+					alert("실행zss");
+					console.log(data);
+					if (data.length == 0){
+						html+= '<div id="list-type" class="proerty-th">';
+						html+='<div class="col-sm-12 col-md-12 p0">';
+						html+='<div class="box-two proerty-item">';
+						html+='<div class="item-thumb">';
+					    html+= '없다';
+					    html+='</div></div></div></div>';
+					}else{
+						for(let a of data){
+							html+='<div id="list-type" class="proerty-th">';
+							html+='<div class="col-sm-6 col-md-3 p0">';
+							html+='<div class="box-two proerty-item">';
+							html+='<div class="item-thumb">';
+							html+='<a href="property-1.html"><img src="..'+a.imgPath+'"></a>';
+							html+='</div>';
+							html+='<div class="item-entry overflow">';
+							html+='<h5>';
+							html+='<a href="property-1.html"> 여행도시 <span>'+a.cityName+'</span></a>';
+							//html+='<button type="button" class="search_detail navbar-btn nav-button wow fadeInRight animated" onclick="location.replace('${pageContext.request.contextPath}/search/searchDetail.do')" data-wow-delay="0.48s">상세보기</button>'
+							html+='</h5>';
+							html+='<div class="dot-hr"></div>';
+							html+='<span class="proerty-price pull-right">'+a.packagePrice+'</span>';
+							html+='<p style="display: none;">'+a.packageName+'</p>';
+							html+='</div></div></div></div>';
+						}	
+					}
+					$("#makeSearch").html(html);
+					
+				},
+				error:function(error){
+					alert(error);
+				}
+			})
+			return false;
+		};
+/* 			data:{selectDay:$("#selectDeparture").val(), selectPrice:$("#selectPrice").val()} */
+		$("#price").click(function(){
+		$.ajax({
+			type:'post',
+			url:"<c:url value='/search/searchSelect.json'/>",
+			data:{selectPrice:$("#price").val()}
+		}) .done(function(result){
+			var html="";
+			$("#makeSearch").html("");
+			console.log(result);
+			if($("#price").val() == 1){
+			for(let a of result){
+					html+='<div id="list-type" class="proerty-th">';
+					html+='<div class="col-sm-6 col-md-3 p0">';
+					html+='<div class="box-two proerty-item">';
+					html+='<div class="item-thumb">';
+					html+='<a href="property-1.html"><img src="..'+a.imgPath+'"></a>';
+					html+='</div>';
+					html+='<div class="item-entry overflow">';
+					html+='<h5>';
+					html+='<a href="property-1.html"> 여행도시 <span>'+a.cityName+'</span></a>';
+					//html+='<button type="button" class="search_detail navbar-btn nav-button wow fadeInRight animated" onclick="location.replace('${pageContext.request.contextPath}/search/searchDetail.do')" data-wow-delay="0.48s">상세보기</button>'
+					html+='</h5>';
+					html+='<div class="dot-hr"></div>';
+					html+='<span class="proerty-price pull-right">'+a.packagePrice+'</span>';
+					html+='<p style="display: none;">'+a.packageName+'</p>';
+					html+='</div></div></div></div>';
+				}	
+			$("#makeSearch").html(html);
+		}else if($("#price").val() == 0){
+			html+= '<div id="list-type" class="proerty-th">';
+			html+='<div class="col-sm-12 col-md-12 p0">';
+			html+='<div class="box-two proerty-item">';
+			html+='<div class="item-thumb">';
+		    html+= '없다';
+		    html+='</div></div></div></div>';
+		}
+			
+		
+		});
+		});
 		
 	</script>
-	<script type="text/javascript">
-	
-	$("#dSearch").on("click",function(){
-		$.ajax({
-			url:"<c:url value='/search/searchDetail.Json'/>",
-			type:"post",
-			data:$("#detailAll").serialize()
-		})
-		.done(function(result)){
-			console.log(result);
-		}
 
-	});
-	
-	
-	
-	</script>
+
 </body>
 </html>

@@ -9,5 +9,6 @@ import kr.co.bucket.repository.domain.Search;
 public interface SearchService {
 	public List<SResult> Allsearch(Search keyword) throws Exception;
 	public List<SResult> DetailSearch(AllSearch AllSearch) throws Exception;
+	public List<SResult> SelectSearch(String selectPrice) throws Exception;
 
 }

@@ -25,9 +25,11 @@ public class SearchController {
 	/*	System.out.println("와");
 		List<SResult> list = searchService.Allsearch(keyword);
 		System.out.println("컨트롤러 "+list.size());*/
-		model.addAttribute("detailSearch", searchService.DetailSearch(AllSearch));
-		model.addAttribute("allSearch", searchService.Allsearch(keyword));
-		
+		//if(keyword.getPack().equals("1")) {
+			model.addAttribute("allSearch", searchService.Allsearch(keyword));			
+		//}//else {
+		//model.addAttribute("detailSearch", searchService.DetailSearch(AllSearch));
+		//}
 		//System.out.println(search.getKeyword());
 	}
 	
@@ -48,12 +50,34 @@ public class SearchController {
 		
 	}
 	
-	@RequestMapping("/searchDetail.Json")
+	@RequestMapping("/searchDetail.json")
 	@ResponseBody
 	public List<SResult> searchDetailJson(AllSearch AllSearch) throws Exception{
+		System.out.println("가는지 테스트");
         List<SResult> list = searchService.DetailSearch(AllSearch);
-        System.out.println("가는지 테스트");
+        for(SResult s: list) {
+        	System.out.println("디테일"+ s.getCityName());
+        	System.out.println(s.getImgPath());
+        	System.out.println(AllSearch.getStartDate().substring(0,4));
+        	System.out.println(AllSearch.getPackagePrice());
+        	System.out.println(AllSearch.getCityCode() +" 코드");
+        }
         return list;
+	}
+	
+	@RequestMapping("/searchSelect.json")
+	@ResponseBody
+	public List<SResult> selectJson(String selectPrice) throws Exception{
+		System.out.println(selectPrice);
+		List<SResult> list = searchService.SelectSearch(selectPrice);
+		System.out.println("제이순 테스트즁");
+		for(SResult s: list) {
+			System.out.println(s.getCityName());
+			System.out.println(s.getPackageName());
+			System.out.println(s.getImgPath());
+			System.out.println(s.getPackageCode());
+		}
+		return list;
 	}
 	
 	

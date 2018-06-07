@@ -5,7 +5,14 @@ public class AllSearch {
 	private String startDate;
 	private String endDate;
 	private int[] day;
-	private String detailKeyword;
+	private String dkeyword;
+	private String cityCode;
+	public String getCityCode() {
+		return cityCode;
+	}
+	public void setCityCode(String cityCode) {
+		this.cityCode = cityCode;
+	}
 	public int getPackagePrice() {
 		return packagePrice;
 	}
@@ -30,12 +37,12 @@ public class AllSearch {
 	public void setDay(int[] day) {
 		this.day = day;
 	}
-	public String getDetailKeyword() {
-		return detailKeyword;
+	public String getDkeyword() {
+		return dkeyword;
 	}
-	public void setDetailKeyword(String detailKeyword) {
-		this.detailKeyword = detailKeyword;
+	public void setDkeyword(String dkeyword) {
+		this.dkeyword = dkeyword;
 	}
-	
+
 	
 }

@@ -9,4 +9,5 @@ import kr.co.bucket.repository.domain.Search;
 public interface SearchMapper {
 	public List<SResult> AllSearch(Search keyword);
 	public List<SResult> detailSearch(AllSearch search);
+	public List<SResult> selectSearch(String select);
 }

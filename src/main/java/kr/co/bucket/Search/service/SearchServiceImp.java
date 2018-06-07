@@ -23,4 +23,7 @@ public class SearchServiceImp implements SearchService {
 	public List<SResult> DetailSearch(AllSearch AllSearch)  throws Exception {
 		return mapper.detailSearch(AllSearch);
 	}
+	public List<SResult> SelectSearch(String selectPrice) throws Exception{
+		return mapper.selectSearch(selectPrice);
+	};
 }
