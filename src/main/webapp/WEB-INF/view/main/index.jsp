@@ -33,6 +33,7 @@ ul {padding:0;}
 </style>
 </head>
 <body>
+ 이름 : ${sessionScope.member.userEmail}
         <div class="slider-area">
             <div class="slider">
                 <div id="bg-slider" class="owl-carousel owl-theme">

@@ -16,10 +16,10 @@ public class MemberServiceImpl implements MemberService{
 //		return loginMapper.selectUser();
 //	}
 
-//	public MemberVO selectUserById(String id) throws Exception {
-//		return loginMapper.selectUserById(id);
-//	}
-//
+	public Member selectUserById(Member member) throws Exception {
+		return loginMapper.selectUserById(member);
+	}
+
 	public void insertMember(Member memberVO) throws Exception {
 		loginMapper.insertMember(memberVO);
 	}

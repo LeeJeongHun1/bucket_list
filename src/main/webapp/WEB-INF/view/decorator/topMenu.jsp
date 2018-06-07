@@ -18,8 +18,16 @@
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse yamm" id="navigation">
 			<div class="button navbar-right">
-				<button class="navbar-btn nav-button wow bounceInRight"
-					onclick="location.replace('${pageContext.request.contextPath}/user/register.do')" data-wow-delay="0.45s">Login</button>
+			<c:choose>
+			<c:when test="${empty sessionScope.member}">
+				<button class="navbar-btn nav-button wow bounceInRight loginBtn"
+					onclick="location.replace('${pageContext.request.contextPath}/user/register.do')" data-wow-delay="0.45s">LogIn</button>
+			</c:when>
+			<c:otherwise>
+				<button class="navbar-btn nav-button wow bounceInRight logoutBtn"
+					onclick="location.replace('${pageContext.request.contextPath}/user/logout.do')" data-wow-delay="0.45s">Logout</button>
+			</c:otherwise>					
+			</c:choose>
 				<button class="navbar-btn nav-button wow fadeInRight"
 					onclick="location.replace('${pageContext.request.contextPath}/user/userUpdate.do')" data-wow-delay="0.48s">MyPage</button>
 			</div>

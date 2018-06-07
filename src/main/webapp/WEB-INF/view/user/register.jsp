@@ -70,7 +70,7 @@
                                     <input type="password" class="form-control" id="password" name="password" placeholder="패스워드를 입력해주세요.">
                                 </div>
                                 <div class="text-center">
-                                    <button type="submit" class="btn btn-default">Register</button>
+                                    <button type="submit" id="registerBtn" class="btn btn-default">Register</button>
                                 </div>
                                 <input type="hidden" value="u" id="auth" name="userAuth">
                             </form>
@@ -82,17 +82,17 @@
                     <div class="box-for overflow">                         
                         <div class="col-md-12 col-xs-12 login-blocks">
                             <h2>로그인 </h2> 
-                            <form action="${pageContext.request.contextPath}/logIn.do" method="post">
+                            <form action="${pageContext.request.contextPath}/user/loginPost.json" method="post">
                                 <div class="form-group">
                                     <label for="email">Email</label>
-                                    <input type="text" class="form-control" id="email" placeholder="이메일을 입력해주세요." >
+                                    <input type="text" class="form-control" id="userEmail" name="userEmail" placeholder="이메일을 입력해주세요." >
                                 </div>
                                 <div class="form-group">
                                     <label for="password">Password</label>
-                                    <input type="password" class="form-control" id="password" placeholder="비밀번호를 입력해주세요.">
+                                    <input type="password" class="form-control" id="userPassword" name="password" placeholder="비밀번호를 입력해주세요.">
                                 </div>
                                 <div class="text-center">
-                                    <button type="submit" class="btn btn-default"> Log In</button>
+                                    <button type="submit" id="loginBtn" class="btn btn-default"> Log In</button>
                                 </div>
                             </form>
                             <br>
@@ -122,6 +122,80 @@
         <script src="assets/js/price-range.js"></script>
 
         <script src="assets/js/main.js"></script>
-
+		<script>
+		
+		$("#loginBtn").click(function () {
+			  var id = $("#userEmail").val();
+			  var pw = $("#userPassword").val();
+			  
+			  if(id=='') {
+				   alert("아이디를 입력하세요");
+				   return false;
+				 }  	
+				 	if(pw=='') {
+				   alert("비밀번호를 입력하세요");
+				   return false;
+				 }
+			  
+				 $.ajax({
+				   url: `${pageContext.request.contextPath}/user/loginPost.json`,
+				   data: {userEmail : id, password : pw},
+				   type: "POST",
+				   success: function(result){
+				   if (result.startsWith("/")){
+				   location.href = `${pageContext.request.contextPath}` + result;
+				   return;
+				   }
+				   alert(result);
+				   }
+				   
+				 	});
+				});
+		
+		
+		
+		
+		
+		
+// 		$("#loginBtn").click(function () {
+// 			var userEmail = $("#userEmail").val();
+// 			var password = $("#userPassword").val();
+			
+// 			if (userEmail == '') {
+// 				alert("아이디를 입력해주세요");
+// 				return false;
+// 			} 
+// 			if (password == '') {
+// 				alert("패스워드를 입력해주세요");
+// 				return false;
+// 			}
+// 			alert(${message});
+// 		});
+		
+		$("#registerBtn").click(function () {
+			var name = $("#name").val();
+			var birth = $("#birth").val();
+			var email = $("#email").val();
+			var regPass = $("#password").val();
+			
+			if (name == '') {
+				alert("이름을 입력해주세요");
+				return false;
+			}
+			if (birth == '') {
+				alert("생년월일을 입력해주세요");
+				return false;
+			}
+			if (email == '') {
+				alert("이메일을 입력해주세요");
+				return false;
+			}
+			if (regPass == '') {
+				alert("패스워드를 입력해주세요");
+				return false;
+			}
+		});
+		
+		</script>
     </body>
 </html>

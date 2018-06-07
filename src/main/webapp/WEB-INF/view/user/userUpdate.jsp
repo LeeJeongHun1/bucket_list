@@ -66,9 +66,9 @@
 
                 <div class="col-md-2 mylist">
                 	<ul>
-                		<li><a href="userUpdate.jsp">회원정보수정</a></li>
-                		<li><a href="payment.jsp">결제내역</a></li>
-                		<li><a href="myPackage.jsp">나만의 패키지</a></li>
+                		<li><a href="userUpdate.do">회원정보수정</a></li>
+                		<li><a href="payment.do">결제내역</a></li>
+                		<li><a href="myPackage.do">나만의 패키지</a></li>
                 	</ul>
                 </div>  
                 <div class="col-md-10">

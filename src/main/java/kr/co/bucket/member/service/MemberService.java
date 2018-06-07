@@ -6,7 +6,7 @@ public interface MemberService {
 
 //	public List<MemberVO> selectUser() throws Exception;
 	
-//	public MemberVO selectUserById(String id) throws Exception;
+	public Member selectUserById(Member member) throws Exception;
 //	
 	public void insertMember(Member memberVO) throws Exception;
 //	
