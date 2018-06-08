@@ -9,6 +9,7 @@ public class AllSearch {
 	private String cityCode;
 	private String price;
 	private String departure;
+	
 	public String getDeparture() {
 		return departure;
 	}

@@ -2,6 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.bucket.repository.mapper.PackageMapper">
+
+	<!-- 항공권 검색 -->
 	<resultMap type="airSearch" id="airMap">
 		<result column="air_code" property="airCode" />
 		<result column="air_name" property="airName" />
@@ -16,15 +18,55 @@
 		<result column="baby_price" property="babyPrice" />
 	</resultMap>
 	
-	<select id="selectAir" parameterType="airSearch" resultMap="airMap">
+	<!-- 호텔검색  -->
+	<resultMap id="hotelMap" type="hotelSearch">
+		<result column="hotel_code" property="hotelCode" />
+		<result column="hotel_name" property="hotelName" />
+		<result column="city_code" property="cityCode" />
+		<result column="city_name" property="cityName" />
+		<result column="hotel_img_path" property="hotelImgPath" />
+		<result column="room_code" property="roomCode" />
+		<result column="room_price" property="roomPrice" />
+		<result column="room_name" property="roomName" />
+	</resultMap>
+	
+	<select id="selectStartAir" parameterType="airSearch" resultMap="airMap">
+		select *
+		  from tb_air
+		 where ARRIVAL_CITY_CODE = #{arrivalCityCode}
+		   and DEPARTURE_CITY_CODE = #{departureCityCode}
+		   and start_date like '%' || #{startDate} || '%'
+	</select>
+	
+	<select id="selectEndAir" parameterType="airSearch" resultMap="airMap">
 		select * 
 		  from tb_air
-		 where ARRIVAL_CITY_CODE = (
-							select city_code
-							  from tb_city
-							 where city_code = #{arrivalCityCode}
-							)
-		   and start_date = #{startDate}
+		 where ARRIVAL_CITY_CODE = #{departureCityCode}
+		   and DEPARTURE_CITY_CODE = #{arrivalCityCode}
+		   and start_date like '%' || #{endDate} || '%'
+	</select>
+	
+	<select id="selectHotelBySearch" parameterType="hotelSearch" resultMap="hotelMap">
+		select h.hotel_code, h.hotel_name, h.HOTEL_IMG_PATH, c.CITY_NAME
+		  from tb_hotel h
+		  join tb_city c
+			on h.CITY_CODE = c.CITY_CODE
+		<where>
+			<if test="cityCode != ''">
+				h.city_code = #{cityCode}
+			</if>
+			<if test="hotelName != ''">
+				AND h.hotel_name like '%' || #{hotelName} || '%'
+			</if>
+		</where>
+<!-- 		<trim prefix="where" prefixOverrides="AND|OR"> -->
+<!-- 			<if test="cityCode != ''"> -->
+<!-- 				AND city_code = #{cityCode} -->
+<!-- 			</if> -->
+<!-- 			<if test="hotelName != ''"> -->
+<!-- 				AND hotel_name like '%' || #{hotelName} || '%' -->
+<!-- 			</if> -->
+<!-- 		</trim> -->
 	</select>
 </mapper>
 

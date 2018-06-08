@@ -1,6 +1,7 @@
 package kr.co.bucket.Package.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.bucket.Package.service.PackageService;
 import kr.co.bucket.repository.domain.AirSearch;
+import kr.co.bucket.repository.domain.HotelSearch;
 
 @Controller
 @RequestMapping("/package")
@@ -24,8 +26,13 @@ public class PackageController {
 	
 	@RequestMapping("/airSearch.json")
 	@ResponseBody
-	public List<AirSearch> airSearch(AirSearch air){
-		System.out.println("ajax 통신");
-		return packageService.retrieveMember(air);
+	public Map<String, List<AirSearch>> airSearch(AirSearch air){
+		return packageService.retrieveAir(air);
+	}
+	
+	@RequestMapping("/hotelSearch.json")
+	@ResponseBody
+	public List<HotelSearch> hotelSearch(HotelSearch hotel){
+		return packageService.retrieveHotel(hotel);
 	}
 }

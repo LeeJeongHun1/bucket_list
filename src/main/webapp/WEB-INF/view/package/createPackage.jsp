@@ -88,7 +88,7 @@ div.airlist {
 			<div class="clearfix">
 				<div class="wizard-container">
 					<div class="wizard-card ct-wizard-orange" id="wizardProperty">
-						<form action="#" method="" id="mm">
+						<form action="" method="POST" id="mm">
 							<div class="wizard-header">
 								<h3>
 									<b>My package</b> YOUR PROPERTY <br> <small>나만의
@@ -110,29 +110,31 @@ div.airlist {
 								
 												</div>
 												<div class="col-sm-4">
-													<label style="margin-left: 40px">예약인원</label> <label>성인</label>
-													<select name="adult">
-														<option value="1">1</option>
-													</select> <label>유아</label> <select name="child">
-														<option value="0">0</option>
-													</select>
+<!-- 													<label style="margin-left: 40px">예약인원</label> <label>성인</label> -->
+<!-- 													<select name="adult"> -->
+<!-- 														<option value="1">1</option> -->
+<!-- 													</select> <label>유아</label> <select name="child"> -->
+<!-- 														<option value="0">0</option> -->
+<!-- 													</select> -->
 												</div>
-												<div class="col-sm-4">
-													<label>(관리자) 패키지 간편등록</label> <select name="endDay">
-														<option value="1">홍콩</option>
-														<option value="1">발리</option>
-														<option value="1">동유럽</option>
-														<option value="1">서유럽</option>
-														<option value="1">중국</option>
-														<option value="1">일본</option>
-													</select> <select name="endDay">
-														<option value="1">도시1</option>
-														<option value="1">도시2</option>
-														<option value="1">도시3</option>
-														<option value="1">도시4</option>
-														<option value="1">도시5</option>
-													</select>
-												</div>
+												<c:if test="1 == 0">
+													<div class="col-sm-4">
+														<label>(관리자) 패키지 간편등록</label> <select name="endDay">
+															<option value="1">홍콩</option>
+															<option value="1">발리</option>
+															<option value="1">동유럽</option>
+															<option value="1">서유럽</option>
+															<option value="1">중국</option>
+															<option value="1">일본</option>
+														</select> <select name="endDay">
+															<option value="1">도시1</option>
+															<option value="1">도시2</option>
+															<option value="1">도시3</option>
+															<option value="1">도시4</option>
+															<option value="1">도시5</option>
+														</select>
+													</div>
+												</c:if>
 											</div>
 											<div class="col-sm-12">
 												<div class="col-sm-4">
@@ -148,7 +150,7 @@ div.airlist {
 													<select id="arrivalCity" name="arrivalCityCode" class="selectpicker" data-live-search="true"
 														data-live-search-style="begins" title="여행도시">
 														<option value=""></option>
-														<option value="1">파리</option>
+														<option value="0">파리</option>
 														<option value="2">로마</option>
 													</select>
 												</div>
@@ -190,227 +192,7 @@ div.airlist {
 															<li class="tab"><span>선택</span></li>
 														</ul>
 													</div>
-													<div class="airlist">
-														<ul>
-															<li class="tab"><span>진에어</span></li>
-															<li class="tab"><span>06:05 - 07:20</span></li>
-															<li class="tab"><span>할인석 0석</span></li>
-															<li class="tab"><span>58,300원</span></li>
-															<li class="tab"><span>예약불가</span></li>
-															<li><div class="col-sm-4">
-																	<input type="radio" name="bb" disabled class="aaa" />
-																</div></li>
-														</ul>
-														<ul>
-															<li class="tab"><span>티웨이 항공</span></li>
-															<li class="tab"><span>06:40 - 07:50</span></li>
-															<li class="tab"><span>일반석 14석</span></li>
-															<li class="tab"><span>41,300원</span></li>
-															<li class="tab"><span>예약가능</span></li>
-															<li><div class="col-sm-4">
-																	<input type="radio" name="bb" class="aaa" />
-																</div></li>
-														</ul>
-														<ul>
-															<li class="tab"><span>아시아나</span></li>
-															<li class="tab"><span>14:00 - 15:10</span></li>
-															<li class="tab"><span>특가석 6석</span></li>
-															<li class="tab"><span>98,400원</span></li>
-															<li class="tab"><span>예약가능</span></li>
-															<li><div class="col-sm-4">
-																	<input type="radio" name="bb" class="aaa" />
-																</div></li>
-														</ul>
-														<ul>
-															<li class="tab"><span>항공권</span></li>
-															<li class="tab"><span>여정시간</span></li>
-															<li class="tab"><span>잔여석</span></li>
-															<li class="tab"><span>요금</span></li>
-															<li class="tab"><span>예약상태</span></li>
-															<li><div class="col-sm-4">
-																	<input type="radio" name="bb" class="aaa" />
-																</div></li>
-														</ul>
-														<ul>
-															<li class="tab"><span>항공권</span></li>
-															<li class="tab"><span>여정시간</span></li>
-															<li class="tab"><span>잔여석</span></li>
-															<li class="tab"><span>요금</span></li>
-															<li class="tab"><span>예약상태</span></li>
-															<li><div class="col-sm-4">
-																	<input type="radio" name="bb" class="aaa" />
-																</div></li>
-														</ul>
-														<ul>
-															<li class="tab"><span>항공권</span></li>
-															<li class="tab"><span>여정시간</span></li>
-															<li class="tab"><span>잔여석</span></li>
-															<li class="tab"><span>요금</span></li>
-															<li class="tab"><span>예약상태</span></li>
-															<li><div class="col-sm-4">
-																	<input type="radio" name="bb" class="aaa" />
-																</div></li>
-														</ul>
-														<ul>
-															<li class="tab"><span>항공권</span></li>
-															<li class="tab"><span>여정시간</span></li>
-															<li class="tab"><span>잔여석</span></li>
-															<li class="tab"><span>요금</span></li>
-															<li class="tab"><span>예약상태</span></li>
-															<li><div class="col-sm-4">
-																	<input type="radio" name="bb" class="aaa" />
-																</div></li>
-														</ul>
-														<ul>
-															<li class="tab"><span>항공권</span></li>
-															<li class="tab"><span>여정시간</span></li>
-															<li class="tab"><span>잔여석</span></li>
-															<li class="tab"><span>요금</span></li>
-															<li class="tab"><span>예약상태</span></li>
-															<li><div class="col-sm-4">
-																	<input type="radio" name="bb" class="aaa" />
-																</div></li>
-														</ul>
-														<ul>
-															<li class="tab"><span>항공권</span></li>
-															<li class="tab"><span>여정시간</span></li>
-															<li class="tab"><span>잔여석</span></li>
-															<li class="tab"><span>요금</span></li>
-															<li class="tab"><span>예약상태</span></li>
-															<li><div class="col-sm-4">
-																	<input type="radio" name="bb" class="aaa" />
-																</div></li>
-														</ul>
-														<ul>
-															<li class="tab"><span>항공권</span></li>
-															<li class="tab"><span>여정시간</span></li>
-															<li class="tab"><span>잔여석</span></li>
-															<li class="tab"><span>요금</span></li>
-															<li class="tab"><span>예약상태</span></li>
-															<li><div class="col-sm-4">
-																	<input type="radio" name="bb" class="aaa" />
-																</div></li>
-														</ul>
-														<ul>
-															<li class="tab"><span>항공권</span></li>
-															<li class="tab"><span>여정시간</span></li>
-															<li class="tab"><span>잔여석</span></li>
-															<li class="tab"><span>요금</span></li>
-															<li class="tab"><span>예약상태</span></li>
-															<li><div class="col-sm-4">
-																	<input type="radio" name="bb" class="aaa" />
-																</div></li>
-														</ul>
-														<ul>
-															<li class="tab"><span>항공권</span></li>
-															<li class="tab"><span>여정시간</span></li>
-															<li class="tab"><span>잔여석</span></li>
-															<li class="tab"><span>요금</span></li>
-															<li class="tab"><span>예약상태</span></li>
-															<li><div class="col-sm-4">
-																	<input type="radio" name="bb" class="aaa" />
-																</div></li>
-														</ul>
-														<ul>
-															<li class="tab"><span>항공권</span></li>
-															<li class="tab"><span>여정시간</span></li>
-															<li class="tab"><span>잔여석</span></li>
-															<li class="tab"><span>요금</span></li>
-															<li class="tab"><span>예약상태</span></li>
-															<li><div class="col-sm-4">
-																	<input type="radio" name="bb" class="aaa" />
-																</div></li>
-														</ul>
-														<ul>
-															<li class="tab"><span>항공권</span></li>
-															<li class="tab"><span>여정시간</span></li>
-															<li class="tab"><span>잔여석</span></li>
-															<li class="tab"><span>요금</span></li>
-															<li class="tab"><span>예약상태</span></li>
-															<li><div class="col-sm-4">
-																	<input type="radio" name="bb" class="aaa" />
-																</div></li>
-														</ul>
-														<ul>
-															<li class="tab"><span>항공권</span></li>
-															<li class="tab"><span>여정시간</span></li>
-															<li class="tab"><span>잔여석</span></li>
-															<li class="tab"><span>요금</span></li>
-															<li class="tab"><span>예약상태</span></li>
-															<li><div class="col-sm-4">
-																	<input type="radio" name="bb" class="aaa" />
-																</div></li>
-														</ul>
-														<ul>
-															<li class="tab"><span>항공권</span></li>
-															<li class="tab"><span>여정시간</span></li>
-															<li class="tab"><span>잔여석</span></li>
-															<li class="tab"><span>요금</span></li>
-															<li class="tab"><span>예약상태</span></li>
-															<li><div class="col-sm-4">
-																	<input type="radio" name="bb" class="aaa" />
-																</div></li>
-														</ul>
-														<ul>
-															<li class="tab"><span>항공권</span></li>
-															<li class="tab"><span>여정시간</span></li>
-															<li class="tab"><span>잔여석</span></li>
-															<li class="tab"><span>요금</span></li>
-															<li class="tab"><span>예약상태</span></li>
-															<li><div class="col-sm-4">
-																	<input type="radio" name="bb" class="aaa" />
-																</div></li>
-														</ul>
-														<ul>
-															<li class="tab"><span>항공권</span></li>
-															<li class="tab"><span>여정시간</span></li>
-															<li class="tab"><span>잔여석</span></li>
-															<li class="tab"><span>요금</span></li>
-															<li class="tab"><span>예약상태</span></li>
-															<li><div class="col-sm-4">
-																	<input type="radio" name="bb" class="aaa" />
-																</div></li>
-														</ul>
-														<ul>
-															<li class="tab"><span>항공권</span></li>
-															<li class="tab"><span>여정시간</span></li>
-															<li class="tab"><span>잔여석</span></li>
-															<li class="tab"><span>요금</span></li>
-															<li class="tab"><span>예약상태</span></li>
-															<li><div class="col-sm-4">
-																	<input type="radio" name="bb" class="aaa" />
-																</div></li>
-														</ul>
-														<ul>
-															<li class="tab"><span>항공권</span></li>
-															<li class="tab"><span>여정시간</span></li>
-															<li class="tab"><span>잔여석</span></li>
-															<li class="tab"><span>요금</span></li>
-															<li class="tab"><span>예약상태</span></li>
-															<li><div class="col-sm-4">
-																	<input type="radio" name="bb" class="aaa" />
-																</div></li>
-														</ul>
-														<ul>
-															<li class="tab"><span>항공권</span></li>
-															<li class="tab"><span>여정시간</span></li>
-															<li class="tab"><span>잔여석</span></li>
-															<li class="tab"><span>요금</span></li>
-															<li class="tab"><span>예약상태</span></li>
-															<li><div class="col-sm-4">
-																	<input type="radio" name="bb" class="aaa" />
-																</div></li>
-														</ul>
-														<ul>
-															<li class="tab"><span>항공권</span></li>
-															<li class="tab"><span>여정시간</span></li>
-															<li class="tab"><span>잔여석</span></li>
-															<li class="tab"><span>요금</span></li>
-															<li class="tab"><span>예약상태</span></li>
-															<li><div class="col-sm-4">
-																	<input type="radio" name="bb" class="aaa" />
-																</div></li>
-														</ul>
+													<div class="end-airlist">
 													</div>
 												</div>
 												<div class="col-sm-1"></div>
@@ -424,78 +206,35 @@ div.airlist {
 									<div class="col-sm-12">
 										<div class="col-sm-4">
 											<div class="col-sm-12">
-												<span class="searchTitle">숙박유형</span>
-											</div>
-											<div class="col-sm-12">
-												<select id="lunchBegins" class="selectpicker"
-													data-live-search="true" data-live-search-style="begins"
-													title="Select your type">
-													<option>전체</option>
-													<option>호텔</option>
-													<option>게시트 하우스</option>
-													<option>게시트 하우스</option>
-													<option>게시트 하우스</option>
-													<option>게시트 하우스</option>
+												<select id="hCity" name="hotelCity" >
+													<option value=''>지역을 선택하세요</option>
+													<option value="2">로마</option>
+													<option value="3">밀라노</option>
 												</select>
 											</div>
 										</div>
 										<div class="col-sm-4">
 											<div class="col-sm-12">
-												<span class="searchTitle">숙박지명</span>
-											</div>
-											<div class="col-sm-12">
-												<input type="text" class="form-control" name="hotelName"
-													placeholder="search">
+												<input type="text" id="hotelName" class="form-control" name="hotelName"
+													placeholder="숙박업체명을 입력하세요">
 											</div>
 										</div>
 										<div class="col-sm-4">
 											<div class="col-sm-12">
-												<a href="#" class="btn-primary" style="margin-left: 163px">조회</a>
-											</div>
-											<div class="col-sm-12">
-												<a href="#" class="btn-primary" style="margin-left: 163px">조회</a>
+												<button class="btn-primary" style="margin-left: 163px"
+														onclick="return doHotel();">조회</button>
 											</div>
 										</div>
 									</div>
 									<div class="col-sm-12">
 										<div class="col-sm-4">
 											<div class="col-sm-12">
-												<span class="searchTitle">지역</span>
-											</div>
-											<div class="col-sm-12">
-												<select id="lunchBegins" class="selectpicker"
-													data-live-search="true" data-live-search-style="begins"
-													title="Select your contry">
-													<option>전체</option>
-													<option>오사카</option>
-													<option>도쿄</option>
-													<option>규슈</option>
-													<option>후쿠오카</option>
-												</select>
+												<input type="text" class="form-control" id="checkinDate" name="checkinDate" placeholder="입실일">
 											</div>
 										</div>
 										<div class="col-sm-4">
 											<div class="col-sm-12">
-												<span class="searchTitle">입실일</span>
-											</div>
-											<div class="col-sm-12">
-												<select id="lunchBegins" class="selectpicker"
-													data-live-search="true" data-live-search-style="begins"
-													title="Select your contry">
-													<option>datePicker</option>
-												</select>
-											</div>
-										</div>
-										<div class="col-sm-4">
-											<div class="col-sm-12">
-												<span class="searchTitle">퇴실일</span>
-											</div>
-											<div class="col-sm-12">
-												<select id="lunchBegins" class="selectpicker"
-													data-live-search="true" data-live-search-style="begins"
-													title="Select your contry">
-													<option>datePicker</option>
-												</select>
+												<input type="text" class="form-control" id="checkoutDate" name="checkoutDate" placeholder="퇴실일">
 											</div>
 										</div>
 									</div>
@@ -503,68 +242,19 @@ div.airlist {
 									<div class="col-sm-12">
 										<div class="row" id="pop">
 											<div class="proerty-th">
+											<!-- 여기부터 ajax 그리기 -->
 												<div class="col-sm-6 col-md-3 p0">
 													<div class="box-two proerty-item">
 														<div class="item-thumb">
-															<a href="#"><img
-																src="assets/img/demo/Ibis_Paris_Tour_Eiffel.jpg"></a>
+															<a href="#"><img src="<c:url value="/resources/assets/img/demo/Ibis_Paris_Tour_Eiffel.jpg"/>"></a>
 														</div>
 														<div class="item-entry overflow">
 															<h5>
 																<a href="#">Ibis Paris Tour 3성</a>
 															</h5>
 															<div class="dot-hr"></div>
-															<span class="pull-left"><b>파리 :</b>포르트 드 베르사유</span> <span
+															<span class="pull-left">Ibis Paris Tour 3성</span> <span
 																class="proerty-price pull-right">110,333 $</span>
-														</div>
-													</div>
-												</div>
-												<div class="col-sm-6 col-md-3 p0">
-													<div class="box-two proerty-item">
-														<div class="item-thumb">
-															<a href="#"><img
-																src="assets/img/demo/Hotel_Chavanel.jpg"></a>
-														</div>
-														<div class="item-entry overflow">
-															<h5>
-																<a href="#">Hotel Chavanel 3성</a>
-															</h5>
-															<div class="dot-hr"></div>
-															<span class="pull-left"><b>파리 :</b> 샹젤리제 </span> <span
-																class="proerty-price pull-right">$ 379,000</span>
-														</div>
-													</div>
-												</div>
-												<div class="col-sm-6 col-md-3 p0">
-													<div class="box-two proerty-item">
-														<div class="item-thumb">
-															<a href="#"><img
-																src="assets/img/demo/Pullman_Paris_Tour_Eiffel.jpg"></a>
-														</div>
-														<div class="item-entry overflow">
-															<h5>
-																<a href="#">Pullman Paris 3성</a>
-															</h5>
-															<div class="dot-hr"></div>
-															<span class="pull-left"><b>파리 :</b>포르트 드 베르사유</span> <span
-																class="proerty-price pull-right">$ 226,000</span>
-															<div style="display: none;"></div>
-														</div>
-													</div>
-												</div>
-												<div class="col-sm-6 col-md-3 p0">
-													<div class="box-two proerty-item">
-														<div class="item-thumb">
-															<a href="#"><img
-																src="assets/img/demo/Hotel_de_Nell.jpg"></a>
-														</div>
-														<div class="item-entry overflow">
-															<h5>
-																<a href="#">Hotel de Nell 5성</a>
-															</h5>
-															<div class="dot-hr"></div>
-															<span class="pull-left"><b>파리 :</b> 포브르그 몽마르트 </span> <span
-																class="proerty-price pull-right">$ 350,000</span>
 														</div>
 													</div>
 												</div>
@@ -578,8 +268,7 @@ div.airlist {
 									<div class="row">
 										<div class="col-sm-4">
 											<div class="col-sm-12">
-												<span class="searchTitle" style="text-align: center;">테마별
-													관광지</span>
+												<span class="searchTitle" style="text-align: center;">테마별 관광지</span>
 											</div>
 											<div class="col-sm-12">
 												<select id="lunchBegins" class="selectpicker"
@@ -612,7 +301,7 @@ div.airlist {
 												<div class="col-sm-6 col-md-3 p0">
 													<div class="box-two proerty-item">
 														<div class="item-thumb">
-															<a href="#"><img src="assets/img/demo/Louvre.jpg"></a>
+															<a href="#"><img src="<c:url value="/resources/assets/img/demo/Louvre.jpg"/>"></a>
 														</div>
 														<div class="item-entry overflow">
 															<h5>
@@ -782,20 +471,19 @@ div.airlist {
 	</div>
 	<div style="display: none;">
 		<ul class="airInfo">
-			<li class="tab"><span class="airName">진에어</span></li>
-			<li class="tab"><span class="airFlyingTime">06:05 - 07:20</span></li>
-			<li class="tab"><span class="airSeatCnt">할인석 0석</span></li>
-			<li class="tab"><span class="airAdultPrice">58,300원</span></li>
-			<li class="tab"><span class="yn">예약불가</span></li>
+			<li class="tab"><span class="airName"></span></li>
+			<li class="tab"><span class="airFlyingTime"></span></li>
+			<li class="tab"><span class="airSeatCnt"></span></li>
+			<li class="tab"><span class="airAdultPrice"></span></li>
+			<li class="tab"><span class="yn"></span></li>
 			<li>
-				<div class="col-sm-4">
-					<input type="radio" class="airCode" name="airCode" value="" />
-				</div>
+				<input type="radio" class="airCode" name="airCode" value="" />
 			</li>
 		</ul>
 	</div>
 	<script>
 		$(function() {
+			$("div.col-sm-12.detailpop").hide();
 // 			$(".airInfo").children().clone()
 			$('#departureDate').datepicker({
 				format : "yyyy년mm월dd일",
@@ -807,7 +495,80 @@ div.airlist {
 				startDate: '+1d',
 				autoclose: true
 			}).datepicker("setDate", new Date());
+			$('#checkinDate').datepicker({
+				format : "yyyy년mm월dd일",
+				startDate: $('#departureDate').val(),
+				autoclose: true
+			}).datepicker("setDate", new Date());
+			$('#checkoutDate').datepicker({
+				format : "yyyy년mm월dd일",
+				startDate: 'd',
+				autoclose: true
+			}).datepicker("setDate", new Date());
 		});
+		
+		function waitMe() {
+			$("body").waitMe({
+				effect: "facebook",
+				text: "처리 중 입니다.",
+				bg: "rgba(255, 255, 255, 0.7)",
+				color: "#000",
+			});
+		}
+		
+		function doHotel(){
+			console.log($("#hCity option").val())
+			console.log($("#hCity").text())
+			waitMe();
+			$.ajax({
+				type: "POST",
+				url: '<c:url value="/package/hotelSearch.json"/>',
+				data: {
+						hotelName: $("#hotelName").val(),
+						cityCode: $("#hCity").val()
+						},
+				dataType: "json"
+			})
+			.done(function (result){
+				$("body").waitMe("hide");
+				var html = '';
+				for(let h of result){
+					$(".proerty-th").html("");
+					html += '<div class="col-sm-6 col-md-3 p0">';
+					html += '	<div class="box-two proerty-item">';
+					html += '		<div class="item-thumb">';
+					html += '			<a href=# onclick=' + 'return doa()' + ';><img src=' + '<c:url value='+h.hotelImgPath+'/> ' + '></a>';
+					html += '		</div>';
+					html += '		<div class="item-entry overflow">';
+					html += '			<h5>';
+					html += '				<a href="#">' + h.hotelName + '</a>';
+					html += '			</h5>';
+					html += '			<div class="dot-hr"></div>';
+					html += '			<span class="pull-left">' + h.cityName + '</span>';
+					html += '		</div>';
+					html += '	</div>';
+					html += '</div>';
+					$(".proerty-th").append(html);
+				}
+			})
+			.fail(function (){
+				$("body").waitMe("hide");
+			});
+			return false;
+		}
+		function doa(){
+			var $div = $(".col-sm-12.detailpop");
+			$(".item-thumb").click(function() {
+				$("#pop").hide();
+				$("#pop").after($div);
+				$div.show();
+			})
+			$("#selectHotel").click(function() {
+				$div.hide();
+				$("#pop").show();
+			})
+		}
+		
 		
 		function doAir() {
 			if ($("#departureCity").val() == '') {
@@ -831,6 +592,7 @@ div.airlist {
 				})
 				return false;
 			}
+			console.log($("#arrivalDate").val())
 			$.ajax({
 				url: '<c:url value="/package/airSearch.json"/>',
 				data: $("#mm").serialize(),
@@ -838,29 +600,61 @@ div.airlist {
 				dataType: "json"
 			})
 			.done(function (result){
-				var $airInfo = $(".airInfo").children().clone();
-// 				console.dir($airInfo);
-// 				console.dir($(".airInfo").clone());
-				for(let air of result){
-					$airInfo.find(".airName").text(air.airName);
-					$(".airInfo").append($airInfo.clone());
-					$(".start-airlist").append($(".airInfo").clone());
+				$(".start-airlist").html("")
+				$(".end-airlist").html("")
+				if(result.startAir.length == 0){
+					$(".start-airlist").html("<span>해당하는 항공편이 존재하지 않습니다.</span>")
 				}
-				console.log(result)
+				if(result.endAir.length == 0){
+					$(".end-airlist").html("<span>해당하는 항공편이 존재하지 않습니다.</span>")
+				}
+				let $airInfo = $(".airInfo").clone();
+				for(let air of result.startAir){
+					$airInfo.find(".airName").text(air.airName);
+					$airInfo.find(".airFlyingTime").text(air.flyingTime);
+					$airInfo.find(".airSeatCnt").text(air.seatCnt);
+					$airInfo.find(".airAdultPrice").text(air.adultPrice + '원');
+					$airInfo.find(".airCode").val(air.airCode);
+					if(air.seatCnt == '0'){
+						$airInfo.find(".yn").text("예약불가");
+						$airInfo.find(".airCode").attr('disabled');
+					}else{
+						$airInfo.find(".yn").text("예약가능");
+					}
+					$airInfo.removeClass("airInfo")
+					$(".start-airlist").append($airInfo.clone());
+					$(".start-airlist").find(".airCode").click(function (){
+						$(this).parent().togleClass("checked");
+					})
+				}
+				for(let air of result.endAir){
+					$airInfo.find(".airName").text(air.airName);
+					$airInfo.find(".airFlyingTime").text(air.flyingTime);
+					$airInfo.find(".airSeatCnt").text(air.seatCnt);
+					$airInfo.find(".airAdultPrice").text(air.adultPrice + '원');
+					$airInfo.find(".airCode").val(air.airCode);
+					if(air.seatCnt == '0') {
+						$airInfo.find(".yn").text("예약불가");
+						$airInfo.find(".airCode").attr('disabled');
+					} else{
+						$airInfo.find(".yn").text("예약가능");
+					}
+					$airInfo.removeClass("airInfo")
+					$(".end-airlist").append($airInfo.clone());
+					console.log($(".end-airlist").find(".airCode").parent())
+					$(".end-airlist").find(".airCode").parent().click(function (){
+						$(this).togleClass("checked");
+					})
+					$(".end-airlist").find(".airCode").click(function (){
+						$(this).parent().togleClass("checked");
+					})
+				}
 			})
-// 			console.log($("#mm").serialize());
-// 			console.log($("#arrivalDate").val());
-// 			console.log($("#departureDate").val());
-// 			console.log($("#arrivalCity").val());
-// 			console.log($("#departureCity").val());
 			return false;
 		}
-		$(".col-sm-12.detailpop").hide();
 		$("input[name='finish']").click(function() {
 			alert("클릭딤");
 		})
-		console.log($(".item-thumb > a").html());
-		console.dir($(".item-thumb").length);
 		var $div = $(".col-sm-12.detailpop");
 		$(".item-thumb").click(function() {
 			$("#pop").hide();

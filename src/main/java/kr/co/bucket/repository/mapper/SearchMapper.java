@@ -12,5 +12,5 @@ public interface SearchMapper {
 	public List<SResult> detailSearch(AllSearch search);
 	public List<SResult> selectSearch(AllSearch search);
 	public List<SResult> departureSearch(AllSearch search);
-	public int selectPage(Page page);
+	public int selectCount(Search keyword);
 }

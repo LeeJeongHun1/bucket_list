@@ -37,6 +37,8 @@
         <link rel="stylesheet" href="<c:url value='/resources/assets/css/style.css' />">
         <link rel="stylesheet" href="<c:url value='/resources/assets/css/responsive.css' />">
         <link rel="stylesheet" href="<c:url value='/resources/assets/css/sweetalert2.min.css' />">
+        <link rel="stylesheet" href="<c:url value='/resources/waitme/waitMe.css' />">
+        
         
         <script src="<c:url value='/resources/assets/js/modernizr-2.6.2.min.js' />"></script>
         <script src="<c:url value='/resources/assets/js/jquery-1.10.2.min.js' />"></script>
@@ -56,6 +58,7 @@
         <script src="<c:url value='/resources/assets/js/wizard.js' />"></script>
         <script src="<c:url value='/resources/assets/js/main.js' />"></script>
         <script src="<c:url value='/resources/assets/js/sweetalert2.all.min.js' />"></script>
+        <script src="<c:url value='/resources/waitme/waitMe.js' />"></script>
         
 <sitemesh:write property="head" />
 

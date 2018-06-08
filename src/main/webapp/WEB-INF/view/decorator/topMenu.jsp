@@ -64,16 +64,16 @@
 	
 </nav>
 <script>
- $("#searchBtn").click("on",function(){
-	 alert("간다");
-	$.ajax({
-		type:"post",
-		url:"<c:url value='/search/searhList.json'/>",
-		data:$("#search").serialize(),
-		success: function(data){
-			console.log(data);
-			//$("#test").append(data.getPackageName);
-		}
-	})
- });
+//  $("#searchBtn").click("on",function(){
+// 	 alert("간다");
+// 	$.ajax({
+// 		type:"post",
+// 		url:"<c:url value='/search/searhList.json'/>",
+// 		data:$("#search").serialize(),
+// 		success: function(data){
+// 			console.log(data);
+// 			//$("#test").append(data.getPackageName);
+// 		}
+// 	})
+//  });
 </script>

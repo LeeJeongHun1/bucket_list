@@ -31,7 +31,7 @@ public class SearchServiceImp implements SearchService {
 	public List<SResult> departureSearch(AllSearch allSearch) throws Exception{
 		 return mapper.departureSearch(allSearch);
 	};
-	public int count(Page page) throws Exception{
-		return mapper.selectPage(page);
+	public int count(Search keyword) throws Exception{
+		return mapper.selectCount(keyword);
 	}
 }

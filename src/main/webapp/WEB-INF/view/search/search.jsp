@@ -316,7 +316,7 @@
 						<div class="pagination">
 							<ul>
 								<li><navi:page data="${pageResult}" /></li>
-							<!-- 	<li><a href="#">1</a></li>
+<!-- 								<li><a href="#">1</a></li>
 								<li><a href="#">2</a></li>
 								<li><a href="#">3</a></li>
 								<li><a href="#">4</a></li>
@@ -330,6 +330,11 @@
 		</div>
 	</div>
 	<script>
+		function goPage(pageNo){
+			location.href="search.do?pageNo="+pageNo+ `&keyword=${key}`;
+					alert("가냐");
+		}
+		
 		$(function() {
 			$('#SDate').datepicker({
 				format : "yyyy년mm월dd일",
@@ -453,13 +458,9 @@
 					}	
 				$("#makeSearch").html(html);
 		
+				});
 			});
-			});
-		
-		function goPage(pageNo){
-			location.href="search.do?pageNo="+pageNo'
-					alert("가냐");
-		}
+
 	</script>
 
 
