@@ -28,8 +28,10 @@
 					onclick="location.replace('${pageContext.request.contextPath}/user/logout.do')" data-wow-delay="0.45s">Logout</button>
 			</c:otherwise>					
 			</c:choose>
+			<c:if test="${!empty sessionScope.member}">
 				<button class="navbar-btn nav-button wow fadeInRight"
 					onclick="location.replace('${pageContext.request.contextPath}/user/userUpdate.do')" data-wow-delay="0.48s">MyPage</button>
+			</c:if>
 			</div>
 			<ul class="main-nav nav navbar-nav navbar-right"
 				style="margin-right: 0;">

@@ -85,7 +85,7 @@
 				<div class="proerty-th">
 					<div class="col-sm-6 col-md-3 p0">
 						<div class="box-two proerty-item">
-							<c:forEach var="" items="">
+<%-- 							<c:forEach var="" items=""> --%>
 								<div class="item-thumb">
 									<a href="property-1.html"><img src="assets/img/demo/ps1.jpg"></a>
 								</div>
@@ -97,7 +97,7 @@
 									<button style="padding: 2px 14px;" class="navbar-btn nav-button wow bounceInRight login animated" onclick=" window.open('register.jsp')" data-wow-delay="0.45s" style="visibility: visible; animation-delay: 0.45s; animation-name: bounceInRight;">상세보기</button>
 									<span class="proerty-price pull-right">2,389,000원~</span>
 								</div>
-							</c:forEach>
+<%-- 							</c:forEach> --%>
 						</div>
 					</div>
 

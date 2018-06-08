@@ -1,5 +1,8 @@
 package kr.co.bucket.repository.mapper;
 
-public interface ThemeMapper {
+import java.util.List;
+import java.util.Map;
 
+public interface ThemeMapper {
+	public List<Map> selectThemeList() throws Exception;
 }
