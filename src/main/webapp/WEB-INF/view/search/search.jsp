@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn"  uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib tagdir="/WEB-INF/tags" prefix="navi" %>    
 
 <title>GARO ESTATE | Properties page</title>
 <style>
@@ -237,12 +238,12 @@
 					<div class="col-xs-10 page-subheader sorting pl0">
 						<ul class="sort-by-list">
 							<li class="active"></li>
-							<li class=""><select id="price" name="selectPrice">
+							<li class=""><select id="price" name="price">
 									<option value="">가격순</option>
 									<option value="1">가격낮은순</option>
 									<option value="2">가격높은순</option>
 							</select> </li>
-									<li class=""><select id="departure" name="selectDeparture">
+									<li class=""><select id="departure" name="departure">
 									<option value="0">출발일순</option>
 									<option value="1">출발일이 빠른순</option>
 									<option value="2">출발일이 느린순</option>
@@ -314,12 +315,12 @@
 					<div class="pull-right">
 						<div class="pagination">
 							<ul>
-								<li><a href="#">Prev</a></li>
-								<li><a href="#">1</a></li>
+								<li><navi:page data="${pageResult}" /></li>
+							<!-- 	<li><a href="#">1</a></li>
 								<li><a href="#">2</a></li>
 								<li><a href="#">3</a></li>
 								<li><a href="#">4</a></li>
-								<li><a href="#">Next</a></li>
+								<li><a href="#">Next</a></li> -->
 							</ul>
 						</div>
 						<div id="test"></div>
@@ -344,6 +345,7 @@
 		});
 		
 		function doAction(){
+
 			$.ajax({
 				type:'post',
 				url:"<c:url value='/search/searchDetail.json'/>",
@@ -389,11 +391,12 @@
 			return false;
 		};
 /* 			data:{selectDay:$("#selectDeparture").val(), selectPrice:$("#selectPrice").val()} */
-		$("#price").click(function(){
-		$.ajax({
+		$("#price").change(function(){
+		alert($("#price").val());
+			$.ajax({
 			type:'post',
 			url:"<c:url value='/search/searchSelect.json'/>",
-			data:{selectPrice:$("#price").val()}
+			data:{price:$("#price").val()}
 		}) .done(function(result){
 			var html="";
 			$("#makeSearch").html("");
@@ -420,6 +423,43 @@
 		});
 		});
 		
+		
+		$("#departure").change(function(){
+			alert($("#departure").val());
+				$.ajax({
+				type:'post',
+				url:"<c:url value='/search/departureSelect.json'/>",
+				data:{price:$("#departure").val()}
+			}) .done(function(result){
+				var html="";
+				$("#makeSearch").html("");
+				console.log(result);
+					for(let a of result){
+						html+='<div id="list-type" class="proerty-th">';
+						html+='<div class="col-sm-6 col-md-3 p0">';
+						html+='<div class="box-two proerty-item">';
+						html+='<div class="item-thumb">';
+						html+='<a href="property-1.html"><img src="..'+a.imgPath+'"></a>';
+						html+='</div>';
+						html+='<div class="item-entry overflow">';
+						html+='<h5>';
+						html+='<a href="property-1.html"> 여행도시 <span>'+a.cityName+'</span></a>';
+						//html+='<button type="button" class="search_detail navbar-btn nav-button wow fadeInRight animated" onclick="location.replace('${pageContext.request.contextPath}/search/searchDetail.do')" data-wow-delay="0.48s">상세보기</button>'
+						html+='</h5>';
+						html+='<div class="dot-hr">'+a.startDate+'</div>';
+						html+='<span class="proerty-price pull-right">'+a.packagePrice+'</span>';
+						html+='<p style="display: none;">'+a.packageName+'</p>';
+						html+='</div></div></div></div>';
+					}	
+				$("#makeSearch").html(html);
+		
+			});
+			});
+		
+		function goPage(pageNo){
+			location.href="search.do?pageNo="+pageNo'
+					alert("가냐");
+		}
 	</script>
 
 
