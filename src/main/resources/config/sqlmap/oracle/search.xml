@@ -8,9 +8,13 @@
 		<result column="package_name" property="packageName" />
 		<result column="CITY_NAME" property="cityName" />
 		<result column="IMG_PATH" property="imgPath" />
+		<result column="START_DATE" property="startDate" />
 	</resultMap>
 	<select id="AllSearch" parameterType="search" resultMap="searchMap">
-		select
+    select *
+    	  from ( 
+    	  		 select rownum rnum, a.*
+    	           from (		select
 		DISTINCT pack.PACKAGE_CODE, pack.package_price,pack.package_name
 		,city.CITY_NAME,img.IMG_PATH
 		from tb_package pack
@@ -32,6 +36,10 @@
 		where pack.PACKAGE_NAME like '%' ||
 		#{keyword} || '%'
 		or city.CITY_NAME like '%'|| #{keyword} || '%'
+    	                ) a 
+    	       )  
+    	 where rnum between 1 and 10;
+
 	</select>
 	<select id="detailSearch" parameterType="allSearch" resultMap="searchMap">
 		select DISTINCT pack.PACKAGE_CODE,
@@ -102,7 +110,7 @@
 			</choose> -->
 		</where>
 	</select>
-	<select id="selectSearch" parameterType="string" resultMap="searchMap">
+	<select id="selectSearch" parameterType="allSearch" resultMap="searchMap">
 			select DISTINCT pack.PACKAGE_CODE,
 		pack.package_price,pack.package_name
 		,city.CITY_NAME,img.IMG_PATH,air.start_date
@@ -123,12 +131,43 @@
 		img
 		on thm.theme_code = img.theme_code
 		<choose>
-		<when test="selectPrice ='1'">
-			order by pack.PACKAGE_PRICE
+		<when test="price == 1">
+			order by pack.PACKAGE_PRICE		
 		</when>
 		<otherwise>
 			order by pack.PACKAGE_PRICE desc		
 		</otherwise>
 		</choose>
+	</select>
+	
+		<select id="departureSearch" parameterType="allSearch" resultMap="searchMap">
+			select DISTINCT pack.PACKAGE_CODE,
+		pack.package_price,pack.package_name
+		,city.CITY_NAME,img.IMG_PATH,substr(air.start_date,1,11)
+		from tb_package pack
+		inner
+		join tb_air air
+		on pack.DEPARTURE_AIR_CODE = air.air_code
+		inner
+		join
+		tb_city city
+		on air.ARRIVAL_CITY_code = city.city_code
+		inner
+		join
+		tb_theme thm
+		on city.city_code = thm.city_code
+		inner
+		join tb_img_group
+		img
+		on thm.theme_code = img.theme_code
+		<choose>
+		<when test="departure == 1">
+			order by air.start_date	
+		</when>
+		<otherwise>
+			order by air.start_date desc		
+		</otherwise>
+		</choose> 
+		
 	</select>
 </mapper>

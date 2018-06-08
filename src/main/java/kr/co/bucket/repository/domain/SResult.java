@@ -6,6 +6,13 @@ public class SResult {
 	private String packageName;
 	private String imgPath;
 	private String cityName;
+	private String startDate;
+	public String getStartDate() {
+		return startDate;
+	}
+	public void setStartDate(String startDate) {
+		this.startDate = startDate;
+	}
 	public String getPackageCode() {
 		return packageCode;
 	}

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.bucket.Search.service.SearchService;
 import kr.co.bucket.repository.domain.AllSearch;
+import kr.co.bucket.repository.domain.Page;
 import kr.co.bucket.repository.domain.SResult;
 import kr.co.bucket.repository.domain.Search;
 
@@ -21,16 +22,9 @@ public class SearchController {
 	private SearchService searchService;
 	
 	@RequestMapping("/search.do")
-	public void search(Search keyword, Model model, AllSearch AllSearch) throws Exception {
-	/*	System.out.println("와");
-		List<SResult> list = searchService.Allsearch(keyword);
-		System.out.println("컨트롤러 "+list.size());*/
-		//if(keyword.getPack().equals("1")) {
-			model.addAttribute("allSearch", searchService.Allsearch(keyword));			
-		//}//else {
-		//model.addAttribute("detailSearch", searchService.DetailSearch(AllSearch));
-		//}
-		//System.out.println(search.getKeyword());
+	public void search( Search keyword, Model model, AllSearch AllSearch) throws Exception {
+			model.addAttribute("allSearch", searchService.Allsearch(keyword));
+			model.addAttribute("count");
 	}
 	
 
@@ -67,9 +61,17 @@ public class SearchController {
 	
 	@RequestMapping("/searchSelect.json")
 	@ResponseBody
-	public List<SResult> selectJson(String selectPrice) throws Exception{
-		System.out.println(selectPrice);
-		List<SResult> list = searchService.SelectSearch(selectPrice);
+	public List<SResult> selectJson(AllSearch AllSearch) throws Exception{
+		System.out.println(AllSearch.getPrice());
+		List<SResult> list = searchService.SelectSearch(AllSearch);
+		return list;
+	}
+	
+	@RequestMapping("/departureSelect.json")
+	@ResponseBody
+	public List<SResult> departureJson(AllSearch AllSearch) throws Exception{
+		System.out.println(AllSearch.getDeparture());
+		List<SResult> list = searchService.SelectSearch(AllSearch);
 		return list;
 	}
 	
