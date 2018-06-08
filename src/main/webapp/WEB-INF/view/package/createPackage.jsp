@@ -532,12 +532,13 @@ div.airlist {
 			.done(function (result){
 				$("body").waitMe("hide");
 				var html = '';
+				$(".proerty-th").html('');
 				for(let h of result){
 					$(".proerty-th").html("");
 					html += '<div class="col-sm-6 col-md-3 p0">';
 					html += '	<div class="box-two proerty-item">';
 					html += '		<div class="item-thumb">';
-					html += '			<a href=# onclick=' + 'return doa()' + ';><img src=' + '<c:url value='+h.hotelImgPath+'/> ' + '></a>';
+					html += '			<a href="#" onclick="retrun doa();"><img src="..' + h.hotelImgPath + '" /></a>';
 					html += '		</div>';
 					html += '		<div class="item-entry overflow">';
 					html += '			<h5>';
@@ -550,6 +551,19 @@ div.airlist {
 					html += '</div>';
 					$(".proerty-th").append(html);
 				}
+				
+				function doa(){
+					var $div = $(".col-sm-12.detailpop");
+					console.log("이미지 클릭함")
+					$("#pop").hide();
+					$("#pop").after($div);
+					$div.show();
+					$("#selectHotel").click(function() {
+						$div.hide();
+						$("#pop").show();
+					})
+					return false;
+				}
 			})
 			.fail(function (){
 				$("body").waitMe("hide");
@@ -558,17 +572,16 @@ div.airlist {
 		}
 		function doa(){
 			var $div = $(".col-sm-12.detailpop");
-			$(".item-thumb").click(function() {
-				$("#pop").hide();
-				$("#pop").after($div);
-				$div.show();
-			})
+			console.log("이미지 클릭함")
+			$("#pop").hide();
+			$("#pop").after($div);
+			$div.show();
 			$("#selectHotel").click(function() {
 				$div.hide();
 				$("#pop").show();
 			})
+			return false;
 		}
-		
 		
 		function doAir() {
 			if ($("#departureCity").val() == '') {
@@ -616,15 +629,20 @@ div.airlist {
 					$airInfo.find(".airAdultPrice").text(air.adultPrice + '원');
 					$airInfo.find(".airCode").val(air.airCode);
 					if(air.seatCnt == '0'){
-						$airInfo.find(".yn").text("예약불가");
+						$airInfo.find(".yn").attr("data-yn", "n").text("예약불가");
 						$airInfo.find(".airCode").attr('disabled');
 					}else{
-						$airInfo.find(".yn").text("예약가능");
+						$airInfo.find(".yn").attr("data-yn", "y").text("예약가능");
 					}
 					$airInfo.removeClass("airInfo")
 					$(".start-airlist").append($airInfo.clone());
-					$(".start-airlist").find(".airCode").click(function (){
-						$(this).parent().togleClass("checked");
+					
+					$(".start-airlist span[data-yn='y']").parent().next().find(".iCheck-helper").click(function (event){
+						event.stopPropagation();
+						event.preventDefault();
+						$(this).parent().toggleClass("checked");
+						alert($(this).prev().prop("checked"));
+						
 					})
 				}
 				for(let air of result.endAir){
@@ -643,10 +661,8 @@ div.airlist {
 					$(".end-airlist").append($airInfo.clone());
 					console.log($(".end-airlist").find(".airCode").parent())
 					$(".end-airlist").find(".airCode").parent().click(function (){
-						$(this).togleClass("checked");
-					})
-					$(".end-airlist").find(".airCode").click(function (){
-						$(this).parent().togleClass("checked");
+						console.log($(this))
+						$(this).toggleClass("checked");
 					})
 				}
 			})
