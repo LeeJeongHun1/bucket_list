@@ -13,7 +13,7 @@
 	<select id="AllSearch" parameterType="search" resultMap="searchMap">
     select *
     	  from ( 
-    	  		 select rownum rnum, a.*
+    	  		 select rownum rnum, a.* 
     	           from (		select
 		DISTINCT pack.PACKAGE_CODE, pack.package_price,pack.package_name
 		,city.CITY_NAME,img.IMG_PATH
