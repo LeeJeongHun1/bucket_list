@@ -476,8 +476,7 @@ div.airlist {
 			<li class="tab"><span class="airSeatCnt"></span></li>
 			<li class="tab"><span class="airAdultPrice"></span></li>
 			<li class="tab"><span class="yn"></span></li>
-			<li>
-				<input type="radio" class="airCode" name="airCode" value="" />
+			<li class="radio">
 			</li>
 		</ul>
 	</div>
@@ -630,10 +629,12 @@ div.airlist {
 					$airInfo.find(".airCode").val(air.airCode);
 					if(air.seatCnt == '0'){
 						$airInfo.find(".yn").attr("data-yn", "n").text("예약불가");
-						$airInfo.find(".airCode").attr('disabled');
+						console.log($(".start-airlist span[data-yn='n']").parent());
+						$(".start-airlist span[data-yn='n']").parent().addClass("disabled")
 					}else{
 						$airInfo.find(".yn").attr("data-yn", "y").text("예약가능");
 					}
+					$airInfo.find(".radio").append("<input type='radio' name='startA' />")
 					$airInfo.removeClass("airInfo")
 					$(".start-airlist").append($airInfo.clone());
 					
@@ -642,7 +643,6 @@ div.airlist {
 						event.preventDefault();
 						$(this).parent().toggleClass("checked");
 						alert($(this).prev().prop("checked"));
-						
 					})
 				}
 				for(let air of result.endAir){

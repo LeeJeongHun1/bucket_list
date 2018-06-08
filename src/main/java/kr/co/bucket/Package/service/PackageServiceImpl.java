@@ -23,7 +23,6 @@ public class PackageServiceImpl implements PackageService{
 		a.put("endAir", mapper.selectEndAir(air));
 		a.put("startAir", mapper.selectStartAir(air));
 		return a;
-		
 	}
 
 	@Override
