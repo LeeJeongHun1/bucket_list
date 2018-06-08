@@ -83,32 +83,32 @@
                 </div>
                 </div>
                 <!-- form 태그 시작 -->
-                <form class="form-horizontal">
+                <form id="submitForm" class="form-horizontal" method="post" >
 				<div class="col-md-10">
 					<div class="col-md-2">
-						검색:<select class="form-control" style="display:inline-block; width: 70%;">
-							<option>이름</option>
-							<option>이메일</option>
+						검색:<select class="form-control" name="searchOption" style="display:inline-block; width: 70%;">
+							<option value="name">이름</option>
+							<option value="email">이메일</option>
 						</select>
 					</div>
 					<div class="col-md-2">
-						<input type="text" class="form-control">
+						<input type="text" name="name" class="form-control">
 					</div>
 					<div class="col-md-2">
-					출생연도:<input type="text" class="form-control" style="display: inline-block; width: 50%;">
+					출생연도:<input type="text" name="miniBirth" class="form-control" style="display: inline-block; width: 50%;" maxlength="4">
 					</div>
 					<div class="col-md-2">
-						~<input type="text" class="form-control" style="display: inline-block; width: 50%;" >
+						~<input type="text" name="maxBirth" class="form-control" style="display: inline-block; width: 50%;" maxlength="4">
 					</div>
 				</div>
 			    &nbsp;
 				<!-- 한줄 시작 -->
 				<div class="col-md-10">
 					<div class="col-md-3">
-						가입일:<input type="date" id="miniDate" class="form-control" style="display:inline-block; width: 70%">
+						가입일:<input type="text" id="miniDate" name="miniDate" class="form-control" style="display:inline-block; width: 70%">
 					</div>
 					<div class="col-md-3">
-						<input type="date" id="maxDate" class="form-control" style="width: 80%">
+						<input type="text" id="maxDate" name="maxDate" class="form-control" style="width: 80%">
 					</div>
 					<div class="col-md-4">
 					
@@ -116,49 +116,19 @@
 				</div>
 
 				<div class="col-md-10" style="margin-top: 20px;">
-                <button class="navbar-btn nav-button wow fadeInRight animated" onclick="" data-wow-delay="0.5s" style="width:100%; visibility: visible; animation-delay: 0.5s; animation-name: fadeInRight;">검색</button>
+                <button class="navbar-btn nav-button wow fadeInRight animated" id="searchBtn" onclick="" data-wow-delay="0.5s" style="width:100%; visibility: visible; animation-delay: 0.5s; animation-name: fadeInRight;">검색</button>
                 </div>
                 
                 </form>
               
                 <!-- 테이블 시작 -->
                 <div class="col-md-10">
-          <table class="table">
+          <table class="table" id="table">
             <thead>
-              <tr>
-                <th>#</th>
-                <th>이름</th>
-                <th>가입일</th>
-                <th>출생연도</th>
-                <th>결제내역</th>
-                <th>내가 만든 패키지</th>
-              </tr>
+            
             </thead>
             <tbody>
-              <tr>
-                <td>1</td>
-                <td>Mark</td>
-                <td>2010-11-20</td>
-                <td>2010-11-20</td>
-                <td>-원</td>
-                <td>A패키지</td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>Jacob</td>
-                <td>2010-11-20</td>
-                <td>2010-11-20</td>
-                <td>-원</td>
-                <td>B패키지</td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td>Larry</td>
-                <td>2010-11-20</td>
-                <td>2010-11-20</td>
-                <td>-원</td>
-                <td>C패키지</td>
-              </tr>
+              
             </tbody>
           </table>
            </div>
@@ -188,18 +158,68 @@
 $(function() {
 	$('#miniDate').datepicker({
 	format : "yyyy-mm-dd",
-	startDate: 'd',
 	autoclose: true
-	}).datepicker("setDate", new Date());
+	}).datepicker("setDate", null);
 	});
 	
 $(function() {
 	$('#maxDate').datepicker({
 	format : "yyyy-mm-dd",
-	startDate: 'd',
-	autoclose: true
-	}).datepicker("setDate", new Date());
+	autoclose: true,
+	maxDate:0
+	}).datepicker("setDate", null);
 	});
+		
+	
+$('#submitForm').submit(function(e){
+	e.preventDefault();
+	var params = $("#submitForm").serialize();
+    console.log(params)
+	
+    
+    
+	$.ajax({
+		url:"${pageContext.request.contextPath}/admin/ajaxMem.json",
+		data:params,
+		type:"POST",
+		dataType:"JSON",
+		success:function(result){
+			var html = "";
+			html += '<table class=\'table\' id=\'table\'>\r\n' + 
+			'            <thead>\r\n' + 
+			'              <tr>\r\n' + 
+			'                <th>#</th>\r\n' + 
+			'                <th>이름</th>\r\n' + 
+			'                <th>가입일</th>\r\n' + 
+			'                <th>출생연도</th>\r\n' + 
+			'                <th>패키지 가격</th>\r\n' + 
+			'                <th>내가 만든 패키지</th>\r\n' + 
+			'              </tr>\r\n' + 
+			'            </thead>\r\n';
+			
+			for(var i = 0; i < result.length; i++){
+				var mem = result[i];
+				var index = i+1;
+				html +="<tr>\r\n" + 
+				'                <td>'+ index +'</td>\r\n' + 
+				'                <td>'+ mem.name +'</td>\r\n' + 
+				'                <td>'+ mem.reg_Date +'</td>\r\n' + 
+				'                <td>'+ mem.birth +'</td>\r\n' + 
+				'                <td>'+ mem.package_Price +'</td>\r\n' + 
+				'                <td>'+ mem.package_Name +'</td>\r\n' + 
+				'              </tr>';
+			}
+			$("tbody").html(html);
+			
+			
+			console.log(result);
+			
+		},
+	    error : function(){
+            alert('통신실패!!');
+        }
+	})
+})
 </script>
     </body>
 </html>

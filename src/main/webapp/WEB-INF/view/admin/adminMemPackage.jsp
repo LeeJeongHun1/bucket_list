@@ -88,24 +88,28 @@
 				<div class="col-md-10">
 				<div class="col-md-1">테마</div>
 			     	<div class="col-md-6">
-					<input type="checkbox" class="form-control">관광
-					<input type="checkbox" class="form-control">축구
-					<input type="checkbox" class="form-control">휴양지
+					<input type="checkbox" name="theme" value="tour" class="form-control">관광
+					<input type="checkbox" name="theme" value="soccer" class="form-control">축구
+					<input type="checkbox" name="theme" value="rest" class="form-control">휴양지
 					</div>
 					<div class="col-md-3">
-					제목:<input type="text" class="form-control" style="display: inline-block; width:80%">
+					제목:<input type="text" name="title" class="form-control" style="display: inline-block; width:80%">
 					</div>
                 </div>
                 &nbsp;
                 <!-- 다음줄 -->
                 <div class="col-md-10">
                 <div class="col-md-1">상태</div>
-                <div class="col-md-6">
-                <input type="checkbox" class="form-control">대기중
-				<input type="checkbox" class="form-control">승인완료
-                </div>
                 <div class="col-md-3">
-                                    가격:<input type="text" class="form-control" style="display: inline-block; width:80%">
+                <input type="checkbox" name="apvl" value="wating" class="form-control">대기중
+				<input type="checkbox" name="apvl" value="apvled" class="form-control">승인완료
+                </div>
+                <div class="col-md-3"></div>
+                <div class="col-md-2" align="right">
+                                    가격:<input type="text" name="price" class="form-control" style="display: inline-block; width:70%">
+                </div>
+                <div class="col-md-2" align="left">
+                ~<input type="text" name="price" class="form-control" style="display: inline-block; width:70%">
                 </div>
                 </div>
                 <div class="col-md-10">&nbsp;</div>
@@ -114,10 +118,10 @@
                  <div class="col-md-4">
                  </div>
                  <div class="col-md-3">
-						등록일:<input type="date" class="form-control" style="display: inline-block; width:70%">
+						등록일:<input type="text" id="miniDate" name="miniDate" class="form-control" style="display: inline-block; width:70%">
 					</div>
 					<div class="col-md-3">
-						~<input type="date" class="form-control" style="display: inline-block; width:80%">
+						~<input type="text" id="maxDate" name="maxDate" class="form-control" style="display: inline-block; width:80%">
 					</div>
                  </div>
                 <!-- 버튼 -->
@@ -193,6 +197,21 @@
 
         <script src="assets/js/main.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap-wizard/1.2/jquery.bootstrap.wizard.js"></script>
-
+        
+<script>
+$(function() {
+	$('#miniDate').datepicker({
+	format : "yyyy-mm-dd",
+	autoclose: true
+	}).datepicker("setDate", new Date());
+	});
+	
+$(function() {
+	$('#maxDate').datepicker({
+	format : "yyyy-mm-dd",
+	autoclose: true
+	}).datepicker("setDate", new Date());
+	});
+</script>
     </body>
 </html>

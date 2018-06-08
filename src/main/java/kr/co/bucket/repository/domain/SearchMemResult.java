@@ -8,7 +8,15 @@ public class SearchMemResult {
 	private String birth;
 	private String package_Price;
 	private String package_Name;
+	private String payment_Date;
+	private String user_email;
 	
+	public String getUser_email() {
+		return user_email;
+	}
+	public void setUser_email(String user_email) {
+		this.user_email = user_email;
+	}
 	public String getName() {
 		return name;
 	}
@@ -38,6 +46,12 @@ public class SearchMemResult {
 	}
 	public void setPackage_Name(String package_Name) {
 		this.package_Name = package_Name;
+	}
+	public String getPayment_Date() {
+		return payment_Date;
+	}
+	public void setPayment_Date(String payment_Date) {
+		this.payment_Date = payment_Date;
 	}
 	
 	

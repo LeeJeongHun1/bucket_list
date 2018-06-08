@@ -2,17 +2,39 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.bucket.repository.mapper.AdminMapper">
-<!-- 
-<select id="AdminMapper" parameterType="SearchmemVO" resultType="SearchMemResult">
-select u.NAME,u.REG_DATE,u.BIRTH,p.PACKAGE_PRICE,p.PACKAGE_NAME
+
+<select id="searchMem" parameterType="SearchMem" resultType="SearchMemResult">
+select u.NAME,u.user_email,u.REG_DATE,u.BIRTH,pk.PACKAGE_PRICE,pk.PACKAGE_NAME
   from (tb_user u inner join tb_payment p
-    on u.USER_EMAIL = p.USER_EMAIL) inner join tb_package p 
-    on u.USER_EMAIL = p.USER_EMAIL
- where name like '김%' 
-    AND u.reg_date between TO_DATE(20180603,'YYYYMMDD') and  TO_DATE(20180605,'YYYYMMDD')
-    AND substr(u.birth,1,4) between 1990 and 1994
+    on u.USER_EMAIL = p.USER_EMAIL) inner join tb_package pk 
+    on u.USER_EMAIL = pk.USER_EMAIL
+ <where>
+ <if test="searchOption == 'name'">u.name like #{name,jdbcType=VARCHAR}||'%'</if>
+ <if test="searchOption == 'email'">u.user_email like #{name,jdbcType=VARCHAR}||'%'</if>
+ <if test="miniDate != '' and maxDate != '' ">
+    and u.reg_date between TO_DATE(#{miniDate,jdbcType=DATE},'YYYY-MM-DD') and TO_DATE(#{maxDate,jdbcType=DATE},'YYYY-MM-DD')</if>
+    <if test="miniBirth != '' and maxBirth != '' ">
+    and substr(u.birth,1,4) between #{miniBirth,jdbcType=VARCHAR} and #{maxBirth,jdbcType=VARCHAR}</if>
+ </where>
 </select>
- -->
+
+<select id="searchPaid" parameterType="SearchMem" resultType="SearchMemResult">
+  select u.NAME,p.PAYMENT_DATE,p.PACKAGE_PRICE,pk.PACKAGE_NAME
+    from (tb_payment p inner join tb_user u 
+      on p.USER_EMAIL = u.USER_EMAIL) inner join tb_package pk
+      on p.package_code = pk.PACKAGE_CODE
+   <where> 
+   <if test="searchOption == 'name'">u.name like #{keyword,jdbcType=VARCHAR}||'%'</if>
+   <if test="searchOption == 'email'">u.user_email like #{keyword,jdbcType=VARCHAR}||'%'</if>
+   <if test="miniDate != '' and maxDate != '' ">
+     and payment_date between TO_DATE(#{miniDate,jdbcType=DATE},'YYYY-MM-DD') and TO_DATE(#{maxDate,jdbcType=DATE},'YYYY-MM-DD')</if>
+   </where>
+</select>
+ 
+ <select id="listMem" resultType="SearchMemResult">
+	select *
+	from tb_user
+</select>	
 </mapper>
 
 

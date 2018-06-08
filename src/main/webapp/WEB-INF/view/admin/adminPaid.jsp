@@ -83,16 +83,16 @@
                 </div>
                 </div>
                 <!-- form 태그 시작 -->
-                <form class="form-horizontal">
+                <form id="submitForm" class="form-horizontal">
 				<div class="col-md-10">
 					<div class="col-md-2">
-						검색:<select class="form-control" style="display:inline-block; width: 70%">
-							<option>이름</option>
-							<option>아이디</option>
+						검색:<select class="form-control" name="searchOption" style="display:inline-block; width: 70%">
+							<option value="name">이름</option>
+							<option value="email">이메일</option>
 						</select>
 					</div>
 					<div class="col-md-3">
-						<input type="text" class="form-control">
+						<input type="text" name="keyword" class="form-control">
 					</div>
 					
 				</div>
@@ -100,10 +100,10 @@
 				<!-- 한줄 시작 -->
 				<div class="col-md-10">
 					<div class="col-md-3">
-						조회기간:<input type="date" class="form-control" style="display:inline-block; width: 70%">
+						조회기간:<input type="text" id="miniDate" name="miniDate" class="form-control" style="display:inline-block; width: 70%">
 					</div>
 					<div class="col-md-3">
-						<input type="date" class="form-control" style="width:70%">
+						<input type="text" id="maxDate" name="maxDate" class="form-control" style="width:70%">
 					</div>
 				</div>
 
@@ -123,32 +123,10 @@
           <div class="col-md-10">
           <table class="table">
             <thead>
-              <tr>
-                <th>#</th>
-                <th>패키지명</th>
-                <th>결제일자</th>
-                <th>가격</th>
-              </tr>
+             
             </thead>
-            <tbody>
-              <tr>
-                <td>1</td>
-                <td>P1</td>
-                <td>2010/11/11</td>
-                <td>-원</td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>P2</td>
-                <td>2010/11/11</td>
-                <td>-원</td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td>P3</td>
-                <td>2010/11/11</td>
-                <td>-원</td>
-              </tr>
+            <tbody id="tbody">
+            
             </tbody>
           </table>
            </div>
@@ -174,5 +152,57 @@
         <script src="assets/js/main.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap-wizard/1.2/jquery.bootstrap.wizard.js"></script>
 
+<script>
+$(function() {
+	$('#miniDate').datepicker({
+	format : "yyyy-mm-dd",
+	autoclose: true
+	}).datepicker("setDate", null);
+	});
+	
+$(function() {
+	$('#maxDate').datepicker({
+	format : "yyyy-mm-dd",
+	autoclose: true
+	}).datepicker("setDate", null);
+	});
+	
+$('#submitForm').submit(function(e){
+	e.preventDefault();
+	var params = $("#submitForm").serialize();
+    console.log(params);
+    
+    $.ajax({
+    	url:"${pageContext.request.contextPath}/admin/ajaxPaid.json",
+    	data:params,
+    	type:"POST",
+		dataType:"JSON",
+		success:function(result){
+			var html = "";
+			console.log(result);
+			
+			html += '<tr>\r\n' + 
+			'	<th>#</th>\r\n' + 
+			'	<th>패키지명</th>\r\n' + 
+			'	<th>결제일자</th>\r\n' + 
+			'	<th>가격</th>\r\n' + 
+			'	</tr>';
+			
+			for(var i = 0; i < result.length; i++){
+				var info = result[i];
+				var index = i+1;
+				html+="<tr>\r\n" + 
+				"                <td>"+ index +"</td>\r\n" + 
+				"                <td>"+ info.package_Name +"</td>\r\n" + 
+				"                <td>"+ info.payment_Date+"</td>\r\n" + 
+				"                <td>"+ info.package_Price+"</td>\r\n" + 
+				"              </tr>"
+			}
+			$("#tbody").html(html);
+		}
+    })
+   
+})
+</script>
     </body>
 </html>

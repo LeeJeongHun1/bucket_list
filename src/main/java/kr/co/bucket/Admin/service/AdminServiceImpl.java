@@ -5,17 +5,24 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import kr.co.bucket.repository.domain.SearchMem;
 import kr.co.bucket.repository.domain.SearchMemResult;
-import kr.co.bucket.repository.domain.SearchMemVO;
 import kr.co.bucket.repository.mapper.AdminMapper;
 
-@Service("memberService")
+@Service("adminService")
 public class AdminServiceImpl implements AdminService{
 	@Autowired
 	private AdminMapper mapper;
 	
-	public List<SearchMemResult> searchMem(SearchMemVO search){
-		return null;
+	public List<SearchMemResult> searchMem(SearchMem search){
+		return mapper.searchMem(search);
+	}
+	public List<SearchMemResult> listMem(){
+		return mapper.listMem();
+	}
+	@Override
+	public List<SearchMemResult> searchPaid(SearchMem search) {
+		return mapper.searchPaid(search);
 	}
 	
 	
