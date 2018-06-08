@@ -70,13 +70,6 @@ public class SearchController {
 	public List<SResult> selectJson(String selectPrice) throws Exception{
 		System.out.println(selectPrice);
 		List<SResult> list = searchService.SelectSearch(selectPrice);
-		System.out.println("제이순 테스트즁");
-		for(SResult s: list) {
-			System.out.println(s.getCityName());
-			System.out.println(s.getPackageName());
-			System.out.println(s.getImgPath());
-			System.out.println(s.getPackageCode());
-		}
 		return list;
 	}
 	

@@ -122,9 +122,13 @@
 		join tb_img_group
 		img
 		on thm.theme_code = img.theme_code
-		<if test="selectPrice ='2'">
-		order by PACKAGE_PRICE desc		
-		</if>
+		<choose>
+		<when test="selectPrice ='1'">
+			order by pack.PACKAGE_PRICE
+		</when>
+		<otherwise>
+			order by pack.PACKAGE_PRICE desc		
+		</otherwise>
+		</choose>
 	</select>
-
 </mapper>

@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fn"  uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <title>GARO ESTATE | Properties page</title>
 <style>
@@ -398,8 +398,7 @@
 			var html="";
 			$("#makeSearch").html("");
 			console.log(result);
-			if($("#price").val() == 1){
-			for(let a of result){
+				for(let a of result){
 					html+='<div id="list-type" class="proerty-th">';
 					html+='<div class="col-sm-6 col-md-3 p0">';
 					html+='<div class="box-two proerty-item">';
@@ -417,16 +416,7 @@
 					html+='</div></div></div></div>';
 				}	
 			$("#makeSearch").html(html);
-		}else if($("#price").val() == 0){
-			html+= '<div id="list-type" class="proerty-th">';
-			html+='<div class="col-sm-12 col-md-12 p0">';
-			html+='<div class="box-two proerty-item">';
-			html+='<div class="item-thumb">';
-		    html+= '없다';
-		    html+='</div></div></div></div>';
-		}
-			
-		
+	
 		});
 		});
 		
