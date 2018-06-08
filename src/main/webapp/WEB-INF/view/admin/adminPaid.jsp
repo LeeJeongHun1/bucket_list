@@ -87,7 +87,6 @@
 				<div class="col-md-10">
 					<div class="col-md-2">
 						검색:<select class="form-control" name="searchOption" style="display:inline-block; width: 70%">
-							<option value="name">이름</option>
 							<option value="email">이메일</option>
 						</select>
 					</div>
@@ -115,8 +114,8 @@
                 <!-- 총결제금액/총결제회수 -->
                 <div class="col-md-10" align="right">
                 <table >
-                <tr><th>총 결제금액:</th><td>192837원</td></tr>
-                <tr><th>총 결제회수:</th><td>29회</td></tr>
+                <tr><th>총 결제금액:</th><td id="pSum"></td></tr>
+                <tr><th>총 결제회수:</th><td id="pCnt"></td></tr>
                 </table>
                 </div>
                 <!-- 테이블 시작 -->
@@ -188,6 +187,10 @@ $('#submitForm').submit(function(e){
 			'	<th>가격</th>\r\n' + 
 			'	</tr>';
 			
+			if(result.length == 0){
+				html += '<tr><td  colspan="4" align="center">조건에 맞는 검색 결과가 존재하지 않습니다.</td></tr>'; 	
+				}
+			
 			for(var i = 0; i < result.length; i++){
 				var info = result[i];
 				var index = i+1;
@@ -195,13 +198,37 @@ $('#submitForm').submit(function(e){
 				"                <td>"+ index +"</td>\r\n" + 
 				"                <td>"+ info.package_Name +"</td>\r\n" + 
 				"                <td>"+ info.payment_Date+"</td>\r\n" + 
-				"                <td>"+ info.package_Price+"</td>\r\n" + 
+				"                <td>"+ info.package_Price+"원</td>\r\n" + 
 				"              </tr>"
 			}
+			
+		
 			$("#tbody").html(html);
 		}
     })
-   
+    
+    	$.ajax({
+		    	url:"${pageContext.request.contextPath}/admin/ajaxSum.json",
+		    	data:params,
+		    	type:"POST",
+				dataType:"JSON",
+				success:function(result){
+					console.log(result);
+					$("#pSum").html(result[0].priceSum+"원");
+				}
+				});
+    
+    $.ajax({
+    	url:"${pageContext.request.contextPath}/admin/ajaxCnt.json",
+    	data:params,
+    	type:"POST",
+		dataType:"JSON",
+		success:function(result){
+			console.log(result);
+			$("#pCnt").html(result[0].payCnt+"회");
+		}
+		})
+				
 })
 </script>
     </body>

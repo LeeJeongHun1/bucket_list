@@ -10,7 +10,21 @@ public class SearchMemResult {
 	private String package_Name;
 	private String payment_Date;
 	private String user_email;
+	private String priceSum;
+	private String payCnt;
 	
+	public String getPayCnt() {
+		return payCnt;
+	}
+	public void setPayCnt(String payCnt) {
+		this.payCnt = payCnt;
+	}
+	public String getPriceSum() {
+		return priceSum;
+	}
+	public void setPriceSum(String priceSum) {
+		this.priceSum = priceSum;
+	}
 	public String getUser_email() {
 		return user_email;
 	}

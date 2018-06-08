@@ -9,8 +9,8 @@ select u.NAME,u.user_email,u.REG_DATE,u.BIRTH,pk.PACKAGE_PRICE,pk.PACKAGE_NAME
     on u.USER_EMAIL = p.USER_EMAIL) inner join tb_package pk 
     on u.USER_EMAIL = pk.USER_EMAIL
  <where>
- <if test="searchOption == 'name'">u.name like #{name,jdbcType=VARCHAR}||'%'</if>
- <if test="searchOption == 'email'">u.user_email like #{name,jdbcType=VARCHAR}||'%'</if>
+ <if test="searchOption == 'name'">u.name like #{keyword,jdbcType=VARCHAR}||'%'</if>
+ <if test="searchOption == 'email'">u.user_email like #{keyword,jdbcType=VARCHAR}||'%'</if>
  <if test="miniDate != '' and maxDate != '' ">
     and u.reg_date between TO_DATE(#{miniDate,jdbcType=DATE},'YYYY-MM-DD') and TO_DATE(#{maxDate,jdbcType=DATE},'YYYY-MM-DD')</if>
     <if test="miniBirth != '' and maxBirth != '' ">
@@ -25,11 +25,29 @@ select u.NAME,u.user_email,u.REG_DATE,u.BIRTH,pk.PACKAGE_PRICE,pk.PACKAGE_NAME
       on p.package_code = pk.PACKAGE_CODE
    <where> 
    <if test="searchOption == 'name'">u.name like #{keyword,jdbcType=VARCHAR}||'%'</if>
-   <if test="searchOption == 'email'">u.user_email like #{keyword,jdbcType=VARCHAR}||'%'</if>
+   <if test="searchOption == 'email'">u.user_email = #{keyword,jdbcType=VARCHAR}</if>
    <if test="miniDate != '' and maxDate != '' ">
      and payment_date between TO_DATE(#{miniDate,jdbcType=DATE},'YYYY-MM-DD') and TO_DATE(#{maxDate,jdbcType=DATE},'YYYY-MM-DD')</if>
    </where>
 </select>
+
+<select id="searchSum" parameterType="SearchMem" resultType="SearchMemResult">
+    select u.USER_EMAIL,sum(p.PACKAGE_PRICE) as priceSum
+    from (tb_payment p inner join tb_user u 
+      on p.USER_EMAIL = u.USER_EMAIL) inner join tb_package pk
+      on p.package_code = pk.PACKAGE_CODE
+   where p.user_email = #{keyword,jdbcType=VARCHAR}
+   group by u.user_email
+</select>
+
+<select id="searchCnt" parameterType="SearchMem" resultType="SearchMemResult">
+ select u.USER_EMAIL,COUNT(p.User_email) as payCnt
+    from (tb_payment p inner join tb_user u 
+      on p.USER_EMAIL = u.USER_EMAIL) inner join tb_package pk
+      on p.package_code = pk.PACKAGE_CODE
+   where p.user_email = #{keyword,jdbcType=VARCHAR}
+   group by u.user_email
+ </select>
  
  <select id="listMem" resultType="SearchMemResult">
 	select *

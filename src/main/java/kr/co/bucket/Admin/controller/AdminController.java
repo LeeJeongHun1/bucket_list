@@ -73,6 +73,26 @@ public class AdminController {
 		List<SearchMemResult> list =  adminService.searchPaid(search);
 		return list;
 	}
+	
+	@RequestMapping("/ajaxSum.json")
+	@ResponseBody
+	public List<SearchMemResult> ajaxSum(SearchMem search){
+		System.out.println(search.getKeyword());
+		System.out.println(search.getMiniDate());
+		System.out.println(search.getMaxDate());
+		List<SearchMemResult> list =  adminService.searchSum(search);
+		return list;
+	}
+	
+	@RequestMapping("/ajaxCnt.json")
+	@ResponseBody
+	public List<SearchMemResult> ajaxCnt(SearchMem search){
+		System.out.println(search.getKeyword());
+		System.out.println(search.getMiniDate());
+		System.out.println(search.getMaxDate());
+		List<SearchMemResult> list =  adminService.searchCnt(search);
+		return list;
+	}
 
 	
 

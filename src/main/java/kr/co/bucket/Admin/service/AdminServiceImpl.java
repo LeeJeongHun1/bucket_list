@@ -24,6 +24,15 @@ public class AdminServiceImpl implements AdminService{
 	public List<SearchMemResult> searchPaid(SearchMem search) {
 		return mapper.searchPaid(search);
 	}
+	@Override
+	public List<SearchMemResult> searchSum(SearchMem search) {
+		return mapper.searchSum(search);
+	}
+	@Override
+	public List<SearchMemResult> searchCnt(SearchMem search) {
+		// TODO Auto-generated method stub
+		return mapper.searchCnt(search);
+	}
 	
 	
 

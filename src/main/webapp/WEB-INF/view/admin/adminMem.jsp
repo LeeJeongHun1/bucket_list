@@ -92,7 +92,7 @@
 						</select>
 					</div>
 					<div class="col-md-2">
-						<input type="text" name="name" class="form-control">
+						<input type="text" name="keyword" class="form-control">
 					</div>
 					<div class="col-md-2">
 					출생연도:<input type="text" name="miniBirth" class="form-control" style="display: inline-block; width: 50%;" maxlength="4">
@@ -166,7 +166,6 @@ $(function() {
 	$('#maxDate').datepicker({
 	format : "yyyy-mm-dd",
 	autoclose: true,
-	maxDate:0
 	}).datepicker("setDate", null);
 	});
 		
@@ -174,7 +173,7 @@ $(function() {
 $('#submitForm').submit(function(e){
 	e.preventDefault();
 	var params = $("#submitForm").serialize();
-    console.log(params)
+    console.log(params);
 	
     
     
@@ -196,6 +195,10 @@ $('#submitForm').submit(function(e){
 			'                <th>내가 만든 패키지</th>\r\n' + 
 			'              </tr>\r\n' + 
 			'            </thead>\r\n';
+			
+			if(result.length == 0){
+			html += '<tr><td  colspan="6" align="center">조건에 맞는 검색 결과가 존재하지 않습니다.</td></tr>'; 	
+			}
 			
 			for(var i = 0; i < result.length; i++){
 				var mem = result[i];
