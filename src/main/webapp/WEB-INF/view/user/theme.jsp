@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -84,26 +85,26 @@
 				<div class="proerty-th">
 					<div class="col-sm-6 col-md-3 p0">
 						<div class="box-two proerty-item">
-							<div class="item-thumb">
-								<a href="property-1.html"><img
-									src="assets/img/demo/ps1.jpg"></a>
-							</div>
-							<div class="item-entry overflow">
-								<h5>
-									<a href="property-1.html">[NO.1 베스트셀러] 서유럽 3/4/5개국 핵심일주 10일</a>
-								</h5>
-								<div class="dot-hr"></div>
-								<button style="padding: 2px 14px;" class="navbar-btn nav-button wow bounceInRight login animated" onclick=" window.open('register.jsp')" data-wow-delay="0.45s" style="visibility: visible; animation-delay: 0.45s; animation-name: bounceInRight;">상세보기</button>
-								<span class="proerty-price pull-right">2,389,000원~</span>
-							</div>
+							<c:forEach var="" items="">
+								<div class="item-thumb">
+									<a href="property-1.html"><img src="assets/img/demo/ps1.jpg"></a>
+								</div>
+								<div class="item-entry overflow">
+									<h5>
+										<a href="property-1.html">[NO.1 베스트셀러] 서유럽 3/4/5개국 핵심일주 10일</a>
+									</h5>
+									<div class="dot-hr"></div>
+									<button style="padding: 2px 14px;" class="navbar-btn nav-button wow bounceInRight login animated" onclick=" window.open('register.jsp')" data-wow-delay="0.45s" style="visibility: visible; animation-delay: 0.45s; animation-name: bounceInRight;">상세보기</button>
+									<span class="proerty-price pull-right">2,389,000원~</span>
+								</div>
+							</c:forEach>
 						</div>
 					</div>
 
 					<div class="col-sm-6 col-md-3 p0">
 						<div class="box-two proerty-item">
 							<div class="item-thumb">
-								<a href="property-2.html"><img
-									src="assets/img/demo/ps2.jpg"></a>
+								<a href="property-2.html"><img src="assets/img/demo/ps2.jpg"></a>
 							</div>
 							<div class="item-entry overflow">
 								<h5>
@@ -120,8 +121,7 @@
 					<div class="col-sm-6 col-md-3 p0">
 						<div class="box-two proerty-item">
 							<div class="item-thumb">
-								<a href="property-3.html"><img
-									src="assets/img/demo/ps3.jpg"></a>
+								<a href="property-3.html"><img src="assets/img/demo/ps3.jpg"></a>
 
 							</div>
 							<div class="item-entry overflow">
@@ -138,8 +138,7 @@
 					<div class="col-sm-6 col-md-3 p0">
 						<div class="box-two proerty-item">
 							<div class="item-thumb">
-								<a href="property-1.html"><img
-									src="assets/img/demo/property-4.jpg"></a>
+								<a href="property-1.html"><img src="assets/img/demo/property-4.jpg"></a>
 
 							</div>
 							<div class="item-entry overflow">
@@ -166,8 +165,7 @@
 					<div class="col-sm-6 col-md-3 p0">
 						<div class="box-two proerty-item">
 							<div class="item-thumb">
-								<a href="property-1.html"><img
-									src="assets/img/demo/ps4.jpg"></a>
+								<a href="property-1.html"><img src="assets/img/demo/ps4.jpg"></a>
 							</div>
 							<div class="item-entry overflow">
 								<h5>
@@ -183,8 +181,7 @@
 					<div class="col-sm-6 col-md-3 p0">
 						<div class="box-two proerty-item">
 							<div class="item-thumb">
-								<a href="property-2.html"><img
-									src="assets/img/demo/ps5.jpg"></a>
+								<a href="property-2.html"><img src="assets/img/demo/ps5.jpg"></a>
 							</div>
 							<div class="item-entry overflow">
 								<h5>
@@ -200,8 +197,7 @@
 					<div class="col-sm-6 col-md-3 p0">
 						<div class="box-two proerty-item">
 							<div class="item-thumb">
-								<a href="property-3.html"><img
-									src="assets/img/demo/ps6.jpg"></a>
+								<a href="property-3.html"><img src="assets/img/demo/ps6.jpg"></a>
 
 							</div>
 							<div class="item-entry overflow">
@@ -218,8 +214,7 @@
 					<div class="col-sm-6 col-md-3 p0">
 						<div class="box-two proerty-item">
 							<div class="item-thumb">
-								<a href="property-1.html"><img
-									src="assets/img/demo/property-4.jpg"></a>
+								<a href="property-1.html"><img src="assets/img/demo/property-4.jpg"></a>
 
 							</div>
 							<div class="item-entry overflow">
@@ -247,8 +242,7 @@
 					<div class="col-sm-6 col-md-3 p0">
 						<div class="box-two proerty-item">
 							<div class="item-thumb">
-								<a href="property-1.html"><img
-									src="assets/img/demo/ps8.jpg"></a>
+								<a href="property-1.html"><img src="assets/img/demo/ps8.jpg"></a>
 							</div>
 							<div class="item-entry overflow">
 								<h5>
@@ -264,8 +258,7 @@
 					<div class="col-sm-6 col-md-3 p0">
 						<div class="box-two proerty-item">
 							<div class="item-thumb">
-								<a href="property-2.html"><img
-									src="assets/img/demo/ps7.jpg"></a>
+								<a href="property-2.html"><img src="assets/img/demo/ps7.jpg"></a>
 							</div>
 							<div class="item-entry overflow">
 								<h5>
@@ -281,8 +274,7 @@
 					<div class="col-sm-6 col-md-3 p0">
 						<div class="box-two proerty-item">
 							<div class="item-thumb">
-								<a href="property-3.html"><img
-									src="assets/img/demo/ps9.jpg"></a>
+								<a href="property-3.html"><img src="assets/img/demo/ps9.jpg"></a>
 
 							</div>
 							<div class="item-entry overflow">
@@ -299,8 +291,7 @@
 					<div class="col-sm-6 col-md-3 p0">
 						<div class="box-two proerty-item">
 							<div class="item-thumb">
-								<a href="property-1.html"><img
-									src="assets/img/demo/ps10.png"></a>
+								<a href="property-1.html"><img src="assets/img/demo/ps10.png"></a>
 
 							</div>
 							<div class="item-entry overflow">
