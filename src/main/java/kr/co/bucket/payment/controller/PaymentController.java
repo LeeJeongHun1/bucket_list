@@ -23,14 +23,16 @@ public class PaymentController {
 	public ModelAndView payment(HttpServletRequest request) throws Exception{
 		ModelAndView mav = new ModelAndView();
 		HttpSession session = request.getSession();
-		String id = (String)session.getAttribute("member");
+		String id = (String)session.getAttribute("userEmail");
+		System.out.println(id);
 		List<Payment> list = paymentService.selectPackage(id);
-		mav.setViewName("user/payment");
-		mav.addObject("list", list);
 		for (Payment a : list ) {
 			System.out.println(a.getPackagePrice());
-			System.out.println(a.getPackageName());
+//			System.out.println(a.getPackageName());
+//			System.out.println(a.getPaymentDate());
 		}
+		mav.setViewName("user/payment");
+		mav.addObject("list", list);
 		return mav;
 	}
 }

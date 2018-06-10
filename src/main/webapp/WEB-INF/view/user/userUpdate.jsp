@@ -75,7 +75,7 @@
                 <div class="col-md-10">
 	              	<div class="form-group">
 	                   <label for="name">Name</label>
-	                   <input type="text" class="form-control" id="name" name="name" placeholder="${name}">
+	                   <input type="text" class="form-control" id="name" name="name" placeholder="${sessionScope.member.name}">
 	                </div>
 	              	<div class="form-group">
 	                   <label for="name">Email</label>

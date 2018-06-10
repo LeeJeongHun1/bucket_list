@@ -11,8 +11,8 @@
 		select a.package_name, b.payment_date, a.package_price
 		from tb_package a
 		inner join tb_payment b
-		on a.package_name = b.package_name
-		where user_email = ${userEmail}
+		on a.package_code = b.package_code
+		where user_email = #{userEmail}
 	</select>
 	
 </mapper>
