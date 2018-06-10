@@ -44,7 +44,6 @@
 	width: 730px;
 	border-top: 3px solid;
 	border-bottom: 3px solid;
-	
 }
 
 .review tr td {
@@ -66,7 +65,7 @@
 }
 
 .day {
-	width:730px;
+	width: 730px;
 	border-top: 3px solid;
 }
 
@@ -77,17 +76,28 @@
 	background: #f9fbfb;
 }
 
-.day tr {
+.day tbody > tr {
 	height: 54px;
 	border-bottom: 1px solid #d1d1d1;
 	font-size: 14px;
 	color: #000;
 }
+
 .view {
-display:none;}
-.on { display:table-row;}
-.inReivew{display:none;}
-.onR{display:block;}
+	display: none;
+}
+
+.on {
+	display: table-row;
+}
+
+.wClose {
+	display: none;
+}
+
+.onR {
+	display: block;
+}
 </style>
 </head>
 <body>
@@ -157,26 +167,28 @@ display:none;}
 							<!-- End description area  -->
 
 							<div class="section additional-details">
-
-								<h4 class="s-property-title">Additional Details</h4>
-
+	<c:forEach var="entry" items="${packageCode}">
+									<c:if test="${entry.key eq 'startDate'}">
+								<h4 class="s-property-title">여행정보</h4>
 								<ul class="additional-details-list clearfix">
 									<li><span class="col-xs-6 col-sm-4 col-md-4 add-d-title">상품가격</span>
-										<span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">738,600
-											원 ~ 1,238,600 원</span></li>
+										<span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">${entry.value.packagePrice}원</span></li>
 
-									<li><span class="col-xs-6 col-sm-4 col-md-4 add-d-title">여행기간</span>
-										<span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">2018.05.24(목)
-											~ 2018.05.26(토)</span></li>
+									<li><span class="col-xs-6 col-sm-4 col-md-4 add-d-title">비행시간</span>
+										<span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">${entry.value.flyingTime}</span></li>
 									<li><span class="col-xs-6 col-sm-4 col-md-4 add-d-title">방문도시</span>
-										<span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">홍콩</span>
+										<span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">${entry.value.cityName}</span>
 									</li>
 
-									<li><span class="col-xs-6 col-sm-4 col-md-4 add-d-title">예약현황</span>
-										<span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">예약20명(좌석:30석(최소출발:성인8명))</span>
+									<li><span class="col-xs-6 col-sm-4 col-md-4 add-d-title">총좌석수</span>
+										<span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">(좌석:${entry.value.seatCnt}석(최소출발:성인8명))</span>
 									</li>
 
 								</ul>
+							
+									</c:if>
+								</c:forEach>
+							
 							</div>
 							<!-- End additional-details area  -->
 
@@ -208,6 +220,7 @@ display:none;}
 
 								<h4 class="s-property-title">일정표</h4>
 								<table class="day">
+
 									<tr class="daily">
 										<td>1일차</td>
 										<td>2018년 5월 28일 월요일</td>
@@ -233,40 +246,53 @@ display:none;}
 										<td>중식 : 기내식</td>
 										<td colspan="2">석식 : 기내식</td>
 									</tr>
-
-									<tr class="daily">
-										<td>2일차</td>
-										<td>2018년 5월 29일 월요일</td>
-										<td colspan="2">파리</td>
-									</tr>
+										<c:forEach var="entry" items="${packageCode}">
+											<c:if test="${entry.key eq 'stay'}">
+												<c:forEach var="i" items="${entry.value}" varStatus="status">
+  !!!!!!!!!!${status.count} 날짜 :${i.scheduleDaily} 비행기이름: ${i.airName} 패키지 가격 :${i.packagePrice}
+  ${i.flyingTime}!!!!!!!!!!
+</c:forEach></c:if>
+											<c:if test="${entry.key eq 'daily'}">
+												<c:forEach var="d" items="${entry.value}" varStatus="status">
 									<tr>
+									<tr class="daily">
+										<td>일정</td>
+										<td>${d.scheduleDaily}</td>
+										<td colspan="2">${d.themeType}</td>
+									</tr>
+
+											
+
+ 
 										<td colspan="4">
-											<table width="600px;" style="margin: auto">
+											<table width="700px;" style="margin: auto">
 												<tr>
-													<th colspan="4">베르사유궁전</th>
+													<th colspan="4" style="border-bottom: 1px solid #d1d1d1;">${d.themeInfo}</th>
 												</tr>
 												<tr style="height: 40px;">
 													<td class="col-md-4"><img
-														src="assets/img/property-video.jpg" style="width:150px; heihgt:150px;"></td>
+														src="assets/img/property-video.jpg"
+														style="width: 150px; heihgt: 150px;"></td>
 													<td class="col-md-4"><img
-														src="assets/img/property-video2.jpg"  style="width:150px; heihgt:150px;"></td>
-													<td class="col-md-4" style="height: 40px;">원래 루이 13세가
-														지은 사냥용 별장이었으나, 1662년 무렵 루이 14세의 명령으로 대정원을 착공하고1668년 건물 전체를
-														증축하여 외관을 가로축 부분이 앞으로 튀어나온 U자형 궁전으로 개축하였다. 1979년 유네스코에서
-														세계문화유산으로 지정하였다. 호화로운 건물과 광대하고 아름다운 정원과 분수, 로페라와 거울의 방으로
-														유명하다</td>
+														src="assets/img/property-video2.jpg"
+														style="width: 150px; heihgt: 150px;"></td>
+													<td class="col-md-4" style="height: 40px;">${d.themeInfo}</td>
 												</tr>
-												<tr style="height: 40px;">
+												<%-- <tr style="height: 40px;">
 													<td class="col-md-4"><img src="">이미지</td>
 													<td class="col-md-4"><img src="">이미지</td>
 													<td class="col-md-4">원래 루이 13세가 지은 사냥용 별장이었으나, 1662년
 														무렵 루이 14세의 명령으로 대정원을 착공하고1668년 건물 전체를 증축하여 외관을 가로축 부분이 앞으로
 														튀어나온 U자형 궁전으로 개축하였다. 1979년 유네스코에서 세계문화유산으로 지정하였다. 호화로운 건물과
-														광대하고 아름다운 정원과 분수, 로페라와 거울의 방으로 유명하다</td>
-												</tr>
+														광대하고 아름다운 정원과 분수, 로페라와 거울의 방으로 유명하다 !!!!!!!!!!${status.count} 테마 정보: , 테마이름: , 이미지 ${d.imgPath}</td>
+												</tr> --%>
 											</table>
 										</td>
 									</tr>
+										
+</c:forEach>
+											</c:if>
+										</c:forEach>
 									<tr>
 										<td>숙박</td>
 										<td colspan="3">00호텔</td>
@@ -284,16 +310,16 @@ display:none;}
 							<div class="section property-share">
 								<h4 class="s-property-title">리뷰</h4>
 								<div class="roperty-social">
-
+								<div id="re">
 									<table class="review">
-									<tr>
-									<th>제목</th>
-											<th>별점 </th>
+										<tr>
+											<th>제목</th>
+											<th>별점</th>
 											<th>작성자</th>
 											<th>등록일</th>
-									
-									</tr>
-										<tr>
+
+										</tr>
+							<!-- 			<tr>
 											<td>내용입니다.</td>
 											<td>별점 : <span>4.5점</span></td>
 											<td>홍길동</td>
@@ -304,168 +330,331 @@ display:none;}
 											<td>별점 : <span>4.5점</span></td>
 											<td>홍길동</td>
 											<td>2018.04.20</td>
-										</tr>
-										<tr class="review_list">
+										</tr> -->
+									<!-- 	<tr class="review_list">
 											<td>타이틀</td>
 											<td>별점 : <span>4.5점</span></td>
 											<td>홍길동</td>
 											<td>2018.04.20</td>
 										</tr>
-										<tr class="view" >
+										<tr class="view">
 											<td colspan="4">
 												<div>내용</div>
 											</td>
-										</tr>
+										</tr> -->
 									</table>
-									<form>
-									<table class="inReivew" style="position: relative;"cellpadding="0" cellspacing="0" border="0" width="100%"
-										summary="등급,평점,출발일,항공,호텔">
-										<caption></caption>
-										<colgroup>
-											<col width="13%">
-											<col width="25%">
-											<col width="13%">
-											<col width="49%">
-										</colgroup>
-										<tbody>
-											<tr>
-												<th>작성자</th>
-												<td><input type="text" name="name"
-												value="박정아"></td>
-												<th>평점(5점만점)</th>
-												<td>
-													<ul>
-														<li class="vote_list">
-														항공 <select>
-													<c:forEach var="i" begin="1" end="5">
-														<option>${i}점</option>
-													</c:forEach>
-											</select> 숙박 <select>
-													<c:forEach var="i" begin="1" end="5">
-														<option>${i}점</option>
-													</c:forEach>
-											</select>
-														</li>
-													</ul>
-												</td>
-											</tr>
-											<tr>
-												<th>출발일</th>
-												<td>2017.07.06</td>
-												<th>항공</th>
-												<td>대한항공</td>
-											</tr>
-											<tr>
-												<th>제목</th>
-												<td colspan="3">좋아요</td>
-											</tr>
-											<tr>
-												<td colspan="4">
-												<textarea rows="3" cols="100" style="width:700px;"></textarea>
-												</td>
-											</tr>
-										</tbody>
-									</table>
-
+								</div>
+									<form method="post" id="reviewRegist">
+									<div class="wClose">
+										<table class="inReivew" style="position: relative;"
+											cellpadding="0" cellspacing="0" border="0" width="100%"
+											summary="등급,평점,출발일,항공,호텔">
+											<caption></caption>
+											<colgroup>
+												<col width="13%">
+												<col width="25%">
+												<col width="13%">
+												<col width="49%">
+											</colgroup>
+											<tbody>
+												<tr>
+												
+										<c:forEach var="entry" items="${packageCode}">
+											<c:if test="${entry.key eq 'endDate'}">
+  !!!!!!!!!!${entry.value.packageCode}
+  	<input type="hidden" value="${entry.value.packageCode}" name="packageCode"/>
+											</c:if>
+										</c:forEach>
+													<th>아이디</th>
+													<td id="user"><input type="text" name="userEmail" value="${sessionScope.member.userEmail}"/></td>
+													<th>평점(5점만점)</th>
+													<td>
+														<ul>
+															<li class="vote_list">항공 <select name="airEvalScore">
+																	<c:forEach var="i" begin="1" end="5">
+																		<option value="1">${i}점</option>
+																	</c:forEach>
+															</select> 숙박 <select name="hotelEvalScore">
+																	<c:forEach var="i" begin="1" end="5">
+																		<option value="1">${i}점</option>
+																	</c:forEach>
+															</select>
+															</li>
+														</ul>
+													</td>
+												</tr>
+												<tr>
+													<th>작성시간</th>
+													<td><!-- <input type="text" name="regDate"> --></td>
+													<th>항공</th>
+													<td>대한항공</td>
+												</tr>
+												<tr>
+													<th>제목</th>
+													<td colspan="3"><input type="text" name="title"
+														style=" border: 1px solid silver; margin-top: 10px; margin-bottom: 10px; width: 500px; height: 30px;"></td>
+												</tr>
+												<tr>
+													<td colspan="4"><textarea name="content" rows="3"
+															cols="100" style="width: 700px;"></textarea></td>
+												</tr>
+											</tbody>
+										</table>
+										<button class="navbar-btn nav-button wow fadeInRight animated animated">등록하기</button>
+									</div>
 									</form>
-									<button id="review_write" style="position:absolute;right:0;" class="navbar-btn nav-button wow fadeInRight animated animated">글쓰기</button>
+									<c:if test="${!empty sessionScope.member}">
+										<button id="review_write"
+											style="position: absolute; right: 0;"
+											class="navbar-btn nav-button wow fadeInRight animated animated">글쓰기</button>
+									</c:if>
+									<c:if test="${empty sessionScope.member}">
+										<button id="review_undefined"
+											style="position: absolute; right: 0;"
+											class="navbar-btn nav-button wow fadeInRight animated animated">글쓰기</button>
+									</c:if>
 								</div>
 							</div>
-						
+							<script type="text/javascript">
+								$(function() {
+
+									$("#review_write").on("click", function() {
+										$(".wClose").toggleClass("onR");
+									});
+									$("#review_undefined").on("click",
+											function() {
+												alert("로그인이 필요한 서비스입니다.");
+											});
+
+								})
+ 					$("#reviewRegist").submit(function (e) {
+					e.preventDefault();
+							alert("rka");	
+							alert($("#reviewRegist").serialize());
+							$.ajax({
+								type:'post',
+								url:"<c:url value='/search/reviewRegist.json'/>",
+								data:$("#reviewRegist").serialize(),
+								success: function(data){
+									alert("가지");
+									var html ="";
+									alert($('#reviewRegist input[name="packageCode"]').val());
+									html+='<tr><th>제목</th>';
+						            html+='<th>별점</th>';
+									html+='<th>작성자</th>';
+									html+='<th>작성일</th>';
+								    html+='</tr>';
+									for (var i = 0; i < data.length; i++) {
+									var r = data[i];
+									html+='<tr class="review_list"><td>'+r.title+'</td>';
+									html+='<td>'+r.airEvalScore+'</td>';
+									html+='<td>'+r.userEmail+'</td>';
+									var date = new Date(r.regDate);
+									var time = date.getFullYear() + "년" 
+									         + (date.getMonth() + 1) + "울" 
+									         + date.getDate() + "일"
+									         + date.getHours() + ":"
+									         + date.getMinutes() + ":"
+									         + date.getSeconds();
+									html += '	<td>' + time + '</td>';  
+									html+='</tr>';
+									html+='<tr class="view">';
+									html+='<td colspan="4">';
+									html+='<div>'+r.content+'</div></td></tr>'; 
+									}if(data.length == 0){
+										html += '<tr class="review_list"><td colspan="4">리뷰가 존재하지 않습니다.</td></tr>';
+									}
+									$(".review tbody").html(html);
+									$(".review_list").on("click", function() {
+										alert("감");
+										$(".view").toggleClass("on");
+									});
+								},
+								error:function(error){
+									alert(error);
+								}
+				
+										})
+							
+						});	
+				
+				function reviewList(){
+					alert("가는지");
+					var $code = $('#reviewRegist input[name="packageCode"]').val();
+				$.ajax({
+					url: "<c:url value='/search/reviewList.json'/>",
+					data: {packageCode:$code},
+					dataType: "json", 
+					success: function(data){
+						var html ="";
+						alert($('#reviewRegist input[name="packageCode"]').val());
+						html+='<tr><th>제목</th>';
+			            html+='<th>별점</th>';
+						html+='<th>작성자</th>';
+						html+='<th>작성일</th>';
+					    html+='</tr>';
+						for (var i = 0; i < data.length; i++) {
+						var r = data[i];
+						html+='<tr class="review_list"><td>'+r.title+'</td>';
+						html+='<td>'+r.airEvalScore+'</td>';
+						html+='<td>'+r.userEmail+'</td>';
+						var date = new Date(r.regDate);
+						var time = date.getFullYear() + "년" 
+						         + (date.getMonth() + 1) + "울" 
+						         + date.getDate() + "일"
+						         + date.getHours() + ":"
+						         + date.getMinutes() + ":"
+						         + date.getSeconds();
+						html += '	<td>' + time + '</td>';  
+						html+='</tr>';
+						html+='<tr class="view">';
+						html+='<td colspan="4">';
+						html+='<div>'+r.content+'</div></td></tr>'; 
+						}if(data.length == 0){
+							html += '<tr class="review_list"><td colspan="4">리뷰가 존재하지 않습니다.</td></tr>';
+						}
+						$(".review tbody").html(html);
+						$(".review_list").on("click", function() {
+							alert("감");
+							$(".view").toggleClass("on");
+						});
+					},
+					error:function(error){
+						alert(error);
+					}
+	
+				});
+				}
+			
+					reviewList();
+							</script>
 							<!-- End video area  -->
 						</div>
 					</div>
 				</div>
 
 				<div class="col-md-4 p0">
+					<%-- 				<c:forEach var="entry" items="${packageCode}">
+  
+   !!!!!!
+   <c:if test="${entry.key eq 'startDate'}">
+   스타트 데이트!!
+ ${entry.value.startDate}
+ ${entry.value.endDate}
+ ${entry.value.packageCode}
+ ${entry.value.packagePrice}
+   !!!!!!!!!!!   
+   </c:if>
+   <c:if test="${entry.key eq 'endDate'}">
+   엔드데이트
+ ${entry.value.startDate}
+ ${entry.value.endDate}
+ ${entry.value.packageCode}
+ ${entry.value.packagePrice}
+   
+   </c:if>
+   </c:forEach> --%>
+
+
 					<aside
 						class="sidebar sidebar-property blog-asside-right property-style2">
 						<div class="dealer-widget">
 							<div class="dealer-content">
-								<div class="inner-wrapper">
-									<div class="single-property-header">
-										<h1 class="property-title">홍콩 3일◈ 얌차식/소호거리/빅토리아피크 ◈</h1>
-										
-									</div>
-									<div class="dealer-section-space">
-										상품코드<span
-											style="color: #FFA500; font-weight: bold; margin-left: 20px;">CHP812180524TGM</span>
-									</div>
-
-								</div>
+								<c:forEach var="entry" items="${packageCode}">
+									<c:if test="${entry.key eq 'startDate'}">
+										<div class="inner-wrapper">
+											<div class="single-property-header">
+												<h1 class="property-title">${entry.value.packageName}</h1>
+											</div>
+											<div class="dealer-section-space">
+												상품코드<span
+													style="color: #FFA500; font-weight: bold; margin-left: 20px;">${entry.value.packageCode}</span>
+											</div>
+										</div>
+									</c:if>
+								</c:forEach>
 							</div>
 						</div>
+						<div
+							class="panel panel-default sidebar-menu wow fadeInRight animated">
+							<c:forEach var="entry" items="${packageCode}">
+								<c:choose>
+									<c:when test="${entry.key eq 'startDate'}">
+										<div class="panel-heading">
+											<h3 class="panel-title" style="margin-bottom: 10px;">출발일</h3>
+											<p>한국출발 ${entry.value.startDate}</p>
+											<p>현지도착 ${entry.value.endDate}</p>
+										</div>
+									</c:when>
+									<c:when test="${entry.key eq 'endDate'}">
+										<div class="panel-heading">
+											<h3 class="panel-title" style="margin-bottom: 10px;">도착일</h3>
+											<p>한국출발 ${entry.value.startDate}</p>
+											<p>현지도착 ${entry.value.endDate}</p>
+										</div>
+									</c:when>
+								</c:choose>
+							</c:forEach>
 
+							<div class="panel-heading">
+								<c:forEach var="entry" items="${packageCode}">
+									<c:if test="${entry.key eq 'endDate'}">
+										<h3 class="panel-title" style="margin-bottom: 10px;">총
+											상품가격</h3>
+										<table style="width: 350px;">
+											<tr>
+												<th>성인</th>
+												<td style="">${entry.value.packagePrice}원</td>
+											</tr>
+											<tr>
+												<th>아동</th>
+												<td>390,000원</td>
+											</tr>
+											<tr>
+												<th>유아</th>
+												<td>150,000원</td>
+											</tr>
+										</table>
+									</c:if>
+								</c:forEach>
+							</div>
 
-						<div class="panel panel-default sidebar-menu wow fadeInRight animated">
 							<div class="panel-heading">
-								<h3 class="panel-title" style="margin-bottom: 10px;">출발일</h3>
-								<p>한국출발 2018년 05월 25일(금) 22:10</p>
-								<p>현지도착 2018년 05월 26일(토) 03:40</p>
-							</div>
-							<div class="panel-heading">
-								<h3 class="panel-title" style="margin-bottom: 10px;">도착일</h3>
-								<p>한국출발 2018년 05월 25일(금) 22:10</p>
-								<p>현지도착 2018년 05월 26일(토) 03:40</p>
-							</div>
-							<div class="panel-heading">
-								<h3 class="panel-title" style="margin-bottom: 10px;">총 상품가격</h3>
-								<table style="width: 350px;">
-									<tr>
-										<th>성인</th>
-										<td style="">969,000원</td>
-									</tr>
-									<tr>
-										<th>아동</th>
-										<td>390,000원</td>
-									</tr>
-									<tr>
-										<th>유아</th>
-										<td>150,000원</td>
-									</tr>
-								</table>
-							</div>
-						
-									<div class="panel-heading">
 								<h3 class="panel-title" style="margin-bottom: 10px;">총 인원수</h3>
 								<table style="width: 350px;">
 									<tr>
 										<th>성인</th>
-										<td>
-										<select>
-										<c:forEach var="i" begin="1" end="30">
-										<option>${i}</option>
-										</c:forEach>
-										</select>
-										</td>
+										<td><select>
+												<c:forEach var="i" begin="1" end="30">
+													<option>${i}</option>
+												</c:forEach>
+										</select></td>
 										<th>아동</th>
-										<td>
-										<select>
-										<c:forEach var="i" begin="1" end="30">
-										<option>${i}</option>
-										</c:forEach>
-										</select>
-										</td>
+										<td><select>
+												<c:forEach var="i" begin="1" end="30">
+													<option>${i}</option>
+												</c:forEach>
+										</select></td>
 										<th>유아</th>
-										<td>
-										<select>
-										<c:forEach var="i" begin="1" end="30">
-										<option>${i}</option>
-										</c:forEach>
-										</select>
-										</td>
+										<td><select>
+												<c:forEach var="i" begin="1" end="30">
+													<option>${i}</option>
+												</c:forEach>
+										</select></td>
 									</tr>
-									
+
 								</table>
 							</div>
-									<div class="panel-heading">
+							<div class="panel-heading">
 								<h3 class="panel-title" style="margin-bottom: 10px;">총 예정금액</h3>
-								<h4 style="border:none; display:block;">1000000원</h4>
-								<button class="navbar-btn nav-button wow fadeInRight animated animated" style="display:block;">결제하기</button>
+								<h4 style="border: none; display: block;">1000000원</h4>
+								<button
+									class="navbar-btn nav-button wow fadeInRight animated animated"
+									style="display: block;">결제하기</button>
 							</div>
-							
-							
-							
+
+						</div>
+
 					</aside>
 				</div>
 
@@ -475,7 +664,27 @@ display:none;}
 	</div>
 
 	</div>
-
+	<%-- $.ajax({
+				type:'post',
+				url:"<c:url value='/search/searchDetail.json'/>",
+				data: $("#detailAll").serialize(),
+				success: function(data){
+					var html="";
+					$(".searchColor > span").html("");
+					$(".searchColor > span").html(data.length + "건");
+					$("#makeSearch").html("");
+					alert("실행zss");
+				console.log(data);--%>
+	<script type="text/javascript">
+	$.ajax({
+		type:'post',
+		url:"<c:url value='/search/reviewRegist.json'/>",
+		data:$("#reviewRegist").serialize(),
+	}).done(function(result){
+		alert(result);	
+	});
+	
+	</script>
 
 	<script src="assets/js/vendor/modernizr-2.6.2.min.js"></script>
 	<script src="assets/js/jquery-1.10.2.min.js"></script>
@@ -508,17 +717,7 @@ display:none;}
 			});
 		});
 	</script>
-		<script type="text/javascript">
-							$(function(){
-								$(".review_list").on("click",function(){
-									$(".view").toggleClass("on");
-									
-								})
-								$("#review_write").on("click",function(){
-									$(".inReivew").toggleClass("onR");
-								})
-							})
-							</script>
+
 
 
 </body>

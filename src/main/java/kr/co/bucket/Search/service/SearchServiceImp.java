@@ -1,12 +1,14 @@
 package kr.co.bucket.Search.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.co.bucket.repository.domain.AllSearch;
-import kr.co.bucket.repository.domain.Page;
+import kr.co.bucket.repository.domain.Review;
 import kr.co.bucket.repository.domain.SResult;
 import kr.co.bucket.repository.domain.Search;
 import kr.co.bucket.repository.mapper.SearchMapper;
@@ -34,4 +36,41 @@ public class SearchServiceImp implements SearchService {
 	public int count(Search keyword) throws Exception{
 		return mapper.selectCount(keyword);
 	}
+	public Map<String, Object> detailBoard(String packageCode) throws Exception{
+		Map<String, Object> map = new HashMap<>();
+		map.put("startDate", mapper.detailStart(packageCode));
+		map.put("endDate", mapper.detailEnd(packageCode));
+		map.put("daily", mapper.detailSchedule(packageCode));
+		map.put("stay", mapper.detailStay(packageCode));
+		List<SResult> list = mapper.detailSchedule(packageCode);
+		for(SResult s:list) {
+			System.out.println(s.getImgPath() +"이미지체크즁");
+		}
+		System.out.println(packageCode);
+		return map;
+	}
+
+	@Override
+	public void reviewRegist(Review review) throws Exception {
+		System.out.println(" 리뷰안넘어옴??"+review);
+	
+		System.out.println(review.getAirEvalScore() +" 별점");
+		System.out.println(review.getContent() +"내용 ");
+		System.out.println(review.getTitle() +"제목");
+		System.out.println(review.getAirEvalScore() +" ");
+		mapper.insertReview(review);
+		
+	}
+	
+	@Override
+	public List<Review> reivewList(String packageCode) throws Exception {
+		System.out.println(packageCode);
+		List<Review> list = mapper.selectReivewByCode(packageCode);
+		System.out.println(list+"리스트");
+			for(Review r: list) {
+				System.out.println(r.getContent() + "테스트즁");
+			}
+		return mapper.selectReivewByCode(packageCode);
+	}
+
 }

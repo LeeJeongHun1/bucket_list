@@ -3,6 +3,14 @@ package kr.co.bucket.repository.domain;
 public class Search {
 	private String keyword;
 	private String pack;
+	private String packageCode;
+	public String getPackageCode() {
+		return packageCode;
+	}
+	public void setPackageCode(String packageCode) {
+		this.packageCode = packageCode;
+	}
+
 	private int pageNo = 1;
 	private int listSize = 5;
 
