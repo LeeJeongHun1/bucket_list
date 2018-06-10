@@ -31,6 +31,14 @@
 				#{userAuth}
 			)
 		</insert>
+		
+		<update id="memberUpdate" parameterType="member">
+		update tb_member
+		set name = ${name},
+			email = ${userEmail},
+			password = ${password}
+		where user_email = ${userEmail}			
+	</update>
 </mapper>
 
 

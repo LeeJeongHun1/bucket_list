@@ -10,7 +10,7 @@ public interface MemberMapper {
 	
 	public void insertMember(Member memberVO) throws Exception;
 //	
-//	public void updateMember(MemberVO memberVO) throws Exception;
+	public void updateMember(Member memberVO) throws Exception;
 //	
 //	public void deleteMember(String id) throws Exception;
 	

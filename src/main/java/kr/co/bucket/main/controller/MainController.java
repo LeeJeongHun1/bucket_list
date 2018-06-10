@@ -8,4 +8,7 @@ public class MainController {
 
 	@RequestMapping("/main/index.do")
 	public void index(){ }
+	
+	@RequestMapping("/user/contact")
+	public void contact() {}
 }

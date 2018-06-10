@@ -86,4 +86,7 @@ public class MemberController {
 		loginService.insertMember(memberVO);
 		return "redirect:/main/index.do";
 	}
+	
+	@RequestMapping("/user/userUpdate.do")
+	public void updateMember() {}
 }

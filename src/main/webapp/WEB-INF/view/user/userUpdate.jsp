@@ -1,3 +1,4 @@
+
 <%@ page contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <html>
@@ -55,7 +56,6 @@
         </style>
     </head>
     <body>
-
         <div id="preloader">
             <div id="status">&nbsp;</div>
         </div>
@@ -71,27 +71,29 @@
                 		<li><a href="myPackage.do">나만의 패키지</a></li>
                 	</ul>
                 </div>  
+                <form action="${pageContext.request.contextPath}/user/userModify.do" method="post">
                 <div class="col-md-10">
 	              	<div class="form-group">
 	                   <label for="name">Name</label>
-	                   <input type="text" class="form-control" id="name">
+	                   <input type="text" class="form-control" id="name" name="name" placeholder="${name}">
 	                </div>
-	                <div class="form-group">
-		                <label for="email">Email</label>
-		                <input type="text" class="form-control" id="email">
+	              	<div class="form-group">
+	                   <label for="name">Email</label>
+	                   <input type="text" class="form-control" id="userEmail" name="userEmail" placeholder="${sessionScope.member.userEmail}">
 	                </div>
 	                <div class="form-group">
 		                <label for="password">Password</label>
-		   		        <input type="password" class="form-control" id="password">
+		   		        <input type="password" class="form-control" id="password" name="password">
 	                </div>
 	                <div class="form-group">
 		                <label for="password">Password check</label>
-		   		        <input type="password" class="form-control" id="password">
+		   		        <input type="password" class="form-control" id="passwordchk">
 	                </div>
 	                <div class="text-center">
-                    	<button type="submit" class="btn btn-default">회원정보수정</button>
+                    	<button type="submit" class="btn btn-default modify">회원정보수정</button>
                     </div>
                 </div>
+                </form>
 		</div>
 </div>
          <script src="assets/js/modernizr-2.6.2.min.js"></script>
@@ -111,6 +113,21 @@
         <script src="assets/js/price-range.js"></script>
 
         <script src="assets/js/main.js"></script>
+        <script>
+        	$(".modify").on("click", function () {
+        		var name = $("#name").val();
+        		var password = $("#password").val();
+        		var emmail = $("#userEmail").val();
+        		var passwordchk = $("#passwordchk").val();
+        		
+					if (passwordchk != password) {
+						alert("비밀번호를 다시 확인해주세요");
+						return false;
+					} else {
+						alert("수정이 완료되었습니다.");
+					}
+        	});
+        </script>
 
     </body>
 </html>
