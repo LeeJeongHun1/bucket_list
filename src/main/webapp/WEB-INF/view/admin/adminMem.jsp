@@ -182,6 +182,7 @@ $('#submitForm').submit(function(e){
 		data:params,
 		type:"POST",
 		dataType:"JSON",
+		async:false,
 		success:function(result){
 			var html = "";
 			html += '<table class=\'table\' id=\'table\'>\r\n' + 
@@ -189,10 +190,9 @@ $('#submitForm').submit(function(e){
 			'              <tr>\r\n' + 
 			'                <th>#</th>\r\n' + 
 			'                <th>이름</th>\r\n' + 
+			'                <th>이메일</th>\r\n' + 
+			'                <th>생년월일</th>\r\n' + 
 			'                <th>가입일</th>\r\n' + 
-			'                <th>출생연도</th>\r\n' + 
-			'                <th>패키지 가격</th>\r\n' + 
-			'                <th>내가 만든 패키지</th>\r\n' + 
 			'              </tr>\r\n' + 
 			'            </thead>\r\n';
 			
@@ -206,10 +206,9 @@ $('#submitForm').submit(function(e){
 				html +="<tr>\r\n" + 
 				'                <td>'+ index +'</td>\r\n' + 
 				'                <td>'+ mem.name +'</td>\r\n' + 
-				'                <td>'+ mem.reg_Date +'</td>\r\n' + 
+				'                <td>'+ mem.user_email +'</td>\r\n' + 
 				'                <td>'+ mem.birth +'</td>\r\n' + 
-				'                <td>'+ mem.package_Price +'</td>\r\n' + 
-				'                <td>'+ mem.package_Name +'</td>\r\n' + 
+				'                <td>'+ mem.reg_Date +'</td>\r\n' + 
 				'              </tr>';
 			}
 			$("tbody").html(html);

@@ -6,13 +6,27 @@ public class SearchMemResult {
 	private String name;
 	private Date reg_Date;
 	private String birth;
-	private String package_Price;
+	private int package_Price;
 	private String package_Name;
 	private String payment_Date;
 	private String user_email;
 	private String priceSum;
 	private String payCnt;
+	private String theme_Type;
+	private String accept_Yn;
 	
+	public String getAccept_yn() {
+		return accept_Yn;
+	}
+	public void setAccept_yn(String accept_yn) {
+		this.accept_Yn = accept_yn;
+	}
+	public String getTheme_type() {
+		return theme_Type;
+	}
+	public void setTheme_type(String theme_type) {
+		this.theme_Type = theme_type;
+	}
 	public String getPayCnt() {
 		return payCnt;
 	}
@@ -49,10 +63,10 @@ public class SearchMemResult {
 	public void setBirth(String birth) {
 		this.birth = birth;
 	}
-	public String getPackage_Price() {
+	public int getPackage_Price() {
 		return package_Price;
 	}
-	public void setPackage_Price(String package_Price) {
+	public void setPackage_Price(int package_Price) {
 		this.package_Price = package_Price;
 	}
 	public String getPackage_Name() {

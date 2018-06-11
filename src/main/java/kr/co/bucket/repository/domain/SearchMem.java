@@ -11,7 +11,36 @@ public class SearchMem {
 	private String keyword;
 	private String paymentPrice;
 	private String paymentDate;
+	private String theme;
+	private String packageName;
+	private int miniPrice;
+	private int maxPrice;
 	
+	
+	public int getMiniPrice() {
+		return miniPrice;
+	}
+	public void setMiniPrice(int miniPrice) {
+		this.miniPrice = miniPrice;
+	}
+	public int getMaxprice() {
+		return maxPrice;
+	}
+	public void setMaxprice(int maxPrice) {
+		this.maxPrice = maxPrice;
+	}
+	public String getPackageName() {
+		return packageName;
+	}
+	public void setPackageName(String packageName) {
+		this.packageName = packageName;
+	}
+	public String getTheme() {
+		return theme;
+	}
+	public void setTheme(String theme) {
+		this.theme = theme;
+	}
 	public String getPaymentPrice() {
 		return paymentPrice;
 	}

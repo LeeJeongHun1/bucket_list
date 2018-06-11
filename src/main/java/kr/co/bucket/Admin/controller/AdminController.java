@@ -94,7 +94,21 @@ public class AdminController {
 		return list;
 	}
 
-	
+	@RequestMapping("/ajaxPac.json")
+	@ResponseBody
+	public List<SearchMemResult> ajaxPac(SearchMem search) {
+		System.out.println(search.getName());
+		System.out.println(search.getTheme());
+		System.out.println(search.getMiniDate());
+		System.out.println(search.getMaxDate());
+		List<SearchMemResult> list =  adminService.searchPac(search);
+		
+		
+		for(SearchMemResult s : list) {
+			s.getPackage_Price();
+		}
+		return list;
+	}
 
 	
 	/*

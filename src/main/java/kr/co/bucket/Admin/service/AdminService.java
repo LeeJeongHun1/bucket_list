@@ -11,6 +11,7 @@ public interface AdminService {
 	public List<SearchMemResult> listMem();
 	public List<SearchMemResult> searchSum(SearchMem search);
 	public List<SearchMemResult> searchCnt(SearchMem search);
+	public List<SearchMemResult> searchPac(SearchMem search);
 	
 
 }
