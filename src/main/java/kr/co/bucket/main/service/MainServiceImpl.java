@@ -7,7 +7,6 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import kr.co.bucket.repository.domain.Img;
 import kr.co.bucket.repository.domain.MResult;
 import kr.co.bucket.repository.mapper.MainMapper;
 

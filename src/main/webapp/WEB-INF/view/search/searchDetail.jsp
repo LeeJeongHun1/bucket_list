@@ -589,15 +589,15 @@
 										<table style="width: 350px;">
 											<tr>
 												<th>성인</th>
-												<td style="">${entry.value.packagePrice}원</td>
+												<td class='adult' style="">${entry.value.packagePrice}원</td>
 											</tr>
 											<tr>
 												<th>아동</th>
-												<td>390,000원</td>
+												<td class='child'>390,000원</td>
 											</tr>
 											<tr>
 												<th>유아</th>
-												<td>150,000원</td>
+												<td class='baby'>150,000원</td>
 											</tr>
 										</table>
 									</c:if>
@@ -686,21 +686,30 @@
 	<script src="assets/js/main.js"></script>
 
 	<script>
-		$(document).ready(function() {
+// 		$(document).ready(function() {
 
-			$('#image-gallery').lightSlider({
-				gallery : true,
-				item : 1,
-				thumbItem : 9,
-				slideMargin : 0,
-				speed : 500,
-				auto : true,
-				loop : true,
-				onSliderLoad : function() {
-					$('#image-gallery').removeClass('cS-hidden');
-				}
-			});
+// 			$('#image-gallery').lightSlider({
+// 				gallery : true,
+// 				item : 1,
+// 				thumbItem : 9,
+// 				slideMargin : 0,
+// 				speed : 500,
+// 				auto : true,
+// 				loop : true,
+// 				onSliderLoad : function() {
+// 					$('#image-gallery').removeClass('cS-hidden');
+// 				}
+// 			});
+// 		});
+		
+		$(function () {
+			var adult = $(".adult").text();
+			adult = adult.split('원')[0]
+			console.log(adult*0.2);
+			$(".child").text(adult*0.8 + '원')
+			$(".baby").text(adult*0.2 + '원')
 		});
+		
 	</script>
 
 

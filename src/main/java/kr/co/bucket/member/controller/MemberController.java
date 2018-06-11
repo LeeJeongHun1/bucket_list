@@ -24,9 +24,7 @@ public class MemberController {
 	@ResponseBody
 	public String loginPOST(Member member, Model model, HttpServletRequest request) throws Exception{
 		Member m1 = loginService.selectUserById(member);
-
 		String msg = "";
-
 		if (m1 == null) {
 			msg = "아이디가 잘못되었습니다.";
 		} else if (!m1.getPassword().equals(member.getPassword())) {
