@@ -45,6 +45,8 @@ public class SearchServiceImp implements SearchService {
 		List<SResult> list = mapper.detailSchedule(packageCode);
 		for(SResult s:list) {
 			System.out.println(s.getImgPath() +"이미지체크즁");
+			System.out.println(s.getPackageName()+"체크즁");
+			
 		}
 		System.out.println(packageCode);
 		return map;

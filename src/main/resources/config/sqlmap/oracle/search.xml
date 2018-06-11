@@ -21,7 +21,7 @@
 	</resultMap>
 
 	<select id="selectCount" parameterType="search" resultType="int">
-		    select count(*)
+		select count(*)
 		from tb_package pack
 		inner
 		join tb_air air
@@ -34,7 +34,8 @@
 		air.ARRIVAL_CITY_code =
 		city.city_code
 		where
-		pack.PACKAGE_NAME like '%' ||
+		pack.PACKAGE_NAME like '%'
+		||
 		#{keyword} || '%'
 		or city.CITY_NAME like
 		'%'|| #{keyword} || '%'
@@ -43,35 +44,37 @@
 	<select id="AllSearch" parameterType="search" resultMap="searchMap">
 		select *
 		from (
-			select rownum rnum, a.*
-			  from (
-    				select DISTINCT pack.PACKAGE_CODE,
-							pack.package_price,pack.package_name
-							,city.CITY_NAME,pack.PACKAGE_IMG_PATH
-					  from
-					  tb_package pack
-					  inner
-					  join tb_air air
-					  on pack.DEPARTURE_AIR_CODE =
-					  air.air_code
-					  inner
-					  join tb_city city
-					  on
-					  air.ARRIVAL_CITY_code =
-					  city.city_code
-					  inner
-					  join tb_theme thm
-					  on
-					  city.city_code = thm.city_code
-					  where
-					  pack.PACKAGE_NAME like '%' || #{keyword} ||'%'
-					  or city.CITY_NAME like
-					  '%' || #{keyword} || '%'
-					) a
-			)
+		select rownum rnum, a.*
+		from (
+		select DISTINCT pack.PACKAGE_CODE,
+		pack.package_price,pack.package_name
+		,city.CITY_NAME,pack.PACKAGE_IMG_PATH
+		from
+		tb_package pack
+		inner
+		join
+		tb_air air
+		on pack.DEPARTURE_AIR_CODE =
+		air.air_code
+		inner
+		join tb_city
+		city
+		on
+		air.ARRIVAL_CITY_code =
+		city.city_code
+		inner
+		join tb_theme thm
+		on
+		city.city_code = thm.city_code
+		where
+		pack.PACKAGE_NAME like '%' ||
+		#{keyword} ||'%'
+		or city.CITY_NAME like
+		'%' || #{keyword} || '%'
+		) a
+		)
 		where rnum between #{begin} and #{end}
 	</select>
-	
 	<select id="detailSearch" parameterType="allSearch" resultMap="searchMap">
 		select DISTINCT pack.PACKAGE_CODE,
 		pack.package_price,pack.package_name
@@ -178,8 +181,10 @@
 		on p.DEPARTURE_AIR_CODE =
 		a.AIR_CODE
 		join tb_city c
-        on a.ARRIVAL_CITY_CODE = c.city_code
-		where p.PACKAGE_CODE = #{packageCode,jdbcType=VARCHAR}
+		on a.ARRIVAL_CITY_CODE = c.city_code
+		where
+		p.PACKAGE_CODE =
+		#{packageCode,jdbcType=VARCHAR}
 		order
 		by p.PACKAGE_CODE
 	</select>
@@ -237,8 +242,8 @@
 		s_review_code.nextval,#{userEmail},#{title},#{content},#{airEvalScore},#{hotelEvalScore},#{packageCode}
 		)
 	</insert>
-	
-	
+
+
 	<resultMap id="reviewMap" type="review">
 		<result column="REVIEW_CODE" property="reviewCode" />
 		<result column="USER_EMAIL" property="userEmail" />
@@ -249,11 +254,14 @@
 		<result column="REG_DATE" property="regDate" />
 		<result column="PACKAGE_CODE" property="packageCode" />
 	</resultMap>
-	
-	<select id="selectReivewByCode" parameterType="string" resultMap="reviewMap">
-	 select *
-	   from tb_review
-	 where package_Code = #{packageCode,jdbcType=VARCHAR}
+
+	<select id="selectReivewByCode" parameterType="string"
+		resultMap="reviewMap">
+		select *
+		from tb_review
+		where package_Code =
+		#{packageCode,jdbcType=VARCHAR}
 	</select>
+
 
 </mapper>

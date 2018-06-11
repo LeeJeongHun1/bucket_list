@@ -98,6 +98,7 @@
 .onR {
 	display: block;
 }
+.imgPath{width: 150px;height: 150px; display:block; margin-bottom:10px; margin-top:10px;}
 </style>
 </head>
 <body>
@@ -220,56 +221,44 @@
 
 								<h4 class="s-property-title">일정표</h4>
 								<table class="day">
-
-									<tr class="daily">
-										<td>1일차</td>
-										<td>2018년 5월 28일 월요일</td>
-										<td colspan="2">인천 파리</td>
-									</tr>
-									<tr>
-										<td colspan="4"><h4>인천</h4></td>
-									</tr>
-									<tr>
-										<td>인천 출발</td>
-										<td>소요시간 : <span>3시간</span></td>
-										<td colspan="2">항공편 : OZ501</td>
-									</tr>
-									<tr>
-										<td colspan="4"><h4>파리</h4></td>
-									</tr>
-									<tr>
-										<th>숙박</th>
-										<td colspan="3">oo호텔</td>
-									</tr>
-									<tr>
-										<th>식사</th>
-										<td>중식 : 기내식</td>
-										<td colspan="2">석식 : 기내식</td>
-									</tr>
-										<c:forEach var="entry" items="${packageCode}">
-											<c:if test="${entry.key eq 'stay'}">
-												<c:forEach var="i" items="${entry.value}" varStatus="status">
-  !!!!!!!!!!${status.count} 날짜 :${i.scheduleDaily} 비행기이름: ${i.airName} 패키지 가격 :${i.packagePrice}
-  ${i.flyingTime}!!!!!!!!!!
-</c:forEach></c:if>
-											<c:if test="${entry.key eq 'daily'}">
-												<c:forEach var="d" items="${entry.value}" varStatus="status">
-									<tr>
-									<tr class="daily">
-										<td>일정</td>
-										<td>${d.scheduleDaily}</td>
-										<td colspan="2">${d.themeType}</td>
-									</tr>
-
-											
-
- 
+								<c:forEach var="entry" items="${packageCode}">
+									<c:if test="${entry.key eq 'stay'}">
+										<tr class="daily">
+												<th>일정</th>
+												<th>날짜</th>
+												<th>숙소명</th>
+												<th>숙소사진</th>
+											</tr>
+				
+										<c:forEach var="i" items="${entry.value}" varStatus="status">
+										<tr>
+											<td>　</td>
+											<td>${i.scheduleDaily}</td>
+											<td>${i.hotelName}</td>
+											<td><img class="imgPath" src="..${i.hotelImgPath}"/></td> 
+										</tr>
+									<!-- 	<tr>
+											<th>식사</th>
+											<td>중식 : 기내식</td>
+											<td colspan="2">석식 : 기내식</td>
+										</tr> -->
+										</c:forEach>
+									</c:if>
+									<c:if test="${entry.key eq 'daily'}">
+										<c:forEach var="d" items="${entry.value}" varStatus="status">
+										<tr class="daily">
+											<td>일정</td>
+											<td>${d.scheduleDaily}</td>
+											<td colspan="2">${d.themeType}</td>
+										</tr>
+										<tr>
 										<td colspan="4">
 											<table width="700px;" style="margin: auto">
 												<tr>
 													<th colspan="4" style="border-bottom: 1px solid #d1d1d1;">${d.themeInfo}</th>
 												</tr>
 												<tr style="height: 40px;">
+													<td>${d.imgPath}</td>
 													<td class="col-md-4"><img
 														src="assets/img/property-video.jpg"
 														style="width: 150px; heihgt: 150px;"></td>
@@ -290,13 +279,9 @@
 										</td>
 									</tr>
 										
-</c:forEach>
+                                       </c:forEach>
 											</c:if>
 										</c:forEach>
-									<tr>
-										<td>숙박</td>
-										<td colspan="3">00호텔</td>
-									</tr>
 									<tr>
 										<th>식사</th>
 										<td>조식 : 호텔식</td>
@@ -361,8 +346,8 @@
 												
 										<c:forEach var="entry" items="${packageCode}">
 											<c:if test="${entry.key eq 'endDate'}">
-  !!!!!!!!!!${entry.value.packageCode}
-  	<input type="hidden" value="${entry.value.packageCode}" name="packageCode"/>
+										<%--   !!!!!!!!!!${entry.value.packageCode} --%>
+  										<input type="hidden" value="${entry.value.packageCode}" name="packageCode"/>
 											</c:if>
 										</c:forEach>
 													<th>아이디</th>
@@ -676,13 +661,13 @@
 					alert("실행zss");
 				console.log(data);--%>
 	<script type="text/javascript">
-	$.ajax({
+	/* $.ajax({
 		type:'post',
 		url:"<c:url value='/search/reviewRegist.json'/>",
 		data:$("#reviewRegist").serialize(),
 	}).done(function(result){
 		alert(result);	
-	});
+	}); */
 	
 	</script>
 

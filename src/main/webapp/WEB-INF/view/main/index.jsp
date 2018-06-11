@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <head>
 <meta charset="UTF-8">
@@ -84,73 +85,31 @@ ul {padding:0;}
         <div class="content-area home-area-1 recent-property" style="background-color: #FCFCFC; padding-bottom: 55px;">
             <div class="container">
                 <div class="row">
+          
                     <div class="col-md-10 col-md-offset-1 col-sm-12 text-center page-title">
                         <!-- /.feature title -->
+                       
                         <h2>금주의 추천 상품</h2>
-<!--                         <p>Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium. Nullam sed arcu ultricies . </p>-->                    
  			</div>
                 </div>
 
                 <div class="row">
                     <div class="proerty-th">
+                                <c:forEach var="i" items="${package.recommend}">
                         <div class="col-sm-6 col-md-3 p0">
                             <div class="box-two proerty-item">
                                 <div class="item-thumb">
-                                    <a href="property-1.html" ><img src="assets/img/demo/property-1.jpg"></a>
+                                    <a href="property-1.html" ><img src="..${i.packageImgpath}"></a>
                                 </div>
                                 <div class="item-entry overflow">
-                                    <h5><a href="property-1.html" >다낭*호이안*후에 4,5일 ★뭉쳐야뜬다&최저가상품★ </a></h5>
+                                    <h5><a href="property-1.html" >${i.packageName}</a></h5>
                                     <div class="dot-hr"></div>
                                      <button style="padding: 2px 14px;" class="navbar-btn nav-button wow bounceInRight login animated" onclick=" window.open('register.jsp')" data-wow-delay="0.45s" style="visibility: visible; animation-delay: 0.45s; animation-name: bounceInRight;">상세보기</button>
-                                    <span class="main_price proerty-price pull-right">399,000원</span>
+                                    <span class="main_price proerty-price pull-right">${i.packagePrice}원</span>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="col-sm-6 col-md-3 p0">
-                            <div class="box-two proerty-item">
-                                <div class="item-thumb">
-                                    <a href="property-2.html" ><img src="assets/img/demo/property-2.jpg"></a>
-                                </div>
-                                <div class="item-entry overflow">
-                                    <h5><a href="property-2.html" >[핵심일정] 하노이/하롱베이/옌뜨/닌빈 </a></h5>
-                                    <div class="dot-hr"></div>
-                                    <button style="padding: 2px 14px;" class="navbar-btn nav-button wow bounceInRight login animated" onclick=" window.open('register.jsp')" data-wow-delay="0.45s" style="visibility: visible; animation-delay: 0.45s; animation-name: bounceInRight;">상세보기</button>
-                                    <span class="main_price proerty-price pull-right">278,900원</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-sm-6 col-md-3 p0">
-                            <div class="box-two proerty-item">
-                                <div class="item-thumb">
-                                    <a href="property-3.html" ><img src="assets/img/demo/property-3.jpg"></a>
-
-                                </div>
-                                <div class="item-entry overflow">
-                                    <h5><a href="property-3.html" >방콕/파타야 [베스트셀러] #뭉쳐야뜬다 #100%출발확정</a></h5>
-                                    <div class="dot-hr"></div>
-                                    <button style="padding: 2px 14px;" class="navbar-btn nav-button wow bounceInRight login animated" onclick=" window.open('register.jsp')" data-wow-delay="0.45s" style="visibility: visible; animation-delay: 0.45s; animation-name: bounceInRight;">상세보기</button>
-                                   <span class="main_price proerty-price pull-right">422,200원</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-sm-6 col-md-3 p0">
-                            <div class="box-two proerty-item">
-                                <div class="item-thumb">
-                                    <a href="property-1.html" ><img src="assets/img/demo/property-4.jpg"></a>
-
-                                </div>
-                                <div class="item-entry overflow">
-                                    <h5><a href="property-1.html" >(특가/EVENT)홍콩/마카오 완전일주 3일/4일</a></h5>
-                                    <div class="dot-hr"></div>
-                                    <button style="padding: 2px 14px;" class="navbar-btn nav-button wow bounceInRight login animated" onclick=" window.open('register.jsp')" data-wow-delay="0.45s" style="visibility: visible; animation-delay: 0.45s; animation-name: bounceInRight;">상세보기</button>
-                                   <span class="main_price proerty-price pull-right">379,000원</span>
-                                </div>
-                            </div>
-                        </div>
-
+                                </c:forEach>
                     </div>
                 </div>
             </div>
@@ -163,70 +122,27 @@ ul {padding:0;}
                     <div class="col-md-10 col-md-offset-1 col-sm-12 text-center page-title">
                         <!-- /.feature title -->
                         <h2>인기상품</h2>
-<!--                         <p>Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium. Nullam sed arcu ultricies . </p>-->                    
  			</div>
                 </div>
 
                 <div class="row">
                     <div class="proerty-th">
+                     <c:forEach var="pop" items="${package.popular}">
                         <div class="col-sm-6 col-md-3 p0">
                             <div class="box-two proerty-item">
                                 <div class="item-thumb">
-                                    <a href="property-1.html" ><img src="assets/img/demo/gam-1.jpg"></a>
+                                    <a href="property-1.html" ><img src="..${pop.packageImgpath}"></a>
                                 </div>
                                 <div class="item-entry overflow">
-                                    <h5><a href="property-1.html" >괌 PIC 5일 패키지 </a></h5>
+                                    <h5><a href="property-1.html" >${pop.packageName} </a></h5>
                                     <div class="dot-hr"></div>
                                     <button style="padding: 2px 14px;" class="navbar-btn nav-button wow bounceInRight login animated" onclick=" window.open('register.jsp')" data-wow-delay="0.45s" style="visibility: visible; animation-delay: 0.45s; animation-name: bounceInRight;">상세보기</button>
-                                   <span class="main_price proerty-price pull-right">833,200원</span>
+                                   <span class="main_price proerty-price pull-right">${pop.packagePrice}원</span>
   
                                 </div>
                             </div>
                         </div>
-
-                        <div class="col-sm-6 col-md-3 p0">
-                            <div class="box-two proerty-item">
-                                <div class="item-thumb">
-                                    <a href="property-2.html" ><img src="<c:url value='/resources/assets/img/demo/gam-2.jpg'/>"></a>
-                                </div>
-                                <div class="item-entry overflow">
-                                    <h5><a href="property-2.html" >사이판 PIC 골드 4일 5일</a></h5>
-                                    <div class="dot-hr"></div>
-                                    <button style="padding: 2px 14px;" class="navbar-btn nav-button wow bounceInRight login animated" onclick=" window.open('register.jsp')" data-wow-delay="0.45s" style="visibility: visible; animation-delay: 0.45s; animation-name: bounceInRight;">상세보기</button>
-                                   <span class="main_price proerty-price pull-right">732,600원</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-sm-6 col-md-3 p0">
-                            <div class="box-two proerty-item">
-                                <div class="item-thumb">
-                                    <a href="property-3.html" ><img src="assets/img/demo/gam-3.jpg"></a>
-
-                                </div>
-                                <div class="item-entry overflow">
-                                    <h5><a href="property-3.html" >괌 PIC 4일,5일</a></h5>
-                                    <div class="dot-hr"></div>
-                                    <button style="padding: 2px 14px;" class="navbar-btn nav-button wow bounceInRight login animated" onclick=" window.open('register.jsp')" data-wow-delay="0.45s" style="visibility: visible; animation-delay: 0.45s; animation-name: bounceInRight;">상세보기</button>
-                                  <span class="main_price proerty-price pull-right">877,400원</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-sm-6 col-md-3 p0">
-                            <div class="box-two proerty-item">
-                                <div class="item-thumb">
-                                    <a href="property-1.html" ><img src="assets/img/demo/gam-4.jpg"></a>
-
-                                </div>
-                                <div class="item-entry overflow">
-                                    <h5><a href="property-1.html" >3/4/5개국 핵심일주 10일</a></h5>
-                                    <div class="dot-hr"></div>
-                                    <button style="padding: 2px 14px;" class="navbar-btn nav-button wow bounceInRight login animated" onclick=" window.open('register.jsp')" data-wow-delay="0.45s" style="visibility: visible; animation-delay: 0.45s; animation-name: bounceInRight;">상세보기</button>
-                                  <span class="main_price proerty-price pull-right">2,408,800원</span>
-                                </div>
-                            </div>
-                        </div>
+                        </c:forEach>
                     </div>
                 </div>
             </div>
@@ -244,63 +160,22 @@ ul {padding:0;}
 
                 <div class="row">
                     <div class="proerty-th">
+                     <c:forEach var="s" items="${package.season}">
                         <div class="col-sm-6 col-md-3 p0">
                             <div class="box-two proerty-item">
                                 <div class="item-thumb">
-                                    <a href="property-1.html" ><img src="assets/img/demo/miju-1.jpg"></a>
+                                    <a href="property-1.html" ><img src="..${s.packageImgpath}"></a>
                                 </div>
                                 <div class="item-entry overflow">
-                                    <h5><a href="property-1.html" >[초특가][홈쇼핑따라잡기]미동부 캐나다 9~11일</a></h5>
+                                    <h5><a href="property-1.html" >${s.packageName}</a></h5>
                                     <div class="dot-hr"></div>
                                     <button style="padding: 2px 14px;" class="navbar-btn nav-button wow bounceInRight login animated" onclick=" window.open('register.jsp')" data-wow-delay="0.45s" style="visibility: visible; animation-delay: 0.45s; animation-name: bounceInRight;">상세보기</button>
-                                  <span class="main_price proerty-price pull-right">2,189,200원</span>
+                                  <span class="main_price proerty-price pull-right">${s.packagePrice}원</span>
                                 </div>
                             </div>
                         </div>
+						</c:forEach>
 
-                        <div class="col-sm-6 col-md-3 p0">
-                            <div class="box-two proerty-item">
-                                <div class="item-thumb">
-                                    <a href="property-2.html" ><img src="assets/img/demo/miju-2.jpg"></a>
-                                </div>
-                                <div class="item-entry overflow">
-                                    <h5><a href="property-2.html" >[베스트셀러] 캐나다 항공일주 8일</a></h5>
-                                    <div class="dot-hr"></div>
-                                    <button style="padding: 2px 14px;" class="navbar-btn nav-button wow bounceInRight login animated" onclick=" window.open('register.jsp')" data-wow-delay="0.45s" style="visibility: visible; animation-delay: 0.45s; animation-name: bounceInRight;">상세보기</button>
-                                    <span class="proerty-price pull-right">2,700,200원</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-sm-6 col-md-3 p0">
-                            <div class="box-two proerty-item">
-                                <div class="item-thumb">
-                                    <a href="property-3.html" ><img src="assets/img/demo/miju-3.jpg"></a>
-
-                                </div>
-                                <div class="item-entry overflow">
-                                    <h5><a href="property-3.html" >[초특가필살기] 미서부 핵심 7/9일 (그랜드캐년/3대캐년) </a></h5>
-                                    <div class="dot-hr"></div>
-                                    <button style="padding: 2px 14px;" class="navbar-btn nav-button wow bounceInRight login animated" onclick=" window.open('register.jsp')" data-wow-delay="0.45s" style="visibility: visible; animation-delay: 0.45s; animation-name: bounceInRight;">상세보기</button>
-                                    <span class="proerty-price pull-right">1,299,000원</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-sm-6 col-md-3 p0">
-                            <div class="box-two proerty-item">
-                                <div class="item-thumb">
-                                    <a href="property-1.html" ><img src="assets/img/demo/miju-4.jpg"></a>
-
-                                </div>
-                                <div class="item-entry overflow">
-                                    <h5><a href="property-1.html" >규슈 4일 - 핵심관광</a></h5>
-                                    <div class="dot-hr"></div>
-                                    <button style="padding: 2px 14px;" class="navbar-btn nav-button wow bounceInRight login animated" onclick=" window.open('register.jsp')" data-wow-delay="0.45s" style="visibility: visible; animation-delay: 0.45s; animation-name: bounceInRight;">상세보기</button>
-                                    <span class="proerty-price pull-right">499,000원</span>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>

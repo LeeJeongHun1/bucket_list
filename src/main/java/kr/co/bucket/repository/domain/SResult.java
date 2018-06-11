@@ -12,6 +12,13 @@ public class SResult {
 	private String scheduleDaily;
 	private String airName;
 	private String hotelName;
+	private String hotelImgPath;
+	public String getHotelImgPath() {
+		return hotelImgPath;
+	}
+	public void setHotelImgPath(String hotelImgPath) {
+		this.hotelImgPath = hotelImgPath;
+	}
 	private int dailyCode;
 	private String themeInfo;
 	private String themeName;
