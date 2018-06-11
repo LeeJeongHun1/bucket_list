@@ -369,6 +369,10 @@ div.airlist {
 		</ul>
 	</div>
 	<script>
+		var sm = '';
+		var sd = '';
+		var em = '';
+		var ed = '';
 		$(function() {
 			$("div.col-sm-12.detailpop").hide();
 // 			$(".airInfo").children().clone()
@@ -455,23 +459,10 @@ div.airlist {
 				for(var t=0; t<result.theme.length; t++){
 					$("#theme").append("<option value='"+result.theme[t].themeType+"'>"+result.theme[t].themeType+"</option>")
 				}
-				var sm = result.schedule.startDate.split('년')[1].split('월')[0];
-				var sd = result.schedule.startDate.split('년')[1].split('월')[1].split('일')[0];
-				var em = result.schedule.endDate.split('년')[1].split('월')[0];
-				var ed = result.schedule.endDate.split('년')[1].split('월')[1].split('일')[0];
-				var daily = [];
-				if(sm == em){
-					var day = ed - sd;
-					console.log(Number(sd)+Number(day))
-					var eDay = Number(sd)+Number(day);
-					for(var i=sd; i<=eDay; i++ ){
-						console.log(sm,'월',i,'일');
-						var aa = sm + '월' + i + '일';
-// 						$("#daily").append("<span><input type='radio' name='daily' value='"+aa+"'/>"+aa+"</span>");
-// 						daily.push(aa);
-					}
-				}
-				console.dir(daily);
+				sm = result.schedule.startDate.split('년')[1].split('월')[0];
+				sd = result.schedule.startDate.split('년')[1].split('월')[1].split('일')[0];
+				em = result.schedule.endDate.split('년')[1].split('월')[0];
+				ed = result.schedule.endDate.split('년')[1].split('월')[1].split('일')[0];
 			})
 			.fail(function (){
 				$("body").waitMe("hide");
@@ -513,25 +504,50 @@ div.airlist {
 					html += '<div class="col-sm-6 col-md-3 p0">';
 					html += '	<div class="box-two proerty-item">';
 					html += '		<div class="item-thumbt">';
-					html += '			<a href="#" onclick="return false"><img src="..' + t.imgPath + '" /></a>';
+					html += '			<img src="..' + t.imgPath + '" />';
 					html += '		</div>';
 					html += '		<div class="item-entry overflow">';
 					html += '			<h5>';
-					html += '				<a href="#">' + t.themeName + '</a>';
+					html += '				<a href="#">가격 : ' + t.themeName + '</a>';
 					html += '			</h5>';
 					html += '			<div class="dot-hr"></div>';
 					html += '			<span class="pull-left"><b>' + t.themePrice+ '</b>';
-					html += '				<input type="checkbox" name="'+t.themeCode+'" /> '
+					html += '				<button id='+t.themeCode+' onclick="return doDetailTheme('+t.themeCode+')" >선택</button> ';
 					html += '			</span>';
+					if(sm == em){
+						var day = ed - sd;
+						console.log(Number(sd)+Number(day))
+						var eDay = Number(sd)+Number(day);
+						for(var i=sd; i<=eDay; i++ ){
+							console.log(sm,'월',i,'일');
+							var aa = sm + '월' + i + '일';
+							html += '<span class="selectDay"><input type="radio" class="'+t.themeCode+'" name="daily" value='+ aa +'/>'+aa + '</span>';
+//								$("#daily").append("<span><input type='radio' name='daily' value='"+aa+"'/>"+aa+"</span>");
+//								daily.push(aa);
+						}
+					}
 					html += '		</div>';
 					html += '	</div>';
 					html += '</div>';
-					$(".proerty-theme").append(html);
 				}
+				$(".proerty-theme").append(html);
+				$(".selectDay").hide();
 			})
 			.fail(function (){
 				$("body").waitMe("hide");
 			});
+			return false;
+		}
+		
+		function doDetailTheme(tCode) {
+			console.log(tCode)
+			console.dir(daily);
+			console.dir($("."+tCode));
+			$("#"+tCode).append($("."+tCode));
+			$(".selectDay"
+					).show();
+			console.dir($(this));
+// 			$(this).append("<span>추가됨</sapn>")
 			return false;
 		}
 		
