@@ -11,36 +11,30 @@ public class SearchMem {
 	private String keyword;
 	private String paymentPrice;
 	private String paymentDate;
+	private String[] themeArr;
 	private String theme;
 	private String packageName;
 	private String apvl;
-	private int miniPrice;
-	private int maxPrice;
+	private Integer miniPrice;
+	private Integer maxPrice;
 	
-	
-	public String getApvl() {
-		return apvl;
-	}
-	public void setApvl(String apvl) {
-		this.apvl = apvl;
-	}
-	public int getMiniPrice() {
+	public Integer getMiniPrice() {
 		return miniPrice;
 	}
-	public void setMiniPrice(int miniPrice) {
+	public void setMiniPrice(Integer miniPrice) {
 		this.miniPrice = miniPrice;
 	}
-	public int getMaxPrice() {
+	public Integer getMaxPrice() {
 		return maxPrice;
 	}
-	public void setMaxPrice(int maxPrice) {
+	public void setMaxPrice(Integer maxPrice) {
 		this.maxPrice = maxPrice;
 	}
-	public String getPackageName() {
-		return packageName;
+	public String[] getThemeArr() {
+		return themeArr;
 	}
-	public void setPackageName(String packageName) {
-		this.packageName = packageName;
+	public void setThemeArr(String[] themeArr) {
+		this.themeArr = themeArr;
 	}
 	public String getTheme() {
 		return theme;
@@ -48,6 +42,20 @@ public class SearchMem {
 	public void setTheme(String theme) {
 		this.theme = theme;
 	}
+	public String getApvl() {
+		return apvl;
+	}
+	public void setApvl(String apvl) {
+		this.apvl = apvl;
+	}
+	
+	public String getPackageName() {
+		return packageName;
+	}
+	public void setPackageName(String packageName) {
+		this.packageName = packageName;
+	}
+	
 	public String getPaymentPrice() {
 		return paymentPrice;
 	}

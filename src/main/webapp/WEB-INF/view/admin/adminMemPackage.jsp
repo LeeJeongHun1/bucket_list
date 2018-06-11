@@ -88,9 +88,9 @@
 				<div class="col-md-10">
 				<div class="col-md-1">테마</div>
 			     	<div class="col-md-6">
-					<input type="checkbox" name="theme" value="관광" class="form-control">관광
-					<input type="checkbox" name="theme" value="축구" class="form-control">축구
-					<input type="checkbox" name="theme" value="휴양지" class="form-control">휴양지
+					<input type="checkbox" name="themeArr" value="관광" class="form-control">관광
+					<input type="checkbox" name="themeArr" value="축구" class="form-control">축구
+					<input type="checkbox" name="themeArr" value="휴양지" class="form-control">휴양지
 					</div>
 					<div class="col-md-3">
 					제목:<input type="text" name="packageName" class="form-control" style="display: inline-block; width:80%">

@@ -62,9 +62,14 @@ select distinct p.package_name,theme_type,p.user_email,p.package_price,p.REG_DAT
     and accept_yn = #{apvl,jdbcType=VARCHAR} </if>
        <if test="(apvl eq 'n,y'.toString())">
     and accept_yn = 'y' or accept_yn = 'n' </if>
-    <if test="theme != ''">
-    and t.theme_type = #{theme}</if>
+    <if test="themeArr != null">
+    and t.theme_type in
+    <foreach item="theme" collection="themeArr" open="(" separator="," close=")">
+     #{theme,jdbcType=VARCHAR}
+    </foreach>
+    </if>	
        </where>
+    order by package_name
 </select>
  
  <select id="listMem" resultType="SearchMemResult">

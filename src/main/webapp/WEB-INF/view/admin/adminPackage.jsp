@@ -70,6 +70,7 @@
                 		<li><a href="${pageContext.request.contextPath}/admin/adminMemPackage.do">회원 패키지관리</a></li>
                 		<li><a href="${pageContext.request.contextPath}/admin/adminPaid.do">결제내역조회</a></li>
                 		<li><a href="">관리자 패키지관리</a></li>
+                		
                 	</ul>
                 </div>  
                 
@@ -83,26 +84,31 @@
                 </div>
                 </div>
                 <!-- form 태그 시작 -->
-                <form class="form-horizontal">
+                <form class="form-horizontal" id="submitForm">
 				<div class="col-md-10">
 				<div class="col-md-1">테마</div>
 			     	<div class="col-md-6">
-					<input type="checkbox" class="form-control">관광
-					<input type="checkbox" class="form-control">축구
-					<input type="checkbox" class="form-control">휴양지
+					<input type="checkbox" name="themeArr" value="관광" class="form-control">관광
+					<input type="checkbox" name="themeArr" value="축구" class="form-control">축구
+					<input type="checkbox" name="themeArr" value="휴양지" class="form-control">휴양지
 					</div>
 					<div class="col-md-3">
-					제목:<input type="text" class="form-control" style="display: inline-block; width:80%">
+					제목:<input type="text" name="packageName" class="form-control" style="display: inline-block; width:80%">
 					</div>
                 </div>
                 &nbsp;
                 <!-- 다음줄 -->
                 <div class="col-md-10">
                 <div class="col-md-1"></div>
-                <div class="col-md-6">
-                </div>
                 <div class="col-md-3">
-                                    가격:<input type="text" class="form-control" style="display: inline-block; width:80%">
+                
+                </div>
+                <div class="col-md-3"></div>
+                <div class="col-md-2" align="right">
+                                    가격:<input type="text" name="miniPrice" class="form-control" style="display: inline-block; width:70%">
+                </div>
+                <div class="col-md-2" align="left">
+                ~<input type="text" name="maxPrice" class="form-control" style="display: inline-block; width:70%">
                 </div>
                 </div>
                 <div class="col-md-10">&nbsp;</div>
@@ -111,10 +117,10 @@
                  <div class="col-md-4">
                  </div>
                  <div class="col-md-3">
-						등록일:<input type="date" class="form-control" style="display: inline-block; width:70%">
+						등록일:<input type="text" id="miniDate" name="miniDate" class="form-control" style="display: inline-block; width:70%">
 					</div>
 					<div class="col-md-3">
-						~<input type="date" class="form-control" style="margin-left:10px;	 display: inline-block; width:80%">
+						~<input type="text" id="maxDate" name="maxDate" class="form-control" style="display: inline-block; width:80%">
 					</div>
                  </div>
                 <!-- 버튼 -->
@@ -129,43 +135,10 @@
           <table class="table">
             <thead>
               <tr>
-                <th>#</th>
-                <th>카테고리</th>
-                <th>패키지명</th>
-                <th>가격</th>
-                <th>등록일</th>
-                <th>상태</th>
-                <th>수정/삭제</th>
-              </tr>
+             
             </thead>
             <tbody>
-              <tr>
-                <td>1</td>
-                <td>관광</td>
-                <td>P1</td>
-                <td>-원</td>
-                <td>2010-11-10</td>
-                <td>대기 중</td>
-                <td><i class="glyphicon glyphicon-thumbs-up"></i>&nbsp;/&nbsp;<i class="glyphicon glyphicon-trash"></i></td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>축구</td>
-                <td>P2</td>
-                <td>-원</td>
-                <td>2010-09-21</td>
-                <td>대기 중</td>
-                <td><i class="glyphicon glyphicon-thumbs-up"></i>&nbsp;/&nbsp;<i class="glyphicon glyphicon-trash"></i></td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td>휴양지</td>
-                <td>P3</td>
-                <td>-원</td>
-                <td>2010-11-21</td>
-                <td>승인완료</td>
-                <td><i class="glyphicon glyphicon-thumbs-up"></i>&nbsp;/&nbsp;<i class="glyphicon glyphicon-trash"></i></td>
-              </tr>
+            
             </tbody>
           </table>
            </div>
@@ -190,6 +163,81 @@
 
         <script src="assets/js/main.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap-wizard/1.2/jquery.bootstrap.wizard.js"></script>
+        
+<script>
+$(function() {
+	$('#miniDate').datepicker({
+	format : "yyyy-mm-dd",
+	autoclose: true
+	}).datepicker("setDate", null);
+	});
+	
+$(function() {
+	$('#maxDate').datepicker({
+	format : "yyyy-mm-dd",
+	autoclose: true
+	}).datepicker("setDate", null);
+	});
 
+$('#submitForm').submit(function(e){
+	e.preventDefault();
+	var params = $("#submitForm").serialize();
+    console.log(params);
+	
+    
+    
+	$.ajax({
+		url:"${pageContext.request.contextPath}/admin/ajaxPac.json",
+		data:params,
+		type:"POST",
+		dataType:"JSON",
+		async:false,
+		success:function(result){
+			var html = "";
+			html += '<table class=\'table\' id=\'table\'>\r\n' + 
+			'            <thead>\r\n' + 
+			'              <tr>\r\n' + 
+			'                <th>#</th>\r\n' + 
+			'                <th>테마</th>\r\n' + 
+			'                <th>신청자</th>\r\n' + 
+			'                <th>패키지명</th>\r\n' + 
+			'                <th>가격</th>\r\n' + 
+			'                <th>등록일</th>\r\n' + 
+			'                <th>상태</th>\r\n' + 
+			'                <th>승인/삭제</th>\r\n' + 
+			'              </tr>\r\n' + 
+			'            </thead>\r\n';
+			
+			if(result.length == 0){
+			html += '<tr><td  colspan="8" align="center">조건에 맞는 검색 결과가 존재하지 않습니다.</td></tr>'; 	
+			}
+			
+			for(var i = 0; i < result.length; i++){
+				var mem = result[i];
+				var index = i+1;
+				html +="<tr>\r\n" + 
+				'                <td>'+ index +'</td>\r\n' + 
+				'                <td>'+ mem.theme_Type +'</td>\r\n' + 
+				'                <td>'+ mem.user_email +'</td>\r\n' + 
+				'                <td>'+ mem.package_Name +'</td>\r\n' + 
+				'                <td>'+ mem.package_Price +'</td>\r\n' + 
+				'                <td>'+ mem.reg_Date +'</td>\r\n' + 
+				'                <td>'+ mem.accept_yn +'</td>\r\n' + 
+				'                <td><i class="glyphicon glyphicon-thumbs-up"></i>&nbsp;/&nbsp;<i class="glyphicon glyphicon-trash"></i></td>\r\n' + 
+				'              </tr>';
+				
+			}
+			$("tbody").html(html);
+			
+			
+			console.log(result);
+			
+		},
+	    error : function(){
+            alert('통신실패!!');
+        }
+	})
+})
+</script>
     </body>
 </html>

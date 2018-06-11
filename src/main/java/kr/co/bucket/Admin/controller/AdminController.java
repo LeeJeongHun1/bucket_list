@@ -61,6 +61,15 @@ public class AdminController {
 		System.out.println(search.getMiniDate());
 		System.out.println(search.getMaxDate());
 		List<SearchMemResult> list =  adminService.searchMem(search);
+		
+		for(SearchMemResult s : list) {
+			StringBuffer sb = new StringBuffer(s.getBirth());
+			sb.insert(4, "년");
+			sb.insert(7, "월");
+			sb.insert(10, "일");
+			s.setBirth(sb.toString());
+		}
+		
 		return list;
 	}
 	
@@ -115,7 +124,7 @@ public class AdminController {
 			SearchMemResult s2 = list.get(i+1);
 			
 			if(s1.getPackage_Name().equals(s2.getPackage_Name())) {
-				s1.setTheme_Type(s1.getTheme_Type().concat(s2.getTheme_Type()));
+				s1.setTheme_Type(s1.getTheme_Type().concat("/"+s2.getTheme_Type()));
 				list.remove(i+1);
 				i--;
 			}
