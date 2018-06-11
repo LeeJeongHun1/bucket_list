@@ -15,7 +15,7 @@ public class MainController {
 	
 	@RequestMapping("/main/index.do")
 	public void index(Model model) throws Exception{
-		model.addAttribute("package",mainService.selectPackageList());
+		model.addAttribute("pack",mainService.selectPackageList());
 		//model.addAttribute("img",mainService.imgRepeat());
 	System.out.println(model +"확인");
 	}

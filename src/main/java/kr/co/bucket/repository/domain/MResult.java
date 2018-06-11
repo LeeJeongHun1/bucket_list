@@ -1,15 +1,16 @@
 package kr.co.bucket.repository.domain;
 
 public class MResult {
-	private String pacakgeCode;
+	private String packageCode;
 	private String packageName;
 	private int packagePrice;
 	private String packageImgpath;
-	public String getPacakgeCode() {
-		return pacakgeCode;
+
+	public String getPackageCode() {
+		return packageCode;
 	}
-	public void setPacakgeCode(String pacakgeCode) {
-		this.pacakgeCode = pacakgeCode;
+	public void setPackageCode(String packageCode) {
+		this.packageCode = packageCode;
 	}
 	public String getPackageName() {
 		return packageName;

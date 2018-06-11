@@ -94,7 +94,7 @@ ul {padding:0;}
 
                 <div class="row">
                     <div class="proerty-th">
-                                <c:forEach var="i" items="${package.recommend}">
+                                <c:forEach var="i" items="${pack.recommend}">
                         <div class="col-sm-6 col-md-3 p0">
                             <div class="box-two proerty-item">
                                 <div class="item-thumb">
@@ -103,8 +103,9 @@ ul {padding:0;}
                                 <div class="item-entry overflow">
                                     <h5><a href="property-1.html" >${i.packageName}</a></h5>
                                     <div class="dot-hr"></div>
-                                     <button style="padding: 2px 14px;" class="navbar-btn nav-button wow bounceInRight login animated" onclick=" window.open('register.jsp')" data-wow-delay="0.45s" style="visibility: visible; animation-delay: 0.45s; animation-name: bounceInRight;">상세보기</button>
-                                    <span class="main_price proerty-price pull-right">${i.packagePrice}원</span>
+<!--                                      <button style="padding: 2px 14px;" class="navbar-btn nav-button wow bounceInRight login animated" onclick=" window.open('register.jsp')" data-wow-delay="0.45s" style="visibility: visible; animation-delay: 0.45s; animation-name: bounceInRight;">상세보기</button>-->
+									<a class="search_detail search-btn navbar-btn wow fadeInRight animated" href="<c:url value="/search/searchDetail.do"/>?packageCode='${i.packageCode}'" data-wow-delay="0.48s">상세보기</a>
+                                       <span class="main_price proerty-price pull-right">${i.packagePrice}원</span>
                                 </div>
                             </div>
                         </div>
@@ -126,7 +127,7 @@ ul {padding:0;}
 
                 <div class="row">
                     <div class="proerty-th">
-                     <c:forEach var="pop" items="${package.popular}">
+                     <c:forEach var="pop" items="${pack.popular}">
                         <div class="col-sm-6 col-md-3 p0">
                             <div class="box-two proerty-item">
                                 <div class="item-thumb">
@@ -159,7 +160,7 @@ ul {padding:0;}
 
                 <div class="row">
                     <div class="proerty-th">
-                     <c:forEach var="s" items="${package.season}">
+                     <c:forEach var="s" items="${pack.season}">
                         <div class="col-sm-6 col-md-3 p0">
                             <div class="box-two proerty-item">
                                 <div class="item-thumb">

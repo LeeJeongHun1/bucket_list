@@ -3,7 +3,7 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.bucket.repository.mapper.MainMapper">
 	<resultMap id="mainMap" type="mResult">
-		<result column="PACKAGE_CODE" property="pacakgeCode" />
+		<result column="PACKAGE_CODE" property="packageCode" />
 		<result column="package_name" property="packageName" />
 		<result column="package_price" property="packagePrice" />
 		<result column="package_img_path" property="packageImgpath" />
