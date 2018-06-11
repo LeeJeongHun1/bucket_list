@@ -1,9 +1,10 @@
 package kr.co.bucket.Search.service;
 
 import java.util.List;
+import java.util.Map;
 
 import kr.co.bucket.repository.domain.AllSearch;
-import kr.co.bucket.repository.domain.Page;
+import kr.co.bucket.repository.domain.Review;
 import kr.co.bucket.repository.domain.SResult;
 import kr.co.bucket.repository.domain.Search;
 
@@ -13,7 +14,12 @@ public interface SearchService {
 	public List<SResult> DetailSearch(AllSearch AllSearch) throws Exception;
 	public List<SResult> SelectSearch(AllSearch AllSearch) throws Exception;
 	public List<SResult> departureSearch(AllSearch allSearch) throws Exception;
+	public Map<String,Object> detailBoard(String packageCode) throws Exception;
 	// 검색결과에 대한 전체 패키지 개수
 	public int count(Search keyword) throws Exception;
+	
+	// 리뷰
+	public void reviewRegist(Review review) throws Exception;
+	public List<Review> reivewList(String packageCode) throws Exception;
 	
 }

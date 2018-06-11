@@ -11,7 +11,7 @@
 					class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="index.jsp"
+			<a class="navbar-brand" href='<c:url value="/main/index.do"/>'
 				style="color: #4e4e4e; font-size: 26px; padding: 23px;">BucketList<!-- <img src="assets/img/logo.png" alt=""> --></a>
 		</div>
 
@@ -51,11 +51,11 @@
 
 				</li>
 				<li class="dropdown yamm-fw" data-wow-delay="0.4s"><a
-					href="${pageContext.request.contextPath}/user/theme.do" class="dropdown-toggle" style="padding: 18px;">thematic
+					href="${pageContext.request.contextPath}/user/theme.do" class="dropdown-toggle" style="padding: 16px;">thematic
 						tour</a></li>
 				<li class="dropdown yamm-fw" data-wow-delay="0.4s"><a
 					href="<c:url value='/package/createPackage.do' />" class="dropdown-toggle"
-					style="padding: 18px;">My Package</a></li>
+					style="padding: 16px;">My Package</a></li>
 
 				<!--  <li class="wow fadeInDown" data-wow-delay="0.5s"><a href="contact.html">Contact</a></li> -->
 			</ul>

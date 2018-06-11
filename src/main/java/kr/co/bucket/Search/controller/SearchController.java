@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.bucket.Search.service.SearchService;
 import kr.co.bucket.repository.domain.AllSearch;
-import kr.co.bucket.repository.domain.Page;
 import kr.co.bucket.repository.domain.PageResult;
+import kr.co.bucket.repository.domain.Review;
 import kr.co.bucket.repository.domain.SResult;
 import kr.co.bucket.repository.domain.Search;
 
@@ -33,8 +33,9 @@ public class SearchController {
 	}
 	
 	@RequestMapping("/searchDetail.do")
-	public void detailSearch() {
-		
+	public void detailSearch(String packageCode, Model model) throws Exception{
+		model.addAttribute("packageCode", searchService.detailBoard(packageCode));
+		System.out.println("갑니다.");
 	}
 	
 	@RequestMapping("/searchDetail.json")
@@ -69,6 +70,24 @@ public class SearchController {
 		return list;
 	}
 	
+	@RequestMapping("/reviewRegist.json")
+	@ResponseBody
+	public void reviewRegistJson(@RequestParam(value="packageCode") String packageCode,Review review) throws Exception{
+		System.out.println("감?");
+		review.setPackageCode(packageCode);
+		System.out.println(packageCode);
+		searchService.reviewRegist(review);
+	}
+	
+	@RequestMapping("/reviewList.json")
+	@ResponseBody
+	public List<Review> reviewListJSon(String packageCode) throws Exception{
+		List<Review> list = searchService.reivewList(packageCode);
+		for(Review r:list) {
+			System.out.println(r.getContent() +"확인즁");
+		}
+		return searchService.reivewList(packageCode);
+	}
 	
 	
 }	

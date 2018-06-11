@@ -36,7 +36,7 @@ public class MemberController {
 			msg = "로그인 성공";
 //			model.addAttribute("member", m1);
 			HttpSession session = request.getSession();
-			session.setAttribute("member", member);
+			session.setAttribute("member", m1);
 			return "/main/index.do";
 		}
 		return msg;
@@ -86,4 +86,7 @@ public class MemberController {
 		loginService.insertMember(memberVO);
 		return "redirect:/main/index.do";
 	}
+	
+	@RequestMapping("/user/userUpdate.do")
+	public void updateMember() {}
 }

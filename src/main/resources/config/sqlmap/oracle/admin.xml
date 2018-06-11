@@ -4,17 +4,15 @@
 <mapper namespace="kr.co.bucket.repository.mapper.AdminMapper">
 
 <select id="searchMem" parameterType="SearchMem" resultType="SearchMemResult">
-select u.NAME,u.user_email,u.REG_DATE,u.BIRTH,pk.PACKAGE_PRICE,pk.PACKAGE_NAME
-  from (tb_user u inner join tb_payment p
-    on u.USER_EMAIL = p.USER_EMAIL) inner join tb_package pk 
-    on u.USER_EMAIL = pk.USER_EMAIL
+  select user_email,name,birth,reg_date
+    from tb_user
  <where>
- <if test="searchOption == 'name'">u.name like #{name,jdbcType=VARCHAR}||'%'</if>
- <if test="searchOption == 'email'">u.user_email like #{name,jdbcType=VARCHAR}||'%'</if>
+ <if test="searchOption == 'name'">name like #{keyword,jdbcType=VARCHAR}||'%'</if>
+ <if test="searchOption == 'email'">user_email like #{keyword,jdbcType=VARCHAR}||'%'</if>
  <if test="miniDate != '' and maxDate != '' ">
-    and u.reg_date between TO_DATE(#{miniDate,jdbcType=DATE},'YYYY-MM-DD') and TO_DATE(#{maxDate,jdbcType=DATE},'YYYY-MM-DD')</if>
+    and reg_date between TO_DATE(#{miniDate,jdbcType=DATE},'YYYY-MM-DD') and TO_DATE(#{maxDate,jdbcType=DATE},'YYYY-MM-DD')</if>
     <if test="miniBirth != '' and maxBirth != '' ">
-    and substr(u.birth,1,4) between #{miniBirth,jdbcType=VARCHAR} and #{maxBirth,jdbcType=VARCHAR}</if>
+    and substr(birth,1,4) between #{miniBirth,jdbcType=VARCHAR} and #{maxBirth,jdbcType=VARCHAR}</if>
  </where>
 </select>
 
@@ -25,10 +23,42 @@ select u.NAME,u.user_email,u.REG_DATE,u.BIRTH,pk.PACKAGE_PRICE,pk.PACKAGE_NAME
       on p.package_code = pk.PACKAGE_CODE
    <where> 
    <if test="searchOption == 'name'">u.name like #{keyword,jdbcType=VARCHAR}||'%'</if>
-   <if test="searchOption == 'email'">u.user_email like #{keyword,jdbcType=VARCHAR}||'%'</if>
+   <if test="searchOption == 'email' and keyword != ''">u.user_email = #{keyword,jdbcType=VARCHAR}</if>
    <if test="miniDate != '' and maxDate != '' ">
      and payment_date between TO_DATE(#{miniDate,jdbcType=DATE},'YYYY-MM-DD') and TO_DATE(#{maxDate,jdbcType=DATE},'YYYY-MM-DD')</if>
    </where>
+</select>
+
+<select id="searchSum" parameterType="SearchMem" resultType="SearchMemResult">
+    select u.USER_EMAIL,sum(p.PACKAGE_PRICE) as priceSum
+    from (tb_payment p inner join tb_user u 
+      on p.USER_EMAIL = u.USER_EMAIL) inner join tb_package pk
+      on p.package_code = pk.PACKAGE_CODE
+   where p.user_email = #{keyword,jdbcType=VARCHAR}
+   group by u.user_email
+</select>
+
+<select id="searchCnt" parameterType="SearchMem" resultType="SearchMemResult">
+ select u.USER_EMAIL,COUNT(p.User_email) as payCnt
+    from (tb_payment p inner join tb_user u 
+      on p.USER_EMAIL = u.USER_EMAIL) inner join tb_package pk
+      on p.package_code = pk.PACKAGE_CODE
+   where p.user_email = #{keyword,jdbcType=VARCHAR}
+   group by u.user_email
+ </select>
+ 
+<select id="searchPac" parameterType="SearchMem" resultType="SearchmemResult">
+select distinct p.package_name,theme_type,p.user_email,p.package_price,p.REG_DATE,p.ACCEPT_YN
+  from tb_package p inner join tb_schedule s on p.PACKAGE_CODE = s.PACKAGE_CODE
+       inner join tb_daily d on s.SCHEDULE_DAILY = d.SCHEDULE_DAILY 
+       inner join tb_theme t on d.DAILY_CODE = t.DAILY_CODE
+       <where>
+       <if test="packageName !=''">p.package_name like #{packageName,jdbcType=VARCHAR}||'%' </if>
+        <if test="miniPrice != '' and maxPrice != '' ">
+    and p.package_price between #{miniPrice,jdbcType=INTEGER} and #{maxPrice,jdbcType=INTEGER}</if>
+       <if test="miniDate != '' and maxDate != '' ">
+    and reg_date between TO_DATE(#{miniDate,jdbcType=DATE},'YYYY-MM-DD') and TO_DATE(#{maxDate,jdbcType=DATE},'YYYY-MM-DD')</if>
+       </where>
 </select>
  
  <select id="listMem" resultType="SearchMemResult">

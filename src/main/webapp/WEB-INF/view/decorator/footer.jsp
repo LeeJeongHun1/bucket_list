@@ -28,7 +28,7 @@
                                     <li><a href="register.jsp">로그인</a>  </li> 
                                     <li><a href="category.jsp">테마여행</a>  </li> 
                                     <li><a href="submit-property.html">패키지만들기 </a></li> 
-                                    <li><a href="contact.jsp">오시는 길</a></li> 
+                                    <li><a href="${pageContext.request.contextPath}/user/contact.do">오시는 길</a></li> 
                                 </ul>
                             </div>
                         </div>

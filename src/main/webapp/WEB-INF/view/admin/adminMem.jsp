@@ -92,7 +92,7 @@
 						</select>
 					</div>
 					<div class="col-md-2">
-						<input type="text" name="name" class="form-control">
+						<input type="text" name="keyword" class="form-control">
 					</div>
 					<div class="col-md-2">
 					출생연도:<input type="text" name="miniBirth" class="form-control" style="display: inline-block; width: 50%;" maxlength="4">
@@ -166,7 +166,6 @@ $(function() {
 	$('#maxDate').datepicker({
 	format : "yyyy-mm-dd",
 	autoclose: true,
-	maxDate:0
 	}).datepicker("setDate", null);
 	});
 		
@@ -174,7 +173,7 @@ $(function() {
 $('#submitForm').submit(function(e){
 	e.preventDefault();
 	var params = $("#submitForm").serialize();
-    console.log(params)
+    console.log(params);
 	
     
     
@@ -183,6 +182,7 @@ $('#submitForm').submit(function(e){
 		data:params,
 		type:"POST",
 		dataType:"JSON",
+		async:false,
 		success:function(result){
 			var html = "";
 			html += '<table class=\'table\' id=\'table\'>\r\n' + 
@@ -190,12 +190,15 @@ $('#submitForm').submit(function(e){
 			'              <tr>\r\n' + 
 			'                <th>#</th>\r\n' + 
 			'                <th>이름</th>\r\n' + 
+			'                <th>이메일</th>\r\n' + 
+			'                <th>생년월일</th>\r\n' + 
 			'                <th>가입일</th>\r\n' + 
-			'                <th>출생연도</th>\r\n' + 
-			'                <th>패키지 가격</th>\r\n' + 
-			'                <th>내가 만든 패키지</th>\r\n' + 
 			'              </tr>\r\n' + 
 			'            </thead>\r\n';
+			
+			if(result.length == 0){
+			html += '<tr><td  colspan="6" align="center">조건에 맞는 검색 결과가 존재하지 않습니다.</td></tr>'; 	
+			}
 			
 			for(var i = 0; i < result.length; i++){
 				var mem = result[i];
@@ -203,10 +206,9 @@ $('#submitForm').submit(function(e){
 				html +="<tr>\r\n" + 
 				'                <td>'+ index +'</td>\r\n' + 
 				'                <td>'+ mem.name +'</td>\r\n' + 
-				'                <td>'+ mem.reg_Date +'</td>\r\n' + 
+				'                <td>'+ mem.user_email +'</td>\r\n' + 
 				'                <td>'+ mem.birth +'</td>\r\n' + 
-				'                <td>'+ mem.package_Price +'</td>\r\n' + 
-				'                <td>'+ mem.package_Name +'</td>\r\n' + 
+				'                <td>'+ mem.reg_Date +'</td>\r\n' + 
 				'              </tr>';
 			}
 			$("tbody").html(html);

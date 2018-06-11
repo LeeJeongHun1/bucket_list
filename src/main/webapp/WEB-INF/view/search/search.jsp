@@ -61,7 +61,7 @@
 			<div class="row  pr0 padding-top-40 properties-page">
 				<!--  검색결과 -->
 				<div class="searchBorder">
-					<span class="searchColor">'미얀마'에 대한 <span
+					<span class="searchColor">'${key}'에 대한 <span
 						style="color: #f8931f;">${fn:length(allSearch)}건</span>의 여행상품 검색
 						결과가 있습니다.
 					</span>
@@ -298,6 +298,7 @@
 												onclick=" location.replace('${pageContext.request.contextPath}/search/searchDetail.do')"
 												data-wow-delay="0.48s"
 												style="visibility: visible; animation-delay: 0.48s; animation-name: fadeInRight;">상세보기</button>
+												<a class="search_detail search-btn navbar-btn wow fadeInRight animated" href="<c:url value="/search/searchDetail.do"/>?packageCode='${item.packageCode}'" data-wow-delay="0.48s">테스트</a>'
 										</h5>
 										<div class="dot-hr"></div>
 										<!-- <span class="pull-left"><b> Area :</b> 120m </span> -->
@@ -357,6 +358,8 @@
 				data: $("#detailAll").serialize(),
 				success: function(data){
 					var html="";
+					$(".searchColor > span").html("");
+					$(".searchColor > span").html(data.length + "건");
 					$("#makeSearch").html("");
 					alert("실행zss");
 					console.log(data);
@@ -379,6 +382,8 @@
 							html+='<h5>';
 							html+='<a href="property-1.html"> 여행도시 <span>'+a.cityName+'</span></a>';
 							//html+='<button type="button" class="search_detail navbar-btn nav-button wow fadeInRight animated" onclick="location.replace('${pageContext.request.contextPath}/search/searchDetail.do')" data-wow-delay="0.48s">상세보기</button>'
+							html+='<a class="search_detail search-btn navbar-btn wow fadeInRight animated" href="<c:url value="/search/searchDetail.do"/>?packageCode='+a.packageCode+'" data-wow-delay="0.48s">테스트</a>';
+							//html+='<a href="<c:url value='/search/searchDetail.do'/>'+?${a.packageCode}+'"></a>';
 							html+='</h5>';
 							html+='<div class="dot-hr"></div>';
 							html+='<span class="proerty-price pull-right">'+a.packagePrice+'</span>';

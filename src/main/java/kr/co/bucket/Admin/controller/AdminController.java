@@ -73,8 +73,42 @@ public class AdminController {
 		List<SearchMemResult> list =  adminService.searchPaid(search);
 		return list;
 	}
-
 	
+	@RequestMapping("/ajaxSum.json")
+	@ResponseBody
+	public List<SearchMemResult> ajaxSum(SearchMem search){
+		System.out.println(search.getKeyword());
+		System.out.println(search.getMiniDate());
+		System.out.println(search.getMaxDate());
+		List<SearchMemResult> list =  adminService.searchSum(search);
+		return list;
+	}
+	
+	@RequestMapping("/ajaxCnt.json")
+	@ResponseBody
+	public List<SearchMemResult> ajaxCnt(SearchMem search){
+		System.out.println(search.getKeyword());
+		System.out.println(search.getMiniDate());
+		System.out.println(search.getMaxDate());
+		List<SearchMemResult> list =  adminService.searchCnt(search);
+		return list;
+	}
+
+	@RequestMapping("/ajaxPac.json")
+	@ResponseBody
+	public List<SearchMemResult> ajaxPac(SearchMem search) {
+		System.out.println(search.getName());
+		System.out.println(search.getTheme());
+		System.out.println(search.getMiniDate());
+		System.out.println(search.getMaxDate());
+		List<SearchMemResult> list =  adminService.searchPac(search);
+		
+		
+		for(SearchMemResult s : list) {
+			s.getPackage_Price();
+		}
+		return list;
+	}
 
 	
 	/*

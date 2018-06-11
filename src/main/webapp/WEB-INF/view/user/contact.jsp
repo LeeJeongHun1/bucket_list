@@ -68,22 +68,20 @@
         		width:800px; height:700px;
         		margin:0 auto;
         	}
+        	#map-canvas {
+        		margin:0 auto;
+        	}
         </style>
+
     </head>
     <body>
 
         <div id="preloader">
             <div id="status">&nbsp;</div>
         </div>
-
-        <!-- register-area -->
-        <div class="register-area" style="background-color: rgb(249, 249, 249);">
-			<div id="map">
-				<img src="assets/img/demo/map.JPG" />
-			</div>
-	
-		</div>
+		<div id="map-canvas" style="width: 800px; height: 400px">
 		
+		</div>
          <script src="assets/js/modernizr-2.6.2.min.js"></script>
 
         <script src="assets/js/jquery-1.10.2.min.js"></script> 
@@ -101,6 +99,22 @@
         <script src="assets/js/price-range.js"></script>
 
         <script src="assets/js/main.js"></script>
-
+		<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+		 
+		 <script>
+      function initMap() {
+        var uluru = {lat: 37.499770, lng: 127.029247};
+        var map = new google.maps.Map(document.getElementById('map-canvas'), {
+          zoom: 17,
+          center: uluru
+        });
+        var marker = new google.maps.Marker({
+          position: uluru,
+          map: map
+        });
+      }
+    </script>
+	<script async defer
+		 src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCBL3CNGANSNIQZErYIDRVErg5t6rqOv_A&callback=initMap"></script>
     </body>
 </html>
