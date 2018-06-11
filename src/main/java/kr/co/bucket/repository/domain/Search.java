@@ -12,7 +12,7 @@ public class Search {
 	}
 
 	private int pageNo = 1;
-	private int listSize = 5;
+	private int listSize = 4;
 
 	public int getBegin() {
 		return (pageNo -1) * listSize + 1;

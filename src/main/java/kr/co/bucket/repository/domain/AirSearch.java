@@ -2,7 +2,6 @@ package kr.co.bucket.repository.domain;
 
 public class AirSearch {
 	
-	
 	private String airCode;
 	private String airName;
 	private String departureCityCode;

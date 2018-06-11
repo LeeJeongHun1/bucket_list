@@ -21,7 +21,7 @@
 	</resultMap>
 
 	<select id="selectCount" parameterType="search" resultType="int">
-		select count(*)
+		    select count(*)
 		from tb_package pack
 		inner
 		join tb_air air
@@ -33,14 +33,6 @@
 		on
 		air.ARRIVAL_CITY_code =
 		city.city_code
-		inner
-		join tb_theme thm
-		on
-		city.city_code = thm.city_code
-		inner
-		join tb_img_group img
-		on
-		thm.theme_code = img.theme_code
 		where
 		pack.PACKAGE_NAME like '%' ||
 		#{keyword} || '%'
@@ -51,38 +43,35 @@
 	<select id="AllSearch" parameterType="search" resultMap="searchMap">
 		select *
 		from (
-		select rownum rnum, a.*
-		from (
-		select DISTINCT pack.PACKAGE_CODE,
-		pack.package_price,pack.package_name
-		,city.CITY_NAME,img.IMG_PATH
-		from
-		tb_package pack
-		inner
-		join tb_air air
-		on pack.DEPARTURE_AIR_CODE =
-		air.air_code
-		inner
-		join tb_city city
-		on
-		air.ARRIVAL_CITY_code =
-		city.city_code
-		inner
-		join tb_theme thm
-		on
-		city.city_code = thm.city_code
-		inner
-		join tb_img_group img
-		on
-		thm.theme_code = img.theme_code
-		where
-		pack.PACKAGE_NAME like '%' || #{keyword} ||'%'
-		or city.CITY_NAME like
-		'%' || #{keyword} || '%'
-		) a
-		)
+			select rownum rnum, a.*
+			  from (
+    				select DISTINCT pack.PACKAGE_CODE,
+							pack.package_price,pack.package_name
+							,city.CITY_NAME,pack.PACKAGE_IMG_PATH
+					  from
+					  tb_package pack
+					  inner
+					  join tb_air air
+					  on pack.DEPARTURE_AIR_CODE =
+					  air.air_code
+					  inner
+					  join tb_city city
+					  on
+					  air.ARRIVAL_CITY_code =
+					  city.city_code
+					  inner
+					  join tb_theme thm
+					  on
+					  city.city_code = thm.city_code
+					  where
+					  pack.PACKAGE_NAME like '%' || #{keyword} ||'%'
+					  or city.CITY_NAME like
+					  '%' || #{keyword} || '%'
+					) a
+			)
 		where rnum between #{begin} and #{end}
 	</select>
+	
 	<select id="detailSearch" parameterType="allSearch" resultMap="searchMap">
 		select DISTINCT pack.PACKAGE_CODE,
 		pack.package_price,pack.package_name

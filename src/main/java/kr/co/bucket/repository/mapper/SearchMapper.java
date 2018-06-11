@@ -22,5 +22,4 @@ public interface SearchMapper {
 	public void insertReview(Review review);
 	public List<Review> selectReivewByCode(String packageCode);
 	
-
 }
