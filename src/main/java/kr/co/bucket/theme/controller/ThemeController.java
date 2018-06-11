@@ -21,7 +21,7 @@ public class ThemeController {
 		List<Map> themeList = themeService.selectThemeList();
 		model.addAttribute("themeList", themeList);
 		
-		return "/user/theme.do";
+		return "user/theme.do";
 	}
 	
 //	@RequestMapping("/user/theme.do")

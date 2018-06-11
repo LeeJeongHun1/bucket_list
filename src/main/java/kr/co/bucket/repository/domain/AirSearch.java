@@ -11,9 +11,9 @@ public class AirSearch {
 	private String startDate;
 	private String endDate;
 	private String flyingTime;
-	private String adultPrice;
-	private String childPrice;
-	private String babyPrice;
+	private int adultPrice;
+	private int childPrice;
+	private int babyPrice;
 	
 	public String getAirCode() {
 		return airCode;
@@ -63,22 +63,22 @@ public class AirSearch {
 	public void setFlyingTime(String flyingTime) {
 		this.flyingTime = flyingTime;
 	}
-	public String getAdultPrice() {
+	public int getAdultPrice() {
 		return adultPrice;
 	}
-	public void setAdultPrice(String adultPrice) {
+	public void setAdultPrice(int adultPrice) {
 		this.adultPrice = adultPrice;
 	}
-	public String getChildPrice() {
+	public int getChildPrice() {
 		return childPrice;
 	}
-	public void setChildPrice(String childPrice) {
+	public void setChildPrice(int childPrice) {
 		this.childPrice = childPrice;
 	}
-	public String getBabyPrice() {
+	public int getBabyPrice() {
 		return babyPrice;
 	}
-	public void setBabyPrice(String babyPrice) {
+	public void setBabyPrice(int babyPrice) {
 		this.babyPrice = babyPrice;
 	}
 	

@@ -5,6 +5,7 @@
 <head>
 <meta charset="utf-8">
 <title>GARO ESTATE | Properties page</title>
+<script type="https://momentjs.com/downloads/moment.js"></script>
 <style type="text/css">
 ul.air {
 	position: relative;
@@ -65,6 +66,9 @@ div.airlist {
 .bold {
 	font-weight: bold;
 	color: black;
+}
+.d{
+	margin-left: 20px;
 }
 </style>
 </head>
@@ -238,28 +242,16 @@ div.airlist {
 											</div>
 										</div>
 									</div>
-									<div class="form-group"></div>
-									<div class="col-sm-12">
+									<div class="col-sm-12" id="detailhotel">
 										<div class="row" id="pop">
 											<div class="proerty-th">
 											<!-- 여기부터 ajax 그리기 -->
-												<div class="col-sm-6 col-md-3 p0">
-													<div class="box-two proerty-item">
-														<div class="item-thumb">
-															<a href="#"><img src="<c:url value="/resources/assets/img/demo/Ibis_Paris_Tour_Eiffel.jpg"/>"></a>
-														</div>
-														<div class="item-entry overflow">
-															<h5>
-																<a href="#">Ibis Paris Tour 3성</a>
-															</h5>
-															<div class="dot-hr"></div>
-															<span class="pull-left">Ibis Paris Tour 3성</span> <span
-																class="proerty-price pull-right">110,333 $</span>
-														</div>
-													</div>
-												</div>
 											</div>
 										</div>
+									</div>
+									<div class="col-sm-12" id='rh' style="display: none;">
+										<span id="hotelPrice" class='bold'>호텔 요금 :</span><br>
+										<span id='hotelName' class='bold'>호텔 명 :</span>
 									</div>
 								</div>
 								<!-- End step 2 -->
@@ -271,14 +263,8 @@ div.airlist {
 												<span class="searchTitle" style="text-align: center;">테마별 관광지</span>
 											</div>
 											<div class="col-sm-12">
-												<select id="lunchBegins" class="selectpicker"
-													data-live-search="true" data-live-search-style="begins"
-													title="Select your contry">
-													<option value="1">전체</option>
-													<option value="2">유명 관광지</option>
-													<option value="3">전시/박물관</option>
-													<option value="4">쇼핑</option>
-													<option value="5">공연/행사</option>
+												<select id="theme" name="themeCode">
+													<option value="">전체</option>
 												</select>
 											</div>
 										</div>
@@ -287,20 +273,26 @@ div.airlist {
 												class="aaa" /> <label>높은 가격순</label> <input type="radio"
 												name="bb" class="aaa" />
 										</div>
+										<div class="col-sm-4">
+											<div class="col-sm-12">
+												<button class="btn-primary" style="margin-left: 163px"
+														onclick="return doTheme();">검색</button>
+										</div>
+										</div>
 										<div class="col-sm-12" style="text-align: center;">
-											<span class="d">06월 14일</span> <span class="d"
-												style="margin-left: 20px">06월 15일</span> <span class="d"
-												style="margin-left: 20px">06월 16일</span> <span class="d"
-												style="margin-left: 20px">06월 17일</span>
+											<span class="d">06월 14일</span> 
+											<span class="d">06월 15일</span>
+											<span class="d">06월 16일</span>
+											<span class="d">06월 17일</span>
 										</div>
 									</div>
 									<div class="col-sm-12">
 										<div class="form-group"></div>
 										<div class="row">
-											<div class="proerty-th">
+											<div class="proerty-theme">
 												<div class="col-sm-6 col-md-3 p0">
 													<div class="box-two proerty-item">
-														<div class="item-thumb">
+														<div class="theme">
 															<a href="#"><img src="<c:url value="/resources/assets/img/demo/Louvre.jpg"/>"></a>
 														</div>
 														<div class="item-entry overflow">
@@ -311,54 +303,6 @@ div.airlist {
 															<span class="pull-left"><b>선택 :</b> <input
 																type="checkbox" name="louvre" /> </span> <span
 																class="proerty-price pull-right">15 $</span>
-														</div>
-													</div>
-												</div>
-												<div class="col-sm-6 col-md-3 p0">
-													<div class="box-two proerty-item">
-														<div class="item-thumb">
-															<a href="#"><img src="assets/img/demo/Orsay.jpg"></a>
-														</div>
-														<div class="item-entry overflow">
-															<h5>
-																<a href="#">오르세 미술관 </a>
-															</h5>
-															<div class="dot-hr"></div>
-															<span class="pull-left"><b>선택 :</b> <input
-																type="checkbox" name="orsay" /> </span> <span
-																class="proerty-price pull-right"> 2.5$</span>
-														</div>
-													</div>
-												</div>
-												<div class="col-sm-6 col-md-3 p0">
-													<div class="box-two proerty-item">
-														<div class="item-thumb">
-															<a href="#"><img src="assets/img/demo/Versailles.jpg"></a>
-														</div>
-														<div class="item-entry overflow">
-															<h5>
-																<a href="#">베르사유 궁전 </a>
-															</h5>
-															<div class="dot-hr"></div>
-															<span class="pull-left"><b>선택 :</b> <input
-																type="checkbox" name="bersau" /> </span> <span
-																class="proerty-price pull-right"> 4$</span>
-														</div>
-													</div>
-												</div>
-												<div class="col-sm-6 col-md-3 p0">
-													<div class="box-two proerty-item">
-														<div class="item-thumb">
-															<a href="#"><img src="assets/img/demo/Auvers.jpg"></a>
-														</div>
-														<div class="item-entry overflow">
-															<h5>
-																<a href="#">고흐마을 </a>
-															</h5>
-															<div class="dot-hr"></div>
-															<span class="pull-left"><b>선택 :</b> <input
-																type="checkbox" name="auvers" /> </span> <span
-																class="proerty-price pull-right"> 33$</span>
 														</div>
 													</div>
 												</div>
@@ -414,61 +358,6 @@ div.airlist {
 			</div>
 		</div>
 	</div>
-	<div class="col-sm-12 detailpop">
-		<div class="col-sm-4">
-			<a href="#"><img src="assets/img/demo/Hotel_Chavanel.jpg"></a>
-		</div>
-		<div class="col-sm-8">
-			<span>호텔명</span>
-			<hr>
-			<span>주소 : 제주특별자치도 서귀포시 칠십리로91번길 12</span><br> <span>전화 :
-				064-763-0773</span><br> <span>등급 : 3성급</span><br> <span>홈페이지
-				: www.hotelcombin.com</span><br>
-		</div>
-		<div class="col-sm-12">
-			<span>아래에 원하시는 객식을 선택하세요</span>
-		</div>
-		<div class="col-sm-12">
-			<ul class="detail">
-				<li class="roomType"><span>객식타입</span></li>
-				<li class="ok"><span>06/14</span></li>
-				<li class="ok"><span>선택</span></li>
-			</ul>
-		</div>
-		<div class="col-sm-12">
-			<ul class="room">
-				<li class="roomType"><span>도미토리 6베드 여성전용(조식불포함)</span></li>
-				<li class="ok"><span>9,091원</span></li>
-				<li class="ok">가능<input type="radio" name="bb" class="aaa" /></li>
-			</ul>
-		</div>
-		<div class="col-sm-12">
-			<ul class="room">
-				<li class="roomType"><span>비즈니스(No View)(조식불포함)</span></li>
-				<li class="ok"><span>44,629원</span></li>
-				<li class="ok">가능<input type="radio" name="bb" class="aaa" /></li>
-			</ul>
-		</div>
-		<div class="col-sm-12">
-			<ul class="room">
-				<li class="roomType"><span>스탠다드 발코니(No View)(조식불포함)</span></li>
-				<li class="ok"><span>40,497원</span></li>
-				<li class="ok">가능<input type="radio" name="bb" class="aaa" /></li>
-			</ul>
-		</div>
-		<div class="col-sm-12" style="margin-top: 30px">
-			<div class="col-sm-2"></div>
-			<div class="col-sm-6">
-				<span>선택한 객식 : 스탠다드 발코니(No View)(조식불포함)</span>
-			</div>
-			<div class="col-sm-2">
-				<span>가격: 40,497원</span>
-			</div>
-			<div class="col-sm-2">
-				<a href="#" id="selectHotel" class="btn-primary">선택</a>
-			</div>
-		</div>
-	</div>
 	<div style="display: none;">
 		<ul class="airInfo">
 			<li class="tab"><span class="airName"></span></li>
@@ -476,7 +365,10 @@ div.airlist {
 			<li class="tab"><span class="airSeatCnt"></span></li>
 			<li class="tab"><span class="airAdultPrice"></span></li>
 			<li class="tab"><span class="yn"></span></li>
-			<li class="radio">
+			<li class="tab">
+				<div class="col-sm-4">
+				
+				</div>
 			</li>
 		</ul>
 	</div>
@@ -514,30 +406,44 @@ div.airlist {
 				color: "#000",
 			});
 		}
-		
+		var cityCode = '';
 		function doHotel(){
-			console.log($("#hCity option").val())
-			console.log($("#hCity").text())
+			console.log($('#departureDate').val())
+			console.log($('#arrivalDate').val())
+			var startAirCode = $("input[name='startAirCode']").val();
+			var endAirCode = $("input[name='endAirCode']").val();
+			console.log(endAirCode, startAirCode)
+			if(!startAirCode && !endAirCode){
+				swal({
+					type : 'error',
+					title : '항공권을 선택하세요~',
+				})
+				return false;
+			}
 			waitMe();
 			$.ajax({
-				type: "POST",
 				url: '<c:url value="/package/hotelSearch.json"/>',
+				type: "POST",
 				data: {
 						hotelName: $("#hotelName").val(),
-						cityCode: $("#hCity").val()
+						cityCode: arrivalCity,
+						startAirCode: startAirCode,
+						endAirCode: endAirCode
 						},
 				dataType: "json"
 			})
 			.done(function (result){
+				$("#rh").show();
 				$("body").waitMe("hide");
 				var html = '';
 				$(".proerty-th").html('');
-				for(let h of result){
+				console.dir(result)
+				for(let h of result.hotel){
 					$(".proerty-th").html("");
 					html += '<div class="col-sm-6 col-md-3 p0">';
 					html += '	<div class="box-two proerty-item">';
 					html += '		<div class="item-thumb">';
-					html += '			<a href="#" onclick="retrun doa();"><img src="..' + h.hotelImgPath + '" /></a>';
+					html += '			<a href="#" onclick="return doHotelDetail('+h.hotelCode+')"><img src="..' + h.hotelImgPath + '" /></a>';
 					html += '		</div>';
 					html += '		<div class="item-entry overflow">';
 					html += '			<h5>';
@@ -550,18 +456,59 @@ div.airlist {
 					html += '</div>';
 					$(".proerty-th").append(html);
 				}
-				
-				function doa(){
-					var $div = $(".col-sm-12.detailpop");
-					console.log("이미지 클릭함")
-					$("#pop").hide();
-					$("#pop").after($div);
-					$div.show();
-					$("#selectHotel").click(function() {
-						$div.hide();
-						$("#pop").show();
-					})
-					return false;
+				for(var t=0; t<result.theme.length; t++){
+					$("#theme").append("<option value='"+result.theme[t].themeType+"'>"+result.theme[t].themeType+"</option>")
+				}
+				var m = result.schedule.startDate.split('년')[1].split('월')[0];
+				var d = result.schedule.startDate.split('년')[1].split('월')[1].split('일')[0];
+				console.log(m);
+				console.log(d);
+			})
+			.fail(function (){
+				$("body").waitMe("hide");
+			});
+			return false;
+		}
+		
+		function doTheme(){
+			waitMe();
+			console.log(roomCode)
+			console.log($("#theme").val())
+			console.log(arrivalCity)
+			console.log($("#arrivalCity").val())
+			$.ajax({
+				url: '<c:url value="/package/themeSearch.json"/>',
+				type: "POST",
+				data: {
+						themeType: $("#theme").val(),
+						cityCode: $("#arrivalCity").val(),
+						},
+				dataType: "json"
+			})
+			.done(function (result){
+				$("body").waitMe("hide");
+				console.dir(result)
+				var html = '';
+				$(".proerty-th").html('');
+				for(let t of result){
+					$(".proerty-theme").html("");
+					html += '<div class="col-sm-6 col-md-3 p0">';
+					html += '	<div class="box-two proerty-item">';
+					html += '		<div class="item-thumbt">';
+					html += '			<a href="#" onclick="return false"><img src="..' + t.imgPath + '" /></a>';
+					html += '		</div>';
+					html += '		<div class="item-entry overflow">';
+					html += '			<h5>';
+					html += '				<a href="#">' + t.themeName + '</a>';
+					html += '			</h5>';
+					html += '			<div class="dot-hr"></div>';
+					html += '			<span class="pull-left"><b>' + t.themePrice+ '</b>';
+					html += '				<input type="checkbox" name="'+t.themeCode+'" /> '
+					html += '			</span>';
+					html += '		</div>';
+					html += '	</div>';
+					html += '</div>';
+					$(".proerty-theme").append(html);
 				}
 			})
 			.fail(function (){
@@ -569,19 +516,85 @@ div.airlist {
 			});
 			return false;
 		}
-		function doa(){
-			var $div = $(".col-sm-12.detailpop");
-			console.log("이미지 클릭함")
-			$("#pop").hide();
-			$("#pop").after($div);
-			$div.show();
-			$("#selectHotel").click(function() {
-				$div.hide();
-				$("#pop").show();
+		
+		function doHotelDetail(h){
+			waitMe();
+			$.ajax({
+				url: '<c:url value="/package/hotelDetail.json"/>',
+				type: "POST",
+				data: {hotelCode: h},
+				dataType: "json"
 			})
+			.done(function (result){
+				$("body").waitMe("hide");
+				console.log(result)
+				$("#pop").hide();
+				var html = '';
+				html+= '	<div class="col-sm-12" id="detailpop">';
+				html+= '		<div class="col-sm-4">';
+				html+= '			<a href="#"><img src="..'+ result[0].hotelImgPath + '"/></a>';
+				html+= '		</div>';
+				html+= '		<div class="col-sm-8">';
+				html+= '			<span>'+ result[0].hotelName +'</span>';
+				html+= '			<hr>';
+				html+= '		</div>';
+				html+= '		<div class="col-sm-12">';
+				html+= '			<span>아래에 원하시는 객식을 선택하세요</span>';
+				html+= '		</div>';
+				html+= '		<div class="col-sm-12">';
+				html+= '			<ul class="detail">';
+				html+= '				<li class="roomType"><span>객실타입</span></li>';
+				html+= '				<li class="ok"><span>가격</span></li>';
+				html+= '				<li class="ok"><span>선택</span></li>';
+				html+= '			</ul>';
+				html+= '		</div>';
+				if(result.length == 0){
+					html+= '<div class="col-sm-12">';
+					html+= '<span>예약가능한 객실이 존재하지 않습니다.</span>';
+					html+= '</div>';
+				}
+				for(let d of result){
+					html+= '<div class="col-sm-12">';
+					html+= '	<ul class="room">';
+					html+= '		<li class="roomType"><span>'+d.roomName+'</span></li>';
+					html+= '		<li class="ok"><span>'+d.roomPrice+'원</span></li>';
+					html+= '		<li class="ok"><input type="radio" name="roomCode" value="'+d.roomCode+ '" /></li>';
+					html+= '	</ul>';
+					html+= '</div>';
+				}
+				html+= '		<div class="col-sm-12" style="margin-top: 30px">';
+				html+= '			<div class="col-sm-2"></div>';
+				html+= '			<div class="col-sm-6">';
+				html+= '			</div>';
+				html+= '			<div class="col-sm-2">';
+				html+= '			</div>';
+				html+= '			<div class="col-sm-2">';
+				html+= '				<a href="#" onclick="return detailHide()" class="btn-primary">닫기</a>';
+				html+= '			</div>';
+				html+= '		</div>';
+				html+= '	</div>';
+				$("#detailhotel").append(html);
+			})
+			.fail(function (){
+				$("body").waitMe("hide");
+			});
 			return false;
 		}
-		
+		var roomCode = '';
+		function detailHide() {
+			console.log($("input[name='roomCode']"))
+			if($("input[name='roomCode']:checked").val()){
+				roomCode = $("input[name='roomCode']:checked").val();
+			}
+			console.log(roomCode);
+			html = '';
+			$("#detailhotel").append(html);
+			$("#detailpop").remove();
+			$("#detailhotel").append($("#pop"));
+			$("#pop").show();
+			return false;
+		}
+		var arrivalCity = '';
 		function doAir() {
 			if ($("#departureCity").val() == '') {
 				swal({
@@ -604,7 +617,7 @@ div.airlist {
 				})
 				return false;
 			}
-			console.log($("#arrivalDate").val())
+			waitMe();
 			$.ajax({
 				url: '<c:url value="/package/airSearch.json"/>',
 				data: $("#mm").serialize(),
@@ -612,6 +625,8 @@ div.airlist {
 				dataType: "json"
 			})
 			.done(function (result){
+				arrivalCity = $("#arrivalCity").val();
+				$("body").waitMe("hide");
 				$(".start-airlist").html("")
 				$(".end-airlist").html("")
 				if(result.startAir.length == 0){
@@ -626,61 +641,50 @@ div.airlist {
 					$airInfo.find(".airFlyingTime").text(air.flyingTime);
 					$airInfo.find(".airSeatCnt").text(air.seatCnt);
 					$airInfo.find(".airAdultPrice").text(air.adultPrice + '원');
-					$airInfo.find(".airCode").val(air.airCode);
+					var $radio = $airInfo.find(".col-sm-4");
 					if(air.seatCnt == '0'){
 						$airInfo.find(".yn").attr("data-yn", "n").text("예약불가");
 						console.log($(".start-airlist span[data-yn='n']").parent());
 						$(".start-airlist span[data-yn='n']").parent().addClass("disabled")
+						$radio.html("<input type='radio' name='startAirCode' value='"+ air.airCode +"' disabled />")
 					}else{
 						$airInfo.find(".yn").attr("data-yn", "y").text("예약가능");
+						$radio.html("<input type='radio' name='startAirCode' value='"+ air.airCode +"' />")
 					}
-					$airInfo.find(".radio").append("<input type='radio' name='startA' />")
 					$airInfo.removeClass("airInfo")
 					$(".start-airlist").append($airInfo.clone());
-					
-					$(".start-airlist span[data-yn='y']").parent().next().find(".iCheck-helper").click(function (event){
-						event.stopPropagation();
-						event.preventDefault();
-						$(this).parent().toggleClass("checked");
-						alert($(this).prev().prop("checked"));
-					})
 				}
 				for(let air of result.endAir){
 					$airInfo.find(".airName").text(air.airName);
 					$airInfo.find(".airFlyingTime").text(air.flyingTime);
 					$airInfo.find(".airSeatCnt").text(air.seatCnt);
-					$airInfo.find(".airAdultPrice").text(air.adultPrice + '원');
-					$airInfo.find(".airCode").val(air.airCode);
-					if(air.seatCnt == '0') {
-						$airInfo.find(".yn").text("예약불가");
-						$airInfo.find(".airCode").attr('disabled');
-					} else{
-						$airInfo.find(".yn").text("예약가능");
+					var $radio = $airInfo.find(".col-sm-4");
+					if(air.seatCnt == '0'){
+						$airInfo.find(".yn").attr("data-yn", "n").text("예약불가");
+						$(".start-airlist span[data-yn='n']").parent().addClass("disabled")
+						$radio.html("<input type='radio' name='endAirCode' value='"+ air.airCode +"' disabled />")
+					}else{
+						$airInfo.find(".yn").attr("data-yn", "y").text("예약가능");
+						$radio.html("<input type='radio' name='endAirCode' value='"+ air.airCode +"' />")
 					}
 					$airInfo.removeClass("airInfo")
 					$(".end-airlist").append($airInfo.clone());
-					console.log($(".end-airlist").find(".airCode").parent())
-					$(".end-airlist").find(".airCode").parent().click(function (){
-						console.log($(this))
-						$(this).toggleClass("checked");
-					})
 				}
 			})
+			.fail(function (){
+				$("body").waitMe("hide");
+			});
 			return false;
 		}
 		$("input[name='finish']").click(function() {
 			alert("클릭딤");
 		})
 		var $div = $(".col-sm-12.detailpop");
-		$(".item-thumb").click(function() {
-			$("#pop").hide();
-			$("#pop").after($div);
-			$div.show();
-		})
-		$("#selectHotel").click(function() {
-			$div.hide();
-			$("#pop").show();
-		})
+// 		$(".item-thumb").click(function() {
+// 			$("#pop").hide();
+// 			$("#pop").after($div);
+// 			$div.show();
+// 		})
 		$(".d").click(function() {
 			$(".d").removeClass("bold");
 			$(this).addClass("bold");

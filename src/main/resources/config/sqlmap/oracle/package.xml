@@ -30,6 +30,25 @@
 		<result column="room_name" property="roomName" />
 	</resultMap>
 	
+	<!-- 일일 일정검색 -->
+	<resultMap id="scheduleMap" type="schedule">
+		<result column="start_date" property="startDate"/>
+		<result column="end_date" property="endDate"/>
+	</resultMap>
+	
+	<!-- 테마검색 -->
+	<resultMap id="themeMap" type="themeSearch">
+		<result column="THEME_CODE" property="themeCode"/>
+		<result column="DAILY_CODE" property="dailyCode"/>
+		<result column="CITY_CODE" property="cityCode"/>
+		<result column="THEME_NAME" property="themeName"/>
+		<result column="THEME_TYPE" property="themeType"/>
+		<result column="THEME_INFO" property="themeInfo"/>
+		<result column="THEME_PRICE" property="themePrice"/>
+		<result column="img_path" property="imgPath"/>
+	</resultMap>
+	
+	
 	<select id="selectStartAir" parameterType="airSearch" resultMap="airMap">
 		select *
 		  from tb_air
@@ -47,6 +66,7 @@
 	</select>
 	
 	<select id="selectHotelBySearch" parameterType="hotelSearch" resultMap="hotelMap">
+	
 		select h.hotel_code, h.hotel_name, h.HOTEL_IMG_PATH, c.CITY_NAME
 		  from tb_hotel h
 		  join tb_city c
@@ -68,6 +88,44 @@
 <!-- 			</if> -->
 <!-- 		</trim> -->
 	</select>
+
+	<select id="selectSchedule" parameterType="hotelSearch" resultMap="scheduleMap">
+		select end_date as start_date,  (
+										select start_date
+										 from tb_air
+										 where air_code = #{endAirCode}
+										) as end_date
+		  from tb_air
+		 where air_code = #{startAirCode}
+	</select>
+	
+	
+	<select id="selectHotelByCode" parameterType="hotelSearch" resultMap="hotelMap">
+		select *
+		  from TB_ROOM_TYPE r
+		  join TB_HOTEL h
+		    on r.hotel_code = h.HOTEL_CODE
+		 where r.hotel_code = #{hotelCode}
+	</select>
+	
+	<select id="selectThemeByCity" parameterType="hotelSearch" resultMap="themeMap">
+		select DISTINCT theme_type
+		  from tb_theme
+		 where city_code = #{cityCode}
+	</select>
+	
+	<select id="selectThemeByType" parameterType="themeSearch" resultMap="themeMap">
+		select t.*, i.IMG_PATH
+		 from tb_theme t
+		 join TB_IMG_GROUP i
+		   on t.THEME_CODE = i.THEME_CODE
+		where CITY_CODE = #{cityCode}
+		<if test="themeType != ''">
+			and theme_type = #{themeType}
+		</if>
+	</select>
+	
+	
 </mapper>
 
 

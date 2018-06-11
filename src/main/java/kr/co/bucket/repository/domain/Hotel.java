@@ -1,30 +1,12 @@
 package kr.co.bucket.repository.domain;
 
-public class HotelSearch {
+public class Hotel {
 	private String hotelCode;
 	private String hotelName;
 	private String hotelImgPath;
-	private String cityCode;
-	private String cityName;
-	private String roomCode;
 	private String roomPrice;
 	private String roomName;
-	private String startAirCode;
-	private String endAirCode;
 	
-	
-	public String getStartAirCode() {
-		return startAirCode;
-	}
-	public void setStartAirCode(String startAirCode) {
-		this.startAirCode = startAirCode;
-	}
-	public String getEndAirCode() {
-		return endAirCode;
-	}
-	public void setEndAirCode(String endAirCode) {
-		this.endAirCode = endAirCode;
-	}
 	public String getHotelCode() {
 		return hotelCode;
 	}
@@ -54,24 +36,6 @@ public class HotelSearch {
 	}
 	public void setRoomName(String roomName) {
 		this.roomName = roomName;
-	}
-	public String getCityCode() {
-		return cityCode;
-	}
-	public void setCityCode(String cityCode) {
-		this.cityCode = cityCode;
-	}
-	public String getRoomCode() {
-		return roomCode;
-	}
-	public void setRoomCode(String roomCode) {
-		this.roomCode = roomCode;
-	}
-	public String getCityName() {
-		return cityName;
-	}
-	public void setCityName(String cityName) {
-		this.cityName = cityName;
 	}
 	
 }

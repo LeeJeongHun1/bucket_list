@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import kr.co.bucket.repository.domain.AirSearch;
 import kr.co.bucket.repository.domain.HotelSearch;
+import kr.co.bucket.repository.domain.ThemeSearch;
 import kr.co.bucket.repository.mapper.PackageMapper;
 
 @Service("packageService")
@@ -26,8 +27,22 @@ public class PackageServiceImpl implements PackageService{
 	}
 
 	@Override
-	public List<HotelSearch> retrieveHotel(HotelSearch hotel) {
-		return mapper.selectHotelBySearch(hotel);
+	public Map<String, Object> retrieveHotel(HotelSearch hotel) {
+		Map<String, Object> h = new HashMap<>();
+		h.put("hotel", mapper.selectHotelBySearch(hotel));
+		h.put("schedule", mapper.selectSchedule(hotel));
+		h.put("theme", mapper.selectThemeByCity(hotel));
+		return h;
+	}
+
+	@Override
+	public List<HotelSearch> detailHotel(HotelSearch hotel) {
+		return mapper.selectHotelByCode(hotel);
+	}
+
+	@Override
+	public List<ThemeSearch> retrieveTheme(ThemeSearch theme) {
+		return mapper.selectThemeByType(theme);
 	}
 
 }
