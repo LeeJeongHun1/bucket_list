@@ -37,10 +37,9 @@ ul {padding:0;}
         <div class="slider-area">
             <div class="slider">
                 <div id="bg-slider" class="owl-carousel owl-theme">
-
-                    <div class="item"><img src="assets/img/slide1/slider-image-1.jpg" alt="GTA V"></div>
-                    <div class="item"><img src="assets/img/slide1/slider-image-2.jpg" alt="The Last of us"></div>
-                    <div class="item"><img src="assets/img/slide1/slider-image-1.jpg" alt="GTA V"></div>
+                    <div class="item"><img src="../resources/img/slider-image-1.jpg" alt="GTA V"></div>
+                    <div class="item"><img src="../resources/img/slider-image-2.jpg" alt="The Last of us"></div>
+                    <div class="item"><img src="../resources/img/slider-image-1.jpg" alt="GTA V"></div>
 
                 </div>
             </div>
@@ -53,7 +52,7 @@ ul {padding:0;}
                 </div>
             </div>
         </div>
-		<div class="products">
+<!-- 		<div class="products">
 		<ul>
 		<li>
 		<ul>
@@ -80,7 +79,7 @@ ul {padding:0;}
 		</ul>
 		</li>
 		</ul>
-		</div>
+		</div> -->
         <!-- property area -->
         <div class="content-area home-area-1 recent-property" style="background-color: #FCFCFC; padding-bottom: 55px;">
             <div class="container">

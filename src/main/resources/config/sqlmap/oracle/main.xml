@@ -53,5 +53,18 @@
 		5
 	</select>
 
+<!-- 	<resultMap id="imgMap" type="img" >
+	<result column="img_path" property="imgPath"/>
+	</resultMap>
+
+	<select id="imgController" resultMap="imgMap">
+		select a.*
+		from (
+		select *
+		from tb_theme t
+		join tb_img_group i
+		on t.THEME_CODE = i.THEME_CODE)a
+		where rownum <![CDATA[ <]]>5
+	</select> -->
 
 </mapper>
