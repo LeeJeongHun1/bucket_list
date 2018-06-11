@@ -1,5 +1,6 @@
 package kr.co.bucket.Admin.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,7 +63,10 @@ public class AdminController {
 		System.out.println(search.getMaxDate());
 		List<SearchMemResult> list =  adminService.searchMem(search);
 		
+		SimpleDateFormat sdf = new SimpleDateFormat("YYYY-mm-dd");
+		
 		for(SearchMemResult s : list) {
+			System.out.println(s.getReg_Date().toString());
 			StringBuffer sb = new StringBuffer(s.getBirth());
 			sb.insert(4, "년");
 			sb.insert(7, "월");

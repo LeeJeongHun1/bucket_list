@@ -15,7 +15,14 @@ public class SearchMemResult {
 	private String theme_Type;
 	private String accept_Yn;
 	private char apvl;
+	private String changedDate;
 	
+	public String getChangedDate() {
+		return changedDate;
+	}
+	public void setChangedDate(String changedDate) {
+		this.changedDate = changedDate;
+	}
 	public String getTheme_Type() {
 		return theme_Type;
 	}

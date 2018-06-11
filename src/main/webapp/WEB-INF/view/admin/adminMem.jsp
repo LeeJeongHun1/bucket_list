@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -159,14 +160,14 @@ $(function() {
 	$('#miniDate').datepicker({
 	format : "yyyy-mm-dd",
 	autoclose: true
-	}).datepicker("setDate", null);
+	}).datepicker("setDate", new Date());
 	});
 	
 $(function() {
 	$('#maxDate').datepicker({
 	format : "yyyy-mm-dd",
 	autoclose: true,
-	}).datepicker("setDate", null);
+	}).datepicker("setDate", new Date());
 	});
 		
 	
