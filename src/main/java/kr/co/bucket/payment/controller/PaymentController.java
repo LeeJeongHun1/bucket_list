@@ -38,9 +38,9 @@ public class PaymentController {
 		return mav;
 	}
 	
-	@RequestMapping("myPackage.do")
-	public  ModelAndView myPackageO(HttpServeltRequest requestm HttpSession session) {
-		
-	}
+//	@RequestMapping("myPackage.do")
+//	public  ModelAndView myPackageO(HttpServeltRequest requestm HttpSession session) {
+//		
+//	}
 		
 }
