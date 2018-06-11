@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -117,64 +118,19 @@
 					    </tr>
 					  </thead>
 					  <tbody>
-					  <c:forEach var="list" items="${paymentList}">
+					  <c:forEach var="list" items="${paymentList}" varStatus="status">
 					  	  <tr>
-					  	      <td></td>
+					  	      <td>${status.count}</td>
 					  		  <td>${list.packageName}</td>
 					  		  <td><fmt:formatDate value="${list.paymentDate}" pattern="yyyy-MM-dd" /></td>
 					  		  <td>${list.packagePrice}원</td>
 					  		  <td><button>삭제</button></td><br>
 				  		  </tr>
 					  </c:forEach>
-					    <tr>
-					      <th scope="row">1</th>
-					      <td>유렵 축구여행</td>
-					      <td>2018/05/18</td>
-					      <td>2,000,000원</td>
-					      <td>
-							<button>변경</button>
-						  </td>
-					    </tr>
-					    <tr>
-					      <th scope="row">2</th>
-					      <td>[NO.1 베스트셀러] 서유럽 3/4/5개국 핵심일주 10일</td>
-					      <td>2018/05/18</td>
-					      <td>2,408,800원</td>
-					      <td>
-							<button>변경</button>
-						  </td>
-					    </tr>
-					    <tr>
-					      <th scope="row">3</th>
-					      <td>[스테디셀러] 서유럽 3/4/5개국 핵심일주 9일</td>
-					      <td>2018/05/18</td>
-					      <td>2,706,600원</td>
-					      <td>
-							<button>변경</button>
-						  </td>
-					    </tr>
-					    <tr>
-					      <th scope="row">4</th>
-					      <td>[ENP311] [이세이브]러시아 북유럽 12일[피요르드+빙하+열차]</td>
-					      <td>2018/05/18</td>
-					      <td>3,200,000원</td>
-					      <td>
-							<button>변경</button>
-						  </td>
-					    </tr>
 					  </tbody>
 					</table>
                 </div>
 			</div>
 	</div>
-        
-		<script>
-		ps()
-		function ps() {
-			var id = ${list.packageName};
-			alert(id);
-			console.log(${list.packageName});
-		};
-		</script>
     </body>
 </html>

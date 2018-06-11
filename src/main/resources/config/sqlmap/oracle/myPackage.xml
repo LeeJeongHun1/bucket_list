@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="kr.co.bucket.repository.mapper.UserModifyMapper">
-<resultMap type="member" id="memberMap">
+<mapper namespace="kr.co.bucket.repository.mapper.MyPackageMapper">
+<resultMap type="myPackage" id="myPackageMap">
 		<result column="package_name" property="packageName" />
 		<result column="package_price" property="packagePrice" />
+		<result column="user_email" property="userEmail" />
 		<result column="reg_date" property="regDate" />
 		<result column="accept_YN" property="acceptYN" />
 	</resultMap>
-	<update id="updateUser" parameterType="member">
-		update tb_user
-		set name = #{name},
-			password = #{password}
+	<select id="selectMyPackageList" parameterType="string" resultMap="myPackageMap">
+		select package_name, reg_date, package_price, accept_YN
+		from tb_package
 		where user_email = #{userEmail}
-	</update>
-	
+	</select>
 </mapper>
 
 

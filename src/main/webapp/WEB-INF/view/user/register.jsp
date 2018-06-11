@@ -85,7 +85,7 @@
                             <form  method="post">
                                 <div class="form-group">
                                     <label for="email">Email</label>
-                                    <input type="text" class="form-control" id="userEmail" name="userEmail" placeholder="이메일을 입력해주세요." >
+                                    <input type="text" class="form-control" id="userEmail" name="userEmail" placeholder="이메일을 입력해주세요." onfocus="">
                                 </div>
                                 <div class="form-group">
                                     <label for="password">Password</label>
