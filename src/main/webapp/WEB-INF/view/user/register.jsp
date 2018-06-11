@@ -82,7 +82,7 @@
                     <div class="box-for overflow">                         
                         <div class="col-md-12 col-xs-12 login-blocks">
                             <h2>로그인 </h2> 
-                            <form action="${pageContext.request.contextPath}/user/loginPost.json" method="post">
+                            <form  method="post">
                                 <div class="form-group">
                                     <label for="email">Email</label>
                                     <input type="text" class="form-control" id="userEmail" name="userEmail" placeholder="이메일을 입력해주세요." >
@@ -92,7 +92,7 @@
                                     <input type="password" class="form-control" id="userPassword" name="password" placeholder="비밀번호를 입력해주세요.">
                                 </div>
                                 <div class="text-center">
-                                    <button type="submit" id="loginBtn" class="btn btn-default" > Log In</button>
+                                    <button type="button" id="loginBtn" class="btn btn-default" > Log In</button>
                                 </div>
                             </form>
                             <br>
@@ -146,7 +146,7 @@
 					   location.href = `${pageContext.request.contextPath}` + result;
 					   return;
 				   }
-// 					alert(result);
+					alert(result);
 			   }
 				   
 				 });
