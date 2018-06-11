@@ -12,9 +12,16 @@ import kr.co.bucket.repository.mapper.PaymentMapper;
 public class PaymentServiceImpl implements PaymentService{
 
 	@Autowired
-	PaymentMapper paymentMapper;
+	private PaymentMapper paymentMapper;
 	
 	public List<Payment> selectPackage(String id) throws Exception {
+		List<Payment> list = paymentMapper.selectPackage(id);
+		System.out.println("임플 아이디 확인 : " + id);
+		for(Payment p:list) {
+			System.out.println(p.getPackageName()+"이름");
+			System.out.println(p.getPackagePrice()+"가격");
+			
+		}
 		return paymentMapper.selectPackage(id);
 	}
 

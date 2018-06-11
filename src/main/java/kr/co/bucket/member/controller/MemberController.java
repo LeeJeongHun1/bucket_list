@@ -32,9 +32,7 @@ public class MemberController {
 		} else if (!m1.getPassword().equals(member.getPassword())) {
 			msg = "비밀번호가 잘못되었습니다.";
 		} else {
-			System.out.println(member);
 			msg = "로그인 성공";
-//			model.addAttribute("member", m1);
 			HttpSession session = request.getSession();
 			session.setAttribute("member", m1);
 			return "/main/index.do";
@@ -73,16 +71,6 @@ public class MemberController {
 	
 	@RequestMapping("/user/insertUser.do")
 	public String insertUser(Member memberVO) throws Exception{
-//		System.out.println(request.getParameter("name"));
-//		System.out.println(request.getParameter("birth"));
-//		System.out.println(request.getParameter("email"));
-//		System.out.println(request.getParameter("password"));
-//		System.out.println(request.getParameter("auth"));
-		System.out.println(memberVO.getName());
-		System.out.println(memberVO.getBirth());
-		System.out.println(memberVO.getUserEmail());
-		System.out.println(memberVO.getPassword());
-		System.out.println(memberVO.getUserAuth());
 		loginService.insertMember(memberVO);
 		return "redirect:/main/index.do";
 	}

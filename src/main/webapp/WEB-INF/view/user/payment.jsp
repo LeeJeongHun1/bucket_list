@@ -1,4 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -32,6 +34,23 @@
         <link rel="stylesheet" href="assets/css/style.css">
         <link rel="stylesheet" href="assets/css/responsive.css">
         <link rel="stylesheet" href="assets/css/responsive.css">
+         <script src="assets/js/modernizr-2.6.2.min.js"></script>
+
+        <script src="assets/js/jquery-1.10.2.min.js"></script> 
+        <script src="bootstrap/js/bootstrap.min.js"></script>
+        <script src="assets/js/bootstrap-select.min.js"></script>
+        <script src="assets/js/bootstrap-hover-dropdown.js"></script>
+
+        <script src="assets/js/easypiechart.min.js"></script>
+        <script src="assets/js/jquery.easypiechart.min.js"></script>
+
+        <script src="assets/js/owl.carousel.min.js"></script>
+        <script src="assets/js/wow.js"></script>
+
+        <script src="assets/js/icheck.min.js"></script>
+        <script src="assets/js/price-range.js"></script>
+
+        <script src="assets/js/main.js"></script>
         <style>
         	.mylist {
         		text-decoration:none;
@@ -98,6 +117,15 @@
 					    </tr>
 					  </thead>
 					  <tbody>
+					  <c:forEach var="list" items="${paymentList}">
+					  	  <tr>
+					  	      <td></td>
+					  		  <td>${list.packageName}</td>
+					  		  <td><fmt:formatDate value="${list.paymentDate}" pattern="yyyy-MM-dd" /></td>
+					  		  <td>${list.packagePrice}원</td>
+					  		  <td><button>삭제</button></td><br>
+				  		  </tr>
+					  </c:forEach>
 					    <tr>
 					      <th scope="row">1</th>
 					      <td>유렵 축구여행</td>
@@ -139,23 +167,14 @@
                 </div>
 			</div>
 	</div>
-         <script src="assets/js/modernizr-2.6.2.min.js"></script>
-
-        <script src="assets/js/jquery-1.10.2.min.js"></script> 
-        <script src="bootstrap/js/bootstrap.min.js"></script>
-        <script src="assets/js/bootstrap-select.min.js"></script>
-        <script src="assets/js/bootstrap-hover-dropdown.js"></script>
-
-        <script src="assets/js/easypiechart.min.js"></script>
-        <script src="assets/js/jquery.easypiechart.min.js"></script>
-
-        <script src="assets/js/owl.carousel.min.js"></script>
-        <script src="assets/js/wow.js"></script>
-
-        <script src="assets/js/icheck.min.js"></script>
-        <script src="assets/js/price-range.js"></script>
-
-        <script src="assets/js/main.js"></script>
-
+        
+		<script>
+		ps()
+		function ps() {
+			var id = ${list.packageName};
+			alert(id);
+			console.log(${list.packageName});
+		};
+		</script>
     </body>
 </html>

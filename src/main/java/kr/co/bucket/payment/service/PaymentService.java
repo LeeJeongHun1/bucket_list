@@ -6,7 +6,6 @@ import kr.co.bucket.repository.domain.Payment;
 
 public interface PaymentService {
 
-
 	public List<Payment> selectPackage(String id) throws Exception;
 
 }

@@ -92,7 +92,7 @@
                                     <input type="password" class="form-control" id="userPassword" name="password" placeholder="비밀번호를 입력해주세요.">
                                 </div>
                                 <div class="text-center">
-                                    <button type="submit" id="loginBtn" class="btn btn-default"> Log In</button>
+                                    <button type="submit" id="loginBtn" class="btn btn-default" > Log In</button>
                                 </div>
                             </form>
                             <br>
@@ -131,26 +131,26 @@
 			  if(id=='') {
 				   alert("아이디를 입력하세요");
 				   return false;
-				 }  	
-				 	if(pw=='') {
-				   alert("비밀번호를 입력하세요");
-				   return false;
-				 }
+			  }  	
+			  if(pw=='') {
+			   	  alert("비밀번호를 입력하세요");
+			      return false;
+			  }
 			  
-				 $.ajax({
-				   url: `${pageContext.request.contextPath}/user/loginPost.json`,
-				   data: {userEmail : id, password : pw},
-				   type: "POST",
-				   success: function(result){
+			 $.ajax({
+			   url: `${pageContext.request.contextPath}/user/loginPost.json`,
+			   data: {userEmail : id, password : pw},
+			   type: "POST",
+			   success: function(result){
 				   if (result.startsWith("/")){
-				   location.href = `${pageContext.request.contextPath}` + result;
-				   return;
+					   location.href = `${pageContext.request.contextPath}` + result;
+					   return;
 				   }
-				   alert(result);
-				   }
+// 					alert(result);
+			   }
 				   
-				 	});
-				});
+				 });
+		});
 		
 		
 		

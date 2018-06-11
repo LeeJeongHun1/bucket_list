@@ -3,6 +3,7 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.bucket.repository.mapper.PaymentMapper">
 	<resultMap type="payment" id="paymentMap">
+		<result column="user_email" property="userEmail" />
 		<result column="package_name" property="packageName"/>
 		<result column="payment_date" property="paymentDate"/>
 		<result column="package_price" property="packagePrice"/> 
@@ -12,7 +13,7 @@
 		from tb_package a
 		inner join tb_payment b
 		on a.package_code = b.package_code
-		where user_email = #{userEmail}
+		where b.user_email = #{userEmail}
 	</select>
 	
 </mapper>
