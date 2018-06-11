@@ -13,20 +13,27 @@ public class SearchMem {
 	private String paymentDate;
 	private String theme;
 	private String packageName;
+	private String apvl;
 	private int miniPrice;
 	private int maxPrice;
 	
 	
+	public String getApvl() {
+		return apvl;
+	}
+	public void setApvl(String apvl) {
+		this.apvl = apvl;
+	}
 	public int getMiniPrice() {
 		return miniPrice;
 	}
 	public void setMiniPrice(int miniPrice) {
 		this.miniPrice = miniPrice;
 	}
-	public int getMaxprice() {
+	public int getMaxPrice() {
 		return maxPrice;
 	}
-	public void setMaxprice(int maxPrice) {
+	public void setMaxPrice(int maxPrice) {
 		this.maxPrice = maxPrice;
 	}
 	public String getPackageName() {

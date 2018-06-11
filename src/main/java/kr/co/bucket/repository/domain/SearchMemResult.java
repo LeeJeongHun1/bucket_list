@@ -14,18 +14,32 @@ public class SearchMemResult {
 	private String payCnt;
 	private String theme_Type;
 	private String accept_Yn;
+	private char apvl;
 	
+	public String getTheme_Type() {
+		return theme_Type;
+	}
+	public void setTheme_Type(String theme_Type) {
+		this.theme_Type = theme_Type;
+	}
+	public String getAccept_Yn() {
+		return accept_Yn;
+	}
+	public void setAccept_Yn(String accept_Yn) {
+		this.accept_Yn = accept_Yn;
+	}
+	
+	public char getApvl() {
+		return apvl;
+	}
+	public void setApvl(char apvl) {
+		this.apvl = apvl;
+	}
 	public String getAccept_yn() {
 		return accept_Yn;
 	}
 	public void setAccept_yn(String accept_yn) {
 		this.accept_Yn = accept_yn;
-	}
-	public String getTheme_type() {
-		return theme_Type;
-	}
-	public void setTheme_type(String theme_type) {
-		this.theme_Type = theme_type;
 	}
 	public String getPayCnt() {
 		return payCnt;
