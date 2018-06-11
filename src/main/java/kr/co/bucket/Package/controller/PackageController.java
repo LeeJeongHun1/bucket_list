@@ -34,23 +34,18 @@ public class PackageController {
 	@RequestMapping("/hotelSearch.json")
 	@ResponseBody
 	public Map<String, Object> hotelSearch(HotelSearch hotel){
-		System.out.println(hotel.getCityCode());
 		return packageService.retrieveHotel(hotel);
 	}
 	
 	@RequestMapping("/hotelDetail.json")
 	@ResponseBody
 	public List<HotelSearch> hotelDetail(HotelSearch hotel){
-		System.out.println(hotel.getHotelCode());
 		return packageService.detailHotel(hotel);
 	}
 	
 	@RequestMapping("/themeSearch.json")
 	@ResponseBody
 	public List<ThemeSearch> themeSearch(ThemeSearch theme){
-		System.out.println("탐?");
-		System.out.println(theme.getCityCode());
-		System.out.println(theme.getThemeType());
 		return packageService.retrieveTheme(theme);
 	}
 }

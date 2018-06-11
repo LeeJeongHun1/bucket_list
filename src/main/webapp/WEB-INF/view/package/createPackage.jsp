@@ -279,11 +279,7 @@ div.airlist {
 														onclick="return doTheme();">검색</button>
 										</div>
 										</div>
-										<div class="col-sm-12" style="text-align: center;">
-											<span class="d">06월 14일</span> 
-											<span class="d">06월 15일</span>
-											<span class="d">06월 16일</span>
-											<span class="d">06월 17일</span>
+										<div class="col-sm-12" id="daily" style="text-align: center;">
 										</div>
 									</div>
 									<div class="col-sm-12">
@@ -459,10 +455,23 @@ div.airlist {
 				for(var t=0; t<result.theme.length; t++){
 					$("#theme").append("<option value='"+result.theme[t].themeType+"'>"+result.theme[t].themeType+"</option>")
 				}
-				var m = result.schedule.startDate.split('년')[1].split('월')[0];
-				var d = result.schedule.startDate.split('년')[1].split('월')[1].split('일')[0];
-				console.log(m);
-				console.log(d);
+				var sm = result.schedule.startDate.split('년')[1].split('월')[0];
+				var sd = result.schedule.startDate.split('년')[1].split('월')[1].split('일')[0];
+				var em = result.schedule.endDate.split('년')[1].split('월')[0];
+				var ed = result.schedule.endDate.split('년')[1].split('월')[1].split('일')[0];
+				var daily = [];
+				if(sm == em){
+					var day = ed - sd;
+					console.log(Number(sd)+Number(day))
+					var eDay = Number(sd)+Number(day);
+					for(var i=sd; i<=eDay; i++ ){
+						console.log(sm,'월',i,'일');
+						var aa = sm + '월' + i + '일';
+// 						$("#daily").append("<span><input type='radio' name='daily' value='"+aa+"'/>"+aa+"</span>");
+// 						daily.push(aa);
+					}
+				}
+				console.dir(daily);
 			})
 			.fail(function (){
 				$("body").waitMe("hide");
@@ -471,6 +480,15 @@ div.airlist {
 		}
 		
 		function doTheme(){
+			var startAirCode = $("input[name='startAirCode']").val();
+			var endAirCode = $("input[name='endAirCode']").val();
+			if(!startAirCode && !endAirCode){
+				swal({
+					type : 'error',
+					title : '항공권을 선택하세요~',
+				})
+				return false;
+			}
 			waitMe();
 			console.log(roomCode)
 			console.log($("#theme").val())
@@ -558,7 +576,11 @@ div.airlist {
 					html+= '	<ul class="room">';
 					html+= '		<li class="roomType"><span>'+d.roomName+'</span></li>';
 					html+= '		<li class="ok"><span>'+d.roomPrice+'원</span></li>';
-					html+= '		<li class="ok"><input type="radio" name="roomCode" value="'+d.roomCode+ '" /></li>';
+					if(roomCode == d.roomCode){
+						html+= '		<li class="ok"><input type="radio" name="roomCode" value="'+d.roomCode+ '" disabled /></li>';
+					}else{
+						html+= '		<li class="ok"><input type="radio" name="roomCode" value="'+d.roomCode+ '" /></li>';
+					}
 					html+= '	</ul>';
 					html+= '</div>';
 				}
@@ -585,6 +607,9 @@ div.airlist {
 			console.log($("input[name='roomCode']"))
 			if($("input[name='roomCode']:checked").val()){
 				roomCode = $("input[name='roomCode']:checked").val();
+				console.log($("input[name='roomCode']:checked").parent().parent().find("li:eq(0)").text());
+				$("#rh").find("#hotelPrice").html('선택하신 호텔 요금 :' + $("input[name='roomCode']:checked").parent().parent().find("li:eq(1)").text());
+				$("#rh").find("#hotelName").html('객실 명 :' + $("input[name='roomCode']:checked").parent().parent().find("li:eq(0)").text())
 			}
 			console.log(roomCode);
 			html = '';
