@@ -101,8 +101,8 @@
                 <div class="col-md-10">
                 <div class="col-md-1">상태</div>
                 <div class="col-md-3">
-                <input type="checkbox" name="apvl" value="wating" class="form-control">대기중
-				<input type="checkbox" name="apvl" value="apvled" class="form-control">승인완료
+                <input type="checkbox" name="apvl" value="n" class="form-control">대기중
+				<input type="checkbox" name="apvl" value="y" class="form-control">승인완료
                 </div>
                 <div class="col-md-3"></div>
                 <div class="col-md-2" align="right">
@@ -170,14 +170,14 @@ $(function() {
 	$('#miniDate').datepicker({
 	format : "yyyy-mm-dd",
 	autoclose: true
-	}).datepicker("setDate", new Date());
+	}).datepicker("setDate", null);
 	});
 	
 $(function() {
 	$('#maxDate').datepicker({
 	format : "yyyy-mm-dd",
 	autoclose: true
-	}).datepicker("setDate", new Date());
+	}).datepicker("setDate", null);
 	});
 
 $('#submitForm').submit(function(e){
@@ -218,7 +218,7 @@ $('#submitForm').submit(function(e){
 				var index = i+1;
 				html +="<tr>\r\n" + 
 				'                <td>'+ index +'</td>\r\n' + 
-				'                <td>'+ mem.theme_type +'</td>\r\n' + 
+				'                <td>'+ mem.theme_Type +'</td>\r\n' + 
 				'                <td>'+ mem.user_email +'</td>\r\n' + 
 				'                <td>'+ mem.package_Name +'</td>\r\n' + 
 				'                <td>'+ mem.package_Price +'</td>\r\n' + 
