@@ -8,4 +8,5 @@ public interface MainMapper {
 	public List<MResult> popularPackage();
 	public List<MResult> recommendPackage();
 	public List<MResult> seasonPackage();
+	public List<MResult> imgController();
 }

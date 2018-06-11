@@ -7,10 +7,11 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import kr.co.bucket.repository.domain.Img;
 import kr.co.bucket.repository.domain.MResult;
 import kr.co.bucket.repository.mapper.MainMapper;
 
-@Service("adminService")
+@Service("mainService")
 public class MainServiceImpl implements MainService{
 	@Autowired
 	private MainMapper mapper;
@@ -26,6 +27,14 @@ public class MainServiceImpl implements MainService{
 		}
 		return map;
 	};
+	
+/*	public List<Img> imgRepeat() throws Exception{
+		List<Img> list = mapper.imgController();
+		for(Img i:list) {
+			System.out.println(i.getImgPath() +"이미지");
+		}
+		return mapper.imgController();
+	}*/
 	
 	
 
