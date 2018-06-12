@@ -28,6 +28,8 @@ public class PackageController {
 	@RequestMapping("/airSearch.json")
 	@ResponseBody
 	public Map<String, List<AirSearch>> airSearch(AirSearch air){
+		System.out.println(air.getArrivalCityCode());
+		System.out.println(air.getDepartureCityCode());
 		return packageService.retrieveAir(air);
 	}
 	

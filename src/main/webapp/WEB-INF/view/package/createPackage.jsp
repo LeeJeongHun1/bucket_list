@@ -160,6 +160,10 @@ div.airlist {
 														<option value=""></option>
 														<option value="0">파리</option>
 														<option value="2">로마</option>
+														<option value="8">밀라노</option>
+														<option value="15">블라디보스토크</option>
+														<option value="0">바르셀로나</option>
+														<option value="0">마드리드</option>
 													</select>
 												</div>
 												<div class="col-sm-4">
@@ -216,8 +220,12 @@ div.airlist {
 											<div class="col-sm-12">
 												<select id="hCity" name="hotelCity" >
 													<option value=''>지역을 선택하세요</option>
-													<option value="2">로마</option>
-													<option value="3">밀라노</option>
+														<option value="0">파리</option>
+														<option value="2">로마</option>
+														<option value="8">밀라노</option>
+														<option value="15">블라디보스토크</option>
+														<option value="0">바르셀로나</option>
+														<option value="0">마드리드</option>
 												</select>
 											</div>
 										</div>
@@ -699,7 +707,6 @@ div.airlist {
 					var $radio = $airInfo.find(".col-sm-4");
 					if(air.seatCnt == '0'){
 						$airInfo.find(".yn").attr("data-yn", "n").text("예약불가");
-						console.log($(".start-airlist span[data-yn='n']").parent());
 						$(".start-airlist span[data-yn='n']").parent().addClass("disabled")
 						$radio.html("<input type='radio' name='startAirCode' value='"+ air.airCode +"' disabled />")
 					}else{
@@ -716,7 +723,7 @@ div.airlist {
 					var $radio = $airInfo.find(".col-sm-4");
 					if(air.seatCnt == '0'){
 						$airInfo.find(".yn").attr("data-yn", "n").text("예약불가");
-						$(".start-airlist span[data-yn='n']").parent().addClass("disabled")
+						$(".end-airlist span[data-yn='n']").parent().addClass("disabled")
 						$radio.html("<input type='radio' name='endAirCode' value='"+ air.airCode +"' disabled />")
 					}else{
 						$airInfo.find(".yn").attr("data-yn", "y").text("예약가능");
