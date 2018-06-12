@@ -42,6 +42,9 @@
 		'%'|| #{keyword} || '%'
 	</select>
 
+	
+
+
 	<select id="AllSearch" parameterType="search" resultMap="searchMap">
 		select *
 		from (
@@ -93,37 +96,40 @@
 		tb_city city
 		on air.ARRIVAL_CITY_code = city.city_code
 		<where>
+		    <if test="keyword != ''">
+				AND pack.PACKAGE_NAME like '%' || #{keyword} || '%'
+				AND
+				city.CITY_NAME like '%'|| #{keyword} || '%'
+			</if>
 			<if test="dkeyword != ''">
 				AND pack.PACKAGE_NAME like '%' || #{dkeyword} || '%'
-				AND
-				city.CITY_NAME like '%'|| #{dkeyword} || '%'
-			</if>
+			</if> 
 			<if test="startDate != '' and endDate != '' ">
-				AND air.start_date between #{startDate} AND #{endDate}
-				AND air.end_date between #{startDate} AND #{endDate}
+				AND air.start_date <![CDATA[ >= ]]> #{startDate}  
+				AND air.end_date <![CDATA[ <= ]]> #{endDate}  
 			</if>
-			<choose>
+		<choose>
 				<when test="packagePrice == 1">
 					AND pack.package_price <![CDATA[ <= ]]>
 					500000
 				</when>
 				<when test="packagePrice == 2">
-					OR pack.package_price between 500000 and 1000000
+					AND pack.package_price between 500000 and 1000000
 				</when>
 				<when test="packagePrice == 3">
-					OR pack.package_price between 1000000 and 2000000
+					AND pack.package_price between 1000000 and 2000000
 				</when>
 				<when test="packagePrice == 4">
-					OR pack.package_price between 2000000 and 3000000
+					AND pack.package_price between 2000000 and 3000000
 				</when>
-				<otherwise>
-					OR pack.package_price <![CDATA[ >= ]]>
+				<when test="packagePrice == 5">
+					AND pack.package_price <![CDATA[ >= ]]>
 					3000000
-				</otherwise>
+				</when>
 			</choose>
 			<if test="cityCode != ''">
 				AND air.DEPARTURE_CITY_CODE = #{cityCode}
-			</if> 
+			</if>  -->
 			<!-- <choose> <when test="day == 1"> AND substr(end_date,9,2)-substr(start_date,9,2)<![CDATA[ 
 				<= ]]> 3 </when> <when test="day == 2"> AND substr(end_date,9,2)-substr(start_date,9,2) 
 				between 4 and 5 </when> <when test="day == 3"> AND substr(end_date,9,2)-substr(start_date,9,2) 

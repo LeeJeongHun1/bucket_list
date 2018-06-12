@@ -16,6 +16,7 @@ public interface SearchMapper {
 	public List<SResult> selectSearch(AllSearch search);
 	public List<SResult> departureSearch(AllSearch search);
 	public int selectCount(Search keyword);
+	public int dSelectCount(AllSearch search);
 	public SResult detailStart(String packageCode);
 	public SResult detailEnd(String packageCode);
 	public List<SResult> detailSchedule(String packageCode);

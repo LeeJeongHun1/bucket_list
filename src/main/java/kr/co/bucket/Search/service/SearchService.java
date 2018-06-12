@@ -19,6 +19,7 @@ public interface SearchService {
 	public Map<String,Object> detailBoard(String packageCode) throws Exception;
 	// 검색결과에 대한 전체 패키지 개수
 	public int count(Search keyword) throws Exception;
+	public int dCount(AllSearch search) throws Exception;
 	
 	// 리뷰
 	public void reviewRegist(Review review) throws Exception;

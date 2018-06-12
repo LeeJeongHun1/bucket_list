@@ -5,11 +5,32 @@ public class AllSearch {
 	private String startDate;
 	private String endDate;
 	private int[] day;
+	private String keyword;
 	private String dkeyword;
 	private String cityCode;
 	private String price;
 	private String departure;
-	
+	private int pageNo = 1;
+	private int listSize = 4;
+
+	public int getBegin() {
+		return (pageNo -1) * listSize + 1;
+	} // 규칙을 찾음 . 시작 
+	public String getKeyword() {
+		return keyword;
+	}
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
+	public int getEnd() {
+		return pageNo * listSize;
+	} // 페이지 끝
+	public int getPageNo() {
+		return pageNo;
+	}
+	public void setPageNo(int pageNo) {
+		this.pageNo = pageNo;
+	}
 	public String getDeparture() {
 		return departure;
 	}

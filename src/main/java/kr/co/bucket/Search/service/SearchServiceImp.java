@@ -39,6 +39,9 @@ public class SearchServiceImp implements SearchService {
 	public int count(Search keyword) throws Exception{
 		return mapper.selectCount(keyword);
 	}
+	public int dCount(AllSearch search) throws Exception{
+		return mapper.dSelectCount(search);
+	}
 	public Map<String, Object> detailBoard(String packageCode) throws Exception{
 		Map<String, Object> map = new HashMap<>();
 		map.put("startDate", mapper.detailStart(packageCode));

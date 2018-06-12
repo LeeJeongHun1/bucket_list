@@ -199,6 +199,7 @@
 										style="margin-top: 10px; margin-bottom: 10px;">
 										<input type="text" class="form-control" name="dkeyword"
 											placeholder="Key word">
+											<input type="hidden" class="form-control" name="keyword" value="${key}">
 									</div>
 									<div class="col-sm-12">
 
@@ -341,12 +342,13 @@
 				data: $("#detailAll").serialize(),
 				success: function(data){
 					var html="";
-					$(".searchColor > span").html("");
-					$(".searchColor > span").html(data.length + "건");
-					$("#makeSearch").html("");
 					alert("실행zss");
 					console.log(data);
 					if (data.length == 0){
+					//	alert("가는지 확인");
+						$(".searchColor > span").html("");
+						$(".searchColor > span").html(data.length + "건");
+						$("#makeSearch").html("");
 						html+= '<div id="list-type" class="proerty-th">';
 						html+='<div class="col-sm-12 col-md-12 p0">';
 						html+='<div class="box-two proerty-item">';
@@ -355,6 +357,10 @@
 					    html+='</div></div></div></div>';
 					}else{
 						for(let a of data){
+							
+							$(".searchColor > span").html("");
+							$(".searchColor > span").html(data.length + "건");
+							$("#makeSearch").html("");
 							html+='<div id="list-type" class="proerty-th">';
 							html+='<div class="col-sm-6 col-md-3 p0">';
 							html+='<div class="box-two proerty-item">';
@@ -363,7 +369,7 @@
 							html+='</div>';
 							html+='<div class="item-entry overflow">';
 							html+='<h5>';
-							html+='<a href="property-1.html">'+a.packageName+'</a>';
+							html+='<a class="aStyle" href="property-1.html">'+a.packageName+'</a>';
 							//html+='<button type="button" class="search_detail navbar-btn nav-button wow fadeInRight animated" onclick="location.replace('${pageContext.request.contextPath}/search/searchDetail.do')" data-wow-delay="0.48s">상세보기</button>'
 							html+='<a style="width: 85px; line-height: 34px; text-align: center;    display: inline-block; background: #EAE9E9;" class="search_detail search-btn navbar-btn wow fadeInRight animated" href="<c:url value="/search/searchDetail.do"/>?packageCode='+a.packageCode+'" data-wow-delay="0.48s">상세보기</a>';
 							//html+='<a href="<c:url value='/search/searchDetail.do'/>'+?${a.packageCode}+'"></a>';
@@ -403,7 +409,7 @@
 					html+='</div>';
 					html+='<div class="item-entry overflow">';
 					html+='<h5>';
-					html+='<a href="property-1.html">'+a.packageName+'</a>';
+					html+='<a class="aStyle" href="property-1.html">'+a.packageName+'</a>';
 					//html+='<button type="button" class="search_detail navbar-btn nav-button wow fadeInRight animated" onclick="location.replace('${pageContext.request.contextPath}/search/searchDetail.do')" data-wow-delay="0.48s">상세보기</button>'
 					html+='</h5>';
 					html+='<div class="dot-hr"></div>';
@@ -436,7 +442,7 @@
 						html+='</div>';
 						html+='<div class="item-entry overflow">';
 						html+='<h5>';
-						html+='<a href="property-1.html">'+a.packageyName+'</a>';
+						html+='<a class="aStyle" href="property-1.html">'+a.packageyName+'</a>';
 						//html+='<button type="button" class="search_detail navbar-btn nav-button wow fadeInRight animated" onclick="location.replace('${pageContext.request.contextPath}/search/searchDetail.do')" data-wow-delay="0.48s">상세보기</button>'
 						html+='</h5>';
 						html+='<div class="dot-hr">'+a.startDate+'</div>';

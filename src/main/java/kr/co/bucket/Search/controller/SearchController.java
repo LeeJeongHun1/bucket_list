@@ -27,9 +27,11 @@ public class SearchController {
 	@RequestMapping("/search.do")
 	public void search(@RequestParam(value="pageNo", defaultValue="1") int pageNo, Search keyword, Model model, AllSearch AllSearch) throws Exception {
 		keyword.setPageNo(pageNo);
+		AllSearch.setPageNo(pageNo);
 		System.out.println("갯수" + searchService.Allsearch(keyword).size());
 		model.addAttribute("key", keyword.getKeyword());
 		model.addAttribute("allSearch", searchService.Allsearch(keyword));
+		
 		model.addAttribute("pageResult", new PageResult(pageNo, searchService.count(keyword)));
 	}
 	
@@ -43,12 +45,13 @@ public class SearchController {
 	@RequestMapping("/searchDetail.json")
 	@ResponseBody
 	public List<SResult> searchDetailJson(AllSearch AllSearch) throws Exception{
-		System.out.println("가는지 테스트");
-		System.out.println(AllSearch.getDkeyword());
+		System.out.println(AllSearch.getKeyword() +"가지고있는지");
+		System.out.println(AllSearch.getDkeyword() +"값이 가니 ");
         List<SResult> list = searchService.DetailSearch(AllSearch);
         for(SResult s: list) {
         	System.out.println("디테일"+ s.getCityName());
         	System.out.println(s.getImgPath());
+        	System.out.println();
         	System.out.println(AllSearch.getStartDate().substring(0,4));
         	System.out.println(AllSearch.getPackagePrice());
         	System.out.println(AllSearch.getCityCode() +" 코드");
