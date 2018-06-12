@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.bucket.repository.mapper.ThemeMapper">
+	<resultMap type="theme" id="themeMap">
+		<result column="package_name" property="packageName" /> 
+		<result column="img_path" property="imgPath" />
+		<result column="package_type" property="packageType" />
+		<result column="rnum" property="rnum" />
+ 	</resultMap>
+	<select id="selectThemeList" parameterType="string" resultMap="themeMap">
+		select rownum rnum, b.img_path, a.theme_name, a.theme_price,a.theme_type
+		from (select *
+			  from tb_theme) a
+		inner join tb_img_group b
+		on a.theme_code = b.theme_code;
+	</select>
+</mapper>
+
+
+
+

@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.bucket.repository.mapper.SearchMapper">
+	<resultMap id="searchMap" type="sResult">
+		<result column="PACKAGE_CODE" property="packageCode" />
+		<result column="package_price" property="packagePrice" />
+		<result column="package_name" property="packageName" />
+		<result column="city_name" property="cityName" />
+		<result column="imt_path" property="imgPath" />
+		<result column="start_date" property="startDate" />
+		<result column="end_date" property="endDate" />
+		<result column="flying_time" property="flyingTime" />
+		<result column="schedule_daily" property="scheduleDaily" />
+		<result column="air_name" property="airName" />
+		<result column="daily_code" property="dailyCode" />
+		<result column="theme_info" property="themeInfo" />
+		<result column="theme_name" property="themeName" />
+		<result column="theme_type" property="themeType" />
+		<result column="seat_cnt" property="seatCnt" />
+	</resultMap>
+
+	<select id="selectCount" parameterType="search" resultType="int">
+		select count(*)
+		from tb_package pack
+		inner
+		join tb_air air
+		on
+		pack.DEPARTURE_AIR_CODE =
+		air.air_code
+		inner
+		join tb_city city
+		on
+		air.ARRIVAL_CITY_code =
+		city.city_code
+		where
+		pack.PACKAGE_NAME like '%'
+		||
+		#{keyword} || '%'
+		or city.CITY_NAME like
+		'%'|| #{keyword} || '%'
+	</select>
+
+	<select id="AllSearch" parameterType="search" resultMap="searchMap">
+		select *
+		from (
+		select rownum rnum, a.*
+		from (
+		select DISTINCT pack.PACKAGE_CODE,
+		pack.package_price,pack.package_name
+		,city.CITY_NAME,pack.PACKAGE_IMG_PATH
+		from
+		tb_package pack
+		inner
+		join
+		tb_air air
+		on pack.DEPARTURE_AIR_CODE =
+		air.air_code
+		inner
+		join tb_city
+		city
+		on
+		air.ARRIVAL_CITY_code =
+		city.city_code
+		inner
+		join tb_theme thm
+		on
+		city.city_code = thm.city_code
+		where
+		pack.PACKAGE_NAME like '%' ||
+		#{keyword} ||'%'
+		or city.CITY_NAME like
+		'%' || #{keyword} || '%'
+		) a
+		)
+		where rnum between #{begin} and #{end}
+	</select>
+	<select id="detailSearch" parameterType="allSearch" resultMap="searchMap">
+		select DISTINCT pack.PACKAGE_CODE,
+		pack.package_price,pack.package_name
+		,city.CITY_NAME,img.IMG_PATH,air.start_date
+		from tb_package pack
+		inner
+		join tb_air air
+		on pack.DEPARTURE_AIR_CODE = air.air_code
+		inner
+		join
+		tb_city city
+		on air.ARRIVAL_CITY_code = city.city_code
+		inner
+		join
+		tb_theme thm
+		on city.city_code = thm.city_code
+		inner
+		join tb_img_group
+		img
+		on thm.theme_code = img.theme_code
+		<where>
+			<if test="dkeyword != ''">
+				AND pack.PACKAGE_NAME like '%' || #{dkeyword} || '%'
+				OR
+				city.CITY_NAME like '%'|| #{dkeyword} || '%'
+			</if>
+			<if test="startDate != '' and endDate != '' ">
+				AND air.start_date between #{startDate} AND #{endDate}
+				or
+				air.end_date between #{startDate} AND #{endDate}
+			</if>
+			<choose>
+				<when test="packagePrice == 1">
+					AND pack.package_price <![CDATA[ <= ]]>
+					500000
+				</when>
+				<when test="packagePrice == 2">
+					OR pack.package_price between 500000 and 1000000
+				</when>
+				<when test="packagePrice == 3">
+					OR pack.package_price between 1000000 and 2000000
+				</when>
+				<when test="packagePrice == 4">
+					OR pack.package_price between 2000000 and 3000000
+				</when>
+				<otherwise>
+					OR pack.package_price <![CDATA[ >= ]]>
+					3000000
+				</otherwise>
+			</choose>
+			<if test="cityCode != ''">
+				AND air.DEPARTURE_CITY_CODE = #{cityCode}
+			</if>
+			<!-- <choose> <when test="day == 1"> AND substr(end_date,9,2)-substr(start_date,9,2)<![CDATA[ 
+				<= ]]> 3 </when> <when test="day == 2"> AND substr(end_date,9,2)-substr(start_date,9,2) 
+				between 4 and 5 </when> <when test="day == 3"> AND substr(end_date,9,2)-substr(start_date,9,2) 
+				between 6 and 7 </when> <when test="day == 4"> AND substr(end_date,9,2)-substr(start_date,9,2) 
+				<![CDATA[ >= ]]> 10 </when> </choose> -->
+		</where>
+	</select>
+	<select id="selectSearch" parameterType="string" resultMap="searchMap">
+		select DISTINCT pack.PACKAGE_CODE,
+		pack.package_price,pack.package_name
+		,city.CITY_NAME,img.IMG_PATH,air.start_date
+		from tb_package pack
+		inner
+		join tb_air air
+		on pack.DEPARTURE_AIR_CODE = air.air_code
+		inner
+		join
+		tb_city city
+		on air.ARRIVAL_CITY_code = city.city_code
+		inner
+		join
+		tb_theme thm
+		on city.city_code = thm.city_code
+		inner
+		join tb_img_group
+		img
+		on thm.theme_code = img.theme_code
+		<!-- <trim prefix="ORDER BY"> -->
+		<!-- <if test="selectPrice == '1'"> -->
+		<!-- order by pack.PACKAGE_PRICE -->
+		<!-- </if> -->
+		<!-- <if test="selectPrice == '2'"> -->
+		<!-- order by pack.PACKAGE_PRICE -->
+		<!-- </if> -->
+		<!-- </trim> -->
+		<choose>
+			<when test="selectPrice == '1'">
+				order by pack.PACKAGE_PRICE DESC
+			</when>
+			<otherwise>
+				order by pack.PACKAGE_PRICE
+			</otherwise>
+		</choose>
+	</select>
+
+
+	<select id="detailStart" parameterType="string" resultMap="searchMap">
+		select *
+		from tb_package p
+		join tb_air a
+		on p.DEPARTURE_AIR_CODE =
+		a.AIR_CODE
+		join tb_city c
+		on a.ARRIVAL_CITY_CODE = c.city_code
+		where
+		p.PACKAGE_CODE =
+		#{packageCode,jdbcType=VARCHAR}
+		order
+		by p.PACKAGE_CODE
+	</select>
+
+	<select id="detailEnd" parameterType="string" resultMap="searchMap">
+		select *
+		from tb_package p
+		join tb_air a
+		on p.ARRIVAL_AIR_CODE = a.AIR_CODE
+		where
+		p.PACKAGE_CODE = #{packageCode,jdbcType=VARCHAR}
+		order by
+		p.PACKAGE_CODE
+	</select>
+	<select id="detailSchedule" parameterType="string" resultMap="searchMap">
+		select *
+		from TB_PACKAGE p
+		join TB_SCHEDULE s
+		on p.PACKAGE_CODE =
+		#{packageCode,jdbcType=VARCHAR}
+		join TB_DAILY d
+		on s.SCHEDULE_DAILY =
+		d.SCHEDULE_DAILY
+		join TB_THEME t
+		on d.DAILY_CODE = t.DAILY_CODE
+		join
+		TB_IMG_GROUP i
+		on t.THEME_CODE = i.THEME_CODE
+		order by s.SCHEDULE_DAILY
+	</select>
+
+	<select id="detailStay" parameterType="string" resultMap="searchMap">
+		select
+		*
+		from tb_package p, tb_air a
+		,TB_SCHEDULE sc, TB_DAILY d
+		,TB_CITY c,
+		TB_STAY s, tb_hotel h
+		where p.ARRIVAL_AIR_CODE =a.AIR_CODE
+		and
+		p.PACKAGE_CODE = #{packageCode,jdbcType=VARCHAR}
+		and sc.SCHEDULE_DAILY
+		= d.SCHEDULE_DAILY
+		and a.DEPARTURE_CITY_CODE = c.CITY_CODE
+		and
+		d.DAILY_CODE = s.DAILY_CODE
+		and s.HOTEL_CODE = h.HOTEL_CODE
+	</select>
+
+
+	<insert id="insertReview" parameterType="review">
+		insert into tb_review(
+		REVIEW_CODE,USER_EMAIL,title,content,air_eval_score,hotel_eval_score,package_code
+		) values(
+		s_review_code.nextval,#{userEmail},#{title},#{content},#{airEvalScore},#{hotelEvalScore},#{packageCode}
+		)
+	</insert>
+
+
+	<resultMap id="reviewMap" type="review">
+		<result column="REVIEW_CODE" property="reviewCode" />
+		<result column="USER_EMAIL" property="userEmail" />
+		<result column="TITLE" property="title" />
+		<result column="CONTENT" property="content" />
+		<result column="AIR_EVAL_SCORE" property="airEvalScore" />
+		<result column="HOTEL_EVAL_SCORE" property="hotelEvalScore" />
+		<result column="REG_DATE" property="regDate" />
+		<result column="PACKAGE_CODE" property="packageCode" />
+	</resultMap>
+
+	<select id="selectReivewByCode" parameterType="string"
+		resultMap="reviewMap">
+		select *
+		from tb_review
+		where package_Code =
+		#{packageCode,jdbcType=VARCHAR}
+	</select>
+
+
+</mapper>

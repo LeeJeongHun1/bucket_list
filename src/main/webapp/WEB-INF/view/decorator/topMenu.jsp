@@ -57,7 +57,7 @@
 
 				</li>
 				<li class="dropdown yamm-fw" data-wow-delay="0.4s"><a
-					href="${pageContext.request.contextPath}/user/theme.do" class="dropdown-toggle" style="padding: 16px;">thematic
+					href="${pageContext.request.contextPath}/theme/theme.do" class="dropdown-toggle" style="padding: 16px;">thematic
 						tour</a></li>
 				<li class="dropdown yamm-fw" data-wow-delay="0.4s"><a
 					href="<c:url value='/package/createPackage.do' />" class="dropdown-toggle"

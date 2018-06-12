@@ -104,7 +104,7 @@
 					  		<td>${status.count}</td>
 					  		<td>${mypacakge.packageName}</td>
 					  		<td><fmt:formatDate value="${mypacakge.regDate}" pattern="yyyy-MM-dd" /></td>
-					  		<td>${mypacakge.packagePrice}</td>
+					  		<td>${mypacakge.packagePrice}원</td>
 				  			<c:choose>
 					  			<c:when test="${mypacakge.acceptYN eq 'y'}">
 							  		<td>승인</td>

@@ -1,25 +1,39 @@
 package kr.co.bucket.repository.domain;
 
 public class Theme {
+	private String packageName;
 	private String imgPath;
-	private String themeName;
-	private int themePrice;
+	private int packagePrice;
+	private String packageType;
+	private int rnum;
+	public int getRnum() {
+		return rnum;
+	}
+	public void setRnum(int rnum) {
+		this.rnum = rnum;
+	}
+	public String getPackageName() {
+		return packageName;
+	}
+	public void setPackageName(String packageName) {
+		this.packageName = packageName;
+	}
 	public String getImgPath() {
 		return imgPath;
 	}
 	public void setImgPath(String imgPath) {
 		this.imgPath = imgPath;
 	}
-	public String getThemeName() {
-		return themeName;
+	public int getPackagePrice() {
+		return packagePrice;
 	}
-	public void setThemeName(String themeName) {
-		this.themeName = themeName;
+	public void setPackagePrice(int packagePrice) {
+		this.packagePrice = packagePrice;
 	}
-	public int getThemePrice() {
-		return themePrice;
+	public String getPackageType() {
+		return packageType;
 	}
-	public void setThemePrice(int themePrice) {
-		this.themePrice = themePrice;
+	public void setPackageType(String packageType) {
+		this.packageType = packageType;
 	}
 }
