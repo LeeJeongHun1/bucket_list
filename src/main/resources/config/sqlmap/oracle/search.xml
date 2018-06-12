@@ -213,7 +213,15 @@
 	</select>
 	
 	<select id="detailSchedule" parameterType="string" resultMap="searchMap">
-		select *
+	   select * 
+        from tb_daily d
+        join TB_THEME t
+         on d.DAILY_CODE = t.DAILY_CODE
+        join tb_img_group i
+         on  t.THEME_CODE = i.THEME_CODE
+        where d.PACKAGE_CODE = #{packageCode,jdbcType=VARCHAR}
+        order by d.SCHEDULE_DAILY
+<!-- 		select *
 		from TB_PACKAGE p
 		join TB_SCHEDULE s
 		on p.PACKAGE_CODE =
@@ -226,7 +234,7 @@
 		join
 		TB_IMG_GROUP i
 		on t.THEME_CODE = i.THEME_CODE
-		order by s.SCHEDULE_DAILY
+		order by s.SCHEDULE_DAILY -->
 	</select>
 	
 	<resultMap id="hotelMap" type="hResult">
@@ -241,7 +249,7 @@
 	</resultMap>
 
 	<select id="detailStay" parameterType="string" resultMap="hotelMap">
-		select
+<!-- 		select
 		*
 		from tb_package p, tb_air a
 		,TB_SCHEDULE sc, TB_DAILY d
@@ -255,7 +263,17 @@
 		and a.DEPARTURE_CITY_CODE = c.CITY_CODE
 		and
 		d.DAILY_CODE = s.DAILY_CODE
-		and s.HOTEL_CODE = h.HOTEL_CODE
+		and s.HOTEL_CODE = h.HOTEL_CODE -->
+		
+	    select *
+      from TB_DAILY d
+      join tb_stay s 
+       on d.DAILY_CODE =s.DAILY_CODE
+      join tb_hotel h
+       on s.HOTEL_CODE = h.HOTEL_CODE
+      where d.PACKAGE_CODE = #{packageCode,jdbcType=VARCHAR}
+      order by d.SCHEDULE_DAILY
+		
 	</select>
 
 
