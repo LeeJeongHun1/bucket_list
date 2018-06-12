@@ -537,13 +537,19 @@ div.airlist {
 					html += '</div>';
 				}
 				$(".proerty-theme").append(html);
-				$(".col-sm-8 sel_bx").show();
+				$(".sel_bx").show();
 				$(".themeBtn").click(function (){
 					var id = $(this).attr("id");
 					console.log(id);
 					console.log($(this));
 					$(".selectThm"+id).slideToggle("slow");
+					console.log($("input[name*='daily']:checked").val())
 				})
+				$("input[name*='daily']").click(function (){
+					console.log($(this).val())
+				})
+				
+				
 
 			})
 			.fail(function (){
