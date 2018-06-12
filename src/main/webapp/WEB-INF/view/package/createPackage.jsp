@@ -29,6 +29,10 @@ ul.room {
 	width: 1000px;
 	text-align: center;
 }
+ul.selTheme{
+	width: 600px;
+	text-align: center;
+}
 
 li.ok {
 	width: 200px;
@@ -233,18 +237,18 @@ div.airlist {
 									<div class="col-sm-12">
 										<div class="col-sm-4">
 											<div class="col-sm-12">
-												<input type="text" class="form-control" id="checkinDate" name="checkinDate" placeholder="입실일">
+												<span class="sDate"></span> 
+												<span class="eDate"></span> 
 											</div>
 										</div>
 										<div class="col-sm-4">
 											<div class="col-sm-12">
-												<input type="text" class="form-control" id="checkoutDate" name="checkoutDate" placeholder="퇴실일">
 											</div>
 										</div>
 									</div>
 									<div class="col-sm-12" id="detailhotel">
 										<div class="row" id="pop">
-											<div class="proerty-th">
+											<div class="proerty-th hotel">
 											<!-- 여기부터 ajax 그리기 -->
 											</div>
 										</div>
@@ -283,24 +287,18 @@ div.airlist {
 										</div>
 									</div>
 									<div class="col-sm-12">
-										<div class="form-group"></div>
 										<div class="row">
-											<div class="proerty-theme">
-												<div class="col-sm-6 col-md-3 p0">
-													<div class="box-two proerty-item">
-														<div class="theme">
-															<a href="#"><img src="<c:url value="/resources/assets/img/demo/Louvre.jpg"/>"></a>
-														</div>
-														<div class="item-entry overflow">
-															<h5>
-																<a href="#">루브르 박물관</a>
-															</h5>
-															<div class="dot-hr"></div>
-															<span class="pull-left"><b>선택 :</b> <input
-																type="checkbox" name="louvre" /> </span> <span
-																class="proerty-price pull-right">15 $</span>
-														</div>
-													</div>
+											<div class="proerty-th proerty-theme" >
+											<!-- 테마 ajax -->
+											</div>
+											<div class="col-sm-12">
+												<div class="col-sm-2">
+												</div>
+												<div class="col-sm-8 sel_bx" style="display: none;">
+													<ul class="selTheme">
+														<li class="ok"><span>선택한 테마 이름</span></li>
+														<li class="ok"><span>선택한 테마 가격</span></li>
+													</ul>
 												</div>
 											</div>
 										</div>
@@ -373,6 +371,7 @@ div.airlist {
 		var sd = '';
 		var em = '';
 		var ed = '';
+		var day = '';
 		$(function() {
 			$("div.col-sm-12.detailpop").hide();
 // 			$(".airInfo").children().clone()
@@ -407,19 +406,23 @@ div.airlist {
 			});
 		}
 		var cityCode = '';
+		
+		
 		function doHotel(){
 			console.log($('#departureDate').val())
 			console.log($('#arrivalDate').val())
-			var startAirCode = $("input[name='startAirCode']").val();
-			var endAirCode = $("input[name='endAirCode']").val();
+			var startAirCode = $("input[name='startAirCode']:checked").val();
+			var endAirCode = $("input[name='endAirCode']:checked").val();
 			console.log(endAirCode, startAirCode)
-			if(!startAirCode && !endAirCode){
+			
+			if(!startAirCode || !endAirCode){
 				swal({
 					type : 'error',
 					title : '항공권을 선택하세요~',
 				})
 				return false;
 			}
+			
 			waitMe();
 			$.ajax({
 				url: '<c:url value="/package/hotelSearch.json"/>',
@@ -436,10 +439,10 @@ div.airlist {
 				$("#rh").show();
 				$("body").waitMe("hide");
 				var html = '';
-				$(".proerty-th").html('');
+				$(".hotel").html('');
 				console.dir(result)
 				for(let h of result.hotel){
-					$(".proerty-th").html("");
+					$(".hotel").html("");
 					html += '<div class="col-sm-6 col-md-3 p0">';
 					html += '	<div class="box-two proerty-item">';
 					html += '		<div class="item-thumb">';
@@ -454,7 +457,7 @@ div.airlist {
 					html += '		</div>';
 					html += '	</div>';
 					html += '</div>';
-					$(".proerty-th").append(html);
+					$(".hotel").append(html);
 				}
 				for(var t=0; t<result.theme.length; t++){
 					$("#theme").append("<option value='"+result.theme[t].themeType+"'>"+result.theme[t].themeType+"</option>")
@@ -463,6 +466,8 @@ div.airlist {
 				sd = result.schedule.startDate.split('년')[1].split('월')[1].split('일')[0];
 				em = result.schedule.endDate.split('년')[1].split('월')[0];
 				ed = result.schedule.endDate.split('년')[1].split('월')[1].split('일')[0];
+				$(".sDate").html(sm+'월'+sd+'일 ~')
+				$(".eDate").html(em+'월'+ed+'일')
 			})
 			.fail(function (){
 				$("body").waitMe("hide");
@@ -471,12 +476,12 @@ div.airlist {
 		}
 		
 		function doTheme(){
-			var startAirCode = $("input[name='startAirCode']").val();
-			var endAirCode = $("input[name='endAirCode']").val();
-			if(!startAirCode && !endAirCode){
+			console.log($("input[name='roomCode']:checked").val())
+			console.log($("input[name='roomCode']:checked"))
+			if(!roomCode){
 				swal({
 					type : 'error',
-					title : '항공권을 선택하세요~',
+					title : '호텔을선택하세요 ~',
 				})
 				return false;
 			}
@@ -498,32 +503,33 @@ div.airlist {
 				$("body").waitMe("hide");
 				console.dir(result)
 				var html = '';
-				$(".proerty-th").html('');
+				$(".proerty-theme").html('');
 				for(let t of result){
 					$(".proerty-theme").html("");
 					html += '<div class="col-sm-6 col-md-3 p0">';
 					html += '	<div class="box-two proerty-item">';
 					html += '		<div class="item-thumbt">';
-					html += '			<img src="..' + t.imgPath + '" />';
+					html += '			<img src="..' + t.imgPath + '" style="height: 169px; width: 259px;"/>';
 					html += '		</div>';
 					html += '		<div class="item-entry overflow">';
 					html += '			<h5>';
-					html += '				<a href="#">가격 : ' + t.themeName + '</a>';
+					html += '				<a href="#" class="aStyle">' + t.themeName + '</a>';
 					html += '			</h5>';
 					html += '			<div class="dot-hr"></div>';
-					html += '			<span class="pull-left"><b>' + t.themePrice+ '</b>';
-					html += '				<button id='+t.themeCode+' onclick="return doDetailTheme('+t.themeCode+')" >선택</button> ';
+					html += '			<span class="pull-left"><b>가격 :' + t.themePrice+ '</b>';
+					html += '				<button id='+t.themeCode+' class="themeBtn" onclick="return false">선택</button> ';
 					html += '			</span>';
+					html += '		</div>';
+					html += '		<div class="selectThm'+t.themeCode+'" style="display: none;">';
 					if(sm == em){
-						var day = ed - sd;
+						day = ed - sd;
 						console.log(Number(sd)+Number(day))
 						var eDay = Number(sd)+Number(day);
+						console.log(eDay)
 						for(var i=sd; i<=eDay; i++ ){
 							console.log(sm,'월',i,'일');
 							var aa = sm + '월' + i + '일';
-							html += '<span class="selectDay"><input type="radio" class="'+t.themeCode+'" name="daily" value='+ aa +'/>'+aa + '</span>';
-//								$("#daily").append("<span><input type='radio' name='daily' value='"+aa+"'/>"+aa+"</span>");
-//								daily.push(aa);
+							html += '<span class="selectDay">'+aa+'<input type="radio" class="'+t.themeCode+'" name="'+t.themeCode+'daily" value='+ aa +' style="width: 26px"/></span>';
 						}
 					}
 					html += '		</div>';
@@ -531,23 +537,18 @@ div.airlist {
 					html += '</div>';
 				}
 				$(".proerty-theme").append(html);
-				$(".selectDay").hide();
+				$(".col-sm-8 sel_bx").show();
+				$(".themeBtn").click(function (){
+					var id = $(this).attr("id");
+					console.log(id);
+					console.log($(this));
+					$(".selectThm"+id).slideToggle("slow");
+				})
+
 			})
 			.fail(function (){
 				$("body").waitMe("hide");
 			});
-			return false;
-		}
-		
-		function doDetailTheme(tCode) {
-			console.log(tCode)
-			console.dir(daily);
-			console.dir($("."+tCode));
-			$("#"+tCode).append($("."+tCode));
-			$(".selectDay"
-					).show();
-			console.dir($(this));
-// 			$(this).append("<span>추가됨</sapn>")
 			return false;
 		}
 		
@@ -619,12 +620,18 @@ div.airlist {
 			return false;
 		}
 		var roomCode = '';
+		
 		function detailHide() {
 			console.log($("input[name='roomCode']"))
+			var price = 0;
 			if($("input[name='roomCode']:checked").val()){
 				roomCode = $("input[name='roomCode']:checked").val();
 				console.log($("input[name='roomCode']:checked").parent().parent().find("li:eq(0)").text());
-				$("#rh").find("#hotelPrice").html('선택하신 호텔 요금 :' + $("input[name='roomCode']:checked").parent().parent().find("li:eq(1)").text());
+				console.log("text :" + $("input[name='roomCode']:checked").parent().parent().find("li:eq(1)").text());
+				console.log("day :" + Number(ed - sd))
+				price = Number($("input[name='roomCode']:checked").parent().parent().find("li:eq(1)").text().split('원')[0]) * Number(ed - sd);
+				console.log(price)
+				$("#rh").find("#hotelPrice").html('선택하신 호텔 요금 :' + price + '원');
 				$("#rh").find("#hotelName").html('객실 명 :' + $("input[name='roomCode']:checked").parent().parent().find("li:eq(0)").text())
 			}
 			console.log(roomCode);
