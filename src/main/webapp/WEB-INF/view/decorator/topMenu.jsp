@@ -28,10 +28,16 @@
 					onclick="location.replace('${pageContext.request.contextPath}/user/logout.do')" data-wow-delay="0.45s">Logout</button>
 			</c:otherwise>					
 			</c:choose>
-			<c:if test="${!empty sessionScope.member}">
+			<c:choose>
+			<c:when test="${sessionScope.member.userAuth eq 'm'}">
+				<button class="navbar-btn nav-button wow fadeInRight"
+					onclick="location.replace('${pageContext.request.contextPath}/admin/adminMem.do')" data-wow-delay="0.48s">Admin</button>
+			</c:when>
+			<c:when test="${!empty sessionScope.member}">
 				<button class="navbar-btn nav-button wow fadeInRight"
 					onclick="location.replace('${pageContext.request.contextPath}/user/userUpdate.do')" data-wow-delay="0.48s">MyPage</button>
-			</c:if>
+			</c:when>
+			</c:choose>
 			</div>
 			<ul class="main-nav nav navbar-nav navbar-right"
 				style="margin-right: 0;">

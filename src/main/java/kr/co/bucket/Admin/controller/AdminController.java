@@ -183,10 +183,6 @@ public class AdminController {
 	}
 	
 	
-	/*
-	@RequestMapping("/resBody.json")
-	public 
-	*/
 	
 	
 	
