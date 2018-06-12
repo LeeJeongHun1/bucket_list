@@ -22,4 +22,7 @@ public class MainController {
 	
 	@RequestMapping("/user/contact")
 	public void contact() {}
+	
+	@RequestMapping("/main/error.do")
+	public void error(){ }
 }

@@ -59,9 +59,11 @@
 				<li class="dropdown yamm-fw" data-wow-delay="0.4s"><a
 					href="${pageContext.request.contextPath}/theme/theme.do" class="dropdown-toggle" style="padding: 16px;">thematic
 						tour</a></li>
-				<li class="dropdown yamm-fw" data-wow-delay="0.4s"><a
-					href="<c:url value='/package/createPackage.do' />" class="dropdown-toggle"
-					style="padding: 16px;">My Package</a></li>
+				<c:if test="${!empty sessionScope.member}">
+					<li class="dropdown yamm-fw" data-wow-delay="0.4s"><a
+						href="<c:url value='/package/createPackage.do' />" class="dropdown-toggle"
+						style="padding: 16px;">My Package</a></li>
+				</c:if>
 
 				<!--  <li class="wow fadeInDown" data-wow-delay="0.5s"><a href="contact.html">Contact</a></li> -->
 			</ul>

@@ -34,6 +34,19 @@
 		</mvc:message-converters>
 	</mvc:annotation-driven>
 	
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/**/**" />
+			<mvc:exclude-mapping path="/user/*.do" />
+			<mvc:exclude-mapping path="/search/*.do" />
+			<mvc:exclude-mapping path="/search/*.json" />
+			<mvc:exclude-mapping path="/user/*.json" />
+			<mvc:exclude-mapping path="/theme/*.do" />
+			<mvc:exclude-mapping path="/main/index.do" />
+			<bean class="kr.co.bucket.interceptor.AuthInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
+	
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<!-- 최대 업로드 파일 사이즈 : 10MB -->
 		<property name="maxUploadSize" value="10485760" />
