@@ -164,6 +164,7 @@
 
         <script src="assets/js/main.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap-wizard/1.2/jquery.bootstrap.wizard.js"></script>
+        <script src="http://momentjs.com/downloads/moment.min.js"></script>
         
 <script>
 $(function() {
@@ -222,7 +223,7 @@ $('#submitForm').submit(function(e){
 				'                <td>'+ mem.user_email +'</td>\r\n' + 
 				'                <td>'+ mem.package_Name +'</td>\r\n' + 
 				'                <td>'+ mem.package_Price +'</td>\r\n' + 
-				'                <td>'+ mem.reg_Date +'</td>\r\n' + 
+				'                <td>'+ moment(new Date(mem.reg_Date).toString()).format('YYYY년MM월DD일') +'</td>\r\n' + 
 				'                <td>'+ mem.accept_yn +'</td>\r\n' + 
 				'                <td><i class="glyphicon glyphicon-thumbs-up"></i>&nbsp;/&nbsp;<i class="glyphicon glyphicon-trash"></i></td>\r\n' + 
 				'              </tr>';

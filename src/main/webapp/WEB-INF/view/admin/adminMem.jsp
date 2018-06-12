@@ -154,20 +154,21 @@
 
         <script src="assets/js/main.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap-wizard/1.2/jquery.bootstrap.wizard.js"></script>
+        <script src="http://momentjs.com/downloads/moment.min.js"></script>
         
 <script>
 $(function() {
 	$('#miniDate').datepicker({
 	format : "yyyy-mm-dd",
 	autoclose: true
-	}).datepicker("setDate", new Date());
+	}).datepicker("setDate", null);
 	});
 	
 $(function() {
 	$('#maxDate').datepicker({
 	format : "yyyy-mm-dd",
 	autoclose: true,
-	}).datepicker("setDate", new Date());
+	}).datepicker("setDate", null);
 	});
 		
 	
@@ -209,7 +210,7 @@ $('#submitForm').submit(function(e){
 				'                <td>'+ mem.name +'</td>\r\n' + 
 				'                <td>'+ mem.user_email +'</td>\r\n' + 
 				'                <td>'+ mem.birth +'</td>\r\n' + 
-				'                <td>'+ mem.reg_Date +'</td>\r\n' + 
+				'                <td>'+ moment(new Date(mem.reg_Date).toString()).format('YYYY년MM월DD일') +'</td>\r\n' + 
 				'              </tr>';
 			}
 			$("tbody").html(html);
@@ -223,6 +224,8 @@ $('#submitForm').submit(function(e){
         }
 	})
 })
+
+
 </script>
     </body>
 </html>

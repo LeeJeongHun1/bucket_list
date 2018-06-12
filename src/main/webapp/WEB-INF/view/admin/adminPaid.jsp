@@ -150,6 +150,8 @@
 
         <script src="assets/js/main.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap-wizard/1.2/jquery.bootstrap.wizard.js"></script>
+        
+        <script src="http://momentjs.com/downloads/moment.min.js"></script>
 
 <script>
 $(function() {
@@ -197,7 +199,7 @@ $('#submitForm').submit(function(e){
 				html+="<tr>\r\n" + 
 				"                <td>"+ index +"</td>\r\n" + 
 				"                <td>"+ info.package_Name +"</td>\r\n" + 
-				"                <td>"+ info.payment_Date+"</td>\r\n" + 
+				"                <td>"+ moment(new Date(info.payment_Date).toString()).format('YYYY년MM월DD일') +"</td>\r\n" + 
 				"                <td>"+ info.package_Price+"원</td>\r\n" + 
 				"              </tr>"
 			}

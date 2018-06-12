@@ -38,6 +38,11 @@ public class AdminServiceImpl implements AdminService{
 		// TODO Auto-generated method stub
 		return mapper.searchPac(search);
 	}
+	@Override
+	public List<SearchMemResult> searchAdminPac(SearchMem search) {
+		
+		return mapper.searchAdminPac(search);
+	}
 	
 
 }

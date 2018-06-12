@@ -71,6 +71,33 @@ select distinct p.package_name,theme_type,p.user_email,p.package_price,p.REG_DAT
        </where>
     order by package_name
 </select>
+
+<select id="searchAdminPac" parameterType="SearchMem" resultType="SearchmemResult">
+select distinct p.package_name,theme_type,p.user_email,p.package_price,p.REG_DATE,p.ACCEPT_YN,user_auth
+  from tb_package p inner join tb_schedule s on p.PACKAGE_CODE = s.PACKAGE_CODE
+       inner join tb_daily d on s.SCHEDULE_DAILY = d.SCHEDULE_DAILY 
+       inner join tb_theme t on d.DAILY_CODE = t.DAILY_CODE
+       inner join tb_user u on u.user_email = p.user_email
+       <where>
+       <if test="packageName !=''">p.package_name like #{packageName,jdbcType=VARCHAR}||'%' </if>
+       <if test="miniPrice != null and maxPrice != null ">
+    and package_price between #{miniPrice,jdbcType=INTEGER} and #{maxPrice,jdbcType=INTEGER}</if>
+       <if test="miniDate != '' and maxDate != '' ">
+    and reg_date between TO_DATE(#{miniDate,jdbcType=DATE},'YYYY-MM-DD') and TO_DATE(#{maxDate,jdbcType=DATE},'YYYY-MM-DD')</if>
+       <if test="(apvl eq 'n'.toString()) or (apvl eq 'y'.toString())">
+    and accept_yn = #{apvl,jdbcType=VARCHAR} </if>
+       <if test="(apvl eq 'n,y'.toString())">
+    and accept_yn = 'y' or accept_yn = 'n' </if>
+    <if test="themeArr != null">
+    and t.theme_type in
+    <foreach item="theme" collection="themeArr" open="(" separator="," close=")">
+     #{theme,jdbcType=VARCHAR}
+    </foreach>
+    </if>	 
+    and u.user_auth = 'm'
+       </where>
+    order by package_name
+</select>
  
  <select id="listMem" resultType="SearchMemResult">
 	select *

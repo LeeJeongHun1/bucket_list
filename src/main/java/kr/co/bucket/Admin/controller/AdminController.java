@@ -63,10 +63,11 @@ public class AdminController {
 		System.out.println(search.getMaxDate());
 		List<SearchMemResult> list =  adminService.searchMem(search);
 		
-		SimpleDateFormat sdf = new SimpleDateFormat("YYYY-mm-dd");
+		SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-dd");
 		
 		for(SearchMemResult s : list) {
-			System.out.println(s.getReg_Date().toString());
+			System.out.println(sdf.format(s.getReg_Date()));
+//			System.out.println(s.getReg_Date().toString());
 			StringBuffer sb = new StringBuffer(s.getBirth());
 			sb.insert(4, "년");
 			sb.insert(7, "월");
@@ -143,7 +144,44 @@ public class AdminController {
 		System.out.println(list.size());
 		return list;
 	}
-
+	
+	@RequestMapping("/ajaxAdminPac.json")
+	@ResponseBody
+	public List<SearchMemResult> ajaxAminPac(SearchMem search) {
+		System.out.println(search.getName());
+		System.out.println(search.getTheme());
+		System.out.println(search.getMiniDate());
+		System.out.println(search.getMaxDate());
+		System.out.println(search.getMiniPrice());
+		System.out.println(search.getMaxPrice());
+		System.out.println(search.getApvl());
+		System.out.println(search.getTheme());
+		
+		List<SearchMemResult> list =  adminService.searchAdminPac(search);
+		
+		//System.out.println(list.size());
+		
+		for(int i = 0; i < list.size()-1; i++) {
+			SearchMemResult s1 = list.get(i);
+			SearchMemResult s2 = list.get(i+1);
+			
+			if(s1.getPackage_Name().equals(s2.getPackage_Name())) {
+				s1.setTheme_Type(s1.getTheme_Type().concat("/"+s2.getTheme_Type()));
+				list.remove(i+1);
+				i--;
+			}
+			System.out.println(s1.getPackage_Name());
+		}
+		
+		for(SearchMemResult s :list) {
+			System.out.println(s.getTheme_Type());
+			System.out.println(s.getPackage_Name());
+		}
+		
+		System.out.println(list.size());
+		return list;
+	}
+	
 	
 	/*
 	@RequestMapping("/resBody.json")
