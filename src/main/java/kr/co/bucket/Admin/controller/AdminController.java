@@ -1,6 +1,7 @@
 package kr.co.bucket.Admin.controller;
 
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -111,6 +112,8 @@ public class AdminController {
 	@RequestMapping("/ajaxPac.json")
 	@ResponseBody
 	public List<SearchMemResult> ajaxPac(SearchMem search) {
+		
+		System.out.println("-----" + Arrays.toString(search.getThemeArr()));
 		System.out.println(search.getName());
 		System.out.println(search.getTheme());
 		System.out.println(search.getMiniDate());

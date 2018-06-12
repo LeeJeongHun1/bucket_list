@@ -166,7 +166,6 @@
         <script src="assets/js/main.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap-wizard/1.2/jquery.bootstrap.wizard.js"></script>
         <script src="http://momentjs.com/downloads/moment.min.js"></script>
-        
 <script>
 $(function() {
 	$('#miniDate').datepicker({

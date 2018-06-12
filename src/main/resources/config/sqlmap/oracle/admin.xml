@@ -74,8 +74,8 @@ select distinct p.package_name,theme_type,p.user_email,p.package_price,p.REG_DAT
 
 <select id="searchAdminPac" parameterType="SearchMem" resultType="SearchmemResult">
 select distinct p.package_name,theme_type,p.user_email,p.package_price,p.REG_DATE,p.ACCEPT_YN,user_auth
-  from tb_package p inner join tb_schedule s on p.PACKAGE_CODE = s.PACKAGE_CODE
-       inner join tb_daily d on s.SCHEDULE_DAILY = d.SCHEDULE_DAILY 
+  from tb_package p 
+  inner join tb_daily d on P.PACKAGE_CODE = d.PACKAGE_CODE 
        inner join tb_theme t on d.DAILY_CODE = t.DAILY_CODE
        inner join tb_user u on u.user_email = p.user_email
        <where>
