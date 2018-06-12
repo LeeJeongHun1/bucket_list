@@ -34,10 +34,16 @@
         <link rel="stylesheet" href="<c:url value='/resources/assets/css/owl.theme.css' />">
         <link rel="stylesheet" href="<c:url value='/resources/assets/css/owl.transitions.css' />"> 
         <link rel="stylesheet" href="<c:url value='/resources/assets/css/wizard.css' />"> 
+        <link rel="stylesheet" href="<c:url value='/resources/assets/css/lightslider.min.css' />"> 
         <link rel="stylesheet" href="<c:url value='/resources/assets/css/style.css' />">
         <link rel="stylesheet" href="<c:url value='/resources/assets/css/responsive.css' />">
         <link rel="stylesheet" href="<c:url value='/resources/assets/css/sweetalert2.min.css' />">
         <link rel="stylesheet" href="<c:url value='/resources/waitme/waitMe.css' />">
+
+
+
+        
+        
         
         
         <script src="<c:url value='/resources/assets/js/modernizr-2.6.2.min.js' />"></script>
@@ -50,6 +56,7 @@
         <script src="<c:url value='/resources/assets/js/easypiechart.min.js' />"></script>
         <script src="<c:url value='/resources/assets/js/jquery.easypiechart.min.js' />"></script>
         <script src="<c:url value='/resources/assets/js/owl.carousel.min.js' />"></script>
+        <script src="<c:url value='/resources/assets/js/lightslider.min.js' />"></script>
         <script src="<c:url value='/resources/assets/js/wow.js' />"></script>
         <script src="<c:url value='/resources/assets/js/icheck.min.js' />"></script>
         <script src="<c:url value='/resources/assets/js/price-range.js' />"></script> 
@@ -59,7 +66,6 @@
         <script src="<c:url value='/resources/assets/js/main.js' />"></script>
         <script src="<c:url value='/resources/assets/js/sweetalert2.all.min.js' />"></script>
         <script src="<c:url value='/resources/waitme/waitMe.js' />"></script>
-        
 <sitemesh:write property="head" />
 
 </head>

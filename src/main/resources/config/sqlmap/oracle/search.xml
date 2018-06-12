@@ -7,7 +7,7 @@
 		<result column="package_price" property="packagePrice" />
 		<result column="package_name" property="packageName" />
 		<result column="city_name" property="cityName" />
-		<result column="imt_path" property="imgPath" />
+		<result column="img_path" property="imgPath" />
 		<result column="start_date" property="startDate" />
 		<result column="end_date" property="endDate" />
 		<result column="flying_time" property="flyingTime" />
@@ -18,6 +18,7 @@
 		<result column="theme_name" property="themeName" />
 		<result column="theme_type" property="themeType" />
 		<result column="seat_cnt" property="seatCnt" />
+		<result column="PACKAGE_IMG_PATH" property="packageImgPath" />
 	</resultMap>
 
 	<select id="selectCount" parameterType="search" resultType="int">
@@ -66,19 +67,23 @@
 		join tb_theme thm
 		on
 		city.city_code = thm.city_code
-		where
+		<where>
+		<if test="keyword != '' ">
 		pack.PACKAGE_NAME like '%' ||
 		#{keyword} ||'%'
-		or city.CITY_NAME like
+		or city.CITY_NAME like		
 		'%' || #{keyword} || '%'
+		</if>
+		<if test="keyword == '' ">
+		pack.package_name = ''
+		</if>
+		</where>
 		) a
 		)
 		where rnum between #{begin} and #{end}
 	</select>
 	<select id="detailSearch" parameterType="allSearch" resultMap="searchMap">
-		select DISTINCT pack.PACKAGE_CODE,
-		pack.package_price,pack.package_name
-		,city.CITY_NAME,img.IMG_PATH,air.start_date
+		select *
 		from tb_package pack
 		inner
 		join tb_air air
@@ -87,24 +92,15 @@
 		join
 		tb_city city
 		on air.ARRIVAL_CITY_code = city.city_code
-		inner
-		join
-		tb_theme thm
-		on city.city_code = thm.city_code
-		inner
-		join tb_img_group
-		img
-		on thm.theme_code = img.theme_code
 		<where>
 			<if test="dkeyword != ''">
 				AND pack.PACKAGE_NAME like '%' || #{dkeyword} || '%'
-				OR
+				AND
 				city.CITY_NAME like '%'|| #{dkeyword} || '%'
 			</if>
 			<if test="startDate != '' and endDate != '' ">
 				AND air.start_date between #{startDate} AND #{endDate}
-				or
-				air.end_date between #{startDate} AND #{endDate}
+				AND air.end_date between #{startDate} AND #{endDate}
 			</if>
 			<choose>
 				<when test="packagePrice == 1">
@@ -127,7 +123,7 @@
 			</choose>
 			<if test="cityCode != ''">
 				AND air.DEPARTURE_CITY_CODE = #{cityCode}
-			</if>
+			</if> 
 			<!-- <choose> <when test="day == 1"> AND substr(end_date,9,2)-substr(start_date,9,2)<![CDATA[ 
 				<= ]]> 3 </when> <when test="day == 2"> AND substr(end_date,9,2)-substr(start_date,9,2) 
 				between 4 and 5 </when> <when test="day == 3"> AND substr(end_date,9,2)-substr(start_date,9,2) 
@@ -136,9 +132,7 @@
 		</where>
 	</select>
 	<select id="selectSearch" parameterType="string" resultMap="searchMap">
-		select DISTINCT pack.PACKAGE_CODE,
-		pack.package_price,pack.package_name
-		,city.CITY_NAME,img.IMG_PATH,air.start_date
+		select *
 		from tb_package pack
 		inner
 		join tb_air air
@@ -147,14 +141,6 @@
 		join
 		tb_city city
 		on air.ARRIVAL_CITY_code = city.city_code
-		inner
-		join
-		tb_theme thm
-		on city.city_code = thm.city_code
-		inner
-		join tb_img_group
-		img
-		on thm.theme_code = img.theme_code
 		<!-- <trim prefix="ORDER BY"> -->
 		<!-- <if test="selectPrice == '1'"> -->
 		<!-- order by pack.PACKAGE_PRICE -->
@@ -164,11 +150,31 @@
 		<!-- </if> -->
 		<!-- </trim> -->
 		<choose>
-			<when test="selectPrice == '1'">
+			<when test="price == '2'">
 				order by pack.PACKAGE_PRICE DESC
 			</when>
 			<otherwise>
-				order by pack.PACKAGE_PRICE
+				order by pack.PACKAGE_PRICE 
+			</otherwise>
+		</choose>
+	</select>
+
+		<select id="departureSearch" parameterType="string" resultMap="searchMap">
+		select *
+		from tb_package pack
+		inner
+		join tb_air air
+		on pack.DEPARTURE_AIR_CODE = air.air_code
+		inner
+		join
+		tb_city city
+		on air.ARRIVAL_CITY_code = city.city_code
+		<choose>
+			<when test="departure == '2'">
+				order by air.end_date desc
+			</when>
+			<otherwise>
+				order by air.end_date
 			</otherwise>
 		</choose>
 	</select>
@@ -199,6 +205,7 @@
 		order by
 		p.PACKAGE_CODE
 	</select>
+	
 	<select id="detailSchedule" parameterType="string" resultMap="searchMap">
 		select *
 		from TB_PACKAGE p
@@ -215,8 +222,19 @@
 		on t.THEME_CODE = i.THEME_CODE
 		order by s.SCHEDULE_DAILY
 	</select>
+	
+	<resultMap id="hotelMap" type="hResult">
+		<result column="PACKAGE_CODE" property="packageCode" />
+		<result column="package_name" property="packageName" />
+		<result column="city_name" property="cityName" />
+		<result column="img_path" property="imgPath" />
+		<result column="schedule_daily" property="scheduleDaily" />
+		<result column="daily_code" property="dailyCode" />
+		<result column="hotel_name" property="hotelName"/>
+		<result column="hotel_img_path" property="hotelImgPath"/>
+	</resultMap>
 
-	<select id="detailStay" parameterType="string" resultMap="searchMap">
+	<select id="detailStay" parameterType="string" resultMap="hotelMap">
 		select
 		*
 		from tb_package p, tb_air a
@@ -263,5 +281,25 @@
 		#{packageCode,jdbcType=VARCHAR}
 	</select>
 
+	<insert id="insertPay" parameterType="payment">
+		insert into tb_payment(
+		PAYMENT_CODE,ADULT_CNT,CHILD_CNT,BABY_CNT,USER_EMAIL,PACKAGE_CODE,PACKAGE_PRICE
+		)values(
+		s_payment_code.nextval,#{adultCnt},#{childCnt},#{babyCnt},#{userEmail},#{packageCode},#{packagePrice}
+		)
+	</insert>
+	
+	<resultMap id="imgMap" type="img" >
+	<result column="img_path" property="imgPath"/>
+	</resultMap>
 
+	<select id="imgController" resultMap="imgMap">
+		select a.*
+		from (
+		select *
+		from tb_theme t
+		join tb_img_group i
+		on t.THEME_CODE = i.THEME_CODE)a
+		where rownum <![CDATA[ <]]>5
+	</select>
 </mapper>

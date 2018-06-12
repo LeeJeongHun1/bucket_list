@@ -8,6 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.co.bucket.repository.domain.AllSearch;
+import kr.co.bucket.repository.domain.HResult;
+import kr.co.bucket.repository.domain.Img;
+import kr.co.bucket.repository.domain.Payment;
 import kr.co.bucket.repository.domain.Review;
 import kr.co.bucket.repository.domain.SResult;
 import kr.co.bucket.repository.domain.Search;
@@ -42,13 +45,17 @@ public class SearchServiceImp implements SearchService {
 		map.put("endDate", mapper.detailEnd(packageCode));
 		map.put("daily", mapper.detailSchedule(packageCode));
 		map.put("stay", mapper.detailStay(packageCode));
+		List<HResult> sList = mapper.detailStay(packageCode);
+		for(HResult s:sList) {
+			System.out.println("호텔이름"+s.getHotelName());
+			System.out.println("호텔이미지"+s.getHotelImgPath());
+		}
 		List<SResult> list = mapper.detailSchedule(packageCode);
 		for(SResult s:list) {
-			System.out.println(s.getImgPath() +"이미지체크즁");
-			System.out.println(s.getPackageName()+"체크즁");
-			
+			System.out.println("패키지코드" +s.getPackageName());
+			System.out.println("테마네임"+s.getThemeName());
+			System.out.println("테마이미지"+s.getImgPath());
 		}
-		System.out.println(packageCode);
 		return map;
 	}
 
@@ -74,5 +81,20 @@ public class SearchServiceImp implements SearchService {
 			}
 		return mapper.selectReivewByCode(packageCode);
 	}
+
+	@Override
+	public void insertPayment(Payment payment) throws Exception {
+		System.out.println(payment);
+		mapper.insertPay(payment);
+	}
+	
+	public List<Img> imgRepeat() throws Exception{
+		List<Img> list = mapper.imgController();
+		for(Img i:list) {
+			System.out.println(i.getImgPath() +"이미지");
+		}
+		return mapper.imgController();
+
+     }
 
 }

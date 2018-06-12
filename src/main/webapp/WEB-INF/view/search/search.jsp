@@ -29,17 +29,18 @@
 	margin-left: 17px;
 }
 
-.search_detail {
-	background-color: #3F3F3F;
-	padding: 8px 15px;
+
+.item-entry a.aStyle {
+    color: #000;
+    display: inline-block;
+    width: 257px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 </style>
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<script>
-	
-</script>
-
 </head>
 <body>
 
@@ -162,21 +163,8 @@
 							<div class="col-md-4" style="border-left: 1px dashed #e8e8e8;">
 								<h4 class="sub_title">여행 기간별</h4>
 								<div class="col-md-12">
-									<!-- 									<select id="lunchBegins" class="selectpicker"
-										data-live-search="true" data-live-search-style="begins"
-										title="테마별">
-										<option>New york, CA</option>
-										<option>Paris</option>
-										<option>Casablanca</option>
-										<option>Tokyo</option>
-										<option>Marraekch</option>
-										<option>kyoto , shibua</option>
-									</select> -->
-
 								</div>
-								<!-- <h4 class="c_title">기간별</h4> -->
 								<div class="col-md-12">
-
 									<div class="col-sm-12">
 										<div class="checkbox">
 											<label> <input type="checkbox" name="day" value="1">3일이하
@@ -207,18 +195,10 @@
 											</label>
 										</div>
 									</div>
-
-									<!-- <!-- End of  -->
-									<!-- 									<h4 class="c_title">기타</h4>
- -->
 									<div class="col-sm-12"
 										style="margin-top: 10px; margin-bottom: 10px;">
 										<input type="text" class="form-control" name="dkeyword"
 											placeholder="Key word">
-										<!-- 		<div class="checkbox">
-											<label> <input type="checkbox">전체검색
-											</label>
-										</div> -->
 									</div>
 									<div class="col-sm-12">
 
@@ -239,7 +219,7 @@
 						<ul class="sort-by-list">
 							<li class="active"></li>
 							<li class=""><select id="price" name="price">
-									<option value="">가격순</option>
+									<option value="0">가격순</option>
 									<option value="1">가격낮은순</option>
 									<option value="2">가격높은순</option>
 							</select> </li>
@@ -253,7 +233,7 @@
 									class="fa fa-sort-numeric-desc"></i>  </a>--></li>
 						</ul>
 						<!--/ .sort-by-list-->
-						<div class="items-per-page">
+<!-- 						<div class="items-per-page">
 							<label for="items_per_page"><b>총 페이수:</b></label>
 							<div class="sel" style="text-align: left;">
 								<select id="items_per_page" name="per_page">
@@ -267,9 +247,9 @@
 									<option value="60">60</option>
 								</select>
 							</div>
-							<!--/ .sel-->
+							/ .sel
 						</div>
-						<!--/ .items-per-page-->
+						/ .items-per-page -->
 					</div>
 
 					<div class="col-xs-2 layout-switcher">
@@ -288,17 +268,17 @@
 						<div class="col-sm-6 col-md-3 p0">
 								<div class="box-two proerty-item">
 									<div class="item-thumb">
-										<a href="property-1.html"><img src="..${item.imgPath}"></a>
+										<a href="property-1.html"><img src="..${item.packageImgPath}"></a>
 									</div>
 									<div class="item-entry overflow">
 										<h5>
-											<a href="property-1.html"> 여행도시 <span>${item.cityName}</span></a>
+											<a class="aStyle" href="property-1.html">${item.packageName}</a>
 											<button
 												class="search_detail navbar-btn nav-button wow fadeInRight animated"
-												onclick=" location.replace('${pageContext.request.contextPath}/search/searchDetail.do')"
+												onclick=" location.replace('<c:url value="/search/searchDetail.do"/>?packageCode=${item.packageCode}')"
 												data-wow-delay="0.48s"
 												style="visibility: visible; animation-delay: 0.48s; animation-name: fadeInRight;">상세보기</button>
-												<a class="search_detail search-btn navbar-btn wow fadeInRight animated" href="<c:url value="/search/searchDetail.do"/>?packageCode='${item.packageCode}'" data-wow-delay="0.48s">테스트</a>'
+												<%-- <a style="color:#fff" class="nav-button search_detail search-btn navbar-btn wow fadeInRight animated" href="<c:url value="/search/searchDetail.do"/>?packageCode=${item.packageCode}" data-wow-delay="0.48s">테스트</a>' --%>
 										</h5>
 										<div class="dot-hr"></div>
 										<!-- <span class="pull-left"><b> Area :</b> 120m </span> -->
@@ -310,6 +290,9 @@
 						</div>
 					</div>
 					</c:forEach> 
+<%-- 					<c:if test="${empty keyname}">
+		    <div id="list-type" class="proerty-th">입력된 게시물이 없습니다.</div>
+		  </c:if> --%>
 				</div>
 				<!-- 검색결과끄읕 -->
 				<div class="col-md-12 clear">
@@ -376,13 +359,13 @@
 							html+='<div class="col-sm-6 col-md-3 p0">';
 							html+='<div class="box-two proerty-item">';
 							html+='<div class="item-thumb">';
-							html+='<a href="property-1.html"><img src="..'+a.imgPath+'"></a>';
+							html+='<a href="property-1.html"><img src="..'+a.packageImgPath+'"></a>';
 							html+='</div>';
 							html+='<div class="item-entry overflow">';
 							html+='<h5>';
-							html+='<a href="property-1.html"> 여행도시 <span>'+a.cityName+'</span></a>';
+							html+='<a href="property-1.html">'+a.packageName+'</a>';
 							//html+='<button type="button" class="search_detail navbar-btn nav-button wow fadeInRight animated" onclick="location.replace('${pageContext.request.contextPath}/search/searchDetail.do')" data-wow-delay="0.48s">상세보기</button>'
-							html+='<a class="search_detail search-btn navbar-btn wow fadeInRight animated" href="<c:url value="/search/searchDetail.do"/>?packageCode='+a.packageCode+'" data-wow-delay="0.48s">테스트</a>';
+							html+='<a style="width: 85px; line-height: 34px; text-align: center;    display: inline-block; background: #EAE9E9;" class="search_detail search-btn navbar-btn wow fadeInRight animated" href="<c:url value="/search/searchDetail.do"/>?packageCode='+a.packageCode+'" data-wow-delay="0.48s">상세보기</a>';
 							//html+='<a href="<c:url value='/search/searchDetail.do'/>'+?${a.packageCode}+'"></a>';
 							html+='</h5>';
 							html+='<div class="dot-hr"></div>';
@@ -416,11 +399,11 @@
 					html+='<div class="col-sm-6 col-md-3 p0">';
 					html+='<div class="box-two proerty-item">';
 					html+='<div class="item-thumb">';
-					html+='<a href="property-1.html"><img src="..'+a.imgPath+'"></a>';
+					html+='<a href="property-1.html"><img src="..'+a.packageImgPath+'"></a>';
 					html+='</div>';
 					html+='<div class="item-entry overflow">';
 					html+='<h5>';
-					html+='<a href="property-1.html"> 여행도시 <span>'+a.cityName+'</span></a>';
+					html+='<a href="property-1.html">'+a.packageName+'</a>';
 					//html+='<button type="button" class="search_detail navbar-btn nav-button wow fadeInRight animated" onclick="location.replace('${pageContext.request.contextPath}/search/searchDetail.do')" data-wow-delay="0.48s">상세보기</button>'
 					html+='</h5>';
 					html+='<div class="dot-hr"></div>';
@@ -449,11 +432,11 @@
 						html+='<div class="col-sm-6 col-md-3 p0">';
 						html+='<div class="box-two proerty-item">';
 						html+='<div class="item-thumb">';
-						html+='<a href="property-1.html"><img src="..'+a.imgPath+'"></a>';
+						html+='<a href="property-1.html"><img src="..'+a.packageImgPath+'"></a>';
 						html+='</div>';
 						html+='<div class="item-entry overflow">';
 						html+='<h5>';
-						html+='<a href="property-1.html"> 여행도시 <span>'+a.cityName+'</span></a>';
+						html+='<a href="property-1.html">'+a.packageyName+'</a>';
 						//html+='<button type="button" class="search_detail navbar-btn nav-button wow fadeInRight animated" onclick="location.replace('${pageContext.request.contextPath}/search/searchDetail.do')" data-wow-delay="0.48s">상세보기</button>'
 						html+='</h5>';
 						html+='<div class="dot-hr">'+a.startDate+'</div>';

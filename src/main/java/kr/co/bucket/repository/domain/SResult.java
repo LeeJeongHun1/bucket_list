@@ -11,18 +11,17 @@ public class SResult {
 	private String flyingTime;
 	private String scheduleDaily;
 	private String airName;
-	private String hotelName;
-	private String hotelImgPath;
-	public String getHotelImgPath() {
-		return hotelImgPath;
-	}
-	public void setHotelImgPath(String hotelImgPath) {
-		this.hotelImgPath = hotelImgPath;
-	}
 	private int dailyCode;
 	private String themeInfo;
 	private String themeName;
 	private String themeType;
+	private String packageImgPath;
+	public String getPackageImgPath() {
+		return packageImgPath;
+	}
+	public void setPackageImgPath(String packageImgPath) {
+		this.packageImgPath = packageImgPath;
+	}
 	public String getThemeType() {
 		return themeType;
 	}
@@ -59,12 +58,6 @@ public class SResult {
 	}
 	public void setAirName(String airName) {
 		this.airName = airName;
-	}
-	public String getHotelName() {
-		return hotelName;
-	}
-	public void setHotelName(String hotelName) {
-		this.hotelName = hotelName;
 	}
 	public int getDailyCode() {
 		return dailyCode;

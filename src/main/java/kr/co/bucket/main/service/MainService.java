@@ -7,7 +7,7 @@ import kr.co.bucket.repository.domain.MResult;
 
 public interface MainService {
 	public Map<String, List<MResult>> selectPackageList() throws Exception;
-	//public List<Img> imgRepeat() throws Exception;
+	
 	
 
 }

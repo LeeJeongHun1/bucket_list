@@ -31,6 +31,11 @@ ul {padding:0;}
     background: #f3f3f3;
     z-index: 1;
     height:534wpx;}
+.item-entry a{    display: inline-block;
+    width: 257px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;}
 </style>
 </head>
 <body>
@@ -103,8 +108,16 @@ ul {padding:0;}
                                 <div class="item-entry overflow">
                                     <h5><a href="property-1.html" >${i.packageName}</a></h5>
                                     <div class="dot-hr"></div>
-<!--                                      <button style="padding: 2px 14px;" class="navbar-btn nav-button wow bounceInRight login animated" onclick=" window.open('register.jsp')" data-wow-delay="0.45s" style="visibility: visible; animation-delay: 0.45s; animation-name: bounceInRight;">상세보기</button>-->
-									<a class="search_detail search-btn navbar-btn wow fadeInRight animated" href="<c:url value="/search/searchDetail.do"/>?packageCode='${i.packageCode}'" data-wow-delay="0.48s">상세보기</a>
+<%--                                      <button
+												class="search_detail navbar-btn nav-button wow fadeInRight animated"
+												onclick=" location.replace('<c:url value="/search/searchDetail.do"/>?packageCode=${i.packageCode}')"
+												data-wow-delay="0.48s"
+												style="visibility: visible; animation-delay: 0.48s; animation-name: fadeInRight;">상세보기</button> --%>
+								                                    <button style="padding: 2px 14px;" class="navbar-btn nav-button wow bounceInRight login animated" onclick=" location.replace('<c:url value="/search/searchDetail.do"/>?packageCode=${i.packageCode}')"data-wow-delay="0.45s" style="visibility: visible; animation-delay: 0.45s; animation-name: bounceInRight;">상세보기</button>
+								
+								
+									<%-- <a class="search_detail search-btn navbar-btn wow fadeInRight animated" href="<c:url value="/search/searchDetail.do"/>?packageCode=${i.packageCode}" data-wow-delay="0.48s">상세보기</a>
+                                     --%>   
                                        <span class="main_price proerty-price pull-right">${i.packagePrice}원</span>
                                 </div>
                             </div>
@@ -136,7 +149,7 @@ ul {padding:0;}
                                 <div class="item-entry overflow">
                                     <h5><a href="property-1.html" >${pop.packageName} </a></h5>
                                     <div class="dot-hr"></div>
-                                    <button style="padding: 2px 14px;" class="navbar-btn nav-button wow bounceInRight login animated" onclick=" window.open('register.jsp')" data-wow-delay="0.45s" style="visibility: visible; animation-delay: 0.45s; animation-name: bounceInRight;">상세보기</button>
+                                    <button style="padding: 2px 14px;" class="navbar-btn nav-button wow bounceInRight login animated" onclick=" location.replace('<c:url value="/search/searchDetail.do"/>?packageCode=${pop.packageCode}')" data-wow-delay="0.45s" style="visibility: visible; animation-delay: 0.45s; animation-name: bounceInRight;">상세보기</button>
                                    <span class="main_price proerty-price pull-right">${pop.packagePrice}원</span>
   
                                 </div>
@@ -169,7 +182,7 @@ ul {padding:0;}
                                 <div class="item-entry overflow">
                                     <h5><a href="property-1.html" >${s.packageName}</a></h5>
                                     <div class="dot-hr"></div>
-                                    <button style="padding: 2px 14px;" class="navbar-btn nav-button wow bounceInRight login animated" onclick=" window.open('register.jsp')" data-wow-delay="0.45s" style="visibility: visible; animation-delay: 0.45s; animation-name: bounceInRight;">상세보기</button>
+                      <button style="padding: 2px 14px;" class="navbar-btn nav-button wow bounceInRight login animated" onclick=" location.replace('<c:url value="/search/searchDetail.do"/>?packageCode=${pop.packageCode}')" data-wow-delay="0.45s" style="visibility: visible; animation-delay: 0.45s; animation-name: bounceInRight;">상세보기</button>
                                   <span class="main_price proerty-price pull-right">${s.packagePrice}원</span>
                                 </div>
                             </div>

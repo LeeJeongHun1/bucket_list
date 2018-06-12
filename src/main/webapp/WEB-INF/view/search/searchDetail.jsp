@@ -14,31 +14,6 @@
 	content="html5, css, bootstrap, property, real-estate theme , bootstrap template">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<link
-	href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800'
-	rel='stylesheet' type='text/css'>
-
-<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-<link rel="icon" href="favicon.ico" type="image/x-icon">
-
-<link rel="stylesheet" href="assets/css/normalize.css">
-<link rel="stylesheet" href="assets/css/font-awesome.min.css">
-<link rel="stylesheet" href="assets/css/fontello.css">
-<link href="assets/fonts/icon-7-stroke/css/pe-icon-7-stroke.css"
-	rel="stylesheet">
-<link href="assets/fonts/icon-7-stroke/css/helper.css" rel="stylesheet">
-<link href="assets/css/animate.css" rel="stylesheet" media="screen">
-<link rel="stylesheet" href="assets/css/bootstrap-select.min.css">
-<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet" href="assets/css/icheck.min_all.css">
-<link rel="stylesheet" href="assets/css/price-range.css">
-<link rel="stylesheet" href="assets/css/owl.carousel.css">
-<link rel="stylesheet" href="assets/css/owl.theme.css">
-<link rel="stylesheet" href="assets/css/owl.transitions.css">
-<link rel="stylesheet" href="assets/css/lightslider.min.css">
-<link rel="stylesheet" href="assets/css/style.css">
-<link rel="stylesheet" href="assets/css/responsive.css">
 <style>
 .review {
 	width: 730px;
@@ -144,14 +119,11 @@
 									</div>
 
 									<ul id="image-gallery" class="gallery list-unstyled cS-hidden">
-										<li data-thumb="assets/img/property-1/property1.jpg"><img
-											src="assets/img/property-1/property1.jpg" /></li>
-										<li data-thumb="assets/img/property-1/property2.jpg"><img
-											src="assets/img/property-1/property3.jpg" /></li>
-										<li data-thumb="assets/img/property-1/property3.jpg"><img
-											src="assets/img/property-1/property3.jpg" /></li>
-										<li data-thumb="assets/img/property-1/property4.jpg"><img
-											src="assets/img/property-1/property4.jpg" /></li>
+											<c:forEach var="i" items="${img}">
+										<li data-thumb="..${i.imgPath}">
+										<img src="..${i.imgPath}" />											
+											</li>
+											</c:forEach>
 									</ul>
 								</div>
 							</div>
@@ -258,23 +230,12 @@
 													<th colspan="4" style="border-bottom: 1px solid #d1d1d1;">${d.themeInfo}</th>
 												</tr>
 												<tr style="height: 40px;">
-													<td>${d.imgPath}</td>
-													<td class="col-md-4"><img
-														src="assets/img/property-video.jpg"
-														style="width: 150px; heihgt: 150px;"></td>
-													<td class="col-md-4"><img
+													<td class="col-md-4"><img class="imgPath" src="..${d.imgPath}"></td>
+													<!-- <td class="col-md-4"><img
 														src="assets/img/property-video2.jpg"
-														style="width: 150px; heihgt: 150px;"></td>
+														style="width: 150px; heihgt: 150px;"></td> -->
 													<td class="col-md-4" style="height: 40px;">${d.themeInfo}</td>
 												</tr>
-												<%-- <tr style="height: 40px;">
-													<td class="col-md-4"><img src="">이미지</td>
-													<td class="col-md-4"><img src="">이미지</td>
-													<td class="col-md-4">원래 루이 13세가 지은 사냥용 별장이었으나, 1662년
-														무렵 루이 14세의 명령으로 대정원을 착공하고1668년 건물 전체를 증축하여 외관을 가로축 부분이 앞으로
-														튀어나온 U자형 궁전으로 개축하였다. 1979년 유네스코에서 세계문화유산으로 지정하였다. 호화로운 건물과
-														광대하고 아름다운 정원과 분수, 로페라와 거울의 방으로 유명하다 !!!!!!!!!!${status.count} 테마 정보: , 테마이름: , 이미지 ${d.imgPath}</td>
-												</tr> --%>
 											</table>
 										</td>
 									</tr>
@@ -302,31 +263,6 @@
 											<th>별점</th>
 											<th>작성자</th>
 											<th>등록일</th>
-
-										</tr>
-							<!-- 			<tr>
-											<td>내용입니다.</td>
-											<td>별점 : <span>4.5점</span></td>
-											<td>홍길동</td>
-											<td>2018.04.20</td>
-										</tr>
-										<tr>
-											<td>내용입니다.</td>
-											<td>별점 : <span>4.5점</span></td>
-											<td>홍길동</td>
-											<td>2018.04.20</td>
-										</tr> -->
-									<!-- 	<tr class="review_list">
-											<td>타이틀</td>
-											<td>별점 : <span>4.5점</span></td>
-											<td>홍길동</td>
-											<td>2018.04.20</td>
-										</tr>
-										<tr class="view">
-											<td colspan="4">
-												<div>내용</div>
-											</td>
-										</tr> -->
 									</table>
 								</div>
 									<form method="post" id="reviewRegist">
@@ -580,7 +516,7 @@
 									</c:when>
 								</c:choose>
 							</c:forEach>
-
+						<form method="post" action="${pageContext.request.contextPath}/search/payment.do">
 							<div class="panel-heading">
 								<c:forEach var="entry" items="${packageCode}">
 									<c:if test="${entry.key eq 'endDate'}">
@@ -603,41 +539,47 @@
 									</c:if>
 								</c:forEach>
 							</div>
-
+							
 							<div class="panel-heading">
 								<h3 class="panel-title" style="margin-bottom: 10px;">총 인원수</h3>
 								<table style="width: 350px;">
 									<tr>
 										<th>성인</th>
-										<td><select>
+										<td><select class="pp" id="p1" name="adultCnt">
 												<c:forEach var="i" begin="1" end="30">
 													<option>${i}</option>
 												</c:forEach>
 										</select></td>
 										<th>아동</th>
-										<td><select>
+										<td><select class="pp" id="p2" name="childCnt">
 												<c:forEach var="i" begin="1" end="30">
 													<option>${i}</option>
 												</c:forEach>
 										</select></td>
 										<th>유아</th>
-										<td><select>
+										<td><select class="pp" id="p3" name="babyCnt">
 												<c:forEach var="i" begin="1" end="30">
 													<option>${i}</option>
 												</c:forEach>
 										</select></td>
 									</tr>
-
 								</table>
+							<input type="hidden" name="userEmail" value="${sessionScope.member.userEmail}"/>
+							<c:forEach var="entry" items="${packageCode}">
+									<c:if test="${entry.key eq 'startDate'}">
+										<input type="hidden" value="${entry.value.packageCode}" name="packageCode">
+									</c:if>
+								</c:forEach>
 							</div>
 							<div class="panel-heading">
 								<h3 class="panel-title" style="margin-bottom: 10px;">총 예정금액</h3>
-								<h4 style="border: none; display: block;">1000000원</h4>
-								<button
+								<h4 id="total" style="border: none; display: block;">
+								<input type="text" name="packagePrice" readonly /></h4>
+								<button id="payMent"
 									class="navbar-btn nav-button wow fadeInRight animated animated"
 									style="display: block;">결제하기</button>
 							</div>
-
+						</form>
 						</div>
 
 					</aside>
@@ -671,43 +613,66 @@
 	
 	</script>
 
-	<script src="assets/js/vendor/modernizr-2.6.2.min.js"></script>
-	<script src="assets/js/jquery-1.10.2.min.js"></script>
-	<script src="bootstrap/js/bootstrap.min.js"></script>
-	<script src="assets/js/bootstrap-select.min.js"></script>
-	<script src="assets/js/bootstrap-hover-dropdown.js"></script>
-	<script src="assets/js/easypiechart.min.js"></script>
-	<script src="assets/js/jquery.easypiechart.min.js"></script>
-	<script src="assets/js/owl.carousel.min.js"></script>
-	<script src="assets/js/wow.js"></script>
-	<script src="assets/js/icheck.min.js"></script>
-	<script src="assets/js/price-range.js"></script>
-	<script type="text/javascript" src="assets/js/lightslider.min.js"></script>
-	<script src="assets/js/main.js"></script>
+
 
 	<script>
-// 		$(document).ready(function() {
+ 		$(document).ready(function() {
 
-// 			$('#image-gallery').lightSlider({
-// 				gallery : true,
-// 				item : 1,
-// 				thumbItem : 9,
-// 				slideMargin : 0,
-// 				speed : 500,
-// 				auto : true,
-// 				loop : true,
-// 				onSliderLoad : function() {
-// 					$('#image-gallery').removeClass('cS-hidden');
-// 				}
-// 			});
-// 		});
+ 			$('#image-gallery').lightSlider({
+				gallery : true,
+ 				item : 1,
+ 				thumbItem : 9,
+ 				slideMargin : 0,
+ 				speed : 500,
+ 				auto : true,
+ 				loop : true,
+ 				onSliderLoad : function() {
+ 					$('#image-gallery').removeClass('cS-hidden');
+ 				}
+ 			});
+ 		});
 		
+			var adult = 0;
+			var total = 0;
+			var baby  = 0;
+			var child = 0;
+			var aTemp = 0;
+			var cTemp = 0;
+			var bTemp = 0;
 		$(function () {
-			var adult = $(".adult").text();
+			adult =$(".adult").text(); 
 			adult = adult.split('원')[0]
 			console.log(adult*0.2);
 			$(".child").text(adult*0.8 + '원')
 			$(".baby").text(adult*0.2 + '원')
+			baby = 	$(".baby").text().split('원')[0];
+			child = $(".child").text().split('원')[0];
+		
+		});
+		
+		$(".pp").change(function () {
+            var sid = $(this).attr("id");
+            if(sid == 'p1'){
+                aTemp = $(this).val()*adult; 
+            }else if(sid == 'p2'){
+                cTemp = $(this).val()*child; 
+            }else{
+                bTemp = $(this).val()*baby; 
+            }
+            total = aTemp+bTemp+cTemp;
+            // alert(total)
+            $("#total input").val(total);
+        });
+		$("#payMent").on("click",function(){
+			if($("input[name='userEmail']").val()==""){
+				alert("로그인이필요한 서비스입니다.");	
+				return false;
+			}else{
+				alert("결제성공");
+			}
+				
+			
+			
 		});
 		
 	</script>

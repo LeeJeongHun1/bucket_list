@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Map;
 
 import kr.co.bucket.repository.domain.AllSearch;
+import kr.co.bucket.repository.domain.Img;
+import kr.co.bucket.repository.domain.Payment;
 import kr.co.bucket.repository.domain.Review;
 import kr.co.bucket.repository.domain.SResult;
 import kr.co.bucket.repository.domain.Search;
@@ -22,4 +24,8 @@ public interface SearchService {
 	public void reviewRegist(Review review) throws Exception;
 	public List<Review> reivewList(String packageCode) throws Exception;
 	
+	//결제
+	public void insertPayment(Payment payment) throws Exception;
+	
+	public List<Img> imgRepeat() throws Exception;
 }

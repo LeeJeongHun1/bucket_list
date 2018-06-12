@@ -2477,6 +2477,16 @@ count-area
 }
 .item-entry a {
     color: #000;
+    
+}
+.aStyle{
+	color: #000;
+    display: inline-block;
+    width: 132px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+	
 }
 .item-entry a:hover ,.item-entry a:focus {
     color: #999696;
@@ -3048,4 +3058,10 @@ padding: 10px;
 }
 #map {
     height: 300px;
+}
+
+.search_detail:hover {
+	/* background-color: #3F3F3F; */
+	padding: 8px 15px;
+	background:#FDC600;
 }

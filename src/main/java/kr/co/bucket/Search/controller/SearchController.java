@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import kr.co.bucket.Search.service.SearchService;
 import kr.co.bucket.repository.domain.AllSearch;
 import kr.co.bucket.repository.domain.PageResult;
+import kr.co.bucket.repository.domain.Payment;
 import kr.co.bucket.repository.domain.Review;
 import kr.co.bucket.repository.domain.SResult;
 import kr.co.bucket.repository.domain.Search;
@@ -35,6 +36,7 @@ public class SearchController {
 	@RequestMapping("/searchDetail.do")
 	public void detailSearch(String packageCode, Model model) throws Exception{
 		model.addAttribute("packageCode", searchService.detailBoard(packageCode));
+		model.addAttribute("img",searchService.imgRepeat());
 		System.out.println("갑니다.");
 	}
 	
@@ -89,6 +91,12 @@ public class SearchController {
 		return searchService.reivewList(packageCode);
 	}
 	
+	@RequestMapping("/payment.do")
+	public String insertPayment(Payment payment) throws Exception{
+		System.out.println(payment +"컨트롤가격");
+		searchService.insertPayment(payment);
+		return "redirect:/main/index.do";
+	}
 	
 }	
 	 
