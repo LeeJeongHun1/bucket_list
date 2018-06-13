@@ -11,7 +11,7 @@
                                 <h4>About us </h4>
                                 <div class="footer-title-line"></div>
 
-                                <img src="assets/img/footer-logo.png" alt="" class="wow pulse" data-wow-delay="1s">
+                                <!-- <img src="assets/img/footer-logo.png" alt="" class="wow pulse" data-wow-delay="1s"> -->
                                 <p>(주)버킷리스트<br> 서울특별시 강남구 테헤란로5길 11<br>YBM빌딩 2층</p>
                                 <ul class="footer-adress">
                                     <li><i class="pe-7s-map-marker strong"> </i> seoul gang-nam-gu <br>tae-hae-ran-ro 5 gil 11</li>
@@ -41,7 +41,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="pull-left">
-                            <span> (C) <a href="http://www.KimaroTec.com">KimaroTheme</a> , All rights reserved 2016  </span> 
+                            <span> (C) <a href="http://www.KimaroTec.com">BucketList</a> , All rights reserved 2016  </span> 
                         </div> 
                         <div class="bottom-menu pull-right"> 
                             <ul> 

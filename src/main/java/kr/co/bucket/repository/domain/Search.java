@@ -13,7 +13,11 @@ public class Search {
 
 	private int pageNo = 1;
 	private int listSize = 4;
-
+	public static void main(String[] args) {
+		Search s = new Search();
+		System.out.println(s.getBegin());
+		System.out.println(s.getEnd());
+	}
 	public int getBegin() {
 		return (pageNo -1) * listSize + 1;
 	} // 규칙을 찾음 . 시작 

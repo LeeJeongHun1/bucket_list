@@ -3,7 +3,7 @@
 <%@ taglib prefix="fn"  uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="navi" %>    
 
-<title>GARO ESTATE | Properties page</title>
+<title>BucketList</title>
 <style>
 .searchBorder {
 	width: 1098px;
@@ -48,7 +48,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="page-head-content">
-					<h1 class="page-title">List Layout With Sidebar</h1>
+					<h1 class="page-title">Search List</h1>
 				</div>
 			</div>
 		</div>
@@ -68,11 +68,11 @@
 					</span>
 				</div>
 				<!--  검색창 -->
+						<form id="detailAll" action="" class=" form-inline" method="post">
 				<div class="col-md-12 padding-bottom-40 large-search">
 					<div class="search-form wow pulse">
 						<!-- 검색폼 -->
 						<%-- ${pageContext.request.contextPath}/search/search.do --%>
-						<form id="detailAll" action="" class=" form-inline" method="post">
 							<div class="col-md-4" style="border-right: 1px dashed #e8e8e8;">
 								<h4 class="sub_title">도시별</h4>
 								<!-- <h4 class="c_title">출발도시</h4> -->
@@ -209,8 +209,7 @@
 									</div>
 								</div>
 							</div>
-						</form>
-						<!-- 폼 끝 -->
+						
 					</div>
 				</div>
 
@@ -228,29 +227,7 @@
 									<option value="0">출발일순</option>
 									<option value="1">출발일이 빠른순</option>
 									<option value="2">출발일이 느린순</option>
-							</select> <!-- <a href="javascript:void(0);"
-								class="order_by_price" data-orderby="property_price"
-								data-order="DESC">인기순<i
-									class="fa fa-sort-numeric-desc"></i>  </a>--></li>
-						</ul>
-						<!--/ .sort-by-list-->
-<!-- 						<div class="items-per-page">
-							<label for="items_per_page"><b>총 페이수:</b></label>
-							<div class="sel" style="text-align: left;">
-								<select id="items_per_page" name="per_page">
-									<option value="3">3</option>
-									<option value="6">6</option>
-									<option value="9">9</option>
-									<option selected="selected" value="12">12</option>
-									<option value="15">15</option>
-									<option value="30">30</option>
-									<option value="45">45</option>
-									<option value="60">60</option>
-								</select>
-							</div>
-							/ .sel
-						</div>
-						/ .items-per-page -->
+							</select>
 					</div>
 
 					<div class="col-xs-2 layout-switcher">
@@ -262,7 +239,8 @@
 					</div>
 					<!--/ .layout-switcher-->
 				</div>
-
+</form>
+						<!-- 폼 끝 -->
 				<div id="makeSearch" class="col-md-12 clear ">
 				<c:forEach var="item" items="${allSearch}">
 					<div id="list-type" class="proerty-th">
@@ -335,8 +313,8 @@
 		});
 		
 		function doAction(){
-
-			$.ajax({
+ 			console.log($("#detailAll").serialize());
+			$.ajax({	
 				type:'post',
 				url:"<c:url value='/search/searchDetail.json'/>",
 				data: $("#detailAll").serialize(),
@@ -395,7 +373,7 @@
 			$.ajax({
 			type:'post',
 			url:"<c:url value='/search/searchSelect.json'/>",
-			data:{price:$("#price").val()}
+			data: $("#detailAll").serialize()
 		}) .done(function(result){
 			var html="";
 			$("#makeSearch").html("");
@@ -428,7 +406,7 @@
 				$.ajax({
 				type:'post',
 				url:"<c:url value='/search/departureSelect.json'/>",
-				data:{price:$("#departure").val()}
+				data: $("#detailAll").serialize()
 			}) .done(function(result){
 				var html="";
 				$("#makeSearch").html("");
@@ -442,7 +420,7 @@
 						html+='</div>';
 						html+='<div class="item-entry overflow">';
 						html+='<h5>';
-						html+='<a class="aStyle" href="property-1.html">'+a.packageyName+'</a>';
+						html+='<a class="aStyle" href="property-1.html">'+a.packageName+'</a>';
 						//html+='<button type="button" class="search_detail navbar-btn nav-button wow fadeInRight animated" onclick="location.replace('${pageContext.request.contextPath}/search/searchDetail.do')" data-wow-delay="0.48s">상세보기</button>'
 						html+='</h5>';
 						html+='<div class="dot-hr">'+a.startDate+'</div>';

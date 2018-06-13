@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <head>
 <meta charset="UTF-8">
-<title>GARO ESTATE | Home page</title>
+<title>BucketList</title>
 <style>
 .main_price {margin-top: 10px;}
 ul li {list-style: none !important;
@@ -182,7 +182,7 @@ ul {padding:0;}
                                 <div class="item-entry overflow">
                                     <h5><a href="property-1.html" >${s.packageName}</a></h5>
                                     <div class="dot-hr"></div>
-                      <button style="padding: 2px 14px;" class="navbar-btn nav-button wow bounceInRight login animated" onclick=" location.replace('<c:url value="/search/searchDetail.do"/>?packageCode=${pop.packageCode}')" data-wow-delay="0.45s" style="visibility: visible; animation-delay: 0.45s; animation-name: bounceInRight;">상세보기</button>
+                      <button style="padding: 2px 14px;" class="navbar-btn nav-button wow bounceInRight login animated" onclick=" location.replace('<c:url value="/search/searchDetail.do"/>?packageCode=${s.packageCode}')" data-wow-delay="0.45s" style="visibility: visible; animation-delay: 0.45s; animation-name: bounceInRight;">상세보기</button>
                                   <span class="main_price proerty-price pull-right">${s.packagePrice}원</span>
                                 </div>
                             </div>

@@ -35,16 +35,11 @@
 		air.ARRIVAL_CITY_code =
 		city.city_code
 		where
-		pack.PACKAGE_NAME like '%'
-		||
+		pack.PACKAGE_NAME like '%'||
 		#{keyword} || '%'
-		or city.CITY_NAME like
-		'%'|| #{keyword} || '%'
+	<!-- 	or city.CITY_NAME like
+		'%'|| #{keyword} || '%' -->
 	</select>
-
-	
-
-
 	<select id="AllSearch" parameterType="search" resultMap="searchMap">
 		select *
 		from (
@@ -74,8 +69,8 @@
 		<if test="keyword != '' ">
 		pack.PACKAGE_NAME like '%' ||
 		#{keyword} ||'%'
-		or city.CITY_NAME like		
-		'%' || #{keyword} || '%'
+		<!-- or city.CITY_NAME like		
+		'%' || #{keyword} || '%' -->
 		</if>
 		<if test="keyword == '' ">
 		pack.package_name = ''
@@ -98,8 +93,8 @@
 		<where>
 		    <if test="keyword != ''">
 				AND pack.PACKAGE_NAME like '%' || #{keyword} || '%'
-				AND
-				city.CITY_NAME like '%'|| #{keyword} || '%'
+				<!-- AND
+				city.CITY_NAME like '%'|| #{keyword} || '%' -->
 			</if>
 			<if test="dkeyword != ''">
 				AND pack.PACKAGE_NAME like '%' || #{dkeyword} || '%'
@@ -129,7 +124,7 @@
 			</choose>
 			<if test="cityCode != ''">
 				AND air.DEPARTURE_CITY_CODE = #{cityCode}
-			</if>  -->
+			</if>  
 			<!-- <choose> <when test="day == 1"> AND substr(end_date,9,2)-substr(start_date,9,2)<![CDATA[ 
 				<= ]]> 3 </when> <when test="day == 2"> AND substr(end_date,9,2)-substr(start_date,9,2) 
 				between 4 and 5 </when> <when test="day == 3"> AND substr(end_date,9,2)-substr(start_date,9,2) 
@@ -137,7 +132,7 @@
 				<![CDATA[ >= ]]> 10 </when> </choose> -->
 		</where>
 	</select>
-	<select id="selectSearch" parameterType="string" resultMap="searchMap">
+	<select id="selectSearch" parameterType="allSearch" resultMap="searchMap">
 		select *
 		from tb_package pack
 		inner
@@ -147,17 +142,53 @@
 		join
 		tb_city city
 		on air.ARRIVAL_CITY_code = city.city_code
-		<!-- <trim prefix="ORDER BY"> -->
-		<!-- <if test="selectPrice == '1'"> -->
-		<!-- order by pack.PACKAGE_PRICE -->
-		<!-- </if> -->
-		<!-- <if test="selectPrice == '2'"> -->
-		<!-- order by pack.PACKAGE_PRICE -->
-		<!-- </if> -->
-		<!-- </trim> -->
+	<where>
+		    <if test="keyword != ''">
+				AND pack.PACKAGE_NAME like '%' || #{keyword} || '%'
+				<!-- AND
+				city.CITY_NAME like '%'|| #{keyword} || '%' -->
+			</if>
+<!-- 			<if test="dkeyword != ''">
+				AND pack.PACKAGE_NAME like '%' || #{dkeyword} || '%'
+			</if>  -->
+			<if test="startDate != '' and endDate != '' ">
+				AND air.start_date <![CDATA[ >= ]]> #{startDate}  
+				AND air.end_date <![CDATA[ <= ]]> #{endDate}  
+			</if>
+		<choose>
+				<when test="packagePrice == 1">
+					AND pack.package_price <![CDATA[ <= ]]>
+					500000
+				</when>
+				<when test="packagePrice == 2">
+					AND pack.package_price between 500000 and 1000000
+				</when>
+				<when test="packagePrice == 3">
+					AND pack.package_price between 1000000 and 2000000
+				</when>
+				<when test="packagePrice == 4">
+					AND pack.package_price between 2000000 and 3000000
+				</when>
+				<when test="packagePrice == 5">
+					AND pack.package_price <![CDATA[ >= ]]>
+					3000000
+				</when>
+			</choose>
+			<if test="cityCode != ''">
+				AND air.DEPARTURE_CITY_CODE = #{cityCode}
+			</if>  
+			<!-- <choose> <when test="day == 1"> AND substr(end_date,9,2)-substr(start_date,9,2)<![CDATA[ 
+				<= ]]> 3 </when> <when test="day == 2"> AND substr(end_date,9,2)-substr(start_date,9,2) 
+				between 4 and 5 </when> <when test="day == 3"> AND substr(end_date,9,2)-substr(start_date,9,2) 
+				between 6 and 7 </when> <when test="day == 4"> AND substr(end_date,9,2)-substr(start_date,9,2) 
+				<![CDATA[ >= ]]> 10 </when> </choose> -->
+		</where>
 		<choose>
 			<when test="price == '2'">
-				order by pack.PACKAGE_PRICE DESC
+				AND order by pack.PACKAGE_PRICE DESC
+			</when>
+				<when test="price == '1'">
+				OR order by pack.PACKAGE_PRICE 
 			</when>
 			<otherwise>
 				order by pack.PACKAGE_PRICE 
@@ -165,7 +196,7 @@
 		</choose>
 	</select>
 
-		<select id="departureSearch" parameterType="string" resultMap="searchMap">
+		<select id="departureSearch" parameterType="allSearch" resultMap="searchMap">
 		select *
 		from tb_package pack
 		inner
@@ -175,6 +206,47 @@
 		join
 		tb_city city
 		on air.ARRIVAL_CITY_code = city.city_code
+			<where>
+		    <if test="keyword != ''">
+				AND pack.PACKAGE_NAME like '%' || #{keyword} || '%'
+				<!-- AND
+				city.CITY_NAME like '%'|| #{keyword} || '%' -->
+			</if>
+			<if test="dkeyword != ''">
+				AND pack.PACKAGE_NAME like '%' || #{dkeyword} || '%'
+			</if> 
+			<if test="startDate != '' and endDate != '' ">
+				AND air.start_date <![CDATA[ >= ]]> #{startDate}  
+				AND air.end_date <![CDATA[ <= ]]> #{endDate}  
+			</if>
+		<choose>
+				<when test="packagePrice == 1">
+					AND pack.package_price <![CDATA[ <= ]]>
+					500000
+				</when>
+				<when test="packagePrice == 2">
+					AND pack.package_price between 500000 and 1000000
+				</when>
+				<when test="packagePrice == 3">
+					AND pack.package_price between 1000000 and 2000000
+				</when>
+				<when test="packagePrice == 4">
+					AND pack.package_price between 2000000 and 3000000
+				</when>
+				<when test="packagePrice == 5">
+					AND pack.package_price <![CDATA[ >= ]]>
+					3000000
+				</when>
+			</choose>
+			<if test="cityCode != ''">
+				AND air.DEPARTURE_CITY_CODE = #{cityCode}
+			</if>  
+			<!-- <choose> <when test="day == 1"> AND substr(end_date,9,2)-substr(start_date,9,2)<![CDATA[ 
+				<= ]]> 3 </when> <when test="day == 2"> AND substr(end_date,9,2)-substr(start_date,9,2) 
+				between 4 and 5 </when> <when test="day == 3"> AND substr(end_date,9,2)-substr(start_date,9,2) 
+				between 6 and 7 </when> <when test="day == 4"> AND substr(end_date,9,2)-substr(start_date,9,2) 
+				<![CDATA[ >= ]]> 10 </when> </choose> -->
+		</where>
 		<choose>
 			<when test="departure == '2'">
 				order by air.end_date desc
@@ -303,6 +375,7 @@
 		from tb_review
 		where package_Code =
 		#{packageCode,jdbcType=VARCHAR}
+		order by reg_Date desc
 	</select>
 
 	<insert id="insertPay" parameterType="payment">

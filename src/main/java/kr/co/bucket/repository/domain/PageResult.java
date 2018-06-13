@@ -30,7 +30,6 @@ public class PageResult {
 		next = endPage != lastPage;
 		
 	}
-
 	public int getPageNo() {
 		return pageNo;
 	}

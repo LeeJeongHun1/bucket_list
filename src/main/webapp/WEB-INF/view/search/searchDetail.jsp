@@ -7,7 +7,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>GARO ESTATE | Property page</title>
+<title>BucketList</title>
 <meta name="description" content="GARO is a real-estate template">
 <meta name="author" content="Kimarotec">
 <meta name="keyword"
@@ -90,7 +90,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="page-head-content">
-					<h1 class="page-title">Super nice villa</h1>
+					<h1 class="page-title">Search Detail</h1>
 				</div>
 			</div>
 		</div>
@@ -131,10 +131,15 @@
 						<div class="single-property-wrapper">
 
 							<div class="section">
-								<h4 class="s-property-title">Description</h4>
+								<h4 class="s-property-title">상품명</h4>
 								<div class="s-property-content">
-									<p>홍콩 3일◈ 얌차식/소호거리/빅토리아피크 ◈ 중국속의 세계적 도시! 아시아의 진주! 홍콩을 실속있게
-										관광하는 상품</p>
+									<p>
+	                              <c:forEach var="entry" items="${packageCode}">
+									<c:if test="${entry.key eq 'startDate'}">
+									${entry.value.packageName}
+									</c:if>
+									</c:forEach>
+									</p>
 								</div>
 							</div>
 							<!-- End description area  -->
@@ -169,12 +174,12 @@
 
 								<h4 class="s-property-title">포함사항</h4>
 								<ul>
-									<li>1. 제주항공 왕복 항공권</li>
-									<li>2. PIC리조트 슈페리어 객실 숙박</li>
-									<li>3. 전일정 호텔식 ( 골드카드 - 부대시설 무료이용 )</li>
-									<li>4. PIC 선셋BBQ , 씨사이드그릴 1회</li>
-									<li>5. 사이판 아일랜드 관광 및 마나가하섬 ( 환경세 포함 )</li>
-									<li>6. 너랑나랑별빛 포함</li>
+									<li>1. [교통] 왕복항공권</li>
+									<li>2. [제세금] 국내공항세, 현지공항세, 관광진흥개발기금, 전쟁보험료, 유류할증료</li>
+									<li>3. [숙박] 숙박비</li>
+									<li>4. [식사] 식사비</li>
+									<li>5. [관광] 관광지 입장료</li>
+									<li>6. [여행자보험] 1억원 여행자보험</li>
 								</ul>
 
 							</div>
@@ -227,7 +232,7 @@
 										<td colspan="4">
 											<table width="700px;" style="margin: auto">
 												<tr>
-													<th colspan="4" style="border-bottom: 1px solid #d1d1d1;">${d.themeInfo}</th>
+													<th colspan="4" style="border-bottom: 1px solid #d1d1d1;">${d.themeName}</th>
 												</tr>
 												<tr style="height: 40px;">
 													<td class="col-md-4"><img class="imgPath" src="..${d.imgPath}"></td>
@@ -350,16 +355,16 @@
 								})
  					$("#reviewRegist").submit(function (e) {
 					e.preventDefault();
-							alert("rka");	
-							alert($("#reviewRegist").serialize());
+							//alert("rka");	
+							//alert($("#reviewRegist").serialize());
 							$.ajax({
 								type:'post',
 								url:"<c:url value='/search/reviewRegist.json'/>",
 								data:$("#reviewRegist").serialize(),
 								success: function(data){
-									alert("가지");
+									//alert("가지");
 									var html ="";
-									alert($('#reviewRegist input[name="packageCode"]').val());
+									//alert($('#reviewRegist input[name="packageCode"]').val());
 									html+='<tr><th>제목</th>';
 						            html+='<th>별점</th>';
 									html+='<th>작성자</th>';
@@ -386,8 +391,9 @@
 										html += '<tr class="review_list"><td colspan="4">리뷰가 존재하지 않습니다.</td></tr>';
 									}
 									$(".review tbody").html(html);
+									reviewList();
 									$(".review_list").on("click", function() {
-										alert("감");
+										//alert("감");
 										$(".view").toggleClass("on");
 									});
 								},
@@ -400,7 +406,7 @@
 						});	
 				
 				function reviewList(){
-					alert("가는지");
+					//alert("가는지");
 					var $code = $('#reviewRegist input[name="packageCode"]').val();
 				$.ajax({
 					url: "<c:url value='/search/reviewList.json'/>",
@@ -408,7 +414,7 @@
 					dataType: "json", 
 					success: function(data){
 						var html ="";
-						alert($('#reviewRegist input[name="packageCode"]').val());
+						//alert($('#reviewRegist input[name="packageCode"]').val());
 						html+='<tr><th>제목</th>';
 			            html+='<th>별점</th>';
 						html+='<th>작성자</th>';
@@ -436,7 +442,7 @@
 						}
 						$(".review tbody").html(html);
 						$(".review_list").on("click", function() {
-							alert("감");
+							//alert("감");
 							$(".view").toggleClass("on");
 						});
 					},
