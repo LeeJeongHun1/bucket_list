@@ -142,6 +142,12 @@ public class AdminController {
 		for(SearchMemResult s :list) {
 			System.out.println(s.getTheme_Type());
 			System.out.println(s.getPackage_Name());
+			System.out.println("값:"+s.getAccept_yn());
+			if(s.getAccept_yn().equals("y")) {
+				s.setAccept_yn("승인완료");
+			}else {
+				s.setAccept_yn("대기중");
+			}
 		}
 		
 		System.out.println(list.size());
@@ -179,6 +185,12 @@ public class AdminController {
 		for(SearchMemResult s :list) {
 			System.out.println(s.getTheme_Type());
 			System.out.println(s.getPackage_Name());
+			System.out.println("값:"+s.getAccept_yn());
+			if(s.getAccept_yn().equals("y")) {
+				s.setAccept_yn("승인완료");
+			}else {
+				s.setAccept_yn("대기중");
+			}
 		}
 		
 		System.out.println(list.size());

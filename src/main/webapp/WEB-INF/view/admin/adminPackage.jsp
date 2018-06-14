@@ -206,7 +206,6 @@ $('#submitForm').submit(function(e){
 			'                <th>가격</th>\r\n' + 
 			'                <th>등록일</th>\r\n' + 
 			'                <th>상태</th>\r\n' + 
-			'                <th>승인/거절</th>\r\n' + 
 			'              </tr>\r\n' + 
 			'            </thead>\r\n';
 			
@@ -225,7 +224,6 @@ $('#submitForm').submit(function(e){
 				'                <td>'+ mem.package_Price +'</td>\r\n' + 
 				'                <td>'+ moment(new Date(mem.reg_Date).toString()).format('YYYY년MM월DD일') +'</td>\r\n' + 
 				'                <td>'+ mem.accept_yn +'</td>\r\n' + 
-				'                <td><i class="glyphicon glyphicon-thumbs-up"></i>&nbsp;/&nbsp;<i class="glyphicon glyphicon-trash"></i></td>\r\n' + 
 				'              </tr>';
 				
 			}
