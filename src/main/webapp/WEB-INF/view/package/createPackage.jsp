@@ -17,7 +17,7 @@ ul.air {
 
 li.tab {
 	float: left;
-	width: 120px;
+	width: 115px;
 }
 
 li.roomType {
@@ -81,7 +81,7 @@ div.airlist {
 		<div class="container">
 			<div class="row">
 				<div class="page-head-content">
-					<h1 class="page-title">Submit new property</h1>
+					<h1 class="page-title">Create Your Package</h1>
 				</div>
 			</div>
 		</div>
@@ -96,10 +96,10 @@ div.airlist {
 			<div class="clearfix">
 				<div class="wizard-container">
 					<div class="wizard-card ct-wizard-orange" id="wizardProperty">
-						<form action="" method="POST" id="mm">
+						<form action="${pageContext.request.contextPath}/package/insertPackage.do" method="POST" id="mm">
 							<div class="wizard-header">
 								<h3>
-									<b>My package</b> YOUR PROPERTY <br> <small>나만의
+									<b>My package</b> YOUR BUCKET LIST <br> <small>나만의
 										패키지를 만들어 여행을 떠나세요.</small>
 								</h3>
 							</div>
@@ -177,12 +177,14 @@ div.airlist {
 											</div>
 
 											<div class="col-sm-12">
-												<div class="col-sm-1"></div>
-												<div class="col-sm-10">
+<!-- 												<div class="col-sm-1"></div> -->
+												<div class="col-sm-12">
 													<span style="margin-left: 380px">가는 항공편</span>
 													<div class="form-group">
 														<ul class="air">
 															<li class="tab"><span>항공권</span></li>
+															<li class="tab"><span>출발</span></li>
+															<li class="tab"><span>도착</span></li>
 															<li class="tab"><span>여정시간</span></li>
 															<li class="tab"><span>잔여석</span></li>
 															<li class="tab"><span>요금</span></li>
@@ -197,6 +199,8 @@ div.airlist {
 													<div class="form-group">
 														<ul class="air">
 															<li class="tab"><span>항공권</span></li>
+															<li class="tab"><span>출발</span></li>
+															<li class="tab"><span>도착</span></li>
 															<li class="tab"><span>여정시간</span></li>
 															<li class="tab"><span>잔여석</span></li>
 															<li class="tab"><span>요금</span></li>
@@ -207,7 +211,7 @@ div.airlist {
 													<div class="end-airlist">
 													</div>
 												</div>
-												<div class="col-sm-1"></div>
+<!-- 												<div class="col-sm-1"></div> -->
 											</div>
 										</div>
 									</div>
@@ -231,7 +235,7 @@ div.airlist {
 										</div>
 										<div class="col-sm-4">
 											<div class="col-sm-12">
-												<input type="text" id="hotelName" class="form-control" name="hotelName"
+												<input type="text" id="hotelSearchName" class="form-control" name="hotelName"
 													placeholder="숙박업체명을 입력하세요">
 											</div>
 										</div>
@@ -280,11 +284,11 @@ div.airlist {
 												</select>
 											</div>
 										</div>
-										<div class="col-sm-4">
-											<label>낮은 가격순</label> <input type="radio" name="bb"
-												class="aaa" /> <label>높은 가격순</label> <input type="radio"
-												name="bb" class="aaa" />
-										</div>
+<!-- 										<div class="col-sm-4"> -->
+<!-- 											<label>낮은 가격순</label> <input type="radio" name="bb" -->
+<!-- 												class="aaa" /> <label>높은 가격순</label> <input type="radio" -->
+<!-- 												name="bb" class="aaa" /> -->
+<!-- 										</div> -->
 										<div class="col-sm-4">
 											<div class="col-sm-12">
 												<button class="btn-primary" style="margin-left: 163px"
@@ -303,9 +307,10 @@ div.airlist {
 												<div class="col-sm-2">
 												</div>
 												<div class="col-sm-8 sel_bx" style="display: none;">
-													<ul class="selTheme">
-														<li class="ok"><span>선택한 테마 이름</span></li>
-														<li class="ok"><span>선택한 테마 가격</span></li>
+													<ul class="selTheme" style="text-align: left; float: left;">
+														<li class="selThemeDay" style="float: left;"><span>선택한 날짜</span></li>
+														<li class="selThemeName" style="float: left;"><span>선택한 테마 이름</span></li>
+														<li class="selThemePrice" style="float: left;"><span>선택한 테마 가격</span></li>
 													</ul>
 												</div>
 											</div>
@@ -317,21 +322,50 @@ div.airlist {
 									<h4 class="info-text">Finished</h4>
 									<div class="row">
 										<div class="col-sm-12">
-											<div class="">
+											<div class="col-sm-12">
+												<div class="col-sm-2">
+													<span>패지키 이름 : </span>
+												</div>
+												<div class="col-sm-10">
+													<span>
+														<input type="text" name="packageName" class="packageName"/>
+													</span>
+												</div>
+												<div class="col-sm-2">
+													<span>가는 항공편</span>
+												</div>
+												<div class="col-sm-10">
+													<span class="fStartAir"></span>
+												</div>
+												<div class="col-sm-2">
+													<span>오는 항공편</span>
+												</div>
+												<div class="col-sm-10">
+													<span class="fEndAir"></span>
+												</div>
+												<div class="col-sm-2">
+													<span>숙박 정보</span>
+												</div>
+												<div class="col-sm-10">
+													<span class='fHotelName'>숙박 업체를 선택하세요 !!</span>
+													<span class='fHotelPrice'>숙박 업체</span>
+												</div>
+												<div class="col-sm-2">
+													<span>테마 및 입장권</span>
+												</div>
+												<div class="col-sm-10">
+												</div>
 												<div class="col-sm-12">
-													<div class="col-sm-2">
-														<span>가는 항공편</span>
-													</div>
-													<div class="col-sm-10">
-														<span>진에어 (06:05 - 07:20) 58,300원 </span>
-													</div>
+													<span class="fThemeInfo"></span>
 												</div>
-												<div class="checkbox">
-													<label> <input type="checkbox" /> <strong>패키지
-															내용을 다시한번 확인하시고 체크 하세요</strong>
-													</label>
+												<div class="col-sm-12">
+													<span class="totalP"></span>
 												</div>
-
+											</div>
+											<div class="checkbox">
+												<label> <input type="checkbox" id='agreeCheck'/>
+												 <strong>패키지 내용을 다시한번 확인하시고 체크 하세요</strong>
+												</label>
 											</div>
 										</div>
 									</div>
@@ -344,6 +378,7 @@ div.airlist {
 									<input type='button' class='btn btn-next btn-primary'
 										name='next' value='Next' /> <input type='submit'
 										class='btn btn-finish btn-primary ' name='finish'
+										onclick="return doAgree();"
 										value='Finish' />
 								</div>
 
@@ -353,6 +388,8 @@ div.airlist {
 								</div>
 								<div class="clearfix"></div>
 							</div>
+							<input type="hidden" name="userEmail" value="${sessionScope.member.userEmail}">
+							<input type="hidden" id='packPrice' name="packagePrice" value="">
 						</form>
 					</div>
 					<!-- End submit form -->
@@ -363,6 +400,8 @@ div.airlist {
 	<div style="display: none;">
 		<ul class="airInfo">
 			<li class="tab"><span class="airName"></span></li>
+			<li class="tab"><span class="airSTime"></span></li>
+			<li class="tab"><span class="airETime"></span></li>
 			<li class="tab"><span class="airFlyingTime"></span></li>
 			<li class="tab"><span class="airSeatCnt"></span></li>
 			<li class="tab"><span class="airAdultPrice"></span></li>
@@ -375,11 +414,14 @@ div.airlist {
 		</ul>
 	</div>
 	<script>
+		var packagePrice = 0;
 		var sm = '';
 		var sd = '';
 		var em = '';
 		var ed = '';
 		var day = '';
+		var fStartAir = '';
+		var fEndAir = '';
 		$(function() {
 			$("div.col-sm-12.detailpop").hide();
 // 			$(".airInfo").children().clone()
@@ -417,6 +459,7 @@ div.airlist {
 		
 		
 		function doHotel(){
+			console.log(packagePrice)
 			console.log($('#departureDate').val())
 			console.log($('#arrivalDate').val())
 			var startAirCode = $("input[name='startAirCode']:checked").val();
@@ -482,9 +525,9 @@ div.airlist {
 			});
 			return false;
 		}
-		
+		var t = [];
 		function doTheme(){
-			console.log($("input[name='roomCode']:checked").val())
+			console.log($("input[name='z']:checked").val())
 			console.log($("input[name='roomCode']:checked"))
 			if(!roomCode){
 				swal({
@@ -493,6 +536,7 @@ div.airlist {
 				})
 				return false;
 			}
+			
 			waitMe();
 			console.log(roomCode)
 			console.log($("#theme").val())
@@ -524,20 +568,17 @@ div.airlist {
 					html += '				<a href="#" class="aStyle">' + t.themeName + '</a>';
 					html += '			</h5>';
 					html += '			<div class="dot-hr"></div>';
-					html += '			<span class="pull-left"><b>가격 :' + t.themePrice+ '</b>';
+					html += '			<span class="pull-left"><b>가격 :' + numberWithCommas(t.themePrice)+ '원</b>';
 					html += '				<button id='+t.themeCode+' class="themeBtn" onclick="return false">선택</button> ';
 					html += '			</span>';
 					html += '		</div>';
 					html += '		<div class="selectThm'+t.themeCode+'" style="display: none;">';
 					if(sm == em){
 						day = ed - sd;
-						console.log(Number(sd)+Number(day))
 						var eDay = Number(sd)+Number(day);
-						console.log(eDay)
 						for(var i=sd; i<=eDay; i++ ){
-							console.log(sm,'월',i,'일');
 							var aa = sm + '월' + i + '일';
-							html += '<span class="selectDay">'+aa+'<input type="radio" class="'+t.themeCode+'" name="'+t.themeCode+'daily" value='+ aa +' style="width: 26px"/></span>';
+							html += '<span class="selectDay">'+aa+'<input type="radio" class="'+t.themeCode+'" data-price="'+t.themePrice+'" name="'+t.themeCode+'daily" value='+ aa +' style="width: 26px"/></span>';
 						}
 					}
 					html += '		</div>';
@@ -545,21 +586,43 @@ div.airlist {
 					html += '</div>';
 				}
 				
+				if(sm == em){
+					day = ed - sd;
+					var eDay = Number(sd)+Number(day);
+					for(var i=sd; i<=eDay; i++ ){
+						var aa = sm + '월' + i + '일';
+						$("#mm").append($("<input type='hidden' name='scheduleDaily' value='"+aa+"' />"))
+					}
+				}
+				$("#mm").append($("<input type='hidden' name='roomCode' value='"+roomCode+"' />"))
+				
 				$(".proerty-theme").append(html);
 				$(".sel_bx").show();
 				$(".themeBtn").click(function (){
 					var id = $(this).attr("id");
-					console.log(id);
-					console.log($(this));
 					$(".selectThm"+id).slideToggle("slow");
-					console.log($("input[name*='daily']:checked").val())
 				})
 				$("input[name*='daily']").click(function (){
-					console.log($(this).val())
+// 					console.log($(this).val())
+// 					console.log($(this).attr("data-price"))
+// 					console.log($(this).parent().parent().parent().find("a").text())
+					var tArray = $("input[name*='daily']:checked");
+					var thtml = ''
+					$(".sel_bx").html('');
+					for(var i=0; i<tArray.length; i++){
+						console.log("날짜 : " + $(tArray[i]).val());
+						console.log("가격 :" + $(tArray[i]).attr("data-price"))
+						console.log("이름 : " + $(tArray[i]).parent().parent().parent().find("a").text())
+						
+						thtml += '';
+						thtml +='<ul class="selTheme" style="text-align: left; float: left;">';
+						thtml +='	<li class="selThemeDay" style="float: left;"><span>'+ $(tArray[i]).val()+ '</span></li>';
+						thtml +='	<li class="selThemePrice" style="float: left;"><span>'+ numberWithCommas($(tArray[i]).attr("data-price"))+ '원</span></li>';
+						thtml +='	<li class="selThemeName" style="float: left;"><span>'+  $(tArray[i]).parent().parent().parent().find("a").text() + '</span></li>';
+						thtml +='</ul>';
+					}
+					$(".sel_bx").append(thtml);
 				})
-				
-				
-
 			})
 			.fail(function (){
 				$("body").waitMe("hide");
@@ -585,7 +648,7 @@ div.airlist {
 				html+= '			<a href="#"><img src="..'+ result[0].hotelImgPath + '"/></a>';
 				html+= '		</div>';
 				html+= '		<div class="col-sm-8">';
-				html+= '			<span>'+ result[0].hotelName +'</span>';
+				html+= '			<span class="detailHotelName">'+ result[0].hotelName +'</span>';
 				html+= '			<hr>';
 				html+= '		</div>';
 				html+= '		<div class="col-sm-12">';
@@ -623,7 +686,7 @@ div.airlist {
 				html+= '			<div class="col-sm-2">';
 				html+= '			</div>';
 				html+= '			<div class="col-sm-2">';
-				html+= '				<a href="#" onclick="return detailHide()" class="btn-primary">닫기</a>';
+				html+= '				<a href="#" onclick="return detailHide('+h+')" class="btn-primary">닫기</a>';
 				html+= '			</div>';
 				html+= '		</div>';
 				html+= '	</div>';
@@ -636,8 +699,9 @@ div.airlist {
 		}
 		var roomCode = '';
 		
-		function detailHide() {
+		function detailHide(code) {
 			console.log($("input[name='roomCode']"))
+			console.log('호텔 코드' + code)
 			var price = 0;
 			if($("input[name='roomCode']:checked").val()){
 				roomCode = $("input[name='roomCode']:checked").val();
@@ -646,8 +710,10 @@ div.airlist {
 				console.log("day :" + Number(ed - sd))
 				price = Number($("input[name='roomCode']:checked").parent().parent().find("li:eq(1)").text().split('원')[0]) * Number(ed - sd);
 				console.log(price)
-				$("#rh").find("#hotelPrice").html('선택하신 호텔 요금 :' + price + '원');
-				$("#rh").find("#hotelName").html('객실 명 :' + $("input[name='roomCode']:checked").parent().parent().find("li:eq(0)").text())
+				$("#rh").find("#hotelPrice").html('선택하신 호텔 요금 :' + numberWithCommas(price) + '원');
+				$("#rh").find("#hotelName").html('  호텔 명 ' + $("input[name='roomCode']:checked").parent().parent().parent().parent().find(".detailHotelName").text() +
+				'<br>  객실명 :  ' + $("input[name='roomCode']:checked").parent().parent().find("li:eq(0)").text())
+// 				$("input[name='roomCode']:checked").parent().parent().parent().parent().find(".detailHotelName").text();
 			}
 			console.log(roomCode);
 			html = '';
@@ -655,6 +721,12 @@ div.airlist {
 			$("#detailpop").remove();
 			$("#detailhotel").append($("#pop"));
 			$("#pop").show();
+			$(".fHotelName").text($("#hotelName").text());
+			console.log("호텔이름 :" + $("#hotelPrice").html())
+			console.log("호텔가격 :" + $("#hotelName").text())
+			$(".fHotelPrice").text($("#hotelPrice").html());
+			$("#mm").append($("<input type='hidden' name='hotelCode' value='"+code+"' />"))
+			packagePrice += Number(price);
 			return false;
 		}
 		var arrivalCity = '';
@@ -698,10 +770,19 @@ div.airlist {
 				if(result.endAir.length == 0){
 					$(".end-airlist").html("<span>해당하는 항공편이 존재하지 않습니다.</span>")
 				}
+// 				airName"></sp
+// 				airFlyingTime
+// 				airSTime"></s
+// 				airETime"></s
+// 				airSeatCnt"><
+// 				airAdultPrice
+// 				yn"></span></
 				let $airInfo = $(".airInfo").clone();
 				for(let air of result.startAir){
 					$airInfo.find(".airName").text(air.airName);
 					$airInfo.find(".airFlyingTime").text(air.flyingTime);
+					$airInfo.find(".airSTime").text(air.startDate.split('년')[1]);
+					$airInfo.find(".airETime").text(air.endDate.split('년')[1]);
 					$airInfo.find(".airSeatCnt").text(air.seatCnt);
 					$airInfo.find(".airAdultPrice").text(air.adultPrice + '원');
 					var $radio = $airInfo.find(".col-sm-4");
@@ -719,6 +800,8 @@ div.airlist {
 				for(let air of result.endAir){
 					$airInfo.find(".airName").text(air.airName);
 					$airInfo.find(".airFlyingTime").text(air.flyingTime);
+					$airInfo.find(".airSTime").text(air.startDate.split('년')[1]);
+					$airInfo.find(".airETime").text(air.endDate.split('년')[1]);
 					$airInfo.find(".airSeatCnt").text(air.seatCnt);
 					var $radio = $airInfo.find(".col-sm-4");
 					if(air.seatCnt == '0'){
@@ -732,15 +815,99 @@ div.airlist {
 					$airInfo.removeClass("airInfo")
 					$(".end-airlist").append($airInfo.clone());
 				}
+				var sm = 0;
+				var em = 0;
+				var price = 0;
+				$("input[name='startAirCode']").click(function (){
+					sm = numberWithCommas($(this).parent().parent().parent().find(".airAdultPrice").text().split('원')[0]);
+					fStartAir = $(this).parent().parent().parent().find(".airName").text() + '  ' +
+								'(' + $(this).parent().parent().parent().find(".airSTime").text() + '~' +
+								$(this).parent().parent().parent().find(".airSTime").text() + ')' + '  ' +
+								sm + '원';
+					packagePrice = Number($(this).parent().parent().parent().find(".airAdultPrice").text().split('원')[0]);
+				})
+				$("input[name='endAirCode']").click(function (){
+					em = numberWithCommas($(this).parent().parent().parent().find(".airAdultPrice").text().split('원')[0]);
+					fEndAir = $(this).parent().parent().parent().find(".airName").text() + '  ' +
+								'(' + $(this).parent().parent().parent().find(".aiESTime").text() + '~' +
+								$(this).parent().parent().parent().find(".airETime").text() + ')' + '  '+
+								em + '원';
+					packagePrice += Number($(this).parent().parent().parent().find(".airAdultPrice").text().split('원')[0]);
+				})
 			})
 			.fail(function (){
 				$("body").waitMe("hide");
 			});
 			return false;
 		}
-		$("input[name='finish']").click(function() {
-			alert("클릭딤");
+		
+		function doAgree() {
+			console.log(packagePrice)
+			if($("input[name='packageName']").val() == ''){
+				swal({
+					type : 'error',
+					title : '패키지 이름을 설정하세요',
+				})
+				return false;
+			}
+			if(!$("#agreeCheck").is(":checked")){
+				swal({
+					type : 'error',
+					title : '패키지 정보를 확인하시고 체크 후 등록하세요',
+				})
+				return false;
+			}
+			swal({
+				  position: 'top-end',
+				  type: 'success',
+				  title: '관리자 승인 후 목록에 보여집니다~',
+				  showConfirmButton: false,
+				  timer: 1500
+			})
+			return true;
+		}
+		
+		$("input[name='startAirCode']").click(function (){
+			console.log($(this).parent().parent().parent().find(".airName").text())
 		})
+		$("input[name='next']").click(function () {
+			if($("#step3").attr("class") == 'tab-pane active'){
+				$(".fStartAir").text(fStartAir);
+				$(".fEndAir").text(fEndAir);
+				var tArray = $("input[name*='daily']:checked");
+				var thtml = '';
+				var tCode = '';
+				for(var i=0; i<tArray.length; i++){
+					thtml += '일정 : ' + $(tArray[i]).val() + ' ' + $(tArray[i]).parent().parent().parent().find("a").text() + ' 가격 : ' + numberWithCommas($(tArray[i]).attr("data-price")) + '원<br>';
+					packagePrice += Number($(tArray[i]).attr("data-price"));
+					tCode = $(tArray[i]).attr("class");
+					$("#mm").append($("<input type='hidden' name='themeDaily' value='"+$(tArray[i]).val()+"' />"))
+					$("#mm").append($("<input type='hidden' name='tCode' value='"+tCode+"' />"))
+				}
+				$(".fThemeInfo").html(thtml);
+				$(".totalP").text(numberWithCommas(packagePrice));
+				$("#packPrice").val(packagePrice)
+// 				waitMe();
+// 				$.ajax({
+// 					url: '<c:url value="/package/packageInsert.json"/>',
+// 					data: $("#mm").serialize(),
+// 					type: "POST",
+// 					dataType: "json"
+// 				})
+// 				.done(function (){
+// 					$("body").waitMe("hide");
+// 				})
+// 				.fail(function (){
+// 					$("body").waitMe("hide");
+					
+// 				})
+			}
+		})
+		function numberWithCommas(x) {
+			return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+		}
+
+
 		var $div = $(".col-sm-12.detailpop");
 // 		$(".item-thumb").click(function() {
 // 			$("#pop").hide();

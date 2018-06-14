@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.co.bucket.repository.domain.AirSearch;
+import kr.co.bucket.repository.domain.Daily;
 import kr.co.bucket.repository.domain.HotelSearch;
+import kr.co.bucket.repository.domain.Package;
 import kr.co.bucket.repository.domain.ThemeSearch;
 import kr.co.bucket.repository.mapper.PackageMapper;
 
@@ -43,6 +45,28 @@ public class PackageServiceImpl implements PackageService{
 	@Override
 	public List<ThemeSearch> retrieveTheme(ThemeSearch theme) {
 		return mapper.selectThemeByType(theme);
+	}
+
+	@Override
+	public void insertPackage(Package pack) {
+//		mapper.insertPackage(pack);
+		int dCode = mapper.selectDailyMax();
+		for(int i=0; i<pack.getScheduleDaily().length; i++) {
+			Daily d = new Daily();
+			d.setDailyType("숙박");
+			d.setPackageCode(pack.getPackageCode());
+			d.setScheduleDaily(pack.getScheduleDaily()[i]);
+			mapper.insertDailyByHotel(d);
+		}
+		for(int i=0; i<pack.getThemeDaily().length; i++) {
+			Daily d = new Daily();
+			d.setDailyType("테마");
+			d.setPackageCode(pack.getPackageCode());
+			d.setScheduleDaily(pack.getThemeDaily()[i]);
+			mapper.insertDailyByTheme(d);
+		}
+		mapper.insertPackage(pack);
+		
 	}
 
 }

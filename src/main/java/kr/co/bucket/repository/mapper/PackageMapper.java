@@ -2,7 +2,9 @@ package kr.co.bucket.repository.mapper;
 import java.util.List;
 
 import kr.co.bucket.repository.domain.AirSearch;
+import kr.co.bucket.repository.domain.Daily;
 import kr.co.bucket.repository.domain.HotelSearch;
+import kr.co.bucket.repository.domain.Package;
 import kr.co.bucket.repository.domain.Schedule;
 import kr.co.bucket.repository.domain.ThemeSearch;
 
@@ -14,4 +16,8 @@ public interface PackageMapper {
 	public List<HotelSearch> selectHotelByCode(HotelSearch hotel);
 	public List<ThemeSearch> selectThemeByCity(HotelSearch hotel);
 	public List<ThemeSearch> selectThemeByType(ThemeSearch theme);
+	public void insertPackage(Package pack);
+	public void insertDailyByHotel(Daily daily);
+	public void insertDailyByTheme(Daily daily);
+	public int selectDailyMax();
 }
