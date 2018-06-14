@@ -80,7 +80,7 @@ public class SearchServiceImp implements SearchService {
 		List<Review> list = mapper.selectReivewByCode(packageCode);
 		System.out.println(list+"리스트");
 			for(Review r: list) {
-				System.out.println(r.getContent() + "테스트즁");
+				System.out.println(r.getHotelEvalScore() +"호텔별점");
 			}
 		return mapper.selectReivewByCode(packageCode);
 	}

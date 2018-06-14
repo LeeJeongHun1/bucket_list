@@ -119,11 +119,11 @@
 									</div>
 
 									<ul id="image-gallery" class="gallery list-unstyled cS-hidden">
-									<c:forEach var="i" items="${packageCode.daily}">
+											<c:forEach var="i" items="${img}">
 										<li data-thumb="..${i.imgPath}">
 										<img src="..${i.imgPath}" />											
 											</li>
-									</c:forEach>
+											</c:forEach>
 									</ul>
 								</div>
 							</div>
@@ -326,7 +326,7 @@
 												</tr>
 											</tbody>
 										</table>
-										<button class="navbar-btn nav-button wow fadeInRight animated animated">등록하기</button>
+										<button class="navbar-btn nav-button wow fadeInRight animated animated" style="visibility:inherit;">등록하기</button>
 									</div>
 									</form>
 									<c:if test="${!empty sessionScope.member}">
@@ -366,14 +366,14 @@
 									var html ="";
 									//alert($('#reviewRegist input[name="packageCode"]').val());
 									html+='<tr><th>제목</th>';
-						            html+='<th>별점</th>';
+						            //html+='<th>별점</th>';
 									html+='<th>작성자</th>';
 									html+='<th>작성일</th>';
 								    html+='</tr>';
 									for (var i = 0; i < data.length; i++) {
 									var r = data[i];
 									html+='<tr class="review_list"><td>'+r.title+'</td>';
-									html+='<td>'+r.airEvalScore+'</td>';
+									//html+='<td>'+r.airEvalScore+'</td>';
 									html+='<td>'+r.userEmail+'</td>';
 									var date = new Date(r.regDate);
 									var time = date.getFullYear() + "년" 
@@ -416,14 +416,14 @@
 						var html ="";
 						//alert($('#reviewRegist input[name="packageCode"]').val());
 						html+='<tr><th>제목</th>';
-			            html+='<th>별점</th>';
+			            //html+='<th>별점</th>';
 						html+='<th>작성자</th>';
 						html+='<th>작성일</th>';
 					    html+='</tr>';
 						for (var i = 0; i < data.length; i++) {
 						var r = data[i];
 						html+='<tr class="review_list"><td>'+r.title+'</td>';
-						html+='<td>'+r.airEvalScore+'</td>';
+						//html+='<td>'+r.airEvalScore+'</td>';
 						html+='<td>'+r.userEmail+'</td>';
 						var date = new Date(r.regDate);
 						var time = date.getFullYear() + "년" 
