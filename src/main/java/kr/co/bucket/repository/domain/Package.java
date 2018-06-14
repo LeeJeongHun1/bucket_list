@@ -2,6 +2,8 @@ package kr.co.bucket.repository.domain;
 
 import java.util.Random;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class Package {
 	
 	public Package() {
@@ -16,7 +18,7 @@ public class Package {
 		}
 		this.packageCode = buf.toString();
 	}
-	
+	private MultipartFile[] attachFile;
 	private String packageCode;
 	private String packageName;
 	private String userEmail;
@@ -31,7 +33,7 @@ public class Package {
 	private String[] themeDaily;
 	private int[] tCode;
 	private int dailyCode;
-	
+	private String filePath;
 	
 	public int getDailyCode() {
 		return dailyCode;
@@ -116,6 +118,18 @@ public class Package {
 	}
 	public void setPackageImgPath(String packageImgPath) {
 		this.packageImgPath = packageImgPath;
+	}
+	public MultipartFile[] getAttachFile() {
+		return attachFile;
+	}
+	public void setAttachFile(MultipartFile[] attachFile) {
+		this.attachFile = attachFile;
+	}
+	public String getFilePath() {
+		return filePath;
+	}
+	public void setFilePath(String filePath) {
+		this.filePath = filePath;
 	}
 
 }

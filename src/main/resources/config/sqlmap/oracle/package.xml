@@ -142,10 +142,10 @@
 			#{userEmail},
 			#{startAirCode},
 			#{endAirCode},
-			'n',
+			'y',
 			1,
 			#{packagePrice},
-			'/resources/img/no_img.gif'
+			#{filePath}
 		)
 	</insert>
 	

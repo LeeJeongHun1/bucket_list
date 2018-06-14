@@ -96,7 +96,7 @@ div.airlist {
 			<div class="clearfix">
 				<div class="wizard-container">
 					<div class="wizard-card ct-wizard-orange" id="wizardProperty">
-						<form action="${pageContext.request.contextPath}/package/insertPackage.do" method="POST" id="mm">
+						<form action="${pageContext.request.contextPath}/package/insertPackage.do" method="POST" id="mm" enctype="multipart/form-data">
 							<div class="wizard-header">
 								<h3>
 									<b>My package</b> YOUR BUCKET LIST <br> <small>나만의
@@ -366,7 +366,7 @@ div.airlist {
 												<label> <input type="checkbox" id='agreeCheck'/>
 												 <strong>패키지 내용을 다시한번 확인하시고 체크 하세요</strong>
 												</label>
-												<label> <input type="checkbox" id='agreeCheck'/>
+												<label> <input type="file" name="attachFile" multiple="multiple" />
 												</label>
 											</div>
 										</div>
