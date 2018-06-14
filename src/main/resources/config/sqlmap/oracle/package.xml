@@ -175,15 +175,37 @@
 			DAILY_CODE,
 			SCHEDULE_DAILY,
 			DAILY_TYPE,
-			PACKAGE_CODE
+			PACKAGE_CODE,
+			THEME_CODE
 		)values(
 			s_daily_code.nextval,
 			#{scheduleDaily},
 			#{dailyType},
-			#{packageCode}
+			#{packageCode},
+			#{themeCode}
 		)
 	</insert>
 	
+	<select id="selectDailyCode" parameterType="package" resultType="int">
+		select daily_code
+		  from tb_daily
+		 where PACKAGE_CODE = #{packageCode}
+		   and DAILY_TYPE = '숙박'
+	</select>
+	
+	<insert id="insertStay" parameterType="stay">
+		insert into tb_stay(
+			STAY_CODE,
+			HOTEL_CODE,
+			DAILY_CODE,
+			ROOM_CODE
+		)values(
+			s_stay_code.nextval,
+			#{hotelCode},
+			#{dailyCode},
+			#{roomCode}
+		)
+	</insert>
 	
 </mapper>
 

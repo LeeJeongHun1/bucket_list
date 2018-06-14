@@ -4,6 +4,8 @@ public class Daily {
 	private String scheduleDaily;
 	private String dailyType;
 	private String packageCode;
+	private int themeCode;
+	
 	
 	public String getScheduleDaily() {
 		return scheduleDaily;
@@ -22,6 +24,12 @@ public class Daily {
 	}
 	public void setPackageCode(String packageCode) {
 		this.packageCode = packageCode;
+	}
+	public int getThemeCode() {
+		return themeCode;
+	}
+	public void setThemeCode(int themeCode) {
+		this.themeCode = themeCode;
 	}
 	
 }

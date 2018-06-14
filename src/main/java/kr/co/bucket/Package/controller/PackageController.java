@@ -52,13 +52,12 @@ public class PackageController {
 	
 	@RequestMapping("/insertPackage.do")
 	public String createPackage(Package p){
-		System.out.println("insert");
 		System.out.println(p.getPackagePeopleCnt());
-		System.out.println(p.getScheduleDaily().length);
+		System.out.println(p.getScheduleDaily().length + "," + p.getScheduleDaily()[0]);
 		System.out.println(p.getRoomCode());
 		System.out.println(p.getHotelCode());
-		System.out.println(p.gettCode().length);
-		System.out.println(p.getThemeDaily().length);
+		System.out.println(p.gettCode().length + "," + p.gettCode()[0]);
+		System.out.println(p.getThemeDaily().length + "," + p.getThemeDaily()[0]);
 		packageService.insertPackage(p);
 		return "main/index";
 	}

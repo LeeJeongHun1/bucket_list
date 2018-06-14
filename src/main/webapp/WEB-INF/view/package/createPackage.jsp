@@ -328,7 +328,7 @@ div.airlist {
 												</div>
 												<div class="col-sm-10">
 													<span>
-														<input type="text" name="packageName" class="packageName"/>
+														<input type="text" name="packageName" class="packageName" placeholder="패키지 이름을 설정하세요"/>
 													</span>
 												</div>
 												<div class="col-sm-2">
@@ -479,7 +479,7 @@ div.airlist {
 				url: '<c:url value="/package/hotelSearch.json"/>',
 				type: "POST",
 				data: {
-						hotelName: $("#hotelName").val(),
+						hotelName: $("#hotelSearchName").val(),
 						cityCode: arrivalCity,
 						startAirCode: startAirCode,
 						endAirCode: endAirCode
@@ -487,6 +487,8 @@ div.airlist {
 				dataType: "json"
 			})
 			.done(function (result){
+				console.log( $("#hotelName").val())
+				console.log(arrivalCity)
 				$("#rh").show();
 				$("body").waitMe("hide");
 				var html = '';
@@ -672,7 +674,7 @@ div.airlist {
 					html+= '		<li class="roomType"><span>'+d.roomName+'</span></li>';
 					html+= '		<li class="ok"><span>'+d.roomPrice+'원</span></li>';
 					if(roomCode == d.roomCode){
-						html+= '		<li class="ok"><input type="radio" name="roomCode" value="'+d.roomCode+ '" disabled /></li>';
+						html+= '		<li class="ok"><input type="radio" name="roomCode" value="'+d.roomCode+ '" checked /></li>';
 					}else{
 						html+= '		<li class="ok"><input type="radio" name="roomCode" value="'+d.roomCode+ '" /></li>';
 					}

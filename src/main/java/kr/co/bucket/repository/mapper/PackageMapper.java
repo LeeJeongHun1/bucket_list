@@ -6,6 +6,7 @@ import kr.co.bucket.repository.domain.Daily;
 import kr.co.bucket.repository.domain.HotelSearch;
 import kr.co.bucket.repository.domain.Package;
 import kr.co.bucket.repository.domain.Schedule;
+import kr.co.bucket.repository.domain.Stay;
 import kr.co.bucket.repository.domain.ThemeSearch;
 
 public interface PackageMapper {
@@ -20,4 +21,6 @@ public interface PackageMapper {
 	public void insertDailyByHotel(Daily daily);
 	public void insertDailyByTheme(Daily daily);
 	public int selectDailyMax();
+	public List<Integer> selectDailyCode(Package pack);
+	public void insertStay(Stay stay);
 }
