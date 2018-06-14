@@ -318,7 +318,7 @@
 				data: $("#detailAll").serialize(),
 				success: function(data){
 					var html="";
-					alert("실행zss");
+					//alert("실행zss");
 					console.log(data);
 					if (data.length == 0){
 					//	alert("가는지 확인");
