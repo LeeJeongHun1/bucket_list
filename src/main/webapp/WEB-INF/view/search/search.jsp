@@ -295,7 +295,6 @@
 	<script>
 		function goPage(pageNo){
 			location.href="search.do?pageNo="+pageNo+ `&keyword=${key}`;
-					alert("가냐");
 		}
 		
 		$(function() {
@@ -304,7 +303,6 @@
 				startDate : 'd',
 				autoclose : true
 			}).datepicker("setDate", new Date());
-
 			$('#EDate').datepicker({
 				format : "yyyy년mm월dd일",
 				startDate : '+1d',

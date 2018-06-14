@@ -119,11 +119,11 @@
 									</div>
 
 									<ul id="image-gallery" class="gallery list-unstyled cS-hidden">
-											<c:forEach var="i" items="${img}">
+									<c:forEach var="i" items="${packageCode.daily}">
 										<li data-thumb="..${i.imgPath}">
 										<img src="..${i.imgPath}" />											
 											</li>
-											</c:forEach>
+									</c:forEach>
 									</ul>
 								</div>
 							</div>

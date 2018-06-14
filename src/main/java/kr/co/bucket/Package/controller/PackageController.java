@@ -59,6 +59,6 @@ public class PackageController {
 		System.out.println(p.gettCode().length + "," + p.gettCode()[0]);
 		System.out.println(p.getThemeDaily().length + "," + p.getThemeDaily()[0]);
 		packageService.insertPackage(p);
-		return "main/index";
+		return "redirect:/main/index.do";
 	}
 }

@@ -366,6 +366,8 @@ div.airlist {
 												<label> <input type="checkbox" id='agreeCheck'/>
 												 <strong>패키지 내용을 다시한번 확인하시고 체크 하세요</strong>
 												</label>
+												<label> <input type="checkbox" id='agreeCheck'/>
+												</label>
 											</div>
 										</div>
 									</div>
