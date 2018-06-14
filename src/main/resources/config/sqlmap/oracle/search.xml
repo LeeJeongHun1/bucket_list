@@ -285,14 +285,19 @@
 	</select>
 	
 	<select id="detailSchedule" parameterType="string" resultMap="searchMap">
+
 	   select * 
         from tb_daily d
         join TB_THEME t
-         on d.DAILY_CODE = t.DAILY_CODE
+         on d.THEME_CODE = t.THEME_CODE
         join tb_img_group i
          on  t.THEME_CODE = i.THEME_CODE
         where d.PACKAGE_CODE = #{packageCode,jdbcType=VARCHAR}
+          and d.DAILY_TYPE = '테마'
         order by d.SCHEDULE_DAILY
+
+
+
 <!-- 		select *
 		from TB_PACKAGE p
 		join TB_SCHEDULE s
