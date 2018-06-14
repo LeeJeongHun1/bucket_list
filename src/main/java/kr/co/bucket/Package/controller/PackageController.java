@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import kr.co.bucket.Package.service.PackageService;
 import kr.co.bucket.repository.domain.AirSearch;
 import kr.co.bucket.repository.domain.HotelSearch;
+import kr.co.bucket.repository.domain.Package;
 import kr.co.bucket.repository.domain.ThemeSearch;
 
 @Controller
@@ -28,8 +29,6 @@ public class PackageController {
 	@RequestMapping("/airSearch.json")
 	@ResponseBody
 	public Map<String, List<AirSearch>> airSearch(AirSearch air){
-		System.out.println(air.getArrivalCityCode());
-		System.out.println(air.getDepartureCityCode());
 		return packageService.retrieveAir(air);
 	}
 	
@@ -49,5 +48,18 @@ public class PackageController {
 	@ResponseBody
 	public List<ThemeSearch> themeSearch(ThemeSearch theme){
 		return packageService.retrieveTheme(theme);
+	}
+	
+	@RequestMapping("/insertPackage.do")
+	public String createPackage(Package p){
+		System.out.println("insert");
+		System.out.println(p.getPackagePeopleCnt());
+		System.out.println(p.getScheduleDaily().length);
+		System.out.println(p.getRoomCode());
+		System.out.println(p.getHotelCode());
+		System.out.println(p.gettCode().length);
+		System.out.println(p.getThemeDaily().length);
+		packageService.insertPackage(p);
+		return "main/index";
 	}
 }

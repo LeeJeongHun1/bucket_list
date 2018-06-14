@@ -125,6 +125,65 @@
 		</if>
 	</select>
 	
+	<insert id="insertPackage" parameterType="package">
+		insert into tb_package(
+			PACKAGE_CODE,
+			PACKAGE_NAME,
+			USER_EMAIL,
+			DEPARTURE_AIR_CODE,
+			ARRIVAL_AIR_CODE,
+			ACCEPT_YN,
+			PACKAGE_PEOPLE_CNT,
+			PACKAGE_PRICE,
+			PACKAGE_IMG_PATH
+		)values(
+			#{packageCode},
+			#{packageName},
+			#{userEmail},
+			#{startAirCode},
+			#{endAirCode},
+			'n',
+			1,
+			#{packagePrice},
+			'/resources/img/no_img.gif'
+		)
+	</insert>
+	
+	
+	<insert id="insertDailyByHotel" parameterType="daily">
+			insert into tb_daily(
+				DAILY_CODE,
+				SCHEDULE_DAILY,
+				DAILY_TYPE,
+				PACKAGE_CODE
+			)values
+			(
+				s_daily_code.nextval,
+				#{scheduleDaily},
+				#{dailyType},
+				#{packageCode}
+			)
+	</insert>
+	
+	<select id="selectDailyMax" resultType="int">
+		select max(DAILY_CODE)
+		  from tb_daily
+	</select>
+	
+	<insert id="insertDailyByTheme" parameterType="daily">
+		insert into tb_daily(
+			DAILY_CODE,
+			SCHEDULE_DAILY,
+			DAILY_TYPE,
+			PACKAGE_CODE
+		)values(
+			s_daily_code.nextval,
+			#{scheduleDaily},
+			#{dailyType},
+			#{packageCode}
+		)
+	</insert>
+	
 	
 </mapper>
 
