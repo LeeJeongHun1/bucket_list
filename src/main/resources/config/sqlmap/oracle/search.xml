@@ -69,11 +69,6 @@
 		<if test="keyword != '' ">
 		pack.PACKAGE_NAME like '%' ||
 		#{keyword} ||'%'
-		<!-- or city.CITY_NAME like		
-		'%' || #{keyword} || '%' -->
-		</if>
-		<if test="keyword == '' ">
-		pack.package_name = ''
 		</if>
 		</where>
 		) a
@@ -93,8 +88,6 @@
 		<where>
 		    <if test="keyword != ''">
 				AND pack.PACKAGE_NAME like '%' || #{keyword} || '%'
-				<!-- AND
-				city.CITY_NAME like '%'|| #{keyword} || '%' -->
 			</if>
 			<if test="dkeyword != ''">
 				AND pack.PACKAGE_NAME like '%' || #{dkeyword} || '%'
@@ -125,11 +118,12 @@
 			<if test="cityCode != ''">
 				AND air.DEPARTURE_CITY_CODE = #{cityCode}
 			</if>  
-			<!-- <choose> <when test="day == 1"> AND substr(end_date,9,2)-substr(start_date,9,2)<![CDATA[ 
-				<= ]]> 3 </when> <when test="day == 2"> AND substr(end_date,9,2)-substr(start_date,9,2) 
-				between 4 and 5 </when> <when test="day == 3"> AND substr(end_date,9,2)-substr(start_date,9,2) 
-				between 6 and 7 </when> <when test="day == 4"> AND substr(end_date,9,2)-substr(start_date,9,2) 
-				<![CDATA[ >= ]]> 10 </when> </choose> -->
+			<if test="day != '' and day != null">
+				AND day IN
+				<foreach item="item" index="index" collection="day" open="(" separator="," close=")">
+				 #{item}
+				</foreach>
+			</if> 
 		</where>
 	</select>
 	<select id="selectSearch" parameterType="allSearch" resultMap="searchMap">
@@ -145,12 +139,7 @@
 	<where>
 		    <if test="keyword != ''">
 				AND pack.PACKAGE_NAME like '%' || #{keyword} || '%'
-				<!-- AND
-				city.CITY_NAME like '%'|| #{keyword} || '%' -->
 			</if>
-<!-- 			<if test="dkeyword != ''">
-				AND pack.PACKAGE_NAME like '%' || #{dkeyword} || '%'
-			</if>  -->
 			<if test="startDate != '' and endDate != '' ">
 				AND air.start_date <![CDATA[ >= ]]> #{startDate}  
 				AND air.end_date <![CDATA[ <= ]]> #{endDate}  
@@ -177,11 +166,6 @@
 			<if test="cityCode != ''">
 				AND air.DEPARTURE_CITY_CODE = #{cityCode}
 			</if>  
-			<!-- <choose> <when test="day == 1"> AND substr(end_date,9,2)-substr(start_date,9,2)<![CDATA[ 
-				<= ]]> 3 </when> <when test="day == 2"> AND substr(end_date,9,2)-substr(start_date,9,2) 
-				between 4 and 5 </when> <when test="day == 3"> AND substr(end_date,9,2)-substr(start_date,9,2) 
-				between 6 and 7 </when> <when test="day == 4"> AND substr(end_date,9,2)-substr(start_date,9,2) 
-				<![CDATA[ >= ]]> 10 </when> </choose> -->
 		</where>
 		<choose>
 			<when test="price == '2'">
@@ -192,6 +176,14 @@
 			</when>
 			<otherwise>
 				order by pack.PACKAGE_PRICE 
+			</otherwise>
+		</choose>
+		<choose>
+			<when test="departure == '2'">
+				order by air.end_date desc
+			</when>
+		<otherwise>
+				order by air.end_date
 			</otherwise>
 		</choose>
 	</select>
@@ -209,8 +201,6 @@
 			<where>
 		    <if test="keyword != ''">
 				AND pack.PACKAGE_NAME like '%' || #{keyword} || '%'
-				<!-- AND
-				city.CITY_NAME like '%'|| #{keyword} || '%' -->
 			</if>
 			<if test="dkeyword != ''">
 				AND pack.PACKAGE_NAME like '%' || #{dkeyword} || '%'
@@ -241,11 +231,6 @@
 			<if test="cityCode != ''">
 				AND air.DEPARTURE_CITY_CODE = #{cityCode}
 			</if>  
-			<!-- <choose> <when test="day == 1"> AND substr(end_date,9,2)-substr(start_date,9,2)<![CDATA[ 
-				<= ]]> 3 </when> <when test="day == 2"> AND substr(end_date,9,2)-substr(start_date,9,2) 
-				between 4 and 5 </when> <when test="day == 3"> AND substr(end_date,9,2)-substr(start_date,9,2) 
-				between 6 and 7 </when> <when test="day == 4"> AND substr(end_date,9,2)-substr(start_date,9,2) 
-				<![CDATA[ >= ]]> 10 </when> </choose> -->
 		</where>
 		<choose>
 			<when test="departure == '2'">
@@ -295,23 +280,6 @@
         where d.PACKAGE_CODE = #{packageCode,jdbcType=VARCHAR}
           and d.DAILY_TYPE = '테마'
         order by d.SCHEDULE_DAILY
-
-
-
-<!-- 		select *
-		from TB_PACKAGE p
-		join TB_SCHEDULE s
-		on p.PACKAGE_CODE =
-		#{packageCode,jdbcType=VARCHAR}
-		join TB_DAILY d
-		on s.SCHEDULE_DAILY =
-		d.SCHEDULE_DAILY
-		join TB_THEME t
-		on d.DAILY_CODE = t.DAILY_CODE
-		join
-		TB_IMG_GROUP i
-		on t.THEME_CODE = i.THEME_CODE
-		order by s.SCHEDULE_DAILY -->
 	</select>
 	
 	<resultMap id="hotelMap" type="hResult">
@@ -326,22 +294,6 @@
 	</resultMap>
 
 	<select id="detailStay" parameterType="string" resultMap="hotelMap">
-<!-- 		select
-		*
-		from tb_package p, tb_air a
-		,TB_SCHEDULE sc, TB_DAILY d
-		,TB_CITY c,
-		TB_STAY s, tb_hotel h
-		where p.ARRIVAL_AIR_CODE =a.AIR_CODE
-		and
-		p.PACKAGE_CODE = #{packageCode,jdbcType=VARCHAR}
-		and sc.SCHEDULE_DAILY
-		= d.SCHEDULE_DAILY
-		and a.DEPARTURE_CITY_CODE = c.CITY_CODE
-		and
-		d.DAILY_CODE = s.DAILY_CODE
-		and s.HOTEL_CODE = h.HOTEL_CODE -->
-		
 	    select *
       from TB_DAILY d
       join tb_stay s 

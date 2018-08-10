@@ -91,20 +91,6 @@
 									</select>
 
 								</div>
-								<!-- <h4 class="c_title">귀국도시</h4> -->
-								<!-- <div class="col-md-12">
-									<select id="lunchBegins" class="selectpicker"
-										data-live-search="true" data-live-search-style="begins"
-										title="도착 도시">
-										<option>New york, CA</option>
-										<option>Paris</option>
-										<option>Casablanca</option>
-										<option>Tokyo</option>
-										<option>Marraekch</option>
-										<option>kyoto , shibua</option>
-									</select>
-								</div> -->
-
 								<h4 class="sub_title" style="margin-top: 100px;">기간별</h4>
 								<div class="col-md-12">
 									<input type="text" id="SDate" name="startDate"
@@ -214,7 +200,7 @@
 				</div>
 
 				<!-- 검색결과 -->
-				<div class="col-md-12  clear">
+<!-- 				<div class="col-md-12  clear">
 					<div class="col-xs-10 page-subheader sorting pl0">
 						<ul class="sort-by-list">
 							<li class="active"></li>
@@ -237,8 +223,8 @@
 							class="fa fa-th"></i>
 						</a>
 					</div>
-					<!--/ .layout-switcher-->
-				</div>
+					/ .layout-switcher
+				</div> -->
 </form>
 						<!-- 폼 끝 -->
 				<div id="makeSearch" class="col-md-12 clear ">
@@ -247,11 +233,11 @@
 						<div class="col-sm-6 col-md-3 p0">
 								<div class="box-two proerty-item">
 									<div class="item-thumb">
-										<a href="property-1.html"><img src="..${item.packageImgPath}"></a>
+										<a href="#"><img src="..${item.packageImgPath}"></a>
 									</div>
 									<div class="item-entry overflow">
 										<h5>
-											<a class="aStyle" href="property-1.html">${item.packageName}</a>
+											<a class="aStyle" href="#">${item.packageName}</a>
 											<button
 												class="search_detail navbar-btn nav-button wow fadeInRight animated"
 												onclick=" location.replace('<c:url value="/search/searchDetail.do"/>?packageCode=${item.packageCode}')"
@@ -269,9 +255,6 @@
 						</div>
 					</div>
 					</c:forEach> 
-<%-- 					<c:if test="${empty keyname}">
-		    <div id="list-type" class="proerty-th">입력된 게시물이 없습니다.</div>
-		  </c:if> --%>
 				</div>
 				<!-- 검색결과끄읕 -->
 				<div class="col-md-12 clear">
@@ -279,11 +262,7 @@
 						<div class="pagination">
 							<ul>
 								<li><navi:page data="${pageResult}" /></li>
-<!-- 								<li><a href="#">1</a></li>
-								<li><a href="#">2</a></li>
-								<li><a href="#">3</a></li>
-								<li><a href="#">4</a></li>
-								<li><a href="#">Next</a></li> -->
+
 							</ul>
 						</div>
 						<div id="test"></div>
@@ -317,56 +296,62 @@
 				url:"<c:url value='/search/searchDetail.json'/>",
 				data: $("#detailAll").serialize(),
 				success: function(data){
-					var html="";
-					//alert("실행zss");
-					console.log(data);
-					if (data.length == 0){
-					//	alert("가는지 확인");
-						$(".searchColor > span").html("");
-						$(".searchColor > span").html(data.length + "건");
-						$("#makeSearch").html("");
-						html+= '<div id="list-type" class="proerty-th">';
-						html+='<div class="col-sm-12 col-md-12 p0">';
-						html+='<div class="box-two proerty-item">';
-						html+='<div class="item-thumb">';
-					    html+= '없다';
-					    html+='</div></div></div></div>';
-					}else{
-						for(let a of data){
-							
-							$(".searchColor > span").html("");
-							$(".searchColor > span").html(data.length + "건");
-							$("#makeSearch").html("");
-							html+='<div id="list-type" class="proerty-th">';
-							html+='<div class="col-sm-6 col-md-3 p0">';
-							html+='<div class="box-two proerty-item">';
-							html+='<div class="item-thumb">';
-							html+='<a href="property-1.html"><img src="..'+a.packageImgPath+'"></a>';
-							html+='</div>';
-							html+='<div class="item-entry overflow">';
-							html+='<h5>';
-							html+='<a class="aStyle" href="property-1.html">'+a.packageName+'</a>';
-							//html+='<button type="button" class="search_detail navbar-btn nav-button wow fadeInRight animated" onclick="location.replace('${pageContext.request.contextPath}/search/searchDetail.do')" data-wow-delay="0.48s">상세보기</button>'
-							html+='<a style="width: 85px; line-height: 34px; text-align: center;    display: inline-block; background: #EAE9E9;" class="search_detail search-btn navbar-btn wow fadeInRight animated" href="<c:url value="/search/searchDetail.do"/>?packageCode='+a.packageCode+'" data-wow-delay="0.48s">상세보기</a>';
-							//html+='<a href="<c:url value='/search/searchDetail.do'/>'+?${a.packageCode}+'"></a>';
-							html+='</h5>';
-							html+='<div class="dot-hr"></div>';
-							html+='<span class="proerty-price pull-right">'+a.packagePrice+'</span>';
-							html+='<p style="display: none;">'+a.packageName+'</p>';
-							html+='</div></div></div></div>';
-						}	
-					}
-					$("#makeSearch").html(html);
-					
+					makeSearchList(data)
 				},
 				error:function(error){
-					alert(error);
+					console.log(error);
 				}
 			})
 			return false;
 		};
+		
+		
+		function makeSearchList(data){
+			var html="";
+			//alert("실행zss");
+			console.log(data);
+			if (data.length == 0){
+			//	alert("가는지 확인");
+				$(".searchColor > span").html("");
+				$(".searchColor > span").html(data.length + "건");
+				$("#makeSearch").html("");
+				html+= '<div id="list-type" class="proerty-th">';
+				html+='<div class="col-sm-12 col-md-12 p0">';
+				html+='<div class="box-two proerty-item">';
+				html+='<div class="item-thumb">';
+			    html+= '없다';
+			    html+='</div></div></div></div>';
+			}else{
+				for(let a of data){
+					
+					$(".searchColor > span").html("");
+					$(".searchColor > span").html(data.length + "건");
+					$("#makeSearch").html("");
+					html+='<div id="list-type" class="proerty-th">';
+					html+='<div class="col-sm-6 col-md-3 p0">';
+					html+='<div class="box-two proerty-item">';
+					html+='<div class="item-thumb">';
+					html+='<a href="property-1.html"><img src="..'+a.packageImgPath+'"></a>';
+					html+='</div>';
+					html+='<div class="item-entry overflow">';
+					html+='<h5>';
+					html+='<a class="aStyle" href="property-1.html">'+a.packageName+'</a>';
+					//html+='<button type="button" class="search_detail navbar-btn nav-button wow fadeInRight animated" onclick="location.replace('${pageContext.request.contextPath}/search/searchDetail.do')" data-wow-delay="0.48s">상세보기</button>'
+					html+='<a style="width: 85px; line-height: 34px; text-align: center;    display: inline-block; background: #EAE9E9;" class="search_detail search-btn navbar-btn wow fadeInRight animated" href="<c:url value="/search/searchDetail.do"/>?packageCode='+a.packageCode+'" data-wow-delay="0.48s">상세보기</a>';
+					//html+='<a href="<c:url value='/search/searchDetail.do'/>'+?${a.packageCode}+'"></a>';
+					html+='</h5>';
+					html+='<div class="dot-hr"></div>';
+					html+='<span class="proerty-price pull-right">'+a.packagePrice+'</span>';
+					html+='<p style="display: none;">'+a.packageName+'</p>';
+					html+='</div></div></div></div>';
+				}	
+			}
+			$("#makeSearch").html(html);
+		}
+		
+		
 /* 			data:{selectDay:$("#selectDeparture").val(), selectPrice:$("#selectPrice").val()} */
-		$("#price").change(function(){
+/* 		$("#price").change(function(){
 		alert($("#price").val());
 			$.ajax({
 			type:'post',
@@ -396,9 +381,9 @@
 			$("#makeSearch").html(html);
 	
 		});
-		});
+		}); */
 		
-		
+/* 		
 		$("#departure").change(function(){
 			alert($("#departure").val());
 				$.ajax({
@@ -429,7 +414,7 @@
 				$("#makeSearch").html(html);
 		
 				});
-			});
+			}); */
 
 	</script>
 

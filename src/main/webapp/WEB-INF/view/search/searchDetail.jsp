@@ -292,7 +292,9 @@
 											</c:if>
 										</c:forEach>
 													<th>아이디</th>
-													<td id="user"><input type="text" name="userEmail" value="${sessionScope.member.userEmail}"/></td>
+													<td id="user">
+													<input type="text" name="userEmail" value="${sessionScope.member.userEmail}" style="padding:0;"/>
+													</td>
 													<th>평점(5점만점)</th>
 													<td>
 														<ul>
@@ -310,15 +312,16 @@
 													</td>
 												</tr>
 												<tr>
-													<th>작성시간</th>
-													<td><!-- <input type="text" name="regDate"> --></td>
-													<th>항공</th>
-													<td>대한항공</td>
+													<!-- <th>작성시간</th>
+													<input type="text"  value="" name="regDate"></td>
+													 -->
+													 <th>항공</th>
+													<td colspan="2">대한항공</td>
 												</tr>
 												<tr>
 													<th>제목</th>
 													<td colspan="3"><input type="text" name="title"
-														style=" border: 1px solid silver; margin-top: 10px; margin-bottom: 10px; width: 500px; height: 30px;"></td>
+														style=" border: 1px solid silver; padding:0 4px 0 0; margin-top: 10px; margin-bottom: 10px; width: 500px; height: 30px;"></td>
 												</tr>
 												<tr>
 													<td colspan="4"><textarea name="content" rows="3"
@@ -347,24 +350,24 @@
 									$("#review_write").on("click", function() {
 										$(".wClose").toggleClass("onR");
 									});
-									$("#review_undefined").on("click",
-											function() {
-												alert("로그인이 필요한 서비스입니다.");
+									$("#review_undefined").on("click",function() {
+										swal({
+											type : 'error',
+											title : '로그인이 필요한 서비스입니다.',
+										})
+										return false;
 											});
 
 								})
  					$("#reviewRegist").submit(function (e) {
+ 						console.log($("#reviewRegist").serialize());
 					e.preventDefault();
-							//alert("rka");	
-							//alert($("#reviewRegist").serialize());
 							$.ajax({
 								type:'post',
 								url:"<c:url value='/search/reviewRegist.json'/>",
 								data:$("#reviewRegist").serialize(),
 								success: function(data){
-									//alert("가지");
 									var html ="";
-									//alert($('#reviewRegist input[name="packageCode"]').val());
 									html+='<tr><th>제목</th>';
 						            //html+='<th>별점</th>';
 									html+='<th>작성자</th>';
@@ -406,15 +409,14 @@
 						});	
 				
 				function reviewList(){
-					//alert("가는지");
 					var $code = $('#reviewRegist input[name="packageCode"]').val();
 				$.ajax({
 					url: "<c:url value='/search/reviewList.json'/>",
 					data: {packageCode:$code},
 					dataType: "json", 
 					success: function(data){
+						console.log(data);
 						var html ="";
-						//alert($('#reviewRegist input[name="packageCode"]').val());
 						html+='<tr><th>제목</th>';
 			            //html+='<th>별점</th>';
 						html+='<th>작성자</th>';
@@ -442,12 +444,11 @@
 						}
 						$(".review tbody").html(html);
 						$(".review_list").on("click", function() {
-							//alert("감");
 							$(".view").toggleClass("on");
 						});
 					},
 					error:function(error){
-						alert(error);
+						console.log(error);
 					}
 	
 				});
@@ -461,30 +462,7 @@
 				</div>
 
 				<div class="col-md-4 p0">
-					<%-- 				<c:forEach var="entry" items="${packageCode}">
-  
-   !!!!!!
-   <c:if test="${entry.key eq 'startDate'}">
-   스타트 데이트!!
- ${entry.value.startDate}
- ${entry.value.endDate}
- ${entry.value.packageCode}
- ${entry.value.packagePrice}
-   !!!!!!!!!!!   
-   </c:if>
-   <c:if test="${entry.key eq 'endDate'}">
-   엔드데이트
- ${entry.value.startDate}
- ${entry.value.endDate}
- ${entry.value.packageCode}
- ${entry.value.packagePrice}
-   
-   </c:if>
-   </c:forEach> --%>
-
-
-					<aside
-						class="sidebar sidebar-property blog-asside-right property-style2">
+			<aside class="sidebar sidebar-property blog-asside-right property-style2">
 						<div class="dealer-widget">
 							<div class="dealer-content">
 								<c:forEach var="entry" items="${packageCode}">
@@ -596,31 +574,6 @@
 		</div>
 	</div>
 
-	</div>
-	<%-- $.ajax({
-				type:'post',
-				url:"<c:url value='/search/searchDetail.json'/>",
-				data: $("#detailAll").serialize(),
-				success: function(data){
-					var html="";
-					$(".searchColor > span").html("");
-					$(".searchColor > span").html(data.length + "건");
-					$("#makeSearch").html("");
-					alert("실행zss");
-				console.log(data);--%>
-	<script type="text/javascript">
-	/* $.ajax({
-		type:'post',
-		url:"<c:url value='/search/reviewRegist.json'/>",
-		data:$("#reviewRegist").serialize(),
-	}).done(function(result){
-		alert(result);	
-	}); */
-	
-	</script>
-
-
-
 	<script>
  		$(document).ready(function() {
 
@@ -671,10 +624,16 @@
         });
 		$("#payMent").on("click",function(){
 			if($("input[name='userEmail']").val()==""){
-				alert("로그인이필요한 서비스입니다.");	
+				swal({
+					type : 'error',
+					title : '로그인이 필요한 서비스입니다.',
+				})
 				return false;
 			}else{
-				alert("결제성공");
+				swal({
+					type : 'success',
+					title : '결제성공',
+				})
 			}
 				
 			

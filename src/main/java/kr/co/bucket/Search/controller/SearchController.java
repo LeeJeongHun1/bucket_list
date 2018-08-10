@@ -58,7 +58,7 @@ public class SearchController {
         return list;
 	}
 	
-	@RequestMapping("/searchSelect.json")
+/*	@RequestMapping("/searchSelect.json")
 	@ResponseBody
 	public List<SResult> selectJson(AllSearch AllSearch) throws Exception{
 		//System.out.println(AllSearch.getPrice());
@@ -72,7 +72,7 @@ public class SearchController {
 		//System.out.println(AllSearch.getDeparture());
 		List<SResult> list = searchService.SelectSearch(AllSearch);
 		return list;
-	}
+	}*/
 	
 	@RequestMapping("/reviewRegist.json")
 	@ResponseBody

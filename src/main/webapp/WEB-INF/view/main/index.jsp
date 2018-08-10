@@ -103,10 +103,10 @@ ul {padding:0;}
                         <div class="col-sm-6 col-md-3 p0">
                             <div class="box-two proerty-item">
                                 <div class="item-thumb">
-                                    <a href="property-1.html" ><img src="..${i.packageImgpath}"></a>
+                                    <a href="#" ><img src="..${i.packageImgpath}"></a>
                                 </div>
                                 <div class="item-entry overflow">
-                                    <h5><a href="property-1.html" >${i.packageName}</a></h5>
+                                    <h5><a href="#" >${i.packageName}</a></h5>
                                     <div class="dot-hr"></div>
 <%--                                      <button
 												class="search_detail navbar-btn nav-button wow fadeInRight animated"
